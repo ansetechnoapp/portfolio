@@ -1,0 +1,22 @@
+name: Upload to FTP
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Transfer public folder
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_SERVER_portfolio }}
+          username: ${{ secrets.FTP_USERNAME_portfolio }}
+          password: ${{ secrets.FTP_PASSWORD_portfolio }}
+          server-dir: "./"
+          local-dir: "./"
