@@ -19,7 +19,8 @@ const { title, description } = Astro.props;
       <BodyHeader />
     </header>
     <slot />
-  </body><style>
+  </body>
+  <style>
     header {
       position: fixed;
       width: 100%;
@@ -58,7 +59,7 @@ const { title, description } = Astro.props;
       header.classList.toggle("sticky", window.scrollY > 100);
     });
 
-    let menu = document.querySelector("#menu-icon");
+    let menu = document.querySelector("#menu-icon") as HTMLElement;
     let navlist = document.querySelector(".navlist");
 
     menu.onclick = () => {

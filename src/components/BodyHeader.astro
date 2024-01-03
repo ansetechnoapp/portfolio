@@ -1,15 +1,43 @@
+---
+import Autre from "./autre.astro";
+
+/** Main menu items */
+const textLinks: { label: string; href: string }[] = [
+	{ label: 'Home', href: '#home' },
+	{ label: 'About Me', href: '#about' },
+	{ label: 'Services', href: '#services' },
+  { label: 'Portfolio', href: '#portfolio' },
+  { label: 'Contact Me', href: '#contact' },
+  { label: 'Cv', href: '/Cv' },
+];
+---
 <a href="#" class="logo">Cod<span>e</span>r.</a>
 
 <ul class="navlist">
-  <li><a href="#home" class="active">Home</a></li>
-  <li><a href="#about">About Me</a></li>
-  <li><a href="#services">Services</a></li>
-  <li><a href="#portfolio">Portfolio</a></li>
-  <li><a href="#contact">Contact Me</a></li>
+  {
+    textLinks.map(({ label, href }) => (
+      <li>
+        <a
+          aria-current={Astro.url.pathname === href}
+          class:list={[
+            'link',
+            {
+              active:
+                Astro.url.pathname === href ||
+                (href !== '/' && Astro.url.pathname.startsWith(href)),
+            },
+          ]}
+          href={href}
+        >
+          {label}
+        </a>
+      </li>
+    ))
+  }
 </ul>
 
 <div class="bx bx-menu" id="menu-icon"></div>
-
+<!-- <Autre /> -->
 <style>
   .logo {
     color: var(--text-color);
