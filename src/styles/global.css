@@ -23,6 +23,12 @@ body {
   background: var(--bg-color);
   color: var(--text-color);
 }
+body.light-mode {
+  --bg-color: #fff;
+  --text-color: #2a2a2a;
+  --second-color: #ccc;
+  --main-color: #ff4d05;
+}
 span {
   color: var(--main-color);
 }

@@ -1,5 +1,5 @@
 ---
-import Autre from "./autre.astro";
+import ThemeToggle from "../components/ThemeToggle.astro";
 
 /** Main menu items */
 const textLinks: { label: string; href: string }[] = [
@@ -34,6 +34,7 @@ const textLinks: { label: string; href: string }[] = [
       </li>
     ))
   }
+  <ThemeToggle  />
 </ul>
 
 <div class="bx bx-menu" id="menu-icon"></div>
