@@ -26,14 +26,14 @@ const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths }[]
 <style>
 	 /* .hero-media-social-nav */
   
-	 @media (min-width: 50em) {
+	 @media (min-width: 48em) {
     .hero-media-social-nav{
     width: max-content;
     padding: 1.7rem 0rem 1.7rem 0rem;
     display: flex;
     gap: 1rem;
     line-height: 1.2;
-    flex-direction:column;
+    flex-direction:row;
     justify-content: center;
    }
 
@@ -52,5 +52,10 @@ const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths }[]
     background-color: var(--accent-regular);
     color: var(--accent-text-over);
    }
+  }
+  @media (min-width: 75em) {
+    .hero-media-social-nav{
+      flex-direction:column;
+    }
   }
 </style>

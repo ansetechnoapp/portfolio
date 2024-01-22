@@ -98,7 +98,15 @@
   background: var(--main-color);
 }
 
-@media (max-width: 1480px) {
+@media (min-width: 30em) {
+}
+@media (min-width: 48em) {
+}
+@media (min-width: 62em) {
+}
+@media (min-width: 75em) {
+}
+@media (min-width: 100em) {
   section {
     padding: 110px 3% 60px;
   }
