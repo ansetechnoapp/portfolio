@@ -1,6 +1,8 @@
 ---
 import { getCollection } from "astro:content";
 
+// image
+import Img1 from "../assets/portrait.jpg";
 // Layout import — provides basic page elements: <head>, <nav>, <footer> etc.
 import BaseLayout from "../layouts/BaseLayout.astro";
 
@@ -49,7 +51,7 @@ const projects = (await getCollection("work"))
           alt="Jeanine White smiling in a red plaid shirt and tortoise shell glasses"
           width="480"
           height="620"
-          src="/assets/portrait.jpg"
+          src={Img1.src}
         />
       </header>
       <!-- <div class="hero-contact">
@@ -67,7 +69,7 @@ const projects = (await getCollection("work"))
             alt="Jeanine White smiling in a red plaid shirt and tortoise shell glasses"
             width="480"
             height="620"
-            src="/assets/portrait.jpg"
+            src={Img1.src}
           />
           <a href=""><Pill><Icon icon="paper-plane-tilt" size="1.33em" /> Cv</Pill></a>
         </div>
