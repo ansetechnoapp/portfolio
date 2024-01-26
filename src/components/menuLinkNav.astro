@@ -1,6 +1,7 @@
 ---
 import Icon from './Icon.astro';
 import type { iconPaths } from './IconPaths';
+import ThemeToggle from './ThemeToggle.astro';
 import Icone1 from "../assets/icone/icons8-home-50.png";
 import Icone2 from "../assets/icone/icons8-about.svg";
 import Icone3 from "../assets/icone/icons8-development-skill-50.png";
@@ -40,15 +41,12 @@ const iconImgLinks: { label: string; href: string; }[] = [
 				<span class="sr-only">{label}</span>
 				<img width="15" height="15"  src={label} alt="" />
 			</a>
-		))
+		)) 
 	}
+  <ThemeToggle togglelightdarktheme="toggleside" toggleiconelightdarktheme="lighty"/>
           </div> 
 
 <style>
-	/* .menu-link-nav{
-    display: none;
-   } */
-   
    .menu-link-nav{
     background: radial-gradient(var(--gray-900),var(--gray-800) 150%);
     box-shadow: var(--shadow-md);
@@ -82,9 +80,6 @@ const iconImgLinks: { label: string; href: string; }[] = [
     background-color: var(--accent-regular);
     color: var(--accent-text-over);
    }
-
-  /* .menu-link-nav */
-  
    @media (min-width: 48em) {
     .menu-link-nav{
     background: #ead5f285;
@@ -116,4 +111,9 @@ const iconImgLinks: { label: string; href: string; }[] = [
     color: var(--accent-text-over);
    }
   }
+  @media (min-width: 75em){
+	.menu-link-nav theme-toggle {
+		/* code dans style.css */
+	}
+}
 </style>

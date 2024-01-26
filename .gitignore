@@ -1,5 +1,7 @@
 # build output
 # dist/
+template/other template portfolio 2
+
 # generated types
 .astro/
 

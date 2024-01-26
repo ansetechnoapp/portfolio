@@ -20,6 +20,7 @@ import Card from "../components/card.astro";
 import ContactCTA from "../components/ContactCTA.astro";
 import Skills from "../components/Skills.astro";
 import HeroMediaSocialNav from "../components/heroMediaSocialNav.astro";
+import HeroCounter from "../components/heroCounter.astro";
 // Content Fetching: List four most recent work projects
 const projects = (await getCollection("work"))
   .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
@@ -30,12 +31,12 @@ const projects = (await getCollection("work"))
 ---
 
 <BaseLayout>
-  <div class="stack gap-20  p-top-6.5-rem">
+  <div class="stack gap-15  p-top-6_5-rem">
     <div class="wrapper stack gap-8 lg:gap-20">
       <header class="hero">
       <HeroMediaSocialNav />
         <Hero
-          title="Hello, my name is Jeanine White"
+          title="Hello, my name is otty kevin"
           tagline="I am a Creative Developer who is currently based in Portland, Oregon."
           align="start"
         >
@@ -48,11 +49,12 @@ const projects = (await getCollection("work"))
         </Hero>
 
         <img
-          alt="Jeanine White smiling in a red plaid shirt and tortoise shell glasses"
+          alt="otty kevin smiling in a red plaid shirt and tortoise shell glasses"
           width="480"
           height="620"
           src={Img1.src}
         />
+        <HeroCounter /> 
       </header>
       <Skills />
     </div>
@@ -61,7 +63,7 @@ const projects = (await getCollection("work"))
       <section class="section-about with-background bg-variant p-left-right-2-rem">
         <div class="section-about-img">
           <img
-            alt="Jeanine White smiling in a red plaid shirt and tortoise shell glasses"
+            alt="otty kevin smiling in a red plaid shirt and tortoise shell glasses"
             width="480"
             height="620"
             src={Img1.src}
@@ -109,22 +111,11 @@ E-MAIL: oliver.queen@yahoo.com
             {
               projects.map((project) => (
                 <li>
-                  <PortfolioPreview project={project} />
+                  <PortfolioPreview project={project}/>
                 </li>
               ))
             }
           </Card>
-
-          <!-- <Grid variant="offset">
-            
-            {
-              projects.map((project) => (
-                <li>
-                  <PortfolioPreview project={project} />
-                </li>
-              ))
-            }
-          </Grid> -->
         </div>
 
         <div class="cta">
@@ -225,7 +216,7 @@ E-MAIL: oliver.queen@yahoo.com
       border-radius: 16rem;
       object-fit: cover;
     }
-    .p-top-6.5-rem {
+    .p-top-6_5-rem {
       padding-top: 6.5rem;
     }
   }
@@ -234,9 +225,9 @@ E-MAIL: oliver.queen@yahoo.com
   @media (min-width: 75em) {
     .hero {
       display: grid;
-      grid-template-columns: 1fr 6fr 4fr;
+      grid-template-columns: 0.5fr 5.5fr 5fr 3fr;
       padding-inline: 2.5rem;
-      gap: 3.75rem;
+      gap: 1rem;
     }
   }
   @media (min-width: 100em) {

@@ -63,11 +63,12 @@
     grid-template-columns: repeat(auto-fit, minmax(250px, auto));
     align-items: center;
     gap: 2.5rem;
-    margin-top: 5rem;
+    margin-top: 2rem;
   }
 
   .box {
-    background: var(--bg-color);
+    background: var(--gradient-accent-orange);
+    color: var(--accent-text-over);
     padding: 35px 45px;
     border-radius: 8px;
     transition: all 0.45s ease;
@@ -80,16 +81,16 @@
   }
 
   .box h3 {
-    font-size: 24px;
+    font-size: var(--text-md);
     font-weight: 600;
     color: var(--text-color);
     margin-bottom: 15px;
+    text-transform: uppercase;
   }
 
   .box p {
     color: var(--second-color);
-    font-size: 1rem;
-    line-height: 1.8;
+    font-size: var(--text-base);
     margin-bottom: 25px;
   }
 
@@ -113,5 +114,10 @@
   .box:hover {
     transform: translateY(-8px);
     cursor: pointer;
+  }
+  @media (min-width: 75em){
+    .services-content {
+    grid-template-columns: repeat(auto-fit,minmax(500px,auto));
+}
   }
 </style>
