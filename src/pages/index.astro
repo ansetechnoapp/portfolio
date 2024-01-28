@@ -28,6 +28,14 @@ const projects = (await getCollection("work"))
 
 // Full Astro Component Syntax:
 // https://docs.astro.build/core-concepts/astro-components/
+
+import dataUser from "../data/User.json";
+interface Props {
+	heroTitle?: string | undefined;
+}
+const {
+	heroTitle = `Hello, my name is ${dataUser.firstName} ${dataUser.lastName}`,
+} = Astro.props; 
 ---
 
 <BaseLayout>
@@ -36,7 +44,7 @@ const projects = (await getCollection("work"))
       <header class="hero">
       <HeroMediaSocialNav />
         <Hero
-          title="Hello, my name is otty kevin"
+          title={heroTitle}
           tagline="I am a Creative Developer who is currently based in Portland, Oregon."
           align="start"
         >
@@ -49,7 +57,7 @@ const projects = (await getCollection("work"))
         </Hero>
 
         <img
-          alt="otty kevin smiling in a red plaid shirt and tortoise shell glasses"
+          alt=`${dataUser.firstName} ${dataUser.lastName} smiling in a red plaid shirt and tortoise shell glasses`
           width="480"
           height="620"
           src={Img1.src}
@@ -63,7 +71,7 @@ const projects = (await getCollection("work"))
       <section class="section-about with-background bg-variant p-left-right-2-rem">
         <div class="section-about-img">
           <img
-            alt="otty kevin smiling in a red plaid shirt and tortoise shell glasses"
+            alt=`${dataUser.firstName} ${dataUser.lastName} smiling in a red plaid shirt and tortoise shell glasses`
             width="480"
             height="620"
             src={Img1.src}
@@ -76,17 +84,17 @@ const projects = (await getCollection("work"))
               I have been fortunate enough to receive praise for my work in
               several publications. Take a look below to learn more.
               <br><br>
-              NAME: Oliver Queen
+              NAME: {dataUser.firstName} {dataUser.lastName}
               <br>
-DATE OF BIRTH: 14 February 1986
+DATE OF BIRTH: {dataUser.birthDay}
 <br>
-NATIONALITY: Citizen Of Envato
+NATIONALITY: {dataUser.natinality}
 <br>
-ADDRESS: 23 High Hope Blvd., Some City, Some Country
+ADDRESS: {dataUser.address.city} {dataUser.address.rue}
 <br>
-PHONE: (123) - 456-7890, (123) - 456-7890
+PHONE: {dataUser.phone}
 <br>
-E-MAIL: oliver.queen@yahoo.com
+E-MAIL: {dataUser.email}
             </p>
             <div class="btn-about gap-10">
               <a href=""><Pill><Icon icon="paper-plane-tilt" size="1.33em" /> Contactez-Moi</Pill></a> 

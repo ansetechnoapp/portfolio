@@ -8,6 +8,8 @@ const textLinks: { label: string; href: string }[] = [
 	{ label: 'Home', href: '/' },
 	{ label: 'Work', href: '/work/' },
 	{ label: 'About', href: '/about/' },
+	// { label: 'My components', href: '/components/' },
+	// { label: 'outils css', href: '/widgetCss/' },
 	// { label: 'Cv', href: '/portfolio/Cv/' },
 ];
 
@@ -20,13 +22,14 @@ const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths }[]
 	{ label: 'dribbble', href: 'https://dribbble.com/me', icon: 'dribbble-logo' },
 	{ label: 'YouTube', href: 'https://www.youtube.com/@me/', icon: 'youtube-logo' },
 ];
+import dataUser from "../data/User.json";
 ---
  
 <nav>
 	<div class="menu-header">
 		<a href="/" class="site-title">
 			<Icon icon="terminal-window" color="var(--accent-regular)" size="1.6em" gradient />
-			 Jeanine White
+			{dataUser.firstName} {dataUser.lastName}
 		</a>
 		<menu-button>
 			<template>

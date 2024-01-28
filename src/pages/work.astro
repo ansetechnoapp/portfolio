@@ -12,11 +12,21 @@ import Contact from "../components/Contact.astro";
 const projects = (await getCollection('work')).sort(
 	(a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
 );
+import dataUser from "../data/User.json";
+interface Props {
+	BaseLayoutTitle?: string | undefined;
+	descriptionBaseLayout?: string | undefined;
+}
+const {
+	BaseLayoutTitle = `My Work | ${dataUser.firstName} ${dataUser.lastName}`,
+	descriptionBaseLayout = `Learn about ${dataUser.firstName} ${dataUser.lastName}'s most recent projects`,
+
+} = Astro.props;
 ---
 
 <BaseLayout
-	title="My Work | otty kevin"
-	description="Learn about otty kevin's most recent projects"
+	title={BaseLayoutTitle}
+	description={descriptionBaseLayout}
 >
 	<div class="stack gap-20">
 		<main class="wrapper stack gap-8">
