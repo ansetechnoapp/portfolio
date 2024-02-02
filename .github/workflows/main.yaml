@@ -20,6 +20,7 @@ jobs:
       
     - name: Build Project
       run: |
+        npm update
         npm install
         npm run build
     
