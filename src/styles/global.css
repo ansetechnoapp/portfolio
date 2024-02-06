@@ -133,7 +133,32 @@ body {
 	font-family: var(--font-body);
 	-webkit-font-smoothing: antialiased;
 	line-height: 1.5;
+	--sb-track-color: #fff;
+	--sb-thumb-color: #7611a6;
+	--sb-size: 1rem;
 }
+  
+  body::-webkit-scrollbar {
+	width: var(--sb-size)
+  }
+  
+  body::-webkit-scrollbar-track {
+	background: var(--sb-track-color);
+	/* border-radius: 5px; */
+  }
+  
+  body::-webkit-scrollbar-thumb {
+	background: var(--sb-thumb-color);
+	border-radius: 5px;
+	border: 2px solid #000;
+  }
+  
+  @supports not selector(::-webkit-scrollbar) {
+	body {
+	  scrollbar-color: var(--sb-thumb-color)
+					   var(--sb-track-color);
+	}
+  }
 
 * {
 	padding: 0;
