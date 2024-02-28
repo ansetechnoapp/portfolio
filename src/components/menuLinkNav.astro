@@ -8,26 +8,53 @@ import Icone3 from "../assets/icone/icons8-development-skill-50.png";
 import Icone4 from "../assets/icone/icons8-development-service-50.png";
 import Icone5 from "../assets/icone/icons8-maintenance-50.png";
 import Icone6 from "../assets/icone/icons8-contact-50.png";
+import { AboutTexteHomeCv } from './aboutTexteHomeCv';
 
+interface Props {
+	namepage?: string | undefined;
+}
 
+const { namepage } = Astro.props;
 
 /** Icon links to social media — edit these with links to your profiles! */
 const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths }[] = [
 	{ label: 'Home', href: '/', icon: 'house-logo' },
 ];
-const iconImgLinks: { label: string; href: string; }[] = [
-	{ label: `${Icone1.src}`, href: '/' },
-  { label: `${Icone5.src}`, href: '/work/' },
-	{ label: `${Icone2.src}`, href: '/about/' },
-  // { label: `${Icone3.src}`, href: '/work/' },
-	// { label: `${Icone4.src}`, href: '/work/' },
-	// { label: `${Icone6.src}`, href: '#contact' },
+
+ function test(){
+
+  let iconImgLinks: { label: string; href: string; }[] = [];
+
+  if (namepage === "home" ) {
+    iconImgLinks = [
+	{ label: `${Icone1.src}`, href: '#hero_home' },
+  { label: `${Icone5.src}`, href: '#skills' },
+	{ label: `${Icone2.src}`, href: '#about' },
+  { label: `${Icone3.src}`, href: '#service' },
+  { label: `${Icone4.src}`, href: '#work' },
+  { label: `${Icone6.src}`, href: '#contact' },
 ];
+  }
+
+  if (namepage === "about" ) {
+    iconImgLinks = [
+	{ label: `${Icone1.src}`, href: '#about' },
+];
+  }
+
+  if (namepage === "work" ) {
+    iconImgLinks = [
+	{ label: `${Icone1.src}`, href: '#work' },
+];
+  }
+  
+return iconImgLinks;
+ }
 ---
 
-<div class="menu-link-nav"> 
-  {
-		iconImgLinks.map(({ href, label }) => (
+<div class="menu-link-nav">
+  { 
+		test().map(({ href, label }) => (
 			<a 
       aria-current={Astro.url.pathname === href}
       href={href} class:list={[
@@ -45,7 +72,6 @@ const iconImgLinks: { label: string; href: string; }[] = [
 	}
   <ThemeToggle togglelightdarktheme="toggleside" toggleiconelightdarktheme="lighty"/>
           </div> 
-
 <style>
    .menu-link-nav{
     background: radial-gradient(var(--gray-900),var(--gray-800) 150%);
@@ -59,7 +85,6 @@ const iconImgLinks: { label: string; href: string; }[] = [
     transform: translateX(-50%);
     bottom: 1rem;
     display: flex;
-    gap: 0.8rem;
     border-radius: 999rem;
     backdrop-filter: blur(15px);
     line-height: 1.2;
@@ -110,10 +135,8 @@ const iconImgLinks: { label: string; href: string; }[] = [
     background-color: var(--accent-regular);
     color: var(--accent-text-over);
    }
-  }
-  @media (min-width: 75em){
-	.menu-link-nav theme-toggle {
-		/* code dans style.css */
+   .menu-link-nav theme-toggle {
+		/* code dans ./styles/style.css */
 	}
-}
+  }
 </style>

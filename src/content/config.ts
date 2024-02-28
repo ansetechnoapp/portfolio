@@ -13,4 +13,15 @@ export const collections = {
 			img_alt: z.string().optional(),
 		}),
 	}),
+	widgetCss: defineCollection({
+		type: 'content',
+		schema: z.object({
+			title: z.string(),
+			href: z.string(),
+			description: z.string(),
+			publishDate: z.coerce.date(),
+			img: z.string(),
+			img_alt: z.string().optional(),
+		}),
+	}),
 };

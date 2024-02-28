@@ -14,7 +14,7 @@
 
 .wrapper {
   width: 100%;
-  max-width: 83rem;
+  max-width: 96rem;
   margin-inline: auto;
   padding-inline: 1.5rem;
 }
@@ -30,9 +30,9 @@
 .work-btn span div.pill {
   background-color: #ff004f;
 }
-@media (min-width: 75em){
+@media (min-width: 48em){
 	.menu-link-nav theme-toggle {
 		padding: 0rem 0rem 0rem 0.4rem;
 	}
 }
-
+ 

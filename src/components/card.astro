@@ -20,7 +20,7 @@ import Icon from "./Icon.astro";
   
     @media (min-width: 48em) {
       .Work-grid {
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
         gap: 4rem;
       }
   
@@ -33,6 +33,12 @@ import Icon from "./Icon.astro";
       .Work-grid.offset > :global(:last-child:nth-child(odd)) {
         grid-column: 3 / 3;
         transform: none;
+      }
+    }
+    @media (min-width: 75em) {
+      .Work-grid {
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 4rem;
       }
     }
   </style>

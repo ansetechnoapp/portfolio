@@ -1,10 +1,14 @@
 export function AboutTexteHomeCv() {
+  const er = 0;
+  if(er){
+
+  }
 
     return (
         <>
     <h2>About <span>Me</span></h2>
   <h4>Creative UI/UX Designer!</h4>
-  <p>
+  <p>{er}
     Check out 10 Best Design's updates for the top web design & development
     companies for your needs by reviewing our list & development companies! Find
     the best web design. Web Design Consulting. Comprehensive Directory. Top
@@ -19,4 +23,4 @@ export function AboutTexteHomeCv() {
     )
       
     ;
-  }
+  } 

@@ -11,6 +11,9 @@ const { data, slug } = Astro.props.project;
 ---
 
 <article class="portfolio_item">
+  <div class="work-btn">
+		{data.tech.map((t) =>  <span><Pill><Icon icon="paper-plane-tilt" size="1.33em" />{t}</Pill></span>)}
+	</div>
 	<div class="portfolio_item-image">
 		<img src={data.img} alt={data.img_alt || ''} loading="lazy" decoding="async">
 		<div class="layer">
@@ -19,9 +22,6 @@ const { data, slug } = Astro.props.project;
 		</div>
 	</div>
 	<h5>{data.title}</h5>
-  <div class="work-btn">
-		{data.tech.map((t) =>  <span><Pill><Icon icon="paper-plane-tilt" size="1.33em" />{t}</Pill></span>)}
-	</div>
 	<div class="work-btn">
 		<a href="" class="btn"><Pill><Icon icon="paper-plane-tilt" size="1.33em" /> github</Pill></a>
 	<a href={`/work/${slug}`} class="btn"><Pill><Icon icon="paper-plane-tilt" size="1.33em" /> Info</Pill></a>

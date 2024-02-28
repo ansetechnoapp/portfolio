@@ -1,5 +1,5 @@
 
-<div>
+<div id="service">
   <div class="my-service-text">
     <p>What I am Expert In</p>
     <h2><span>My</span> Services</h2>
@@ -114,6 +114,11 @@
   .box:hover {
     transform: translateY(-8px);
     cursor: pointer;
+  }
+  @media (min-width: 45em){
+    .services-content {
+    grid-template-columns: repeat(auto-fit,minmax(450px,auto));
+}
   }
   @media (min-width: 75em){
     .services-content {

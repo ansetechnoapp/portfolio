@@ -16,6 +16,7 @@ import PortfolioPreview from "../components/PortfolioPreview.astro";
 import Contact from "../components/Contact.astro";
 import Services from "../components/Services.astro";
 import Card from "../components/card.astro";
+import MenuLinkNav from "../components/menuLinkNav.astro" 
 // Page section components
 import ContactCTA from "../components/ContactCTA.astro";
 import Skills from "../components/Skills.astro";
@@ -39,10 +40,11 @@ const {
 ---
 
 <BaseLayout>
-  <div class="stack gap-15  p-top-6_5-rem">
+  <MenuLinkNav namepage="home"/>
+  <div class="stack gap-15  p-top-1-5-rem">
     <div class="wrapper stack gap-8 lg:gap-20">
-      <header class="hero">
-      <HeroMediaSocialNav />
+      <header id="hero_home" class="hero">
+      <HeroMediaSocialNav/>
         <Hero
           title={heroTitle}
           tagline="I am a Creative Developer who is currently based in Portland, Oregon."
@@ -64,10 +66,12 @@ const {
         />
         <HeroCounter /> 
       </header>
-      <Skills />
     </div>
+    <main class="wrapper stack gap-20 lg:gap-35"> 
+      <Skills />
+    </main>
 
-    <main class="wrapper stack gap-20 lg:gap-35">
+    <main id="about" class="wrapper stack gap-20 lg:gap-35"> 
       <section class="section-about with-background bg-variant p-left-right-2-rem">
         <div class="section-about-img">
           <img
@@ -105,7 +109,7 @@ E-MAIL: {dataUser.email}
     <ContactCTA />
     <div class="wrapper stack gap-20 lg:gap-35">
       <Services />
-      <section class="section with-background with-cta">
+      <section id="work" class="section with-background with-cta">
         <header class="section-header stack gap-2 lg:gap-4">
           <h3>Selected Work</h3>
           <p>
@@ -224,8 +228,8 @@ E-MAIL: {dataUser.email}
       border-radius: 16rem;
       object-fit: cover;
     }
-    .p-top-6_5-rem {
-      padding-top: 6.5rem;
+    .p-top-1-5-rem {
+      padding-top: 1.5rem;
     }
   }
   @media (min-width: 62em) {
@@ -270,6 +274,7 @@ E-MAIL: {dataUser.email}
       display: grid;
       grid-template-columns: 1fr 1fr;
       grid-template-rows: 1fr;
+      margin-top: 5rem;
     }
     .section-about img {
       aspect-ratio: 3 / 4;
