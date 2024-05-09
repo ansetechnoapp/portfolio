@@ -30,4 +30,4 @@ jobs:
         username: ${{ secrets.FTP_USERNAME_portfolio }}
         password: ${{ secrets.FTP_PASSWORD_portfolio }}
         server-dir: "./portfolio/"
-        local-dir: "./dist/"
+        local-dir: "./portfolio/"
