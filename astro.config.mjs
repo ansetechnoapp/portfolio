@@ -4,5 +4,5 @@ import { defineConfig } from 'astro/config';
 export default defineConfig({
     site: 'https://anscod.online/portfolio/',
      base: '/portfolio',
-     root: './portfolio'
+     srcDir: './portfolio'
 });
