@@ -29,7 +29,5 @@ jobs:
         server: ${{ secrets.FTP_SERVER_portfolio }}
         username: ${{ secrets.FTP_USERNAME_portfolio }}
         password: ${{ secrets.FTP_PASSWORD_portfolio }}
-        server-dir: "./"
+        server-dir: "./home/"
         local-dir: "./dist/"
-
-        #dddffff
