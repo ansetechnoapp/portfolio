@@ -1,14 +1,14 @@
 {
     "firstName": "Kevin",
     "lastName": "Otty",
-    "email": "0.0.1",
-    "phone": "0.0.1",
-    "natinality": "0.0.1",
-    "birthDay": "0.0.1",
+    "email": "contact@anscod.online",
+    "phone": "97279001",
+    "natinality": "Béninoise",
+    "birthDay": "21/04/1998",
     "address": {
-      "city": "astro dev",
-      "contry": "astro dev",
-      "rue": "23 High Hope Blvd., Some City, Some Country",
+      "city": "cotonou",
+      "contry": "litoral",
+      "rue": "00229 cotonou,Bénin",
       "indicatif": "+229"
     }
   }
