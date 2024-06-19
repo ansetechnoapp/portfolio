@@ -1,17 +1,17 @@
 ---
-title: h2.0
-publishDate: 2019-10-02 00:00:00
-img: /assets/img/stock-4.jpg
-img_alt: Soft pink and baby blue water ripples together in a subtle texture.
+title: Top sac a langer
+publishDate: 2020-03-04 00:00:00
+img: /assets/img/stock-3.jpg
+img_alt: Pearls of silky soft white cotton, bubble up under vibrant lighting
 description: |
-  We developed brand positioning and design assets for the launch
-  of a new colored water product.
+  We developed a virtual showcase for the softest bedding imaginable.
 tags:
   - Design
+  - Dev
   - Branding
 tech: 
-  - html
-  - css
+  - laravel
+  - mySql
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur posuere commodo venenatis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nam non ligula vel metus efficitur hendrerit. In hac habitasse platea dictumst. Praesent et mauris ut mi dapibus semper. Curabitur tortor justo, efficitur sit amet pretium cursus, porta eget odio. Cras ac venenatis dolor. Donec laoreet posuere malesuada. Curabitur nec mi tempor, placerat leo sit amet, tincidunt est. Quisque pellentesque venenatis magna, eget tristique nibh pulvinar in. Vestibulum vitae volutpat arcu. Aenean ut malesuada odio, sit amet pellentesque odio. Suspendisse nunc elit, blandit nec hendrerit non, aliquet at magna. Donec id leo ut nulla sagittis sodales.
