@@ -1,0 +1,168 @@
+---
+import { defineComponent } from 'astro:components';
+
+const products = [
+    {
+        id: 'produit1',
+        title: 'Produit 1',
+        description: 'Description du produit 1.',
+        imgSrc: 'https://via.placeholder.com/200',
+        link: 'https://example.com/produit1' // Ajoutez le lien ici
+    },
+    {
+        id: 'produit2',
+        title: 'Produit 2',
+        description: 'Description du produit 2.',
+        imgSrc: 'https://via.placeholder.com/200',
+        link: 'https://example.com/produit2' // Ajoutez le lien ici
+    },
+    {
+        id: 'produit3',
+        title: 'Produit 3',
+        description: 'Description du produit 3.',
+        imgSrc: 'https://via.placeholder.com/200',
+        link: 'https://example.com/produit3' // Ajoutez le lien ici
+    },
+    {
+        id: 'produit4',
+        title: 'Produit 4',
+        description: 'Description du produit 4.',
+        imgSrc: 'https://via.placeholder.com/200',
+        link: 'https://example.com/produit4' // Ajoutez le lien ici
+    },
+    {
+        id: 'produit5',
+        title: 'Produit 5',
+        description: 'Description du produit 5.',
+        imgSrc: 'https://via.placeholder.com/200',
+        link: 'https://example.com/produit5' // Ajoutez le lien ici
+    }
+];
+---
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Présentation des Produits</title>
+     <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: #f4f4f9;
+        }
+
+        nav {
+            margin-bottom: 20px;
+            background-color: #333;
+            padding: 10px;
+            border-radius: 5px;
+            width: 80%;
+            max-width: 1200px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .products-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            width: 80%;
+            max-width: 1200px;
+        }
+
+        .product-card {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .product-title {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .product-description {
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .anchor {
+            display: block;
+            position: relative;
+            top: -80px; /* Ajustez ce chiffre selon votre besoin */
+            visibility: hidden;
+        }
+    </style>
+</head>
+<body>
+
+<div>
+    <h1 class="product-title">World Energy Technologies</h1>
+    <a href={`https://www.wetsarl.com/`}>
+    <img src={products[0].imgSrc} 
+    alt="World Energy Technologies"></a>
+</div>
+
+<nav>
+    <ul>
+      {products.map(product => (
+          <li><a href={`#${product.id}`}>{product.title}</a></li>
+      ))}
+    </ul>
+</nav>
+
+<div class="products-container">
+    {products.map(product => (
+      <div class="product-card" id={product.id}>
+          <a href={product.link}> <!-- Ajoutez la balise <a> ici -->
+              <img src={product.imgSrc} alt={product.title}>
+              <div class="product-info">
+                  <h3 class="product-title">{product.title}</h3>
+                  <p class="product-description">{product.description}</p>
+              </div>
+          </a>
+      </div>
+    ))}
+</div>
+
+</body>
+</html>
