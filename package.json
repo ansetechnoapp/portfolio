@@ -12,5 +12,11 @@
   "dependencies": {
     "@rollup/rollup-win32-x64-msvc": "^4.9.1",
     "astro": "^4.0.7"
+  },
+  "pnpm": {
+    "ignoredBuiltDependencies": [
+      "esbuild",
+      "sharp"
+    ]
   }
 }
