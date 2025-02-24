@@ -1,15 +1,16 @@
 ---
-import Pill from "./Pill.astro";
+import Pill from "./reactJS/Pill.tsx";
 import Icon from "./Icon.astro";
 import type { CollectionEntry } from "astro:content";
 
 interface Props {
-  project: CollectionEntry<"work">;
+  project: CollectionEntry<"work">; 
 }
 
 const { data, slug } = Astro.props.project;
 ---
 
+<!-- <PortfolioItem project={Astro.props.project} Icon={`${Icon}`} /> -->
 <article class="portfolio_item">
   <div class="work-btn">
 		{data.tech.map((t) =>  <span><Pill><Icon icon="paper-plane-tilt" size="1.33em" />{t}</Pill></span>)}
