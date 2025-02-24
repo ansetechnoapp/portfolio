@@ -1,7 +1,12 @@
 import { defineConfig } from 'astro/config';
+import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-    site: 'https://anscod.online/',
-    //  base: './',
+  //  base: './',
+  site: 'https://anscod.online/',
+
+  vite: {
+    plugins: [tailwindcss()],
+  },
 });
