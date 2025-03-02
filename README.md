@@ -51,6 +51,15 @@ All commands are run from the root of the project, from a terminal:
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
 
+## Database Initialization
+
+To use the db/init.sql file with the PortfolioForm component:
+
+1. Ensure your database connection is set up (e.g. in Supabase).
+2. Execute the file `db/init.sql` (using the Supabase SQL editor or:
+   psql -U YOUR_USERNAME -d YOUR_DATABASE -f db/init.sql).
+3. This creates the table `portfolio_project` which is referenced in PortfolioForm.astro when inserting data.
+
 ## 👀 Want to learn more?
 
 Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).

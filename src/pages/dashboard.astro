@@ -1,0 +1,63 @@
+---
+import { createClient } from '@supabase/supabase-js';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PortfolioForm from '../components/PortfolioForm.astro';
+
+// Retrieve your Supabase URL and anon key from environment variables.
+const SUPABASE_URL = import.meta.env.PUBLIC_SUPABASE_URL;
+const SUPABASE_ANON_KEY = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
+
+// Initialize the Supabase client.
+const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+// Fetch portfolio items from a table named "portfolio".
+const { data: portfolioItems, error } = await supabase
+  .from('portfolio')
+  .select('*');
+---
+
+<BaseLayout title="Dashboard - Portfolio" description="Manage your portfolio preview items">
+  <div class="dashboard">
+    <h1>Portfolio Dashboard</h1>
+    {error && <p>Error: {error.message}</p>}
+    {portfolioItems ? (
+      <ul>
+        {portfolioItems.map(item => (
+          <li>
+            <h3>{item.title}</h3>
+            <p>{item.description}</p>
+            <img src={item.img} alt={item.img_alt || ''} loading="lazy" />
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <p>Loading...</p>
+    )}
+    
+    {/* New: Insert the portfolio form */}
+    <PortfolioForm />
+    
+    {/* Additional dashboard controls (create, update, delete, etc.) can be added here */}
+  </div>
+</BaseLayout>
+
+<style>
+  .dashboard {
+    padding: 2rem;
+  }
+  .dashboard ul {
+    list-style: none;
+    padding: 0;
+  }
+  .dashboard li {
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--gray-800);
+    padding: 1rem;
+    border-radius: 8px;
+  }
+  .dashboard img {
+    max-width: 200px;
+    display: block;
+    margin-top: 0.5rem;
+  }
+</style>

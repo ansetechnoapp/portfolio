@@ -1,5 +1,5 @@
 ---
-import Pill from "./reactJS/Pill.tsx";
+import Pill from "./reactJS/Pill";
 import Icon from "./Icon.astro";
 import type { CollectionEntry } from "astro:content";
 
@@ -13,7 +13,7 @@ const { data, slug } = Astro.props.project;
 <!-- <PortfolioItem project={Astro.props.project} Icon={`${Icon}`} /> -->
 <article class="portfolio_item">
   <div class="work-btn">
-		{data.tech.map((t) =>  <span><Pill><Icon icon="paper-plane-tilt" size="1.33em" />{t}</Pill></span>)}
+		{data.tech.map((t: string) =>  <span><Pill><Icon icon="paper-plane-tilt" size="1.33em" />{t}</Pill></span>)}
 	</div>
 	<div class="portfolio_item-image">
 		<img src={data.img} alt={data.img_alt || ''} loading="lazy" decoding="async">
@@ -32,7 +32,7 @@ const { data, slug } = Astro.props.project;
 
 <style>
   .Work-grid img {
-    width: 100%;
+    width: 100%; 
   }
   .portfolio_item .work-btn {
     display: flex;

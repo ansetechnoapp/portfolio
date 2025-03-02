@@ -18,7 +18,7 @@ const { variant } = Astro.props;
 <style>
   .grid {
     display: grid;
-    grid-auto-rows: 1fr;
+    /* grid-auto-rows: 0.5fr; */
     gap: 1rem;
     list-style: none;
     padding: 0;
@@ -30,9 +30,16 @@ const { variant } = Astro.props;
   }
 
   /* If last row contains only one item, make it span both columns. */
-  .grid.small > :global(:last-child:nth-child(odd)) {
+  .grid.small > :global(:first-child:nth-child(odd)) {
     grid-column: 1 / 3;
   }
+  /* .grid.small :global(:nth-child(2n)) {
+    grid-column: 1 / 2;
+  } */
+
+  /* .grid.small > :global(:last-child:nth-child(odd)) {
+    grid-column: 1 / 2;
+  } */
 
   @media (min-width: 48em) {
     .grid {
