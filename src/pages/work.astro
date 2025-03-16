@@ -4,7 +4,7 @@ import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 
 import ContactCTA from "../components/ContactCTA.astro";
-import PortfolioPreview from "../components/PortfolioPreview.astro";
+import PortfolioPreview from "../components/reactJS/PortfolioPreview.tsx";
 import Hero from "../components/Hero.astro";
 import Grid from "../components/Grid.astro";
 import Contact from "../components/Contact.astro";
@@ -21,7 +21,7 @@ interface Props {
 const {
   BaseLayoutTitle = `My Work | ${dataUser.firstName} ${dataUser.lastName}`,
   descriptionBaseLayout = `Learn about ${dataUser.firstName} ${dataUser.lastName}'s most recent projects`,
-} = Astro.props;
+} = Astro.props; 
 ---
 
 <BaseLayout title={BaseLayoutTitle} description={descriptionBaseLayout}>
@@ -37,7 +37,7 @@ const {
         {
           projects.map((project) => (
             <li>
-              <PortfolioPreview project={project} />
+              <PortfolioPreview project={project} /> 
             </li>
           ))
         }

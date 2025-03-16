@@ -1,7 +1,8 @@
 ---
 import { createClient } from '@supabase/supabase-js';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import PortfolioForm from '../components/PortfolioForm.astro';
+import PortfolioForm from '../../corbeille/PortfolioForm.astro';
+import AirtableData from '../components/AirtableData.astro';
 
 // Retrieve your Supabase URL and anon key from environment variables.
 const SUPABASE_URL = import.meta.env.PUBLIC_SUPABASE_URL;
@@ -11,8 +12,8 @@ const SUPABASE_ANON_KEY = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 // Fetch portfolio items from a table named "portfolio".
-const { data: portfolioItems, error } = await supabase
-  .from('portfolio')
+const { data: portfolioItems, error } = await supabase 
+  .from('portfolio_project')
   .select('*');
 ---
 
@@ -35,7 +36,9 @@ const { data: portfolioItems, error } = await supabase
     )}
     
     {/* New: Insert the portfolio form */}
-    <PortfolioForm />
+    <PortfolioForm/>
+
+    <AirtableData />
     
     {/* Additional dashboard controls (create, update, delete, etc.) can be added here */}
   </div>

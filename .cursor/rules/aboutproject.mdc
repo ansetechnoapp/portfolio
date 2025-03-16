@@ -1,0 +1,68 @@
+---
+description: Project structure and development documentation
+globs: 
+alwaysApply: true
+---
+
+# Portfolio Project Documentation
+
+## Project Overview
+Astro-based portfolio with multiple layout variations and content collections. Key features:
+- 2/3-column masonry layouts <mcsymbol name="portfolio-3-col-masonry" filename="portfolio-3-col-masonry.astro" path="src/components/Cv/portfolio-3-col-masonry.astro" startline="1" type="component"></mcsymbol>
+- Animated stats counter <mcsymbol name="heroCounter" filename="heroCounter.astro" path="src/components/heroCounter.astro" startline="1" type="component"></mcsymbol>
+- MDX content management <mcfolder name="content" path="src/content/"></mcfolder>
+- Responsive design for all device sizes
+- Multiple portfolio layout options (2-column, 3-column, masonry)
+- Dynamic content loading from MDX collections
+
+### Technologies Used
+- **Framework**: Astro with Preact integration
+- **Styling**: CSS/SCSS with responsive design principles
+- **Content**: MDX for portfolio items and blog posts
+- **Animations**: Custom JavaScript animations for counters and transitions
+
+### Target Audience
+Professional developers and designers looking to showcase their work in a clean, customizable portfolio format.
+
+## Getting Started
+
+### Prerequisites
+- Node.js (v16 or later)
+- npm or yarn
+
+### Installation
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/portfolio.git
+
+# Navigate to project directory
+cd portfolio
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+```
+
+## Key Components
+
+### Core Structure
+```bash
+c:\Users\kevin\Allproject\portfolio\
+├── src/
+│   ├── components/
+│   │   ├── Cv/               # Layout variations (2-col, 3-col, masonry)
+│   │   │   └── *.astro      # Layout components 
+│   │   ├── heroCounter.astro # Animated statistics
+│   │   └── PortfolioPreview.astro # Project card templates
+│   ├── pages/
+│   │   └── portfolio/        # Route handlers for layouts
+│   ├── styles/
+│   │   └── Cv/              # Centralized styling
+│   └── content/             # MDX collections
+├── public/                  # Static assets
+├── template/                # Reference implementations
+└── configs/
+    ├── astro.config.mjs     # Astro+Preact setup <mcfile name="astro.config.mjs" path="astro.config.mjs"></mcfile>
+    └── tsconfig.json       # TypeScript config

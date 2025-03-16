@@ -19,7 +19,7 @@
       </label>
       <label>
         Description:
-        <textarea name="description" required></textarea>
+        <textarea name="description" required></textarea> 
       </label>
       <label>
         More Information:
@@ -33,8 +33,7 @@
     </form>
     
     <script>
-      import { createClient } from '@supabase/supabase-js';
-      
+      import { createClient } from '@supabase/supabase-js'; 
       const SUPABASE_URL = import.meta.env.PUBLIC_SUPABASE_URL;
       const SUPABASE_ANON_KEY = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
       const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);

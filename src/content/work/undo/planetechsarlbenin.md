@@ -3,6 +3,8 @@ title: planetech sarl benin
 publishDate: 2020-03-04 00:00:00
 img: /assets/img/stock-3.jpg
 img_alt: Pearls of silky soft white cotton, bubble up under vibrant lighting
+github: https://github.com/username/ecommerce-dashboard
+liveDemo: https://ecommerce-dashboard-demo.netlify.app
 description: |
   We developed a virtual showcase for the softest bedding imaginable.
 tags:
