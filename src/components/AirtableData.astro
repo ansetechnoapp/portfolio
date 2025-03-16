@@ -3,8 +3,8 @@ import Airtable from 'airtable';
 
 // Initialize Airtable
 const base = new Airtable({
-  apiKey: import.meta.env.AIRTABLE_API_KEY || process.env.AIRTABLE_API_KEY
-}).base(import.meta.env.AIRTABLE_BASE_ID) || process.env.AIRTABLE_BASE_ID;
+  apiKey: import.meta.env.PUBLIC_AIRTABLE_API_KEY || process.env.PUBLIC_AIRTABLE_API_KEY
+}).base(import.meta.env.PUBLIC_AIRTABLE_BASE_ID) || process.env.PUBLIC_AIRTABLE_BASE_ID;
 
 // Fetch records from Airtable
 let records = [];
