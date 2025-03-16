@@ -1,11 +1,409 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import { getCollection } from "astro:content";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+// image
+import Img1 from "../assets/portrait.jpg";
+// Layout import — provides basic page elements: <head>, <nav>, <footer> etc.
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+// Component Imports
+import CallToAction from "../components/CallToAction.astro";
+import Grid from "../components/Grid.astro";
+import Hero from "../components/Hero.astro";
+import Icon from "../components/Icon.astro";
+import Pill from "../components/reactJS/Pill";
+import PortfolioPreview from "../components/reactJS/PortfolioPreview";
+import Contact from "../components/Contact.astro";
+import Services from "../components/Services.astro";
+import Card from "../components/card.astro";
+import MenuLinkNav from "../components/menuLinkNav.astro";
+// Page section components
+import ContactCTA from "../components/ContactCTA.astro";
+import Skills from "../components/Skills.astro";
+import HeroMediaSocialNav from "../components/heroMediaSocialNav.astro";
+import HeroCounter from "../components/heroCounter.astro";
+// Content Fetching: List four most recent work projects
+const projects = (await getCollection("work"))
+  .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
+  .slice(0, 4);
+
+// Full Astro Component Syntax:
+// https://docs.astro.build/core-concepts/astro-components/
+
+import dataUser from "../data/User.json";
+interface Props {
+  heroTitle?: string | undefined;
+}
+const {
+  heroTitle = `Hello, my name is ${dataUser.firstName} ${dataUser.lastName}`,
+} = Astro.props;
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<BaseLayout>
+  <MenuLinkNav namepage="home" />
+  <div class="stack gap-15 p-top-1-5-rem">
+    <div class="wrapper stack gap-8 lg:gap-20">
+      <header id="hero_home" class="hero">
+        <HeroMediaSocialNav />
+        <Hero
+          title={heroTitle}
+          tagline="I am a Creative Developer who is currently based in cotonou, benin."
+          align="start"
+        >
+          <div class="roles">
+            <Pill><Icon icon="code" size="1.33em" /> Developer</Pill>
+            <Pill><Icon icon="microphone-stage" size="1.33em" /> Speaker</Pill>
+            <Pill><Icon icon="pencil-line" size="1.33em" /> Writer</Pill>
+            <a href=""
+              ><Pill
+                ><Icon icon="paper-plane-tilt" size="1.33em" /> Contactez-Moi</Pill
+              ></a
+            >
+          </div>
+        </Hero>
+
+        <img
+          alt=`${dataUser.firstName} ${dataUser.lastName} smiling in a red plaid shirt and tortoise shell glasses`
+          width="480"
+          height="620"
+          src={Img1.src}
+        />
+        <HeroCounter />
+      </header>
+    </div>
+    
+    <main class="wrapper stack gap-20 lg:gap-35">
+      <Skills />
+    </main>
+
+    <main id="about" class="wrapper stack gap-20 lg:gap-35">
+      <section
+        class="section-about with-background bg-variant p-left-right-2-rem"
+      >
+        <div class="section-about-img">
+          <img
+            alt=`${dataUser.firstName} ${dataUser.lastName} smiling in a red plaid shirt and tortoise shell glasses`
+            width="480"
+            height="620"
+            src={Img1.src}
+          />
+          <a href=""
+            ><Pill><Icon icon="paper-plane-tilt" size="1.33em" /> Cv</Pill></a
+          >
+        </div>
+        <div class="section2-about">
+          <h3 class="title-about">About Me</h3>
+          <p class="describe-about">
+            I have been fortunate enough to receive praise for my work in
+            several publications. Take a look below to learn more.
+            <br /><br />
+            NAME: {dataUser.firstName}
+            {dataUser.lastName}
+            <br />
+            DATE OF BIRTH: {dataUser.birthDay}
+            <br />
+            NATIONALITY: {dataUser.natinality}
+            <br />
+            ADDRESS: {dataUser.address.city}
+            {dataUser.address.rue}
+            <br />
+            PHONE: {dataUser.phone}
+            <br />
+            E-MAIL: {dataUser.email}
+          </p>
+          <div class="btn-about gap-10">
+            <a href=""
+              ><Pill
+                ><Icon icon="paper-plane-tilt" size="1.33em" /> Contactez-Moi</Pill
+              ></a
+            >
+          </div>
+        </div>
+      </section>
+    </main>
+    <ContactCTA />
+    <div class="wrapper stack gap-20 lg:gap-35">
+      <Services />
+      <section id="work" class="section with-background with-cta">
+        <header class="section-header stack gap-2 lg:gap-4">
+          <h3>Selected Work</h3>
+          <p>
+            Take a look below at some of my featured work for clients from the
+            past few years.
+          </p>
+        </header>
+
+        <div class="gallery"> 
+          <Card>
+            {
+              projects.map((project) => (
+                <li>
+                  <PortfolioPreview project={project} /> 
+                </li>
+              ))
+            }
+          </Card>
+        </div>
+
+        <div class="cta">
+          <CallToAction href="/work/">
+            View All
+            <Icon icon="arrow-right" size="1.2em" />
+          </CallToAction>
+        </div>
+      </section>
+
+      <!-- <section class="section with-background bg-variant">
+        <header class="section-header stack gap-2 lg:gap-4">
+          <h3>Mentions</h3>
+          <p>
+            I have been fortunate enough to receive praise for my work in
+            several publications. Take a look below to learn more.
+          </p>
+        </header>
+
+        <div class="gallery">
+          <Grid variant="small">
+            {
+              [
+                "Medium",
+                "BuzzFeed",
+                "The Next Web",
+                "awwwards.",
+                "TechCrunch",
+              ].map((brand) => (
+                <li class="mention-card">
+                  <p>{brand}</p>
+                </li>
+              ))
+            }
+          </Grid>
+        </div>
+      </section> -->
+    </div>
+
+    <ContactCTA />
+    <div class="wrapper stack gap-20 lg:gap-48 p-left-right-3-rem">
+      <Contact />
+    </div>
+  </div>
+</BaseLayout> 
+
+<style>
+  .section-about-img {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+  .section-about-img img {
+    border: 7px solid #00d7bb;
+  }
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+  .roles {
+    margin-top: 1rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .hero img {
+    aspect-ratio: 5 / 4;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 1.5rem;
+    box-shadow: var(--shadow-md);
+  }
+  @media (min-width: 30em) {
+  }
+  @media (min-width: 48em) {
+    .hero {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      padding-inline: 2.5rem;
+      gap: 3.75rem;
+    }
+
+    .roles {
+      margin-top: 0.5rem;
+      gap: 0.5rem;
+      flex-wrap: nowrap;
+    }
+
+    .hero img {
+      aspect-ratio: 3 / 4;
+      border-radius: 16rem;
+      object-fit: cover;
+    }
+    .p-top-1-5-rem {
+      padding-top: 1.5rem;
+    }
+  }
+  @media (min-width: 62em) {
+  }
+  @media (min-width: 75em) {
+    .hero {
+      display: grid;
+      grid-template-columns: 0.5fr 5.5fr 5fr 3fr;
+      padding-inline: 2.5rem;
+      gap: 1rem;
+    }
+  }
+  @media (min-width: 100em) {
+  }
+  /* ====================================================== */
+
+  .section {
+    display: grid;
+    gap: 2rem;
+  }
+  .section-about {
+    display: grid;
+    grid-template-rows: 1fr 0.5fr;
+    gap: 2rem;
+  }
+
+  .section2-about .title-about {
+    text-align: center;
+  }
+  .section2-about .describe-about {
+    margin-top: 3rem;
+  }
+  .section2-about .btn-about {
+    display: flex;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  @media (min-width: 48em) {
+    .section-about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr;
+      margin-top: 5rem;
+    }
+    .section-about img {
+      aspect-ratio: 3 / 4;
+      border-radius: 4.5rem;
+      object-fit: cover;
+    }
+    .section2-about {
+      gap: 2rem;
+    }
+    .section2-about .title-about {
+      text-align: initial;
+    }
+    .section2-about .btn-about {
+      margin-top: 2rem;
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+    }
+  }
+
+  .with-background {
+    position: relative;
+  }
+
+  .with-background::before {
+    --hero-bg: var(--bg-image-subtle-2);
+
+    content: "";
+    position: absolute;
+    pointer-events: none;
+    left: 50%;
+    width: 100vw;
+    aspect-ratio: calc(2.25 / var(--bg-scale));
+    top: 0;
+    transform: translateY(-75%) translateX(-50%);
+    background:
+      url("/assets/backgrounds/noise.png") top center/220px repeat,
+      var(--hero-bg) center center / var(--bg-gradient-size) no-repeat,
+      var(--gray-999);
+    background-blend-mode: overlay, normal, normal, normal;
+    mix-blend-mode: var(--bg-blend-mode);
+    z-index: -1;
+  }
+
+  .with-background.bg-variant::before {
+    --hero-bg: var(--bg-image-subtle-1);
+  }
+
+  .section-header {
+    justify-self: center;
+    text-align: center;
+    max-width: 50ch;
+    font-size: var(--text-md);
+    color: var(--gray-300);
+  }
+
+  .section-header h3 {
+    font-size: var(--text-2xl);
+  }
+
+  @media (min-width: 48em) {
+    .section {
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-areas: "header header header header" "gallery gallery gallery gallery";
+      gap: 5rem;
+    }
+
+    .section.with-cta {
+      grid-template-areas: "header header header cta" "gallery gallery gallery gallery";
+    }
+
+    .section-header {
+      grid-area: header;
+      font-size: var(--text-lg);
+    }
+
+    .section-header h3 {
+      font-size: var(--text-4xl);
+    }
+
+    .with-cta .section-header {
+      justify-self: flex-start;
+      text-align: left;
+    }
+
+    .gallery {
+      grid-area: gallery;
+    }
+
+    .cta {
+      grid-area: cta;
+    }
+  }
+
+  /* ====================================================== */
+
+  .mention-card {
+    display: flex;
+    height: 7rem;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border: 1px solid var(--gray-800);
+    border-radius: 1.5rem;
+    color: var(--gray-300);
+    background: var(--gradient-subtle);
+    box-shadow: var(--shadow-sm);
+  }
+
+  @media (min-width: 48em) {
+    .mention-card {
+      border-radius: 1.5rem;
+      height: 9.5rem;
+    }
+  }
+  .p-left-right-3-rem {
+    padding: 0rem 3rem;
+  }
+</style>

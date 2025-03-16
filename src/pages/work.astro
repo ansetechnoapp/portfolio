@@ -1,0 +1,51 @@
+---
+import { getCollection } from "astro:content";
+
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+import ContactCTA from "../components/ContactCTA.astro";
+import PortfolioPreview from "../components/reactJS/PortfolioPreview.tsx";
+import Hero from "../components/Hero.astro";
+import Grid from "../components/Grid.astro";
+import Contact from "../components/Contact.astro";
+import MenuLinkNav from "../components/menuLinkNav.astro";
+
+const projects = (await getCollection("work")).sort(
+  (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
+);
+import dataUser from "../data/User.json";
+interface Props {
+  BaseLayoutTitle?: string | undefined;
+  descriptionBaseLayout?: string | undefined;
+}
+const {
+  BaseLayoutTitle = `My Work | ${dataUser.firstName} ${dataUser.lastName}`,
+  descriptionBaseLayout = `Learn about ${dataUser.firstName} ${dataUser.lastName}'s most recent projects`,
+} = Astro.props; 
+---
+
+<BaseLayout title={BaseLayoutTitle} description={descriptionBaseLayout}>
+  <MenuLinkNav namepage="work" />
+  <div class="stack gap-20">
+    <main class="wrapper stack gap-8">
+      <Hero
+        title="My Work"
+        tagline="See my most recent projects below to get an idea of my past experience."
+        align="start"
+      />
+      <Grid variant="small">
+        {
+          projects.map((project) => (
+            <li>
+              <PortfolioPreview project={project} /> 
+            </li>
+          ))
+        }
+      </Grid>
+    </main>
+    <ContactCTA />
+    <div class="wrapper stack gap-20 lg:gap-48">
+      <Contact />
+    </div>
+  </div>
+</BaseLayout>
