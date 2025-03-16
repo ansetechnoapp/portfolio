@@ -5,8 +5,8 @@ import PortfolioForm from '../../corbeille/PortfolioForm.astro';
 import AirtableData from '../components/AirtableData.astro'; 
 
 // Retrieve your Supabase URL and anon key from environment variables.
-const SUPABASE_URL = import.meta.env.PUBLIC_SUPABASE_URL || 'https://ogcmxfieluyuttcbmkcd.supabase.co';
-const SUPABASE_ANON_KEY = import.meta.env.PUBLIC_SUPABASE_ANON_KEY || ' go here';
+const SUPABASE_URL = import.meta.env.PUBLIC_SUPABASE_URL || process.env.PUBLIC_SUPABASE_URL || 'https://ogcmxfieluyuttcbmkcd.supabase.co';
+const SUPABASE_ANON_KEY = import.meta.env.PUBLIC_SUPABASE_ANON_KEY || process.env.PUBLIC_SUPABASE_ANON_KEY || 'ey';
 
 // Initialize the Supabase client.
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
