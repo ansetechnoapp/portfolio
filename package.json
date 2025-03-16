@@ -28,5 +28,8 @@
       "esbuild",
       "sharp"
     ]
+  },
+  "devDependencies": {
+    "vite": "^6.2.2"
   }
 }
