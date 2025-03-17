@@ -1,10 +1,10 @@
 ---
-title: planetech sarl benin
+title: chantierpro
 publishDate: 2020-03-04 00:00:00
 img: /assets/img/stock-3.jpg
 img_alt: Pearls of silky soft white cotton, bubble up under vibrant lighting
-github: https://github.com/username/ecommerce-dashboard
-liveDemo: https://ecommerce-dashboard-demo.netlify.app
+github: https://github.com/username/ecommerce-dashboard   // Should be your actual GitHub repo
+liveDemo: https://ecommerce-dashboard-demo.netlify.app    // Should be your actual demo site
 description: |
   We developed a virtual showcase for the softest bedding imaginable.
 tags:

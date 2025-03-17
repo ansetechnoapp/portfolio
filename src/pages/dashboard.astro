@@ -22,7 +22,7 @@ const { data: portfolioItems, error } = await supabase
   <div class="dashboard">
     <h1>Portfolio Dashboard</h1>
     {error && <p>Error: {error.message}</p>}
-    {portfolioItems ? (
+    {portfolioItems && portfolioItems.length > 0 ? (
       <ul>
         {portfolioItems.map(item => (
           <li>
