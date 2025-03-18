@@ -13,6 +13,10 @@ export const collections = {
 			img_alt: z.string().optional(),
 			github: z.string().optional(),
 			liveDemo: z.string().optional(),
+			additionalImages: z.array(z.object({
+				url: z.string(),
+				alt: z.string().optional()
+			})).optional(),
 		}),
 	}),
 	widgetCss: defineCollection({

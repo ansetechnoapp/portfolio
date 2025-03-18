@@ -31,7 +31,7 @@ const PortfolioPreview: React.FC<PortfolioPreviewProps> = ({ project }) => {
   return (
     <article className="portfolio_item">
       <div className="portfolio_item-tags">
-        {data.tech.map((tech, index) => (
+        {data.tech.slice(0, 3).map((tech, index) => (
           <span key={index}>
             <Pill>
               <Icon icon="code" size="1.1em" />

@@ -1,13 +1,21 @@
 ---
 import Airtable from 'airtable';
 
+interface AirtableRecord {
+  id: string;
+  name: string;
+  notes: string;
+  status: string;
+  assignee: string;
+}
+
 // Initialize Airtable
 const base = new Airtable({
   apiKey: import.meta.env.PUBLIC_AIRTABLE_API_KEY || process.env.PUBLIC_AIRTABLE_API_KEY
 }).base(import.meta.env.PUBLIC_AIRTABLE_BASE_ID) || process.env.PUBLIC_AIRTABLE_BASE_ID;
 
 // Fetch records from Airtable
-let records = [];
+let records: AirtableRecord[] = [];
 let error = null;
 
 try {
@@ -21,13 +29,13 @@ try {
 
   records = results.map(record => ({
     id: record.id,
-    name: record.get('Name'),
-    notes: record.get('Notes'),
-    status: record.get('Status'),
-    assignee: record.get('Assignee')?.name || 'Unassigned'
+    name: record.get('Name') as string,
+    notes: record.get('Notes') as string,
+    status: record.get('Status') as string,
+    assignee: (record.get('Assignee') as any)?.name || 'Unassigned'
   }));
 } catch (err) {
-  error = err.message;
+  error = (err as Error).message;
 }
 ---
 
