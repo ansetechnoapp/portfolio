@@ -13,7 +13,8 @@ tags:
   - Branding
 tech:
   - Next JS
-  - supabase
+  - supabase 
+  - PostgreSQL
   - Lucide
   - Webpack
   - Netlify

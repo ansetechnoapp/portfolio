@@ -4,7 +4,7 @@ import { getCollection } from "astro:content";
 // image
 import Img1 from "../assets/portrait.jpg";
 // Layout import — provides basic page elements: <head>, <nav>, <footer> etc.
-import BaseLayout from "../layouts/BaseLayout.astro";
+import Layout from "../layouts/Layout.astro";
 
 // Component Imports
 import CallToAction from "../components/CallToAction.astro";
@@ -39,7 +39,7 @@ const {
 } = Astro.props;
 ---
 
-<BaseLayout>
+<Layout>
   <MenuLinkNav namepage="home" />
   <div class="stack gap-15 p-top-1-5-rem">
     <div class="wrapper stack gap-8 lg:gap-20">
@@ -187,7 +187,7 @@ const {
       <Contact />
     </div>
   </div>
-</BaseLayout> 
+</Layout> 
 
 <style>
   .section-about-img {

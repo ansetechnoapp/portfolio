@@ -1,4 +1,9 @@
-@import "tailwindcss";
+/* @import "tailwindcss"; */
+@import "tailwindcss/tailwind.css";
+
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
 
 /* Global variables */
 :root {

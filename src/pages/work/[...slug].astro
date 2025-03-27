@@ -1,7 +1,7 @@
 ---
 import { type CollectionEntry, getCollection } from "astro:content";
 
-import BaseLayout from "../../layouts/BaseLayout.astro";
+import Layout from "../../layouts/Layout.astro";
 
 import ContactCTA from "../../components/ContactCTA.astro";
 import Hero from "../../components/Hero.astro";
@@ -27,7 +27,7 @@ const { entry } = Astro.props;
 const { Content } = await entry.render();
 ---
 
-<BaseLayout title={entry.data.title} description={entry.data.description}>
+<Layout title={entry.data.title} description={entry.data.description}>
   <div class="stack gap-20">
     <div class="stack gap-15">
       <header>
@@ -39,25 +39,43 @@ const { Content } = await entry.render();
                 {entry.data.tags.map((t) => <Pill>{t}</Pill>)}
               </div>
               <p class="description">{entry.data.description}</p>
-              {entry.data.tech && (
-                <div class="tech-stack">
-                  <h3>Tech Stack</h3>
-                  <div class="tech-list">
-                    {entry.data.tech.map((tech) => <Pill>{tech}</Pill>)}
+              {
+                entry.data.tech && (
+                  <div class="tech-stack">
+                    <h3>Tech Stack</h3>
+                    <div class="tech-list">
+                      {entry.data.tech.map((tech) => (
+                        <Pill>{tech}</Pill>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              )}
+                )
+              }
               <div class="links">
-                {entry.data.liveDemo && (
-                  <a href={entry.data.liveDemo} class="demo-link" target="_blank" rel="noopener">
-                    <Icon icon="rocket-launch" /> Live Demo
-                  </a>
-                )}
-                {entry.data.github && (
-                  <a href={entry.data.github} class="github-link" target="_blank" rel="noopener">
-                    <Icon icon="github-logo" /> View Code
-                  </a>
-                )}
+                {
+                  entry.data.liveDemo && (
+                    <a
+                      href={entry.data.liveDemo}
+                      class="demo-link"
+                      target="_blank"
+                      rel="noopener"
+                    >
+                      <Icon icon="rocket-launch" /> Live Demo
+                    </a>
+                  )
+                }
+                {
+                  entry.data.github && (
+                    <a
+                      href={entry.data.github}
+                      class="github-link"
+                      target="_blank"
+                      rel="noopener"
+                    >
+                      <Icon icon="github-logo" /> View Code
+                    </a>
+                  )
+                }
               </div>
             </div>
           </Hero>
@@ -88,7 +106,7 @@ const { Content } = await entry.render();
     </div>
     <ContactCTA />
   </div>
-</BaseLayout>
+</Layout>
 
 <style>
   header {

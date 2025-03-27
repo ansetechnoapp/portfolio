@@ -1,5 +1,5 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
+import Layout from "../layouts/Layout.astro";
 
 import ContactCTA from "../components/ContactCTA.astro";
 import Hero from "../components/Hero.astro";
@@ -8,10 +8,7 @@ import Img1 from "../assets/portrait.jpg";
 import MenuLinkNav from "../components/menuLinkNav.astro";
 ---
 
-<BaseLayout
-  title="About | otty kevin"
-  description="About otty kevin"
->
+<Layout title="About | otty kevin" description="About otty kevin">
   <MenuLinkNav namepage="about" />
   <div class="stack gap-20">
     <main class="wrapper about">
@@ -50,7 +47,10 @@ import MenuLinkNav from "../components/menuLinkNav.astro";
       <section>
         <h2 class="section-title">Skills</h2>
         <div class="content">
-          <p>Web Development: Laravel, React JS, Next JS, Astro JS, PHP, TypeScript</p>
+          <p>
+            Web Development: Laravel, React JS, Next JS, Astro JS, PHP,
+            TypeScript
+          </p>
           <p>Mobile Development: React Native</p>
           <p>Graphic Design: Photoshop</p>
           <p>Additional Skills:</p>
@@ -72,7 +72,7 @@ import MenuLinkNav from "../components/menuLinkNav.astro";
       <Contact />
     </div>
   </div>
-</BaseLayout>
+</Layout>
 
 <style>
   .about {

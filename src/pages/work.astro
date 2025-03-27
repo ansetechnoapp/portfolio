@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 
-import BaseLayout from "../layouts/BaseLayout.astro";
+import Layout from "../layouts/Layout.astro";
 
 import ContactCTA from "../components/ContactCTA.astro";
 import PortfolioPreview from "../components/reactJS/PortfolioPreview.tsx";
@@ -15,16 +15,16 @@ const projects = (await getCollection("work")).sort(
 );
 import dataUser from "../data/User.json";
 interface Props {
-  BaseLayoutTitle?: string | undefined;
-  descriptionBaseLayout?: string | undefined;
+  LayoutTitle?: string | undefined;
+  descriptionLayout?: string | undefined;
 }
 const {
-  BaseLayoutTitle = `My Work | ${dataUser.firstName} ${dataUser.lastName}`,
-  descriptionBaseLayout = `Learn about ${dataUser.firstName} ${dataUser.lastName}'s most recent projects`,
-} = Astro.props; 
+  LayoutTitle = `My Work | ${dataUser.firstName} ${dataUser.lastName}`,
+  descriptionLayout = `Learn about ${dataUser.firstName} ${dataUser.lastName}'s most recent projects`,
+} = Astro.props;
 ---
 
-<BaseLayout title={BaseLayoutTitle} description={descriptionBaseLayout}>
+<Layout title={LayoutTitle} description={descriptionLayout}>
   <MenuLinkNav namepage="work" />
   <div class="stack gap-20">
     <main class="wrapper stack gap-8">
@@ -37,7 +37,7 @@ const {
         {
           projects.map((project) => (
             <li>
-              <PortfolioPreview project={project} /> 
+              <PortfolioPreview project={project} />
             </li>
           ))
         }
@@ -48,4 +48,4 @@ const {
       <Contact />
     </div>
   </div>
-</BaseLayout>
+</Layout>
