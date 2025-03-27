@@ -4,7 +4,7 @@ import { getCollection } from "astro:content";
 import Layout from "../layouts/Layout.astro";
 
 import ContactCTA from "../components/ContactCTA.astro";
-import WidgetCssPreview from "../components/widgetCssPreview.astro";
+import WidgetCssPreview from "../components/reactJS/widgetCssPreview";
 import Hero from "../components/Hero.astro";
 import Grid from "../components/Grid.astro";
 import Contact from "../components/Contact.astro";
@@ -33,7 +33,7 @@ const {
         tagline="See my most recent projects below to get an idea of my past experience."
         align="start"
       />
-      <Grid variant="offset">
+      <Grid variant="small">
         {
           projects.map((project) => (
             <li>

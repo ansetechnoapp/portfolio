@@ -3,7 +3,7 @@ title: "Enable Hibernate on Ubuntu: A Step-by-Step Guide"
 description: "Learn how to enable and configure hibernation on Ubuntu with this comprehensive guide. Follow step-by-step instructions to set up hibernation properly."
 pubDate: 2024-03-27
 tags: ["Ubuntu", "System Administration", "Power Management"]
-heroImage: "/assets/icone/hibernate.svg"
+heroImage: "/assets/icone/matt-icons_system-hibernate.svg"
 ---
 
 # Enable Hibernate on Ubuntu: A Step-by-Step Guide  

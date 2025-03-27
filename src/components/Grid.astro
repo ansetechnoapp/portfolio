@@ -28,6 +28,13 @@ const { variant } = Astro.props;
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
+
+  /* Ensure items in small grid have proper spacing and sizing */
+  .grid.small > :global(*) {
+    width: 100%;
+    height: 100%;
+    display: flex;
+  }
   @media (min-width: 48em) {
     .grid {
       grid-template-columns: 1fr 1fr;
@@ -52,11 +59,12 @@ const { variant } = Astro.props;
 
     .grid.small {
       grid-template-columns: 1fr 1fr;
-      gap: 4rem;
+      gap: 2rem;
     }
 
     .grid.small > :global(*) {
-      flex-basis: 20rem;
+      flex-basis: auto;
+      min-height: 100%;
     }
     /* If last row contains only one item, make it span both columns. */
     .grid.small > :global(:first-child:nth-child(odd)) {
@@ -66,7 +74,12 @@ const { variant } = Astro.props;
   @media (min-width: 75em) {
     .grid.small {
       grid-template-columns: 1fr 1fr 1fr;
-      gap: 1.5rem;
+      gap: 2rem;
+    }
+
+    /* Reset the span for first item on large screens */
+    .grid.small > :global(:first-child:nth-child(odd)) {
+      grid-column: auto;
     }
   }
 </style>
