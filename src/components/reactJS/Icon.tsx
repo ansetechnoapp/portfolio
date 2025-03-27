@@ -3,7 +3,7 @@ import { iconPaths } from "../IconPaths";
 import "../../styles/Icon.css";
 
 interface IconProps {
-  icon: keyof typeof iconPaths | "info-circle"; // Added "info-circle" as a valid icon
+  icon: keyof typeof iconPaths;
   color?: string;
   gradient?: boolean;
   size?: string;
@@ -15,10 +15,10 @@ const Icon: React.FC<IconProps> = ({
   icon,
   size,
 }) => {
-  // Create a random ID for the gradient to avoid conflicts when using multiple icons
+  // Generate a unique ID for the gradient to avoid conflicts when using multiple icons
   const gradientId = `icon-gradient-${Math.round(Math.random() * 10e12).toString(36)}`;
-  
-  // Create the style props for the SVG
+
+  // Set up the style object for the SVG, applying the size as a CSS variable if provided
   const svgStyle = size ? { "--size": size } as React.CSSProperties : {};
 
   return (
@@ -33,7 +33,10 @@ const Icon: React.FC<IconProps> = ({
       style={svgStyle}
       className="icon"
     >
+      {/* Render the icon path using dangerouslySetInnerHTML */}
       <g dangerouslySetInnerHTML={{ __html: iconPaths[icon] }} />
+
+      {/* Conditionally render the gradient if the gradient prop is true */}
       {gradient && (
         <linearGradient
           id={gradientId}

@@ -1,7 +1,5 @@
 import React from "react";
-import Pill from "./Pill";
-import Icon from "./Icon";
-import "../../styles/PortfolioPreview.css"; 
+import "../../styles/PortfolioPreview.css";
 
 // Define the type for project data based on the Astro component structure
 interface ProjectData {
@@ -30,17 +28,6 @@ const PortfolioPreview: React.FC<PortfolioPreviewProps> = ({ project }) => {
 
   return (
     <article className="portfolio_item">
-      <div className="portfolio_item-tags">
-        {data.tech.slice(0, 3).map((tech, index) => (
-          <span key={index}>
-            <Pill>
-              <Icon icon="code" size="1.1em" />
-              {tech}
-            </Pill>
-          </span>
-        ))}
-      </div>
-
       <div className="portfolio_item-image">
         <img src={data.img} alt={data.img_alt || ''} loading="lazy" />
         <div className="layer">
@@ -50,32 +37,29 @@ const PortfolioPreview: React.FC<PortfolioPreviewProps> = ({ project }) => {
           </a>
         </div>
       </div>
+      <div className="flex flex-col space-y-1.5 p-6">
+        <div className="flex flex-wrap gap-3 mb-3">
+          {data.tech.slice(0, 3).map((tech, index) => (
+            <span key={index} className="px-0 py-1 text-xs rounded-full bg-secondary/50">
+              {tech}
 
-      <h3 className="portfolio_item-title">{data.title}</h3>
-
-      <div className="portfolio_item-cta">
-        {data.github && (
-          <a href={data.github} className="btn" target="_blank" rel="noopener noreferrer">
-            <Pill>
-              <Icon icon="github-logo" size="1.33em" /> GitHub
-            </Pill>
-          </a>
-        )}
-
-        <a href={`/work/${slug}`} className="btn">
-          <Pill>
-            <Icon icon="info-circle" size="1.33em" /> Details
-          </Pill>
-        </a>
-
+            </span>
+          ))}
+        </div>
+        <h5 className="font-semibold leading-none tracking-tight">{data.title}</h5>
+        <div className="text-sm text-muted-foreground">https://parisbet.vercel.app/ provides quick, secure Apple device unlocking with 24-hour service, 7-day support, and money-back guarantee.</div></div>
+      <div className="items-center p-6 pt-0 flex justify-between">
+        <div className="flex gap-3">
+          {data.github && (
+            <a target="_blank" rel="noopener noreferrer"
+              className="text-sm text-primary hover:underline" href={data.github}>GitHub</a>
+          )}
+          <a className="text-sm text-primary hover:underline" href={`/work/${slug}`}>Details</a></div>
         {data.liveDemo && (
-          <a href={data.liveDemo} className="btn" target="_blank" rel="noopener noreferrer">
-            <Pill>
-              <Icon icon="rocket-launch" size="1.33em" /> Live Demo
-            </Pill>
-          </a>
+          <a target="_blank" rel="noopener noreferrer" className="text-sm text-primary hover:underline" href={data.liveDemo}>Live Demo</a>
         )}
       </div>
+
     </article>
   );
 };
