@@ -1,10 +1,12 @@
 ---
 title: quickrelease
 publishDate: 2020-03-04 00:00:00
+number: 10
 img:   /assets/myprojects/Deblocage-rapide-de-vos-iPhone.png
 img_alt: Deblocage-rapide-de-vos-iPhone,secure Apple device unlocking with 24-hour service.
 github: https://github.com/ansetechnoapp/quickrelease
 liveDemo: https://anscod1.netlify.app/
+device: web
 description: |
  anscod1.netlify.app provides quick, secure Apple device unlocking with 24-hour service, 7-day support, and money-back guarantee.
 tags:

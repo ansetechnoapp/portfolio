@@ -1,17 +1,17 @@
 ---
 import { getCollection } from "astro:content";
-
 import Layout from "../layouts/Layout.astro";
-
 import ContactCTA from "../components/ContactCTA.astro";
-import PortfolioPreview from "../components/reactJS/PortfolioPreview.tsx";
+import PortfolioPreview from "../components/reactJS/PortfolioPreview";
+import FilterProjects from "../components/reactJS/FilterProjects";
 import Hero from "../components/Hero.astro";
 import Grid from "../components/Grid.astro";
 import Contact from "../components/Contact.astro";
 import MenuLinkNav from "../components/menuLinkNav.astro";
 
 const projects = (await getCollection("work")).sort(
-  (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
+  // (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf() filter by date
+  (a, b) => b.data.number - a.data.number
 );
 import dataUser from "../data/User.json";
 interface Props {
@@ -33,15 +33,18 @@ const {
         tagline="See my most recent projects below to get an idea of my past experience."
         align="start"
       />
-      <Grid variant="small">
-        {
-          projects.map((project) => (
-            <li>
-              <PortfolioPreview project={project} />
-            </li>
-          ))
-        }
-      </Grid>
+      <div id="portfolio-section">
+        <FilterProjects client:load />
+        <Grid variant="small">
+          {
+            projects.map((project) => (
+              <li>
+                <PortfolioPreview project={project} client:load />
+              </li>
+            ))
+          }
+        </Grid>
+      </div>
     </main>
     <ContactCTA />
     <div class="wrapper stack gap-20 lg:gap-48">
@@ -49,3 +52,48 @@ const {
     </div>
   </div>
 </Layout>
+
+<script>
+  // Client-side filtering logic
+  document.addEventListener("astro:page-load", () => {
+    const portfolioSection = document.querySelector("#portfolio-section");
+    if (portfolioSection) {
+      portfolioSection.addEventListener("filterChange", (e) => {
+        const customEvent = e as CustomEvent;
+        const filterValue = customEvent.detail;
+        // The FilterProjects component will emit this event and PortfolioPreview components will listen for it
+      });
+    }
+  });
+</script>
+
+<style>
+  .filters {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+
+  .filter-btn {
+    padding: 0.5rem 1rem;
+    border: 2px solid var(--gray-800);
+    border-radius: 1.5rem;
+    background: var(--gradient-subtle);
+    color: var(--gray-300);
+    font-size: var(--text-sm);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .filter-btn:hover {
+    color: var(--gray-100);
+    border-color: var(--gray-100);
+  }
+
+  .filter-btn.active {
+    background: var(--gradient-accent);
+    border-color: var(--accent-regular);
+    color: var(--accent-text-over);
+  }
+</style>

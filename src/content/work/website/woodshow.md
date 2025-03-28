@@ -1,10 +1,12 @@
 ---
-title: wet Sarl
+title: woodshow
 publishDate: 2019-12-01 00:00:00
+number: 2
 img: /assets/img/stock-2.jpg
 img_alt: A bright pink sheet of paper used to wrap flowers curves in front of rich blue background
 github: https://github.com/username/ecommerce-dashboard
 liveDemo: https://www.wetsarl.com/
+device: web
 description: |
   We paired with a cutting-edge music API and a team of horticulturalists
   to build AI-generated playlists that maximize houseplant health.

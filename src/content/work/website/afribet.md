@@ -1,10 +1,12 @@
 ---
 title: afribet
-publishDate: 2020-03-04 00:00:00
+publishDate: 2025-27-02 00:00:00
+number: 11
 img:   /assets/myprojects/parisbet.png
 img_alt: Deblocage-rapide-de-vos-iPhone,secure Apple device unlocking with 24-hour service.
 github: https://github.com/ansetechnoapp/parisbet
 liveDemo: https://parisbet.vercel.app/
+device: web
 description: |
  https://parisbet.vercel.app/ provides quick, secure Apple device unlocking with 24-hour service, 7-day support, and money-back guarantee.
 tags:

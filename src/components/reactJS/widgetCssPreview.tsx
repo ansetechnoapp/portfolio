@@ -11,7 +11,7 @@ const WidgetCssPreview: React.FC<Props> = ({ project }) => {
   const { data } = project;
 
   return (
-    <Card className="border border-border w-full h-full">
+    <Card className="border border-border w-full h-full bg-white">
       <CardHeader>
         <div className="flex justify-between items-center mb-2">
           <span className="px-2 py-1 text-xs rounded-full bg-secondary/50">

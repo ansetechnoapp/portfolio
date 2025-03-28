@@ -142,17 +142,17 @@ body {
 	line-height: 1.5;
 	--sb-track-color: #fff;
 	--sb-thumb-color: #7611a6;
-	--sb-size: 1rem;
+	--sb-size: 0.2rem;
 }
   
   body::-webkit-scrollbar {
 	width: var(--sb-size)
   }
   
-  body::-webkit-scrollbar-track {
+  /* body::-webkit-scrollbar-track {
 	background: var(--sb-track-color);
-	/* border-radius: 5px; */
-  }
+	border-radius: 5px;
+  } */
   
   body::-webkit-scrollbar-thumb {
 	background: var(--sb-thumb-color);
@@ -280,4 +280,5 @@ h5 {
 	.lg\:gap-48 {
 		gap: 12rem;
 	}
+	
 }

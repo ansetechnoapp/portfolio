@@ -164,6 +164,22 @@ const remainingPosts = posts.slice(1);
           ))
         }
       </div>
+      <div class="mt-20 py-12 text-center bg-secondary/20 rounded-lg">
+        <h2 class="text-3xl font-bold mb-4">Subscribe to my newsletter</h2><p
+          class="text-lg mb-6 max-w-2xl mx-auto"
+        >
+          Get notified when I publish new articles and tutorials. No spam, ever.
+        </p><form class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+          <input
+            placeholder="Your email address"
+            class="flex-1 p-3 border border-border rounded-lg bg-background"
+            required=""
+            type="email"
+          /><button
+            class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 shadow h-9 px-4 py-2 bg-primary text-white hover:bg-primary/80"
+            type="submit">Subscribe</button>
+        </form>
+      </div>
     </main>
   </div>
 </Layout>

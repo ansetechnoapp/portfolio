@@ -1,3 +1,11 @@
+.hidden {
+  display: none;
+}
+
+.portfolio_item {
+  transition: opacity 0.2s ease-in-out;
+}
+
 .portfolio_item-tags {
   display: flex;
   justify-content: center;
