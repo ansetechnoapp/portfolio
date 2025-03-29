@@ -30,7 +30,7 @@ const projects = (await getCollection("work"))
 // https://docs.astro.build/core-concepts/astro-components/
 
 import dataUser from "../data/User.json";
-import FilterProjects from "../components/reactJS/FilterProjects";
+// import FilterProjects from "../components/reactJS/FilterProjects";
 interface Props {
   heroTitle?: string | undefined;
 }
@@ -52,8 +52,8 @@ const {
         >
           <div class="roles">
             <Pill><Icon icon="code" size="1.33em" /> Developer</Pill>
-            <Pill><Icon icon="microphone-stage" size="1.33em" /> Speaker</Pill>
-            <Pill><Icon icon="pencil-line" size="1.33em" /> Writer</Pill>
+            <!-- <Pill><Icon icon="microphone-stage" size="1.33em" /> Speaker</Pill> -->
+            <!-- <Pill><Icon icon="pencil-line" size="1.33em" /> Writer</Pill> -->
             <a href=""
               ><Pill
                 ><Icon icon="paper-plane-tilt" size="1.33em" /> Contactez-Moi</Pill
@@ -183,7 +183,7 @@ const {
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;
   }
 
   .hero img {

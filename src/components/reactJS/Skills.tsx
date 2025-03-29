@@ -73,18 +73,18 @@ const skillsData: Skill[] = [
     {
         title: "Front-end",
         icon: "code",
-        items: ["React Native", "Next.js", "Tailwind CSS", "TypeScript"],
+        items: ["React Native","Expo", "Next.js", "Tailwind CSS", "TypeScript"],
     },
     {
         title: "Back-end",
         icon: "terminal-window",
-        items: ["PHP (Laravel)"],
+        items: ["PHP (Laravel)","Python","Adonis js","Firebase","supabase"],
     },
     {
         title: "Other",
         icon: "github-logo",
-        items: ["Git & GitHub"],
-    },
+        items: ["Git & GitHub","ubuntu","airtable", "mysql", "postgresql"]
+    }, 
 ];
 
 export default Skills;

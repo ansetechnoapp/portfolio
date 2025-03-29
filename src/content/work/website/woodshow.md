@@ -15,7 +15,7 @@ tags:
   - Branding
   - Backend
 tech:
-  - react
+  - laravel
   - mySql
 ---
 

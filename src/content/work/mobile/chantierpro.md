@@ -14,7 +14,8 @@ tags:
   - Dev
   - Branding
 tech: 
-  - laravel
+  - React Native
+  - Expo
   - mySql
 ---
 

@@ -15,8 +15,10 @@ tags:
   - Branding
   - Backend
 tech:
-  - react
-  - mySql
+  - Next js
+  - Tailwind css
+  - lucide-react
+  - Swiper
 ---
 
 ## Level-two heading

@@ -14,7 +14,7 @@ tags:
   - Dev
   - Branding
 tech: 
-  - laravel
+  - wordpress
   - mySql
 ---
 
