@@ -53,7 +53,7 @@ export default function PortfolioPreview({ project, activeFilter = 'all' }: Port
   }
 
   return (
-    <article className="portfolio_item">
+    <article className="portfolio_item"> 
       <div className="portfolio_item-image">
         <img src={data.img} alt={data.img_alt || ''} loading="lazy" decoding="async" />
         <div className="layer">

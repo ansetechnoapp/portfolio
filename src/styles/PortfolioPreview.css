@@ -25,7 +25,7 @@
   height: 0;
   background: linear-gradient(rgba(0, 0, 0, 0.1), var(--accent-regular, #ff004f));
   position: absolute;
-  border-radius: 8px;
+  border-radius: 8px 8px 0px 0px;
   left: 0;
   bottom: 0;
   overflow: hidden;
@@ -64,9 +64,8 @@
 
 .portfolio_item {
   background: var(--gradient-stroke, linear-gradient(to right, #4a4a4a, #2b2b2b));
-  padding: 1.5rem 1rem;
+  /* padding: 1.5rem 1rem; */
   border-radius: 0.75rem;
-  border: 2px solid transparent;
   transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
@@ -79,6 +78,7 @@
   border-color: var(--accent-regular, #ff004f);
   transform: translateY(-5px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  border: 2px solid #7611a6;
 }
 
 .portfolio_item:hover .layer {
@@ -92,7 +92,7 @@
 }
 
 .portfolio_item-image {
-  border-radius: 0.75rem;
+  border-radius: 0.75rem 0.75rem 0rem 0rem;
   overflow: hidden;
   position: relative;
   aspect-ratio: 16/9;
@@ -103,6 +103,7 @@
   height: 100%;
   object-fit: cover;
   transition: transform 0.5s;
+  /* border-radius: 0.7rem 0.7rem 0rem 0rem; */
 }
 
 .portfolio_item:hover .portfolio_item-image img {
@@ -118,9 +119,9 @@
 }
 
 @media (min-width: 48em) {
-  .portfolio_item {
+  /* .portfolio_item {
     padding: 1.75rem 1.5rem;
-  }
+  } */
   
   .portfolio_item-cta {
     justify-content: space-around;
