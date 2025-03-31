@@ -35,20 +35,19 @@ const iconLinks: {
     icon: "youtube-logo",
   },
 ];
-import dataUser from "../data/User.json";
 ---
 
 <nav>
   <div class="menu-header">
     <a href="/" class="site-title">
-      <Icon
-        icon="terminal-window"
-        color="var(--accent-regular)"
-        size="1.6em"
-        gradient
+      <img
+        src="/assets/Anscod_logo/Anscod_logo_light_mode.png"
+        class="site-logo light-logo"
       />
-      {dataUser.firstName}
-      {dataUser.lastName}
+      <img
+        src="/assets/Anscod_logo/Anscod_logo_dark_mode.png"
+        class="site-logo dark-logo"
+      />
     </a>
     <menu-button>
       <template>
@@ -201,8 +200,9 @@ import dataUser from "../data/User.json";
   .menu-header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     gap: 0.5rem;
-    padding: 1.5rem;
+    padding: 1rem;
   }
 
   .site-title {
@@ -212,6 +212,23 @@ import dataUser from "../data/User.json";
     line-height: 1.1;
     color: var(--gray-0);
     text-decoration: none;
+  }
+
+  .site-logo {
+    width: auto;
+    height: 2.5rem;
+    transition: all 0.3s ease;
+  }
+
+  /* Show/hide logos based on theme */
+  .dark-logo {
+    display: none;
+  }
+  :global(.theme-dark) .dark-logo {
+    display: block;
+  }
+  :global(.theme-dark) .light-logo {
+    display: none;
   }
 
   .menu-button {
@@ -313,6 +330,17 @@ import dataUser from "../data/User.json";
     height: calc(var(--icon-size) + 2 * var(--icon-padding));
   }
 
+  @media (max-width: 48em) {
+    .site-logo {
+      height: 2rem;
+    }
+  }
+  @media (max-width: 30em) {
+    .site-logo {
+      height: 5rem;
+    }
+  }
+
   @media (min-width: 48em) {
     nav {
       display: grid;
@@ -330,6 +358,10 @@ import dataUser from "../data/User.json";
 
     .site-title {
       font-size: var(--text-lg);
+    }
+
+    .site-logo {
+      height: 5rem;
     }
 
     .menu-content {
@@ -399,6 +431,10 @@ import dataUser from "../data/User.json";
     /* .socials {
 			display: none;
 		} */
+
+    .site-logo {
+      height: 5rem;
+    }
   }
   @media (forced-colors: active) {
     .link.active {
