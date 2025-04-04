@@ -24,10 +24,10 @@ const Pill: React.FC<PillProps> = ({
   
   // Size classes
   const sizeClasses = {
-    xs: "px-2 py-1 text-xxs",
-    sm: "px-3 py-1 text-xs",
-    md: "px-4 py-2 text-sm leading-tight",
-    lg: "px-5 py-3 text-lg"
+    xs: "px-1 py-1 text-xxs",
+    sm: "px-2 py-1 text-xs",
+    md: "px-3 py-2 text-sm leading-tight",
+    lg: "px-4 py-3 text-lg"
   };
   
   // Variant classes
