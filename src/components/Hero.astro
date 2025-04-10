@@ -13,7 +13,13 @@ const { align = "center", tagline, tagline1, title } = Astro.props;
   <div class="hero-text-container">
     <h1 class="title"><span class="highlight">{title}</span></h1>
     {tagline && <h3 class="tagline">{tagline}</h3>}
-    {tagline1 && <p class="tagline1">{tagline1}</p>}
+    {
+      tagline1 && (
+        <p class="tagline1 text-lg max-w-2xl">
+          {tagline1}
+        </p>
+      )
+    }
   </div>
   <slot />
 </div>
@@ -82,7 +88,7 @@ const { align = "center", tagline, tagline1, title } = Astro.props;
   .tagline1 {
     line-height: 1.6;
     color: var(--gray-300);
-    max-width: 650px;
+    /* max-width: 650px; */
   }
 
   @media (min-width: 48em) {

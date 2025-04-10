@@ -47,7 +47,7 @@ const { heroTitle = `I am ${dataUser.firstName} ${dataUser.lastName}` } =
         <div class="hero-content">
           <Hero
             title={heroTitle}
-            tagline="Freelance web and mobile developer based in Cotonou, Benin."
+            tagline="Freelance web and mobile developer."
             tagline1="I am a passionate developer with a strong focus on creating high-quality web and mobile applications. I have a proven track record of delivering projects on time and within budget, and I am always looking for new challenges to tackle. My passion is creating solutions that work, both today and tomorrow."
             align="start"
           >
@@ -97,15 +97,46 @@ const { heroTitle = `I am ${dataUser.firstName} ${dataUser.lastName}` } =
         class="section-about with-background bg-variant p-left-right-2-rem"
       >
         <div class="section-about-img">
-          <img
+          <!-- <img
             alt=`${dataUser.firstName} ${dataUser.lastName} smiling in a red plaid shirt and tortoise shell glasses`
             width="480"
             height="620"
             src={Img2.src}
-          />
-          <a href=""
+          /> -->
+
+          <div class="relative">
+            <div
+              class="w-74 h-74 md:w-85 md:h-85 bg-gradient-to-r from-blue-400 to-indigo-500 rounded-full flex items-center justify-center shadow-xl"
+            >
+              <img
+                src={Img2.src}
+                alt=`Developer ${dataUser.firstName} ${dataUser.lastName} smiling in a red plaid shirt and tortoise shell glasses`
+                class="w-70 h-70 md:w-72 md:h-72 rounded-full object-cover border-4 border-white"
+              />
+            </div>
+
+            <div
+              class="absolute -bottom-5 -right-5 bg-white p-4 rounded-lg shadow-md"
+            >
+              <div class="flex items-center">
+                <div
+                  class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3"
+                >
+                  <i class="fas fa-code text-blue-500"></i>
+                </div>
+                <div>
+                  <p class="text-sm font-semibold">7+ Years</p>
+                  <p class="text-xs text-gray-500">Experience</p>
+                </div>
+              </div>
+            </div>
+            <a href=""
+              ><Pill><Icon icon="paper-plane-tilt" size="1.33em" /> Cv</Pill></a
+            >
+          </div>
+          <!-- <a href=""
             ><Pill><Icon icon="paper-plane-tilt" size="1.33em" /> Cv</Pill></a
-          >
+          > -->
         </div>
         <div class="section2-about">
           <h3 class="title-about">About Me</h3>
@@ -148,6 +179,32 @@ const { heroTitle = `I am ${dataUser.firstName} ${dataUser.lastName}` } =
             <br />
             I hope you find it useful and informative.
           </p>
+          <div class="grid grid-cols-2 md:grid-cols-3 gap-4 my-5">
+            <div class="flex items-center">
+              <i class="fas fa-map-marker-alt text-blue-500 mr-2"></i>
+              <span class="text-gray-700">San Francisco, CA</span>
+            </div>
+            <div class="flex items-center">
+              <i class="fas fa-envelope text-blue-500 mr-2"></i>
+              <span class="text-gray-700">john@example.com</span>
+            </div>
+            <div class="flex items-center">
+              <i class="fas fa-phone text-blue-500 mr-2"></i>
+              <span class="text-gray-700">(123) 456-7890</span>
+            </div>
+            <div class="flex items-center">
+              <i class="fas fa-graduation-cap text-blue-500 mr-2"></i>
+              <span class="text-gray-700">Computer Science</span>
+            </div>
+            <div class="flex items-center">
+              <i class="fas fa-briefcase text-blue-500 mr-2"></i>
+              <span class="text-gray-700">Freelance Available</span>
+            </div>
+            <div class="flex items-center">
+              <i class="fas fa-globe text-blue-500 mr-2"></i>
+              <span class="text-gray-700">www.johndoe.dev</span>
+            </div>
+          </div>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             <!-- Other Skills -->
             <div class="bg-white p-2 rounded-xl shadow-sm card-hover-effect">
@@ -392,7 +449,7 @@ const { heroTitle = `I am ${dataUser.firstName} ${dataUser.lastName}` } =
     display: flex;
     gap: 1rem;
     /* flex-wrap: wrap; */
-    margin-top: 2rem;
+    margin-top: 1rem;
     justify-content: center;
   }
 
