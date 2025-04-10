@@ -59,25 +59,27 @@ export default function PortfolioPreview({ project, activeFilter = 'all' }: Port
         <div className="layer">
           <p>{data.description}</p>
           <a href={`/work/${slug}`} aria-label={`View details for ${data.title}`}>
-            <i className="bx bx-link-external" aria-hidden="true"></i>
+            <i className="fas fa-external-link-alt px-2"></i>
           </a>
         </div>
       </div>
 
       <div className="flex flex-col space-y-1.5 p-6">
-        <div className="flex flex-wrap gap-3 mb-3">
+        <div className="flex items-center justify-between mb-2">
+          <h3 className="text-xl font-semibold leading-none tracking-tight">{data.title}</h3>
+          <span id="project_device_info" className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">{data.device}</span>
+        </div>
+        <p className="text-sm projetdesc">{data.description}</p>
+        <div className="flex flex-wrap gap-3">
           {data.tech.slice(0, 3).map((tech, index) => (
             <span
               key={index}
-              className="px-2 py-1 text-xs rounded-full bg-secondary/50"
+              className="text-xs bg-gray-100 text-gray-800 px-2 py-1 rounded"
             >
               {tech}
             </span>
           ))}
         </div>
-        <h3 className="font-semibold leading-none tracking-tight">{data.title}</h3>
-        <p className="text-sm text-muted-foreground">{data.description}</p>
-        <p id="project_device_info" className="text-sm font-bold">{data.device}</p>
       </div>
 
       <div className="items-center p-6 pt-0 flex justify-between">
@@ -90,6 +92,7 @@ export default function PortfolioPreview({ project, activeFilter = 'all' }: Port
               className="text-sm text-primary hover:underline"
               aria-label={`View GitHub repository for ${data.title}`}
             >
+              <i className="fab fa-github px-2"></i>
               GitHub
             </a>
           )}
@@ -98,6 +101,8 @@ export default function PortfolioPreview({ project, activeFilter = 'all' }: Port
             className="text-sm text-primary hover:underline"
             aria-label={`View details for ${data.title}`}
           >
+            <i className="fa-solid fa-circle-info px-2"></i>
+
             Details
           </a>
         </div>
@@ -109,10 +114,18 @@ export default function PortfolioPreview({ project, activeFilter = 'all' }: Port
             className="text-sm text-primary hover:underline"
             aria-label={`View live demo of ${data.title}`}
           >
+            <i className="fas fa-external-link-alt px-2"></i>
             Live Demo
           </a>
         )}
       </div>
+      <style>
+        {`
+          .projetdesc {
+            color: var(--gray-0);
+          }
+        `}
+      </style>
     </article>
   );
 }

@@ -1,146 +1,167 @@
-<section class="contact" id="contact">
-    <div class="contact-text">
-      <h2>Contact <span>Me!</span></h2>
-      <h4>If You Have Any Project In Your Mind.</h4>
-      <p>
-        I'm a UI/UX Designer - creating bold & brave interface design for
-        companies all across the world.
-      </p>
-      <div class="list">
-        <li><a href="#">01646895741</a></li>
-        <li><a href="#">hello@gmail.com</a></li>
-        <li><a href="#">Like Share & Subscribe</a></li>
-      </div>
-
-      <div class="contact-icons">
-        <a href="#"><i class="bx bxl-facebook"></i></a>
-        <a href="#"><i class="bx bxl-twitter"></i></a>
-        <a href="#"><i class="bx bxl-instagram-alt"></i></a> 
-        <a href="#"><i class="bx bxl-youtube"></i></a>
+<section id="contact" class="py-16 md:py-24 c1">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">
+        Get In <span class="gradient-text">Touch</span>
+      </h2>
+      <div
+        class="w-20 h-1 bg-gradient-to-r from-blue-500 to-indigo-600 mx-auto"
+      >
       </div>
     </div>
 
-    <div class="contact-form">
-      <form action="">
-        <input type="text" placeholder="Your Name" required />
-        <input type="email" placeholder="Your Email Address" required />
-        <input type="number" placeholder="Your Mobile Number" required />
-        <textarea
-          name=""
-          id=""
-          cols="35"
-          rows="10"
-          placeholder="How Can I Help You"
-          required></textarea>
-        <input type="submit" value="Send Message" class="submit" required />
-      </form>
+    <div class="flex flex-col md:flex-row">
+      <div class="md:w-1/2 mb-10 md:mb-0 md:pr-8">
+        <h3 class="text-2xl font-semibold mb-6">Contact Information</h3>
+        <p class="text-gray-600 mb-8">
+          Feel free to reach out to me for any questions or opportunities. I'm
+          always open to discussing new projects, creative ideas or
+          opportunities to be part of your vision. If You Have Any Project In
+          Your Mind.
+        </p>
+
+        <div class="space-y-6">
+          <div class="flex items-start">
+            <div
+              class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-4 mt-1"
+            >
+              <i class="fas fa-envelope text-blue-500"></i>
+            </div>
+            <div>
+              <h5 class="font-semibold">Email</h5>
+              <p class="text-gray-600">john@example.com</p>
+            </div>
+          </div>
+          <div class="flex items-start">
+            <div
+              class="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center mr-4 mt-1"
+            >
+              <i class="fas fa-phone text-indigo-500"></i>
+            </div>
+            <div>
+              <h5 class="font-semibold">Phone</h5>
+              <p class="text-gray-600">(123) 456-7890</p>
+            </div>
+          </div>
+          <div class="flex items-start">
+            <div
+              class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center mr-4 mt-1"
+            >
+              <i class="fas fa-map-marker-alt text-purple-500"></i>
+            </div>
+            <div>
+              <h5 class="font-semibold">Location</h5>
+              <p class="text-gray-600">San Francisco, California</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-8">
+          <h5 class="font-semibold mb-4">Follow Me</h5>
+          <div class="flex space-x-4">
+            <a
+              href="#"
+              class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-500 hover:bg-blue-500 hover:text-white transition-all"
+            >
+              <i class="fab fa-github"></i>
+            </a>
+            <a
+              href="#"
+              class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-500 hover:bg-blue-500 hover:text-white transition-all"
+            >
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a
+              href="#"
+              class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-500 hover:bg-blue-500 hover:text-white transition-all"
+            >
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a
+              href="#"
+              class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-500 hover:bg-blue-500 hover:text-white transition-all"
+            >
+              <i class="fab fa-instagram"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="md:w-1/2 contact-form">
+        <form class="p-2 rounded-xl shadow-sm">
+          <div class="mb-6">
+            <label for="name" class="block text-gray-700 font-medium mb-2"
+              >Your Name</label
+            >
+            <input
+              type="text"
+              id="name"
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              placeholder="John Doe"
+            />
+          </div>
+          <div class="mb-6">
+            <label for="email" class="block text-gray-700 font-medium mb-2"
+              >Your Email</label
+            >
+            <input
+              type="email"
+              id="email"
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              placeholder="john@example.com"
+            />
+          </div>
+          <div class="mb-6">
+            <label for="subject" class="block text-gray-700 font-medium mb-2"
+              >Subject</label
+            >
+            <input
+              type="text"
+              id="subject"
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              placeholder="Project Inquiry"
+            />
+          </div>
+          <div class="mb-6">
+            <label for="message" class="block text-gray-700 font-medium mb-2"
+              >Your Message</label
+            >
+            <textarea
+              id="message"
+              rows="5"
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              placeholder="Hello, I would like to talk about..."></textarea>
+          </div>
+          <button
+            type="submit"
+            class="submit w-full px-6 py-3 text-white rounded-lg shadow-md hover:shadow-lg transition-all"
+          >
+            Send Message
+          </button>
+        </form>
+      </div>
     </div>
-  </section>
-  <style>
-    .contact {
-      background: transparent;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      align-items: center;
-      gap: 2.5rem;
-    }
-    @media (max-width: 920px) {
-      .contact {
-        grid-template-columns: 1fr;
-      }
-    }
-    @media (max-width: 1480px) {
-      .contact {
-        padding: 60px 1% 60px;
-      }
-    }
-    .contact-text h4 {
-      margin: 18px 0;
-      font-weight: 600;
-    }
-  
-    .contact-text h2 {
-      line-height: 1;
-    }
-  
-    .contact-text p {
-      line-height: 1.8;
-      margin-bottom: 30px;
-    }
-  
-    .list {
-      margin-bottom: 2.8rem;
-    }
-  
-    .list li {
-      margin-bottom: 12px;
-    }
-  
-    .list li a {
-      display: block;
-      color: var(--gray-300);
-      font-size: 14px;
-      transition: all 0.45s ease;
-    }
-  
-    .list li a:hover {
-      color: var(--text-color);
-      transform: translateX(5px);
-    }
-  
-    .contact-icons i {
-      height: 45px;
-      width: 45px;
-      background: var(--gradient-accent-orange);
-      color: var(--text-color);
-      font-size: 22px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 8px;
-      margin-right: 15px;
-      transition: all 0.45s ease;
-    }
-  
-    .contact-icons i:hover {
-      background: var(--text-color);
-      color: var(--main-color);
-    }
-  
-    .contact-form form {
-      position: relative;
-    }
-  
-    .contact-form form input,
-    form textarea {
-      width: 100%;
-      padding: 14px;
-      background-color: var(--gray-1001);
-      color: var(--text-color);
-      border: none;
-      outline: none;
-      font-size: 15px;
-      border-radius: 8px;
-      margin-bottom: 10px;
-    }
-  
-    .contact-form textarea {
-      resize: none;
-      height: 240px;
-    }
-  
-    .contact-form form > .submit {
-      display: inline-block;
-      font-size: 16px;
-      background: var(--gradient-accent-orange);
-      color: var(--text-color);
-      width: 160px;
-      transition: all 0.45s ease;
-    }
-  
-    .contact-form .submit:hover {
-      transform: scale(1.1);
-      cursor: pointer;
-    }
-  </style>
-  
+  </div>
+</section>
+<style>
+  .c1 {
+    background: transparent;
+  }
+  .contact-form form input,
+  form textarea {
+    width: 100%;
+    padding: 14px;
+    background-color: var(--gray-1001);
+    color: var(--text-color);
+    border: none;
+    outline: none;
+    font-size: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+  .contact-form form > .submit {
+    font-size: 16px;
+    background: var(--gradient-accent-orange);
+    transition: all 0.45s ease;
+  }
+</style>

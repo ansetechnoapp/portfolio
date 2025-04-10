@@ -1,5 +1,5 @@
 ---
-title: immohouse
+title: Immohouse
 publishDate: 2020-03-04 00:00:00
 number: 1
 img: /assets/img/stock-3.jpg

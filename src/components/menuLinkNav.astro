@@ -1,7 +1,7 @@
 ---
 // import Icon from './Icon.astro';
-import type { iconPaths } from './IconPaths';
-import ThemeToggle from './ThemeToggle.astro';
+import type { iconPaths } from "./IconPaths";
+import ThemeToggle from "./ThemeToggle.astro";
 import Icone1 from "../assets/icone/icons8-home-50.png";
 import Icone2 from "../assets/icone/icons8-about.svg";
 import Icone3 from "../assets/icone/icons8-development-skill-50.png";
@@ -11,70 +11,72 @@ import Icone6 from "../assets/icone/icons8-contact-50.png";
 // import { AboutTexteHomeCv } from './aboutTexteHomeCv';
 
 interface Props {
-	namepage?: string | undefined;
+  namepage?: string | undefined;
 }
 
 const { namepage } = Astro.props;
 
 /** Icon links to social media — edit these with links to your profiles! */
-const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths }[] = [
-	{ label: 'Home', href: '/', icon: 'house-logo' },
-];
+const iconLinks: {
+  label: string;
+  href: string;
+  icon: keyof typeof iconPaths;
+}[] = [{ label: "Home", href: "/", icon: "house-logo" }];
 
- function test(){
+function test() {
+  let iconImgLinks: { label: string; href: string }[] = [];
 
-  let iconImgLinks: { label: string; href: string; }[] = [];
-
-  if (namepage === "home" ) {
+  if (namepage === "home") {
     iconImgLinks = [
-	{ label: `${Icone1.src}`, href: '#hero_home' },
-  { label: `${Icone5.src}`, href: '#skills' },
-	{ label: `${Icone2.src}`, href: '#about' },
-  { label: `${Icone3.src}`, href: '#service' },
-  { label: `${Icone4.src}`, href: '#work' },
-  { label: `${Icone6.src}`, href: '#contact' },
-];
+      { label: `${Icone1.src}`, href: "#hero_home" },
+      { label: `${Icone5.src}`, href: "#skills" },
+      { label: `${Icone2.src}`, href: "#about" },
+      { label: `${Icone3.src}`, href: "#service" },
+      { label: `${Icone4.src}`, href: "#work" },
+      { label: `${Icone6.src}`, href: "#contact" },
+    ];
   }
 
-  if (namepage === "about" ) {
-    iconImgLinks = [
-	{ label: `${Icone1.src}`, href: '#about' },
-];
+  if (namepage === "about") {
+    iconImgLinks = [{ label: `${Icone1.src}`, href: "#about" }];
   }
 
-  if (namepage === "work" ) {
-    iconImgLinks = [
-	{ label: `${Icone1.src}`, href: '#work' },
-];
+  if (namepage === "work") {
+    iconImgLinks = [{ label: `${Icone1.src}`, href: "#work" }];
   }
-  
-return iconImgLinks;
- }
+
+  return iconImgLinks;
+}
 ---
 
 <div class="menu-link-nav">
-  { 
-		test().map(({ href, label }) => (
-			<a 
-      aria-current={Astro.url.pathname === href}
-      href={href} class:list={[
-								'social',
-								{
-									active:
-										Astro.url.pathname === href ||
-										(href !== '/' && Astro.url.pathname.startsWith(href)),
-								},
-							]}>
-				<span class="sr-only">{label}</span>
-				<img width="15" height="15"  src={label} alt="" />
-			</a>
-		)) 
-	}
-  <ThemeToggle togglelightdarktheme="toggleside" toggleiconelightdarktheme="lighty"/>
-          </div> 
+  {
+    test().map(({ href, label }) => (
+      <a
+        aria-current={Astro.url.pathname === href}
+        href={href}
+        class:list={[
+          "social",
+          {
+            active:
+              Astro.url.pathname === href ||
+              (href !== "/" && Astro.url.pathname.startsWith(href)),
+          },
+        ]}
+      >
+        <span class="sr-only">{label}</span>
+        <img width="15" height="15" src={label} alt={label} />
+      </a>
+    ))
+  }
+  <ThemeToggle
+    togglelightdarktheme="toggleside"
+    toggleiconelightdarktheme="lighty"
+  />
+</div>
 <style>
-   .menu-link-nav{
-    background: radial-gradient(var(--gray-900),var(--gray-800) 150%);
+  .menu-link-nav {
+    background: radial-gradient(#f3f4f7, #090b11 150%);
     box-shadow: var(--shadow-md);
     width: max-content;
     display: block;
@@ -88,55 +90,59 @@ return iconImgLinks;
     border-radius: 999rem;
     backdrop-filter: blur(15px);
     line-height: 1.2;
-   }
+  }
 
-   .menu-link-nav a{
+  .menu-link-nav a {
     padding: 0.5rem 1rem;
     border-radius: 999rem;
     display: flex;
-    font-size:var(--text-sm);
+    font-size: var(--text-sm);
     color: var(--gray-300);
-    transition: color var(--theme-transition),background-color var(--theme-transition);
-   }
-   .menu-link-nav a:hover{
+    transition:
+      color var(--theme-transition),
+      background-color var(--theme-transition);
+  }
+  .menu-link-nav a:hover {
     background: var(--accent-subtle-overlay);
-   }
-   .menu-link-nav a.active{
+  }
+  .menu-link-nav a.active {
     background-color: var(--accent-regular);
     color: var(--accent-text-over);
-   }
-   @media (min-width: 48em) {
-    .menu-link-nav{
-    background: #ead5f285;
-    padding: 1.7rem 0rem 1.7rem 0rem;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    gap: 1rem;
-    flex-direction:column;
-    margin-left: 0.5rem;
-    left:0;
-    bottom: 0;
-    height: fit-content;
-   }
+  }
+  @media (min-width: 48em) {
+    .menu-link-nav {
+      background: #ead5f285;
+      padding: 1.7rem 0rem 1.7rem 0rem;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      gap: 1rem;
+      flex-direction: column;
+      margin-left: 0.5rem;
+      left: 0;
+      bottom: 0;
+      height: fit-content;
+    }
 
-   .menu-link-nav a{
-    padding: 0.5rem 1rem;
-    border-radius: 999rem;
-    display: flex;
-    font-size:var(--text-sm);
-    color: var(--gray-300);
-    transition: color var(--theme-transition),background-color var(--theme-transition);
-   }
-   .menu-link-nav a:hover{
-    background: var(--accent-subtle-overlay);
-   }
-   .menu-link-nav a.active{
-    background-color: var(--accent-regular);
-    color: var(--accent-text-over);
-   }
-   .menu-link-nav theme-toggle {
-		/* code dans ./styles/style.css */
-	}
+    .menu-link-nav a {
+      padding: 0.5rem 1rem;
+      border-radius: 999rem;
+      display: flex;
+      font-size: var(--text-sm);
+      color: var(--gray-300);
+      transition:
+        color var(--theme-transition),
+        background-color var(--theme-transition);
+    }
+    .menu-link-nav a:hover {
+      background: var(--accent-subtle-overlay);
+    }
+    .menu-link-nav a.active {
+      background-color: var(--accent-regular);
+      color: var(--accent-text-over);
+    }
+    .menu-link-nav theme-toggle {
+      /* code dans ./styles/style.css */
+    }
   }
 </style>

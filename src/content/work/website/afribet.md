@@ -1,5 +1,5 @@
 ---
-title: afribet
+title: Afribet
 publishDate: 2025-27-02 00:00:00
 number: 11
 img:   /assets/myprojects/parisbet.png

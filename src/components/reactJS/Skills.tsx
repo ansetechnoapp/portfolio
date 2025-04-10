@@ -25,7 +25,7 @@ const Skills: React.FC = () => {
                     {skillsData.map((skill, index) => (
                         <div
                             key={index}
-                            className="group relative bg-gray-800/30 backdrop-blur-sm rounded-2xl border border-gray-700/50 overflow-hidden shadow-xl transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 hover:border-purple-500/50"
+                            className="group relative  backdrop-blur-sm rounded-2xl border border-gray-700/50 overflow-hidden shadow-xl transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 hover:border-purple-500/50"
                         >
                             <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 via-transparent to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                             
@@ -39,7 +39,7 @@ const Skills: React.FC = () => {
                                             gradient 
                                         />
                                     </div>
-                                    <h3 className="text-2xl font-bold text-gray-100">
+                                    <h3 className="text-2xl font-bold text-black-100">
                                         {skill.title}
                                     </h3>
                                 </div>
@@ -48,7 +48,7 @@ const Skills: React.FC = () => {
                                     {skill.items.map((item, idx) => (
                                         <li 
                                             key={idx} 
-                                            className="flex items-center text-gray-300 dark:text-gray-300 transition-colors duration-200 group-hover:text-gray-800 dark:group-hover:text-gray-100"
+                                            className="perso flex items-center transition-colors duration-200 group-hover:text-gray-800 dark:group-hover:text-gray-100"
                                         >
                                             <span className="w-2 h-2 bg-purple-500 rounded-full mr-3"></span>
                                             {item}
@@ -60,6 +60,14 @@ const Skills: React.FC = () => {
                     ))}
                 </div>
             </div>
+            <style>
+                {`
+          .perso {
+            color: var(--gray-50);
+
+          }
+        `}
+            </style>
         </section>
     );
 };

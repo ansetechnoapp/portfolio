@@ -1,5 +1,5 @@
 ---
-title: chantierpro
+title: Chantierpro
 publishDate: 2020-03-04 00:00:00
 number: 9
 img: /assets/img/stock-3.jpg

@@ -1,5 +1,5 @@
 ---
-title: wet Sarl
+title: Wet Sarl
 publishDate: 2019-12-01 00:00:00
 number: 5
 img: /assets/img/stock-2.jpg

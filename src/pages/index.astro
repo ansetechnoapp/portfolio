@@ -41,8 +41,8 @@ const { heroTitle = `I am ${dataUser.firstName} ${dataUser.lastName}` } =
 
 <Layout>
   <MenuLinkNav namepage="home" />
-  <div class="stack gap-15">
-    <div class="wrapper">
+  <div class="stack gap-15 pt-20">
+    <div class="wrapper stack gap-8 lg:gap-20">
       <header id="hero_home" class="hero-container">
         <div class="hero-content">
           <Hero
@@ -71,8 +71,6 @@ const { heroTitle = `I am ${dataUser.firstName} ${dataUser.lastName}` } =
                 >
               </a>
             </div>
-
-            <HeroMediaSocialNav />
           </Hero>
         </div>
 
@@ -83,6 +81,8 @@ const { heroTitle = `I am ${dataUser.firstName} ${dataUser.lastName}` } =
             height="620"
             src={Img1.src}
           />
+          <HeroMediaSocialNav />
+
           <div class="image-backdrop"></div>
         </div>
       </header>
@@ -140,6 +140,115 @@ const { heroTitle = `I am ${dataUser.firstName} ${dataUser.lastName}` } =
             Acquisition Management Computer and IT systems maintenance Graphic Design
             (flyer creation with Illustrator, Canva, etc.)
           </p>
+          <p>
+            Anscod is a blog about web development, programming, and technology.
+            <br />
+            It is a place where I share my thoughts, ideas, and experiences in the
+            field.
+            <br />
+            I hope you find it useful and informative.
+          </p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Other Skills -->
+            <div class="bg-white p-2 rounded-xl shadow-sm card-hover-effect">
+              <div class="flex items-center mb-6">
+                <div
+                  class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center mr-4"
+                >
+                  <i class="fas fa-tools text-purple-500"></i>
+                </div>
+                <h3 class="text-xl font-semibold">Tools & Other</h3>
+              </div>
+              <div class="flex flex-wrap gap-3">
+                <span
+                  class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm"
+                  >Git</span
+                >
+                <span
+                  class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm"
+                  >Docker</span
+                >
+                <span
+                  class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm"
+                  >AWS</span
+                >
+                <span
+                  class="px-3 py-1 bg-pink-100 text-pink-800 rounded-full text-sm"
+                  >Figma</span
+                >
+                <span
+                  class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm"
+                  >Jest</span
+                >
+                <span
+                  class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm"
+                  >Webpack</span
+                >
+                <span
+                  class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-sm"
+                  >Firebase</span
+                >
+                <span
+                  class="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm"
+                  >Agile</span
+                >
+              </div>
+            </div>
+
+            <!-- Languages -->
+            <div class="bg-white p-2 rounded-xl shadow-sm card-hover-effect">
+              <div class="flex items-center mb-6">
+                <div
+                  class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mr-4"
+                >
+                  <i class="fas fa-language text-green-500"></i>
+                </div>
+                <h3 class="text-xl font-semibold">Languages</h3>
+              </div>
+              <div class="space-y-4">
+                <div>
+                  <div class="flex justify-between mb-1">
+                    <span class="text-gray-600">French</span>
+                    <span class="text-gray-600">Fluent</span>
+                  </div>
+                  <div class="w-full bg-gray-200 rounded-full h-2">
+                    <div
+                      class="bg-green-500 h-2 rounded-full"
+                      style="width: 100%"
+                    >
+                    </div>
+                  </div>
+                </div>
+                <!-- <div>
+                  <div class="flex justify-between mb-1">
+                    <span class="text-gray-600">Spanish</span>
+                    <span class="text-gray-600">Intermediate</span>
+                  </div>
+                  <div class="w-full bg-gray-200 rounded-full h-2">
+                    <div
+                      class="bg-green-500 h-2 rounded-full"
+                      style="width: 60%"
+                    >
+                    </div>
+                  </div>
+                </div> -->
+                <div>
+                  <div class="flex justify-between mb-1">
+                    <span class="text-gray-600">English</span>
+                    <span class="text-gray-600">Basic</span>
+                  </div>
+                  <div class="w-full bg-gray-200 rounded-full h-2">
+                    <div
+                      class="bg-green-500 h-2 rounded-full"
+                      style="width: 30%"
+                    >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div class="btn-about gap-10">
             <a href=""
               ><Pill
@@ -422,6 +531,7 @@ const { heroTitle = `I am ${dataUser.firstName} ${dataUser.lastName}` } =
 
     .hero-image {
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       height: 100%;
@@ -468,7 +578,6 @@ const { heroTitle = `I am ${dataUser.firstName} ${dataUser.lastName}` } =
   }
   .section-about {
     display: grid;
-    grid-template-rows: 1fr 0.5fr;
     gap: 2rem;
   }
 
@@ -476,7 +585,8 @@ const { heroTitle = `I am ${dataUser.firstName} ${dataUser.lastName}` } =
     text-align: center;
   }
   .section2-about .describe-about {
-    margin-top: 3rem;
+    margin: 3rem 0rem;
+    color: var(--gray-300);
   }
   .section2-about .btn-about {
     display: flex;

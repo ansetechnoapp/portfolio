@@ -1,5 +1,5 @@
 ---
-title: worldshop
+title: Worldshop
 publishDate: 2020-03-04 00:00:00
 number: 7
 img: /assets/img/stock-3.jpg

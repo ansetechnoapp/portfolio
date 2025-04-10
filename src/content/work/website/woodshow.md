@@ -1,5 +1,5 @@
 ---
-title: woodshow
+title: Woodshow
 publishDate: 2019-12-01 00:00:00
 number: 2
 img: /assets/img/stock-2.jpg

@@ -1,5 +1,5 @@
 ---
-title: planetech sarl benin
+title: Planetech sarl benin
 publishDate: 2020-03-04 00:00:00
 number: 4
 img: /assets/img/stock-3.jpg

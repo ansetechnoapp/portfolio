@@ -1,5 +1,5 @@
 ---
-title: quickrelease
+title: Quickrelease
 publishDate: 2020-03-04 00:00:00
 number: 10
 img:   /assets/myprojects/Deblocage-rapide-de-vos-iPhone.png
