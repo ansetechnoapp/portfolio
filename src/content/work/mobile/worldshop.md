@@ -2,7 +2,7 @@
 title: Worldshop
 publishDate: 2020-03-04 00:00:00
 number: 7
-img: /assets/img/stock-3.jpg
+img: /assets/myprojects/worldshop.png
 img_alt: Pearls of silky soft white cotton, bubble up under vibrant lighting
 github: https://github.com/username/ecommerce-dashboard   // Should be your actual GitHub repo
 liveDemo: https://ecommerce-dashboard-demo.netlify.app    // Should be your actual demo site

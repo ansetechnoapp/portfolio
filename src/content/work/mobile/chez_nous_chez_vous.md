@@ -2,7 +2,7 @@
 title: CHEZ NOUS CHEZ VOUS
 publishDate: 2020-03-04 00:00:00
 number: 6
-img: /assets/img/stock-3.jpg
+img: /assets/myprojects/barcheznouschezvous.png
 img_alt: Pearls of silky soft white cotton, bubble up under vibrant lighting
 github: https://github.com/username/ecommerce-dashboard
 liveDemo: https://ecommerce-dashboard-demo.netlify.app
