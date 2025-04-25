@@ -91,7 +91,7 @@ const skillsData: Skill[] = [
     {
         title: "Other",
         icon: "github-logo",
-        items: ["Git & GitHub","ubuntu"]
+        items: ["Git & GitHub","ubuntu","Reduce ToolKit"]
     }, 
 ];
 
