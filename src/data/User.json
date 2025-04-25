@@ -2,13 +2,13 @@
     "firstName": "Kevin",
     "lastName": "Otty",
     "email": "contact@anscod.online",
-    "phone": "97279001",
+    "phone": "O1 97279001",
     "natinality": "Béninoise",
     "birthDay": "21/04/1998",
     "address": {
       "city": "cotonou",
       "contry": "litoral",
-      "rue": "00229 cotonou,Bénin",
+      "rue": "00229,Bénin",
       "indicatif": "+229"
     }
   }

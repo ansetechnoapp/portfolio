@@ -81,17 +81,17 @@ const skillsData: Skill[] = [
     {
         title: "Front-end",
         icon: "code",
-        items: ["React Native","Expo", "Next.js", "Tailwind CSS", "TypeScript"],
+        items: ["Expo", "Next.js", "Tailwind CSS", "TypeScript"],
     },
     {
         title: "Back-end",
         icon: "terminal-window",
-        items: ["PHP (Laravel)","Python","Adonis js","Firebase","supabase"],
+        items: ["PHP (Laravel)","Python","Adonis js"],
     },
     {
         title: "Other",
         icon: "github-logo",
-        items: ["Git & GitHub","ubuntu","airtable", "mysql", "postgresql"]
+        items: ["Git & GitHub","ubuntu"]
     }, 
 ];
 

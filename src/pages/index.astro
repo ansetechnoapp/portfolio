@@ -150,23 +150,9 @@ const { heroTitle = `I am ${dataUser.firstName} ${dataUser.lastName}` } =
             my goal is to showcase my technical skills as a web and mobile developer
             through concrete projects, thereby contributing to the success and growth
             of businesses.
-            <br /><br />
-            NAME: {dataUser.firstName}
-            {dataUser.lastName}
-            <br />
-            DATE OF BIRTH: {dataUser.birthDay}
-            <br />
-            NATIONALITY: {dataUser.natinality}
-            <br />
-            ADDRESS: {dataUser.address.city}
-            {dataUser.address.rue}
-            <br />
-            PHONE: {dataUser.phone}
-            <br />
-            E-MAIL: {dataUser.email}
             <br /><br /><br />
-            Web Development: Laravel, React JS, Next JS, Astro JS, PHP, TypeScript
-            Mobile Development: React Native Graphic Design: Photoshop Additional
+
+            Graphic Design: Photoshop Additional
             Skills: Reduce ToolKit SCSS Tailwind jQuery GitHub Community Management
             Acquisition Management Computer and IT systems maintenance Graphic Design
             (flyer creation with Illustrator, Canva, etc.)
@@ -179,32 +165,7 @@ const { heroTitle = `I am ${dataUser.firstName} ${dataUser.lastName}` } =
             <br />
             I hope you find it useful and informative.
           </p>
-          <div class="grid grid-cols-2 md:grid-cols-3 gap-4 my-5">
-            <div class="flex items-center">
-              <i class="fas fa-map-marker-alt text-blue-500 mr-2"></i>
-              <span class="text-gray-700">San Francisco, CA</span>
-            </div>
-            <div class="flex items-center">
-              <i class="fas fa-envelope text-blue-500 mr-2"></i>
-              <span class="text-gray-700">john@example.com</span>
-            </div>
-            <div class="flex items-center">
-              <i class="fas fa-phone text-blue-500 mr-2"></i>
-              <span class="text-gray-700">(123) 456-7890</span>
-            </div>
-            <div class="flex items-center">
-              <i class="fas fa-graduation-cap text-blue-500 mr-2"></i>
-              <span class="text-gray-700">Computer Science</span>
-            </div>
-            <div class="flex items-center">
-              <i class="fas fa-briefcase text-blue-500 mr-2"></i>
-              <span class="text-gray-700">Freelance Available</span>
-            </div>
-            <div class="flex items-center">
-              <i class="fas fa-globe text-blue-500 mr-2"></i>
-              <span class="text-gray-700">www.johndoe.dev</span>
-            </div>
-          </div>
+          <br /><br />
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             <!-- Other Skills -->
             <div class="bg-white p-2 rounded-xl shadow-sm card-hover-effect">
@@ -216,40 +177,78 @@ const { heroTitle = `I am ${dataUser.firstName} ${dataUser.lastName}` } =
                 </div>
                 <h3 class="text-xl font-semibold">Tools & Other</h3>
               </div>
-              <div class="flex flex-wrap gap-3">
-                <span
-                  class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm"
-                  >Git</span
-                >
-                <span
-                  class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm"
-                  >Docker</span
-                >
-                <span
-                  class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm"
-                  >AWS</span
-                >
-                <span
-                  class="px-3 py-1 bg-pink-100 text-pink-800 rounded-full text-sm"
-                  >Figma</span
-                >
-                <span
-                  class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm"
-                  >Jest</span
-                >
-                <span
-                  class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm"
-                  >Webpack</span
-                >
-                <span
+              
+              <div>
+                <h3 class="text-xl font-semibold py-4">Web Development</h3>
+                <div class="flex flex-wrap gap-3">
+                  <span
+                    class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm"
+                    >React JS</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm"
+                    >Astro JS</span
+                  >
+                </div>
+              </div>
+              <div>
+                <h3 class="text-xl font-semibold py-4">Mobile Development</h3>
+                <div class="flex flex-wrap gap-3">
+                  <span
+                    class="px-3 py-1 bg-pink-100 text-pink-800 rounded-full text-sm"
+                    >React Native</span
+                  >
+                </div>
+              </div>
+              <div>
+                <h3 class="text-xl font-semibold py-4">Other</h3>
+                <div class="flex flex-wrap gap-3">
+                  <span
                   class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-sm"
                   >Firebase</span
                 >
                 <span
-                  class="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm"
-                  >Agile</span
+                  class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-sm"
+                  >Supabase</span
                 >
+                <span
+                  class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-sm"
+                  >Airtable</span
+                >
+                  <span
+                    class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm"
+                    >postgresql</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm"
+                    >Mysql</span
+                  >
+                 
+                  <span
+                    class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm"
+                    >Docker</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm"
+                    >AWS</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm"
+                    >Jest</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm"
+                    >Webpack</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm"
+                    >Agile</span
+                  >
+                </div>
               </div>
+              
+              
+              
             </div>
 
             <!-- Languages -->
@@ -303,6 +302,32 @@ const { heroTitle = `I am ${dataUser.firstName} ${dataUser.lastName}` } =
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 md:grid-cols-3 gap-4 my-5">
+            <div class="flex items-center">
+              <i class="fas fa-map-marker-alt text-blue-500 mr-2"></i>
+              <span class="text-gray-700">{dataUser.address.city} {dataUser.address.rue}</span>
+            </div>
+            <div class="flex items-center">
+              <i class="fas fa-envelope text-blue-500 mr-2"></i>
+              <span class="text-gray-700">{dataUser.email}</span>
+            </div>
+            <div class="flex items-center">
+              <i class="fas fa-phone text-blue-500 mr-2"></i>
+              <span class="text-gray-700">({dataUser.address.indicatif}) {dataUser.phone}</span>
+            </div>
+            <div class="flex items-center">
+              <i class="fas fa-graduation-cap text-blue-500 mr-2"></i>
+              <span class="text-gray-700">Programmer</span>
+            </div>
+            <div class="flex items-center">
+              <i class="fas fa-briefcase text-blue-500 mr-2"></i>
+              <span class="text-gray-700">Freelance Available</span>
+            </div>
+            <div class="flex items-center">
+              <i class="fas fa-globe text-blue-500 mr-2"></i>
+              <span class="text-gray-700">www.anscod.online</span>
             </div>
           </div>
 
