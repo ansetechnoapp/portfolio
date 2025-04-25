@@ -34,28 +34,46 @@ interface Props {
 // Set default values
 const {
   title = "About Me",
-  description = `With a degree in software engineering and computer systems, I combine technical expertise (web/mobile development) and creativity (design of advertising posters for social networks). A fervent advocate of innovation, I put my skills to work on high-impact projects to boost visibility and performance. My work has been acclaimed in several publications.I am always open to feedback and suggestions, so feel free to reach out to me if you have any questions or comments.`,
+  description = `As a seasoned Software Engineer with expertise in both web and mobile development, I bring a unique blend of technical proficiency and creative vision to every project. My background in computer systems enables me to architect robust solutions while my design sensibilities ensure exceptional user experiences. I specialize in creating innovative digital products that drive measurable business outcomes and enhance brand visibility. I thrive in collaborative environments and am passionate about leveraging cutting-edge technologies to solve complex challenges.I am always open to feedback and suggestions, so feel free to reach out to me if you have any questions or comments.`,
   imageSrc,
   yearsExperience = 7,
   skills = {
-    webDev: ["React JS", "Astro JS", "JQuery", "SCSS"],
-    mobileDev: ["React Native", "Flutter"],
+    webDev: [
+      "React JS",
+      "Next.js",
+      "Astro JS",
+      "TypeScript",
+      "JavaScript",
+      "TailwindCSS",
+      "SCSS",
+      "HTML5/CSS3",
+    ],
+    mobileDev: ["React Native", "Flutter", "iOS/Android Development"],
     other: [
       "Firebase",
       "Supabase",
-      "Airtable",
-      "postgresql",
-      "Mysql",
+      "PostgreSQL",
+      "MySQL",
+      "MongoDB",
       "Docker",
       "AWS",
+      "CI/CD",
       "Jest",
       "Webpack",
-      "Agile",
+      "Agile/Scrum",
+      "Git/GitHub",
+      "RESTful APIs",
+      "GraphQL",
     ],
   },
   languages = [
-    { name: "French", level: "Fluent", percentage: 100 },
-    { name: "English", level: "Basic", percentage: 30 },
+    { name: "French", level: "Native", percentage: 100 },
+    {
+      name: "English",
+      level: "Professional Working Proficiency",
+      percentage: 70,
+    },
+    { name: "Spanish", level: "Elementary Proficiency", percentage: 30 },
   ],
   contactInfo = {
     city: "Cotonou",
@@ -63,8 +81,8 @@ const {
     email: "contact@anscod.online",
     phone: "",
     phonePrefix: "",
-    occupation: "Programmer",
-    availability: "Freelance Available",
+    occupation: "Software Engineer",
+    availability: "Available for Freelance & Full-time Opportunities",
     website: "www.anscod.online",
   },
 } = Astro.props;
@@ -72,35 +90,64 @@ const {
 
 <section class="section-about with-background bg-variant p-left-right-2-rem">
   <div class="section-about-img">
-    <div class="relative">
-      <div
-        class="w-74 h-74 md:w-85 md:h-85 bg-gradient-to-r from-blue-400 to-indigo-500 rounded-full flex items-center justify-center shadow-xl"
-      >
-        <img
-          src={imageSrc.src}
-          alt="Developer portrait"
-          class="w-70 h-70 md:w-72 md:h-72 rounded-full object-cover border-4 border-white"
-        />
-      </div>
+    <div class="profile-container">
+      <div class="image-frame">
+        <div class="profile-image-container">
+          <img
+            src={imageSrc.src}
+            alt="Developer portrait"
+            class="profile-image"
+          />
+        </div>
 
-      <div
-        class="absolute -bottom-5 -right-5 bg-white p-4 rounded-lg shadow-md"
-      >
-        <div class="flex items-center">
-          <div
-            class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3"
-          >
-            <i class="fas fa-code text-blue-500"></i>
+        <div class="experience-badge">
+          <div class="badge-icon">
+            <i class="fas fa-code"></i>
           </div>
-          <div>
-            <p class="text-sm font-semibold">{yearsExperience}+ Years</p>
-            <p class="text-xs text-gray-500">Experience</p>
+          <div class="badge-text">
+            <p class="years">{yearsExperience}+</p>
+            <p class="label">Years Experience</p>
           </div>
         </div>
       </div>
-      <a href=""
-        ><Pill><Icon icon="paper-plane-tilt" size="1.33em" /> Cv</Pill></a
-      >
+
+      <div class="profile-actions">
+        <a href="/assets/cv/resume.pdf" download class="cv-button">
+          <Pill
+            ><Icon icon="paper-plane-tilt" size="1.33em" /> Download Resume</Pill
+          >
+        </a>
+        <div class="social-links">
+          <a
+            href="https://github.com/anscod"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-icon"
+            aria-label="GitHub Profile"><i class="fab fa-github"></i></a
+          >
+          <a
+            href="https://linkedin.com/in/anscod"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-icon"
+            aria-label="LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a
+          >
+          <a
+            href="https://twitter.com/anscod"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-icon"
+            aria-label="Twitter Profile"><i class="fab fa-twitter"></i></a
+          >
+          <a
+            href="https://dribbble.com/anscod"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-icon"
+            aria-label="Dribbble Profile"><i class="fab fa-dribbble"></i></a
+          >
+        </div>
+      </div>
     </div>
   </div>
   <div class="section2-about">
@@ -112,7 +159,10 @@ const {
     <br /><br />
     <div class="grid grid-cols-1 gap-8">
       <!-- Tools & Skills -->
-      <div class="bg-white p-2 rounded-xl shadow-sm card-hover-effect">
+      <div
+        class="bg-white p-2 rounded-xl shadow-sm card-hover-effect"
+        style="--animation-order: 1;"
+      >
         <div class="flex items-center mb-6">
           <div
             class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center mr-4"
@@ -186,7 +236,10 @@ const {
       <!-- Languages -->
       {
         languages && languages.length > 0 && (
-          <div class="bg-white p-2 rounded-xl shadow-sm card-hover-effect">
+          <div
+            class="bg-white p-2 rounded-xl shadow-sm card-hover-effect"
+            style="--animation-order: 2;"
+          >
             <div class="flex items-center mb-6">
               <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mr-4">
                 <i class="fas fa-language text-green-500" />
@@ -200,10 +253,10 @@ const {
                     <span class="text-gray-600">{lang.name}</span>
                     <span class="text-gray-600">{lang.level}</span>
                   </div>
-                  <div class="w-full bg-gray-200 rounded-full h-2">
+                  <div class="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
                     <div
-                      class="bg-green-500 h-2 rounded-full"
-                      style={`width: ${lang.percentage}%`}
+                      class="bg-green-500 h-2 rounded-full progress-bar-animate"
+                      style={`width: 0%; --final-width: ${lang.percentage}%;`}
                     />
                   </div>
                 </div>
@@ -215,7 +268,7 @@ const {
     </div>
 
     <!-- Contact Information Grid -->
-    <div class="grid grid-cols-2 md:grid-cols-3 gap-4 my-8">
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4 my-8 contact-info-grid">
       {
         contactInfo.city && (
           <div class="flex items-center">
@@ -270,12 +323,13 @@ const {
       }
     </div>
 
-    <div class="btn-about gap-10">
-      <a href=""
-        ><Pill
-          ><Icon icon="paper-plane-tilt" size="1.33em" /> Contactez-Moi</Pill
-        ></a
-      >
+    <div class="btn-about gap-10 action-buttons">
+      <a href="#contact" class="contact-button">
+        <Pill><Icon icon="paper-plane-tilt" size="1.33em" /> Contact Me</Pill>
+      </a>
+      <a href="/work" class="portfolio-button">
+        <Pill><Icon icon="pencil-line" size="1.33em" /> View Portfolio</Pill>
+      </a>
     </div>
   </div>
 </section>
@@ -284,13 +338,285 @@ const {
   /* Section About Styles */
   .section-about-img {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 1rem;
+    margin-bottom: 2rem;
   }
-  .section-about-img img {
-    border: 7px solid var(--accent-regular);
+
+  .profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .image-frame {
+    position: relative;
+    margin-bottom: 1.5rem;
+  }
+
+  .profile-image-container {
+    /* width: 280px;
+    height: 280px; */
+    border-radius: 5%;
+    padding: 8px;
+    background: linear-gradient(
+      135deg,
+      var(--accent-regular) 0%,
+      var(--accent-dark) 100%
+    );
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    animation: gradient-shift 8s infinite alternate ease-in-out;
+    position: relative;
+    overflow: hidden;
+  }
+
+  @keyframes gradient-shift {
+    0% {
+      background-position: 0% 50%;
+      background-size: 100% 100%;
+    }
+    100% {
+      background-position: 100% 50%;
+      background-size: 120% 120%;
+    }
+  }
+
+  .profile-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 5%;
+    object-fit: cover;
+    border: 2px solid white;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    filter: saturate(0.95);
+  }
+
+  .profile-image:hover {
+    transform: scale(1.05);
+    filter: saturate(1.1) brightness(1.05);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  }
+
+  .profile-image-container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+
+  .profile-image-container:hover::after {
+    opacity: 1;
+    animation: shine 1.5s infinite alternate;
+  }
+
+  @keyframes shine {
+    0% {
+      opacity: 0.3;
+      transform: translateX(-100%) translateY(-100%) rotate(45deg);
+    }
+    100% {
+      opacity: 0.7;
+      transform: translateX(100%) translateY(100%) rotate(45deg);
+    }
+  }
+
+  .experience-badge {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: white;
+    border-radius: 12px;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    border-left: 4px solid var(--accent-regular);
+    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    animation: badge-float 3s ease-in-out infinite alternate;
+  }
+
+  @keyframes badge-float {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-8px);
+    }
+  }
+
+  .experience-badge:hover {
+    transform: translateY(-12px) scale(1.05);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    border-left: 4px solid var(--accent-dark);
+  }
+
+  .badge-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background-color: var(--accent-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 12px;
+    color: var(--accent-regular);
+    font-size: 1.2rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .badge-icon::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+      circle,
+      rgba(255, 255, 255, 0.3) 0%,
+      rgba(255, 255, 255, 0) 70%
+    );
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all 0.5s ease;
+  }
+
+  .experience-badge:hover .badge-icon {
+    color: var(--accent-dark);
+    transform: rotate(5deg);
+  }
+
+  .experience-badge:hover .badge-icon::before {
+    opacity: 1;
+    transform: scale(1);
+    animation: pulse-light 2s infinite;
+  }
+
+  @keyframes pulse-light {
+    0% {
+      opacity: 0.3;
+      transform: scale(0.8);
+    }
+    50% {
+      opacity: 0.5;
+      transform: scale(1.1);
+    }
+    100% {
+      opacity: 0.3;
+      transform: scale(0.8);
+    }
+  }
+
+  .badge-text .years {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--gray-0);
+    margin: 0;
+  }
+
+  .badge-text .label {
+    font-size: 0.8rem;
+    color: var(--gray-300);
+    margin: 0;
+  }
+
+  .profile-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .cv-button {
+    transition: transform 0.3s ease;
+  }
+
+  .cv-button:hover {
+    transform: translateY(-3px);
+  }
+
+  .social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
+  }
+
+  .social-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background-color: var(--gray-999);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+  }
+
+  .social-icon::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--accent-regular);
+    border-radius: 50%;
+    z-index: -1;
+    transform: scale(0);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  .social-icon:hover {
+    color: white;
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  .social-icon:hover::before {
+    transform: scale(1);
+  }
+
+  .social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
+  }
+
+  .social-links a:nth-child(1) .social-icon:hover {
+    box-shadow: 0 10px 20px rgba(36, 41, 46, 0.2);
+  }
+
+  .social-links a:nth-child(2) .social-icon:hover {
+    box-shadow: 0 10px 20px rgba(0, 119, 181, 0.2);
+  }
+
+  .social-links a:nth-child(3) .social-icon:hover {
+    box-shadow: 0 10px 20px rgba(29, 161, 242, 0.2);
+  }
+
+  .social-links a:nth-child(4) .social-icon:hover {
+    box-shadow: 0 10px 20px rgba(234, 76, 137, 0.2);
   }
 
   .section-about {
@@ -300,27 +626,136 @@ const {
 
   .section2-about .title-about {
     text-align: center;
+    position: relative;
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
   }
+
+  .section2-about .title-about:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(
+      90deg,
+      var(--accent-light),
+      var(--accent-regular)
+    );
+    border-radius: 2px;
+  }
+
   .section2-about .describe-about {
-    margin: 3rem 0rem;
+    margin: 2rem 0;
     color: var(--gray-300);
+    line-height: 1.8;
+    font-size: 1.05rem;
+    text-align: justify;
+    max-width: 95%;
   }
+
   .section2-about .btn-about {
     display: flex;
-    margin-top: 2rem;
+    margin-top: 2.5rem;
     flex-wrap: wrap;
     justify-content: center;
+    gap: 1.5rem;
+  }
+
+  .contact-button,
+  .portfolio-button {
+    transition: all 0.3s ease;
+  }
+
+  .contact-button:hover,
+  .portfolio-button:hover {
+    transform: translateY(-5px);
+    filter: brightness(1.1);
   }
 
   .card-hover-effect {
-    transition:
-      transform 0.3s ease,
-      box-shadow 0.3s ease;
+    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 1.5rem !important;
+    border-radius: 16px !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s forwards;
+    animation-delay: calc(var(--animation-order, 0) * 0.2s);
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .card-hover-effect::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+    z-index: -1;
   }
 
   .card-hover-effect:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    transform: translateY(-8px);
+    border-color: var(--accent-light);
+    background: rgba(255, 255, 255, 1) !important;
+  }
+
+  .card-hover-effect:hover::after {
+    opacity: 1;
+  }
+
+  .card-hover-effect h3 {
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--gray-0);
+    position: relative;
+    display: inline-block;
+  }
+
+  .card-hover-effect h3::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent-regular);
+    transition: width 0.4s ease;
+  }
+
+  .card-hover-effect:hover h3::after {
+    width: 100%;
+  }
+
+  /* Add staggered animation to skill tags */
+  .card-hover-effect span {
+    transition: all 0.3s ease;
+    transform: translateY(0);
+  }
+
+  .card-hover-effect:hover span {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   }
 
   @media (min-width: 48em) {
@@ -330,17 +765,20 @@ const {
       grid-template-rows: 1fr;
       margin-top: 5rem;
     }
-    .section-about img {
-      aspect-ratio: 3 / 4;
-      border-radius: 4.5rem;
-      object-fit: cover;
-    }
+
     .section2-about {
       gap: 2rem;
     }
+
     .section2-about .title-about {
       text-align: initial;
     }
+
+    .section2-about .title-about:after {
+      left: 0;
+      transform: none;
+    }
+
     .section2-about .btn-about {
       margin-top: 2rem;
       flex-wrap: nowrap;
@@ -378,5 +816,132 @@ const {
 
   .p-left-right-2-rem {
     padding: 0rem 2rem;
+  }
+
+  /* Progress bar animation */
+  .progress-bar-animate {
+    animation: progress-fill 1.5s ease-out forwards;
+    animation-delay: 0.5s;
+  }
+
+  @keyframes progress-fill {
+    from {
+      width: 0%;
+    }
+    to {
+      width: var(--final-width);
+    }
+  }
+
+  /* Add entrance animation for the entire section */
+  .section-about {
+    animation: fadeIn 1s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* Contact info grid animations */
+  .contact-info-grid {
+    position: relative;
+  }
+
+  .contact-info-grid > div {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInStaggered 0.5s ease-out forwards;
+  }
+
+  .contact-info-grid > div:nth-child(1) {
+    animation-delay: 0.1s;
+  }
+  .contact-info-grid > div:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  .contact-info-grid > div:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+  .contact-info-grid > div:nth-child(4) {
+    animation-delay: 0.4s;
+  }
+  .contact-info-grid > div:nth-child(5) {
+    animation-delay: 0.5s;
+  }
+  .contact-info-grid > div:nth-child(6) {
+    animation-delay: 0.6s;
+  }
+
+  @keyframes fadeInStaggered {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .contact-info-grid > div {
+    transition: all 0.3s ease;
+  }
+
+  .contact-info-grid > div:hover {
+    transform: translateY(-5px);
+  }
+
+  .contact-info-grid > div:hover i {
+    transform: scale(1.2);
+    color: var(--accent-regular);
+  }
+
+  .contact-info-grid i {
+    transition: all 0.3s ease;
+  }
+
+  /* Action buttons animation */
+  .action-buttons {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s forwards;
+    animation-delay: 0.8s;
+  }
+
+  .contact-button,
+  .portfolio-button {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .contact-button::after,
+  .portfolio-button::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+      circle,
+      rgba(255, 255, 255, 0.3) 0%,
+      rgba(255, 255, 255, 0) 70%
+    );
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all 0.5s ease;
+    pointer-events: none;
+  }
+
+  .contact-button:hover::after,
+  .portfolio-button:hover::after {
+    opacity: 1;
+    transform: scale(1);
+    animation: pulse-light 2s infinite;
   }
 </style>
