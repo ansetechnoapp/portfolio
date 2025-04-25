@@ -1,0 +1,382 @@
+---
+import Icon from "./reactJS/Icon";
+import Pill from "./reactJS/Pill";
+
+// Define props interface
+interface Props {
+  title?: string;
+  description?: string;
+  secondaryDescription?: string;
+  imageSrc: ImageMetadata;
+  yearsExperience?: number;
+  skills?: {
+    webDev?: string[];
+    mobileDev?: string[];
+    other?: string[];
+  };
+  languages?: {
+    name: string;
+    level: string;
+    percentage: number;
+  }[];
+  contactInfo?: {
+    city?: string;
+    street?: string;
+    email?: string;
+    phone?: string;
+    phonePrefix?: string;
+    occupation?: string;
+    availability?: string;
+    website?: string;
+  };
+}
+
+// Set default values
+const {
+  title = "About Me",
+  description = `With a degree in software engineering and computer systems, I combine technical expertise (web/mobile development) and creativity (design of advertising posters for social networks). A fervent advocate of innovation, I put my skills to work on high-impact projects to boost visibility and performance. My work has been acclaimed in several publications.I am always open to feedback and suggestions, so feel free to reach out to me if you have any questions or comments.`,
+  imageSrc,
+  yearsExperience = 7,
+  skills = {
+    webDev: ["React JS", "Astro JS", "JQuery", "SCSS"],
+    mobileDev: ["React Native", "Flutter"],
+    other: [
+      "Firebase",
+      "Supabase",
+      "Airtable",
+      "postgresql",
+      "Mysql",
+      "Docker",
+      "AWS",
+      "Jest",
+      "Webpack",
+      "Agile",
+    ],
+  },
+  languages = [
+    { name: "French", level: "Fluent", percentage: 100 },
+    { name: "English", level: "Basic", percentage: 30 },
+  ],
+  contactInfo = {
+    city: "Cotonou",
+    street: "",
+    email: "contact@anscod.online",
+    phone: "",
+    phonePrefix: "",
+    occupation: "Programmer",
+    availability: "Freelance Available",
+    website: "www.anscod.online",
+  },
+} = Astro.props;
+---
+
+<section class="section-about with-background bg-variant p-left-right-2-rem">
+  <div class="section-about-img">
+    <div class="relative">
+      <div
+        class="w-74 h-74 md:w-85 md:h-85 bg-gradient-to-r from-blue-400 to-indigo-500 rounded-full flex items-center justify-center shadow-xl"
+      >
+        <img
+          src={imageSrc.src}
+          alt="Developer portrait"
+          class="w-70 h-70 md:w-72 md:h-72 rounded-full object-cover border-4 border-white"
+        />
+      </div>
+
+      <div
+        class="absolute -bottom-5 -right-5 bg-white p-4 rounded-lg shadow-md"
+      >
+        <div class="flex items-center">
+          <div
+            class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3"
+          >
+            <i class="fas fa-code text-blue-500"></i>
+          </div>
+          <div>
+            <p class="text-sm font-semibold">{yearsExperience}+ Years</p>
+            <p class="text-xs text-gray-500">Experience</p>
+          </div>
+        </div>
+      </div>
+      <a href=""
+        ><Pill><Icon icon="paper-plane-tilt" size="1.33em" /> Cv</Pill></a
+      >
+    </div>
+  </div>
+  <div class="section2-about">
+    <h3 class="title-about">{title}</h3>
+    <p class="describe-about">
+      {description}
+      <br />
+    </p>
+    <br /><br />
+    <div class="grid grid-cols-1 gap-8">
+      <!-- Tools & Skills -->
+      <div class="bg-white p-2 rounded-xl shadow-sm card-hover-effect">
+        <div class="flex items-center mb-6">
+          <div
+            class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center mr-4"
+          >
+            <i class="fas fa-tools text-purple-500"></i>
+          </div>
+          <h3 class="text-xl font-semibold">Tools & Skills</h3>
+        </div>
+
+        {
+          skills.webDev && skills.webDev.length > 0 && (
+            <div>
+              <h3 class="text-xl font-semibold py-4">Web Development</h3>
+              <div class="flex flex-wrap gap-3">
+                {skills.webDev.map((skill) => (
+                  <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )
+        }
+
+        {
+          skills.mobileDev && skills.mobileDev.length > 0 && (
+            <div>
+              <h3 class="text-xl font-semibold py-4">Mobile Development</h3>
+              <div class="flex flex-wrap gap-3">
+                {skills.mobileDev.map((skill) => (
+                  <span class="px-3 py-1 bg-pink-100 text-pink-800 rounded-full text-sm">
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )
+        }
+
+        {
+          skills.other && skills.other.length > 0 && (
+            <div>
+              <h3 class="text-xl font-semibold py-4">Other</h3>
+              <div class="flex flex-wrap gap-3">
+                {skills.other.map((skill, index) => {
+                  // Alternate between different background colors
+                  const bgClasses = [
+                    "bg-red-100 text-red-800",
+                    "bg-blue-100 text-blue-800",
+                    "bg-indigo-100 text-indigo-800",
+                    "bg-purple-100 text-purple-800",
+                    "bg-green-100 text-green-800",
+                    "bg-yellow-100 text-yellow-800",
+                    "bg-gray-100 text-gray-800",
+                  ];
+                  const colorClass = bgClasses[index % bgClasses.length];
+                  return (
+                    <span
+                      class={`px-3 py-1 ${colorClass} rounded-full text-sm`}
+                    >
+                      {skill}
+                    </span>
+                  );
+                })}
+              </div>
+            </div>
+          )
+        }
+      </div>
+
+      <!-- Languages -->
+      {
+        languages && languages.length > 0 && (
+          <div class="bg-white p-2 rounded-xl shadow-sm card-hover-effect">
+            <div class="flex items-center mb-6">
+              <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+                <i class="fas fa-language text-green-500" />
+              </div>
+              <h3 class="text-xl font-semibold">Languages</h3>
+            </div>
+            <div class="space-y-4">
+              {languages.map((lang) => (
+                <div>
+                  <div class="flex justify-between mb-1">
+                    <span class="text-gray-600">{lang.name}</span>
+                    <span class="text-gray-600">{lang.level}</span>
+                  </div>
+                  <div class="w-full bg-gray-200 rounded-full h-2">
+                    <div
+                      class="bg-green-500 h-2 rounded-full"
+                      style={`width: ${lang.percentage}%`}
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )
+      }
+    </div>
+
+    <!-- Contact Information Grid -->
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4 my-8">
+      {
+        contactInfo.city && (
+          <div class="flex items-center">
+            <i class="fas fa-map-marker-alt text-blue-500 mr-2" />
+            <span class="text-gray-700">
+              {contactInfo.city} {contactInfo.street}
+            </span>
+          </div>
+        )
+      }
+      {
+        contactInfo.email && (
+          <div class="flex items-center">
+            <i class="fas fa-envelope text-blue-500 mr-2" />
+            <span class="text-gray-700">{contactInfo.email}</span>
+          </div>
+        )
+      }
+      {
+        contactInfo.phone && (
+          <div class="flex items-center">
+            <i class="fas fa-phone text-blue-500 mr-2" />
+            <span class="text-gray-700">
+              ({contactInfo.phonePrefix}) {contactInfo.phone}
+            </span>
+          </div>
+        )
+      }
+      {
+        contactInfo.occupation && (
+          <div class="flex items-center">
+            <i class="fas fa-graduation-cap text-blue-500 mr-2" />
+            <span class="text-gray-700">{contactInfo.occupation}</span>
+          </div>
+        )
+      }
+      {
+        contactInfo.availability && (
+          <div class="flex items-center">
+            <i class="fas fa-briefcase text-blue-500 mr-2" />
+            <span class="text-gray-700">{contactInfo.availability}</span>
+          </div>
+        )
+      }
+      {
+        contactInfo.website && (
+          <div class="flex items-center">
+            <i class="fas fa-globe text-blue-500 mr-2" />
+            <span class="text-gray-700">{contactInfo.website}</span>
+          </div>
+        )
+      }
+    </div>
+
+    <div class="btn-about gap-10">
+      <a href=""
+        ><Pill
+          ><Icon icon="paper-plane-tilt" size="1.33em" /> Contactez-Moi</Pill
+        ></a
+      >
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Section About Styles */
+  .section-about-img {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+  .section-about-img img {
+    border: 7px solid var(--accent-regular);
+  }
+
+  .section-about {
+    display: grid;
+    gap: 2rem;
+  }
+
+  .section2-about .title-about {
+    text-align: center;
+  }
+  .section2-about .describe-about {
+    margin: 3rem 0rem;
+    color: var(--gray-300);
+  }
+  .section2-about .btn-about {
+    display: flex;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .card-hover-effect {
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+
+  .card-hover-effect:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  }
+
+  @media (min-width: 48em) {
+    .section-about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr;
+      margin-top: 5rem;
+    }
+    .section-about img {
+      aspect-ratio: 3 / 4;
+      border-radius: 4.5rem;
+      object-fit: cover;
+    }
+    .section2-about {
+      gap: 2rem;
+    }
+    .section2-about .title-about {
+      text-align: initial;
+    }
+    .section2-about .btn-about {
+      margin-top: 2rem;
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+    }
+  }
+
+  .with-background {
+    position: relative;
+  }
+
+  .with-background::before {
+    --hero-bg: var(--bg-image-subtle-2);
+
+    content: "";
+    position: absolute;
+    pointer-events: none;
+    left: 50%;
+    width: 100vw;
+    aspect-ratio: calc(2.25 / var(--bg-scale));
+    top: 0;
+    transform: translateY(-75%) translateX(-50%);
+    background:
+      url("/assets/backgrounds/noise.png") top center/220px repeat,
+      var(--hero-bg) center center / var(--bg-gradient-size) no-repeat,
+      var(--gray-999);
+    background-blend-mode: overlay, normal, normal, normal;
+    mix-blend-mode: var(--bg-blend-mode);
+    z-index: -1;
+  }
+
+  .with-background.bg-variant::before {
+    --hero-bg: var(--bg-image-subtle-1);
+  }
+
+  .p-left-right-2-rem {
+    padding: 0rem 2rem;
+  }
+</style>

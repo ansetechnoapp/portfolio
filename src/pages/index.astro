@@ -21,6 +21,7 @@ import MenuLinkNav from "../components/menuLinkNav.astro";
 import ContactCTA from "../components/ContactCTA.astro";
 import Skills from "../components/reactJS/Skills";
 import HeroMediaSocialNav from "../components/heroMediaSocialNav.astro";
+import About from "../components/About.astro";
 // import HeroCounter from "../components/heroCounter.astro";
 // Content Fetching: List four most recent work projects
 const projects = (await getCollection("work"))
@@ -93,251 +94,19 @@ const { heroTitle = `I am ${dataUser.firstName} ${dataUser.lastName}` } =
     </main>
 
     <main id="about" class="wrapper stack gap-20 lg:gap-35">
-      <section
-        class="section-about with-background bg-variant p-left-right-2-rem"
-      >
-        <div class="section-about-img">
-          <!-- <img
-            alt=`${dataUser.firstName} ${dataUser.lastName} smiling in a red plaid shirt and tortoise shell glasses`
-            width="480"
-            height="620"
-            src={Img2.src}
-          /> -->
-
-          <div class="relative">
-            <div
-              class="w-74 h-74 md:w-85 md:h-85 bg-gradient-to-r from-blue-400 to-indigo-500 rounded-full flex items-center justify-center shadow-xl"
-            >
-              <img
-                src={Img2.src}
-                alt=`Developer ${dataUser.firstName} ${dataUser.lastName} smiling in a red plaid shirt and tortoise shell glasses`
-                class="w-70 h-70 md:w-72 md:h-72 rounded-full object-cover border-4 border-white"
-              />
-            </div>
-
-            <div
-              class="absolute -bottom-5 -right-5 bg-white p-4 rounded-lg shadow-md"
-            >
-              <div class="flex items-center">
-                <div
-                  class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3"
-                >
-                  <i class="fas fa-code text-blue-500"></i>
-                </div>
-                <div>
-                  <p class="text-sm font-semibold">7+ Years</p>
-                  <p class="text-xs text-gray-500">Experience</p>
-                </div>
-              </div>
-            </div>
-            <a href=""
-              ><Pill><Icon icon="paper-plane-tilt" size="1.33em" /> Cv</Pill></a
-            >
-          </div>
-          <!-- <a href=""
-            ><Pill><Icon icon="paper-plane-tilt" size="1.33em" /> Cv</Pill></a
-          > -->
-        </div>
-        <div class="section2-about">
-          <h3 class="title-about">About Me</h3>
-          <p class="describe-about">
-            With a degree in software engineering and computer systems, I combine technical expertise (web/mobile development) and creativity (design of advertising posters for social networks). A fervent advocate of innovation, I put my skills to work on high-impact projects to boost visibility and performance. My work has been acclaimed in several publications.
-            <br />
-          </p>
-          <p>
-            Anscod is both my portfolio and a blog about programming and technology.
-            <br />
-            It is a place where I share my thoughts, ideas, and experiences in the field.
-            <br />
-            I hope you find it useful and informative.
-          </p>
-          <br /><br />
-          <div class="grid grid-cols-1 gap-8">
-            <!-- Other Skills -->
-            <div class="bg-white p-2 rounded-xl shadow-sm card-hover-effect">
-              <div class="flex items-center mb-6">
-                <div
-                  class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center mr-4"
-                >
-                  <i class="fas fa-tools text-purple-500"></i>
-                </div>
-                <h3 class="text-xl font-semibold">Tools & Skills</h3>
-              </div>
-              
-              <div>
-                <h3 class="text-xl font-semibold py-4">Web Development</h3>
-                <div class="flex flex-wrap gap-3">
-                  <span
-                    class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm"
-                    >React JS</span
-                  >
-                  <span
-                    class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm"
-                    >Astro JS</span
-                  >
-                  <span
-                    class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm"
-                    >JQuery</span
-                  >
-                  <span
-                    class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm"
-                    >SCSS</span
-                  >
-                </div>
-              </div>
-              <div>
-                <h3 class="text-xl font-semibold py-4">Mobile Development</h3>
-                <div class="flex flex-wrap gap-3">
-                  <span
-                    class="px-3 py-1 bg-pink-100 text-pink-800 rounded-full text-sm"
-                    >React Native</span
-                  >
-                  <span
-                    class="px-3 py-1 bg-pink-100 text-pink-800 rounded-full text-sm"
-                    >Flutter</span
-                  >
-                </div>
-              </div>
-              <div>
-                <h3 class="text-xl font-semibold py-4">Other</h3>
-                <div class="flex flex-wrap gap-3">
-                  <span
-                  class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-sm"
-                  >Firebase</span
-                >
-                <span
-                  class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-sm"
-                  >Supabase</span
-                >
-                <span
-                  class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-sm"
-                  >Airtable</span
-                >
-                  <span
-                    class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm"
-                    >postgresql</span
-                  >
-                  <span
-                    class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm"
-                    >Mysql</span
-                  >
-                 
-                  <span
-                    class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm"
-                    >Docker</span
-                  >
-                  <span
-                    class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm"
-                    >AWS</span
-                  >
-                  <span
-                    class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm"
-                    >Jest</span
-                  >
-                  <span
-                    class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm"
-                    >Webpack</span
-                  >
-                  <span
-                    class="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm"
-                    >Agile</span
-                  >
-                </div>
-              </div>
-              
-              
-              
-            </div>
-
-            <!-- Languages -->
-            <div class="bg-white p-2 rounded-xl shadow-sm card-hover-effect">
-              <div class="flex items-center mb-6">
-                <div
-                  class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mr-4"
-                >
-                  <i class="fas fa-language text-green-500"></i>
-                </div>
-                <h3 class="text-xl font-semibold">Languages</h3>
-              </div>
-              <div class="space-y-4">
-                <div>
-                  <div class="flex justify-between mb-1">
-                    <span class="text-gray-600">French</span>
-                    <span class="text-gray-600">Fluent</span>
-                  </div>
-                  <div class="w-full bg-gray-200 rounded-full h-2">
-                    <div
-                      class="bg-green-500 h-2 rounded-full"
-                      style="width: 100%"
-                    >
-                    </div>
-                  </div>
-                </div>
-                <!-- <div>
-                  <div class="flex justify-between mb-1">
-                    <span class="text-gray-600">Spanish</span>
-                    <span class="text-gray-600">Intermediate</span>
-                  </div>
-                  <div class="w-full bg-gray-200 rounded-full h-2">
-                    <div
-                      class="bg-green-500 h-2 rounded-full"
-                      style="width: 60%"
-                    >
-                    </div>
-                  </div>
-                </div> -->
-                <div>
-                  <div class="flex justify-between mb-1">
-                    <span class="text-gray-600">English</span>
-                    <span class="text-gray-600">Basic</span>
-                  </div>
-                  <div class="w-full bg-gray-200 rounded-full h-2">
-                    <div
-                      class="bg-green-500 h-2 rounded-full"
-                      style="width: 30%"
-                    >
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="grid grid-cols-2 md:grid-cols-3 gap-4 my-8">
-            <div class="flex items-center">
-              <i class="fas fa-map-marker-alt text-blue-500 mr-2"></i>
-              <span class="text-gray-700">{dataUser.address.city} {dataUser.address.rue}</span>
-            </div>
-            <div class="flex items-center">
-              <i class="fas fa-envelope text-blue-500 mr-2"></i>
-              <span class="text-gray-700">{dataUser.email}</span>
-            </div>
-            <div class="flex items-center">
-              <i class="fas fa-phone text-blue-500 mr-2"></i>
-              <span class="text-gray-700">({dataUser.address.indicatif}) {dataUser.phone}</span>
-            </div>
-            <div class="flex items-center">
-              <i class="fas fa-graduation-cap text-blue-500 mr-2"></i>
-              <span class="text-gray-700">Programmer</span>
-            </div>
-            <div class="flex items-center">
-              <i class="fas fa-briefcase text-blue-500 mr-2"></i>
-              <span class="text-gray-700">Freelance Available</span>
-            </div>
-            <div class="flex items-center">
-              <i class="fas fa-globe text-blue-500 mr-2"></i>
-              <span class="text-gray-700">www.anscod.online</span>
-            </div>
-          </div>
-
-          <div class="btn-about gap-10">
-            <a href=""
-              ><Pill
-                ><Icon icon="paper-plane-tilt" size="1.33em" /> Contactez-Moi</Pill
-              ></a
-            >
-          </div>
-        </div>
-      </section>
+      <About
+        imageSrc={Img2}
+        contactInfo={{
+          city: dataUser.address.city,
+          street: dataUser.address.rue,
+          email: dataUser.email,
+          phone: dataUser.phone,
+          phonePrefix: dataUser.address.indicatif,
+          occupation: "Programmer",
+          availability: "Freelance Available",
+          website: "www.anscod.online",
+        }}
+      />
     </main>
     <ContactCTA />
     <div class="wrapper stack gap-20 lg:gap-35">
@@ -639,64 +408,11 @@ const { heroTitle = `I am ${dataUser.firstName} ${dataUser.lastName}` } =
     }
   }
 
-  /* Section About Styles */
-  .section-about-img {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-  }
-  .section-about-img img {
-    border: 7px solid #00d7bb;
-  }
   /* ====================================================== */
 
   .section {
     display: grid;
     gap: 2rem;
-  }
-  .section-about {
-    display: grid;
-    gap: 2rem;
-  }
-
-  .section2-about .title-about {
-    text-align: center;
-  }
-  .section2-about .describe-about {
-    margin: 3rem 0rem;
-    color: var(--gray-300);
-  }
-  .section2-about .btn-about {
-    display: flex;
-    margin-top: 2rem;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  @media (min-width: 48em) {
-    .section-about {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr;
-      margin-top: 5rem;
-    }
-    .section-about img {
-      aspect-ratio: 3 / 4;
-      border-radius: 4.5rem;
-      object-fit: cover;
-    }
-    .section2-about {
-      gap: 2rem;
-    }
-    .section2-about .title-about {
-      text-align: initial;
-    }
-    .section2-about .btn-about {
-      margin-top: 2rem;
-      flex-wrap: nowrap;
-      justify-content: flex-start;
-    }
   }
 
   .with-background {
