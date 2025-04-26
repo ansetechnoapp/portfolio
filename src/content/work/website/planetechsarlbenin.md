@@ -2,7 +2,7 @@
 title: Planetech sarl benin
 publishDate: 2020-03-04 00:00:00
 number: 4
-img: /assets/img/stock-3.jpg
+img: /assets/myprojects/Planetech-sarl(2).png
 img_alt: Pearls of silky soft white cotton, bubble up under vibrant lighting
 github: https://github.com/username/ecommerce-dashboard
 liveDemo: https://www.planetechsarlbenin.com/
@@ -19,14 +19,30 @@ tech:
   - Radix UI
   - Tailwind CSS
   - shadcn/ui
+additionalImages:
+  - url: /assets/myprojects/Planetech-sarl(1).png
+    alt: First additional image of the project
+  - url: /assets/myprojects/Planetech-sarl.png
+    alt: Second additional image of the project
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur posuere commodo venenatis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nam non ligula vel metus efficitur hendrerit. In hac habitasse platea dictumst. Praesent et mauris ut mi dapibus semper. Curabitur tortor justo, efficitur sit amet pretium cursus, porta eget odio. Cras ac venenatis dolor. Donec laoreet posuere malesuada. Curabitur nec mi tempor, placerat leo sit amet, tincidunt est. Quisque pellentesque venenatis magna, eget tristique nibh pulvinar in. Vestibulum vitae volutpat arcu. Aenean ut malesuada odio, sit amet pellentesque odio. Suspendisse nunc elit, blandit nec hendrerit non, aliquet at magna. Donec id leo ut nulla sagittis sodales.
+> Planetech Sarl Benin
 
-Integer vitae nibh elit. Suspendisse eget urna eu neque bibendum pharetra. Sed interdum lectus sem, in pulvinar magna dignissim vel. Quisque maximus at urna nec laoreet. Suspendisse potenti. Vestibulum rhoncus sem ut mi pellentesque, in vestibulum erat blandit. Aliquam sodales dui ac maximus consectetur. Duis quis est vehicula, imperdiet nisl nec, fermentum erat. Duis tortor diam, pharetra eu euismod in, vehicula non eros. Curabitur facilisis dui at erat ultrices gravida. In at nunc ultricies, pulvinar mi vel, sagittis mauris. Praesent pharetra posuere purus ac imperdiet. Nulla facilisi.
+Ce site web est la vitrine de l'entreprise PLANETECH SARL. Il présente les activités et services de cette société spécialisée dans l'assistance informatique et la sécurité électronique, destinée aussi bien aux entreprises qu'aux particuliers au Bénin et dans la sous-région.
 
-Sed pulvinar porttitor mi in ultricies. Etiam non dolor gravida eros pulvinar pellentesque et dictum ex. Proin eu ornare ligula, sed condimentum dui. Vivamus tincidunt tellus mi, sed semper ipsum pharetra a. Suspendisse sollicitudin at sapien nec volutpat. Etiam justo urna, laoreet ac lacus sed, ultricies facilisis dolor. Integer posuere, metus vel viverra gravida, risus elit ornare magna, id feugiat erat risus ullamcorper libero. Proin vitae diam auctor, laoreet lorem vitae, varius tellus.
+Objectifs et Services Principaux :
 
-Mauris sed eros in ex maximus volutpat. Suspendisse potenti. Donec lacinia justo consectetur sagittis tempor. Proin ullamcorper nisi vitae auctor rhoncus. Sed tristique aliquam augue. Pellentesque vitae fringilla ligula. Nulla arcu elit, efficitur eu nunc malesuada, eleifend tincidunt orci. Interdum et malesuada fames ac ante ipsum primis in faucibus. Integer mattis orci in bibendum ultricies. Quisque a dui erat. Phasellus et vulputate ipsum. Proin metus ex, lobortis nec ornare eget, bibendum ut sapien. Aliquam in dolor lobortis, aliquam tellus a, congue augue. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Solutions d'Entreprise : Le site met en avant que PLANETECH SARL propose des solutions, services et innovations visant à optimiser le fonctionnement des entreprises.
+Domaines d'Activité : L'entreprise intervient dans plusieurs secteurs :
+BTP (Bâtiment et Travaux Publics)
+Solutions Informatiques : Vente, installation et service après-vente d'ordinateurs portables, d'ordinateurs de bureau et d'accessoires.
+Électricité
+Télécom et Réseaux : Installation de réseaux et services de télécommunication.
+Connexions FTTH/FTTLA (Fibre jusqu'au domicile / Fibre jusqu'au dernier amplificateur)
+Vente de Matériel : PLANETECH SARL commercialise également du matériel électrique et informatique, ainsi que des outils liés à l'installation de réseaux.
+Accessibilité Technologique : L'entreprise a pour mission de rendre la technologie accessible.
+Informations de Contact (trouvées sur le site) :
 
-Aenean pretium purus augue, ut bibendum erat convallis quis. Cras condimentum quis velit ac mollis. Suspendisse non purus fringilla, venenatis nisl porta, finibus odio. Curabitur aliquet metus faucibus libero interdum euismod. Morbi sed magna nisl. Morbi odio nibh, facilisis vel sapien eu, tempus tincidunt erat. Nullam erat velit, sagittis at purus quis, tristique scelerisque tortor. Pellentesque lacinia tortor id est aliquam viverra. Vestibulum et diam ac ipsum mollis fringilla.
+Téléphone : +229 64549959 / +229 97892982 / +229 68681885
+Email : planetechsarlbenin@gmail.com
+En résumé, le site web sert à présenter PLANETECH SARL comme un fournisseur de solutions technologiques intégrées, couvrant l'informatique, l'électricité, les télécommunications, la sécurité électronique et le BTP, principalement au Bénin.

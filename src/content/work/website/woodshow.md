@@ -2,10 +2,10 @@
 title: Woodshow
 publishDate: 2019-12-01 00:00:00
 number: 2
-img: /assets/img/stock-2.jpg
+img: /assets/myprojects/Bois-de-JOAO-ERIC-A-E-–-Wooden-pallets-pallets-wood-pellets-birch-briquettes-ash-oak-birch-alder-firewood.png
 img_alt: A bright pink sheet of paper used to wrap flowers curves in front of rich blue background
 github: https://github.com/username/ecommerce-dashboard
-liveDemo: https://www.wetsarl.com/
+liveDemo: https://b-jeae.com/
 device: web
 description: |
   We paired with a cutting-edge music API and a team of horticulturalists
@@ -17,27 +17,34 @@ tags:
 tech:
   - laravel
   - mySql
+additionalImages:
+  - url: /assets/myprojects/About-us-–-Bois-de-JOAO-ERIC-A-E.png
+    alt: First additional image of the project
+  - url: /assets/myprojects/Gallery-–-Bois-de-JOAO-ERIC-A-E.png
+    alt: Second additional image of the project
 ---
 
-## Level-two heading
+Le site b-jeae.com est spécialisé dans la production et la vente de produits en bois, notamment :
 
-> Tell me and I forget. Teach me and I remember. Involve me and I learn.
+Palettes en bois (wooden pallets)
 
-Lorem ipsum dolor sit amet, <a href="https://astro.build/">Astro</a> makes people happy. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin nibh nisl condimentum id venenatis a condimentum vitae. Dapibus ultrices in iaculis nunc. Arcu odio ut sem nulla pharetra diam sit amet. Diam quis enim lobortis scelerisque fermentum dui faucibus in ornare.
+Pellets de bois (wood pellets)
 
-Arcu dui vivamus arcu felis bibendum ut tristique et egestas. Eget gravida cum sociis natoque penatibus. Cras fermentum odio eu feugiat pretium nibh. Proin nibh nisl condimentum id venenatis. Porta nibh venenatis cras sed felis eget velit. Id diam vel quam elementum pulvinar etiam non.
+Briquettes de bouleau (birch briquettes)
 
-### Level-three heading
+Bois de chauffage : bois de frêne, chêne, bouleau, aulne (ash, oak, birch, alder firewood)
 
-Ultrices tincidunt arcu non sodales neque sodales ut. Sed enim ut sem viverra aliquet eget sit amet. Lacus luctus accumsan tortor posuere ac ut consequat semper viverra. Viverra accumsan in nisl nisi scelerisque eu ultrices. In massa tempor nec feugiat nisl pretium fusce.
+Points forts mis en avant par le site :
+Qualité
+L’entreprise investit dans des technologies modernes, telles que des lignes de production automatisées et des systèmes de séchage modernes.
 
-### Level-three heading
+La qualification des employés est également valorisée pour garantir une haute qualité des produits finis.
 
-Sed pulvinar porttitor mi in ultricies. Etiam non dolor gravida eros pulvinar pellentesque et dictum ex. Proin eu ornare ligula, sed condimentum dui. Vivamus tincidunt tellus mi, sed semper ipsum pharetra a. Suspendisse sollicitudin at sapien nec volutpat. Etiam justo urna, laoreet ac lacus sed, ultricies facilisis dolor. Integer posuere, metus vel viverra gravida, risus elit ornare magna, id feugiat erat risus ullamcorper libero. Proin vitae diam auctor, laoreet lorem vitae, varius tellus.
+Prix compétitifs
+La société s’engage à proposer des prix attractifs et compétitifs sur le marché.
 
-Aenean pretium purus augue, ut bibendum erat convallis quis. Cras condimentum quis velit ac mollis. Suspendisse non purus fringilla, venenatis nisl porta, finibus odio. Curabitur aliquet metus faucibus libero interdum euismod. Morbi sed magna nisl. Morbi odio nibh, facilisis vel sapien eu, tempus tincidunt erat. Nullam erat velit, sagittis at purus quis, tristique scelerisque tortor. Pellentesque lacinia tortor id est aliquam viverra. Vestibulum et diam ac ipsum mollis fringilla.
+Livraison rapide
+Grâce à des équipements innovants de fabrication et de traitement, l’entreprise assure une exécution rapide des commandes.
 
-#### Level-four heading
-
-- We noted this
-- And also this other point
+En résumé
+B-JEAE est une entreprise orientée vers la fabrication et la fourniture de produits en bois, avec un accent particulier sur la qualité, la compétitivité des prix et la rapidité de livraison, grâce à des investissements technologiques et un personnel qualifié.
