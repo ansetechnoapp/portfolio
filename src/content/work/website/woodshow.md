@@ -15,7 +15,7 @@ tags:
   - Branding
   - Backend
 tech:
-  - laravel
+  - PHP
   - mySql
 additionalImages:
   - url: /assets/myprojects/About-us-–-Bois-de-JOAO-ERIC-A-E.png
