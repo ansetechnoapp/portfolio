@@ -22,6 +22,7 @@ import ContactCTA from "../components/ContactCTA.astro";
 import Skills from "../components/reactJS/Skills";
 import HeroMediaSocialNav from "../components/heroMediaSocialNav.astro";
 import About from "../components/About.astro";
+import Timeline from "../components/reactJS/Timeline";
 // import HeroCounter from "../components/heroCounter.astro";
 // Content Fetching: List four most recent work projects
 const projects = (await getCollection("work"))
@@ -92,6 +93,10 @@ const { heroTitle = `I am ${dataUser.firstName} ${dataUser.lastName}` } =
     <main class="wrapper stack gap-20 lg:gap-35">
       <Skills />
     </main>
+
+    <div class="wrapper stack gap-20 lg:gap-35">
+      <Timeline client:only="react" />
+    </div>
 
     <main id="about" class="wrapper stack gap-20 lg:gap-35">
       <About
