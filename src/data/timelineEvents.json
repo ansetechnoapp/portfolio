@@ -1,0 +1,26 @@
+[
+  {
+    "year": 2015,
+    "title": "Début de l'aventure",
+    "description": "Premier projet freelance.",
+    "details": "J'ai commencé à travailler sur des sites web pour des clients locaux."
+  },
+  {
+    "year": 2018,
+    "title": "Création de ma société",
+    "description": "Lancement officiel.",
+    "details": "J'ai fondé ma propre entreprise de développement web."
+  },
+  {
+    "year": 2020,
+    "title": "Passage au mobile",
+    "description": "Première application mobile publiée.",
+    "details": "J'ai développé et publié ma première app sur l'App Store et Google Play."
+  },
+  {
+    "year": 2023,
+    "title": "Nouveaux horizons",
+    "description": "Développement de solutions IA.",
+    "details": "Je me spécialise dans l'intégration d'outils d'intelligence artificielle pour mes clients."
+  }
+] 
