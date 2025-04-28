@@ -80,6 +80,7 @@ export default function Timeline({
   subtitle = "The evolution of Flowers & Saints through the years",
 }: TimelineProps) {
   const [expandedEvent, setExpandedEvent] = useState<number | null>(null)
+  const [hoveredEvent, setHoveredEvent] = useState<number | null>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -94,6 +95,9 @@ export default function Timeline({
 
   // Animation d'apparition de la section
   const sectionInView = useInView(containerRef, { once: true, amount: 0.2 })
+
+  // Glow animé si survolé
+  const glow = hoveredEvent !== null ? 'drop-shadow-[0_0_16px_var(--accent-regular)]' : ''
 
   return (
     <motion.section
@@ -116,16 +120,16 @@ export default function Timeline({
         </motion.div>
 
         <div className="relative">
-          {/* Vertical line responsive */}
+          {/* Vertical line responsive avec effet glow si survolé */}
           <motion.div
-            className="absolute left-1/2 transform -translate-x-1/2 w-[2px] sm:w-1 h-full"
+            className={`absolute left-1/2 transform -translate-x-1/2 w-[2px] sm:w-1 h-full transition-all duration-300 ${glow}`}
             style={{ scaleY: scaleX, background: 'linear-gradient(180deg, var(--accent-light), var(--accent-regular), var(--accent-dark))' }}
             aria-hidden="true"
           />
 
-          {/* Flower icon avec effet glow */}
+          {/* Flower icon avec effet glow si survolé */}
           <motion.div
-            className="sticky top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 text-[var(--accent-regular)]"
+            className={`sticky top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 text-[var(--accent-regular)] transition-all duration-300 ${glow}`}
             style={{ y: useTransform(scrollYProgress, [0, 1], [0, 100]) }}
             aria-hidden="true"
           >
@@ -143,6 +147,8 @@ export default function Timeline({
                 index={index}
                 isExpanded={expandedEvent === index}
                 onToggle={() => setExpandedEvent(expandedEvent === index ? null : index)}
+                onHover={() => setHoveredEvent(index)}
+                onUnhover={() => setHoveredEvent(null)}
               />
             ))}
           </ol>
@@ -157,11 +163,15 @@ function TimelineEvent({
   index,
   isExpanded,
   onToggle,
+  onHover,
+  onUnhover,
 }: {
   event: (typeof timelineEvents)[0]
   index: number
   isExpanded: boolean
   onToggle: () => void
+  onHover: () => void
+  onUnhover: () => void
 }) {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, amount: 0.5 })
@@ -176,6 +186,10 @@ function TimelineEvent({
       tabIndex={0}
       aria-expanded={isExpanded}
       aria-label={`Event ${event.year}: ${event.title}`}
+      onMouseEnter={onHover}
+      onMouseLeave={onUnhover}
+      onFocus={onHover}
+      onBlur={onUnhover}
     >
       <div className="w-full md:w-5/12" />
       <div className="z-20">
@@ -205,6 +219,15 @@ function TimelineEvent({
           >
             <p className="mt-2 text-sm text-[var(--gray-300)]">{event.details}</p>
           </motion.div>
+          <button
+            className="mt-4 px-4 py-1 rounded-full bg-[var(--accent-regular)] text-[var(--accent-text-over)] text-sm font-semibold shadow hover:bg-[var(--accent-light)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-regular)] transition-all"
+            aria-expanded={isExpanded}
+            aria-controls={`timeline-details-${index}`}
+            tabIndex={0}
+            onClick={e => { e.stopPropagation(); onToggle(); }}
+          >
+            {isExpanded ? 'Voir moins' : 'Voir plus'}
+          </button>
         </div>
       </motion.div>
     </motion.li>
