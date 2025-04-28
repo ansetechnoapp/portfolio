@@ -1,8 +1,53 @@
 "use client"
 
-import { useState, useRef } from "react"
-import { motion, useScroll, useTransform, useSpring, useInView } from "framer-motion"
+import { useState, useRef, useEffect } from "react"
+import type { ReactNode } from "react"
+import { motion, AnimatePresence } from "framer-motion"
 
+// Types
+interface TimelineEventType {
+  year: number
+  title: string
+  description: string
+  details: string
+  category?: string
+  image?: string
+  link?: string
+}
+
+interface TimelineProps {
+  title?: string
+  subtitle?: string
+  events?: TimelineEventType[]
+  orientation?: 'vertical' | 'horizontal'
+}
+
+// Category Icons
+const categoryIcons: Record<string, ReactNode> = {
+  Web: (
+    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.58 20 4 16.42 4 12C4 7.58 7.58 4 12 4C16.42 4 20 7.58 20 12C20 16.42 16.42 20 12 20Z" fill="currentColor" />
+      <path d="M13 7H11V13H17V11H13V7Z" fill="currentColor" />
+    </svg>
+  ),
+  Mobile: (
+    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17 1.01L7 1C5.9 1 5 1.9 5 3V21C5 22.1 5.9 23 7 23H17C18.1 23 19 22.1 19 21V3C19 1.9 18.1 1.01 17 1.01ZM17 19H7V5H17V19Z" fill="currentColor" />
+    </svg>
+  ),
+  Entreprise: (
+    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 7V3H2V21H22V7H12ZM6 19H4V17H6V19ZM6 15H4V13H6V15ZM6 11H4V9H6V11ZM6 7H4V5H6V7ZM10 19H8V17H10V19ZM10 15H8V13H10V15ZM10 11H8V9H10V11ZM10 7H8V5H10V7ZM20 19H12V17H14V15H12V13H14V11H12V9H20V19Z" fill="currentColor" />
+    </svg>
+  ),
+  IA: (
+    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M21 11.2V8C21 6.9 20.1 6 19 6H11V4.8C12.2 4.4 13 3.3 13 2C13 0.3 11.7 -1 10 -1C8.3 -1 7 0.3 7 2C7 3.3 7.8 4.4 9 4.8V6H5C3.9 6 3 6.9 3 8V11.2C1.8 11.6 1 12.7 1 14C1 15.7 2.3 17 4 17C5.7 17 7 15.7 7 14C7 12.7 6.2 11.6 5 11.2V8H9V20H5C3.9 20 3 20.9 3 22H21C21 20.9 20.1 20 19 20H15V8H19V11.2C17.8 11.6 17 12.7 17 14C17 15.7 18.3 17 20 17C21.7 17 23 15.7 23 14C23 12.7 22.2 11.6 21 11.2Z" fill="currentColor" />
+    </svg>
+  ),
+}
+
+// Default data
 const defaultTimelineEvents: TimelineEventType[] = [
   {
     year: 2018,
@@ -66,288 +111,521 @@ const defaultTimelineEvents: TimelineEventType[] = [
   },
 ]
 
-const FlowerIcon = ({ progress }: { progress: number }) => (
-  <svg
-    viewBox="0 0 24 24"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    className="w-6 h-6"
-    style={{ transform: `scale(${progress})` }}
-    aria-hidden="true"
-  >
-    <path
-      d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
-      stroke="currentColor"
-      strokeWidth="2"
-    />
-    <path
-      d="M12 8C12 8 14 10 14 12C14 14 12 16 12 16C12 16 10 14 10 12C10 10 12 8 12 8Z"
-      stroke="currentColor"
-      strokeWidth="2"
-    />
-  </svg>
-)
+// Media query hook
+function useMediaQuery(query: string) {
+  const [matches, setMatches] = useState(false)
 
-interface TimelineEventType {
-  year: number
-  title: string
-  description: string
-  details: string
-  category?: string
-  image?: string
-  link?: string
-}
+  useEffect(() => {
+    if (typeof window === 'undefined') return
 
-interface TimelineProps {
-  title?: string
-  subtitle?: string
-  events?: TimelineEventType[]
-  orientation?: 'vertical' | 'horizontal'
+    const media = window.matchMedia(query)
+    setMatches(media.matches)
+
+    const listener = () => setMatches(media.matches)
+    media.addEventListener('change', listener)
+
+    return () => media.removeEventListener('change', listener)
+  }, [query])
+
+  return matches
 }
 
 export default function Timeline({
   title = "Our Journey",
-  subtitle = "The evolution of Flowers & Saints through the years",
+  subtitle = "The evolution of our company through the years",
   events,
   orientation = 'vertical',
 }: TimelineProps) {
+  // State and refs
   const timelineEvents = events && events.length > 0 ? events : defaultTimelineEvents
   const [expandedEvent, setExpandedEvent] = useState<number | null>(null)
-  const [hoveredEvent, setHoveredEvent] = useState<number | null>(null)
-  const categories = Array.from(new Set(timelineEvents.map(e => e.category).filter(Boolean)))
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
-  const filteredEvents = selectedCategory ? timelineEvents.filter(e => e.category === selectedCategory) : timelineEvents
   const containerRef = useRef<HTMLDivElement>(null)
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"],
-  })
+  const horizontalScrollRef = useRef<HTMLDivElement>(null)
 
-  const scaleX = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001,
-  })
+  // Filter events by category
+  const categories = Array.from(new Set(timelineEvents.map(e => e.category).filter(Boolean)))
+  const filteredEvents = selectedCategory
+    ? timelineEvents.filter(e => e.category === selectedCategory)
+    : timelineEvents
 
-  // Animation d'apparition de la section
-  const sectionInView = useInView(containerRef, { once: true, amount: 0.2 })
+  // Handle orientation
+  const isMobile = useMediaQuery('(max-width: 767px)')
+  const [userOrientation, setUserOrientation] = useState<'vertical' | 'horizontal'>(orientation)
+  const effectiveOrientation = isMobile ? 'horizontal' : userOrientation
+  const isHorizontal = effectiveOrientation === 'horizontal'
 
-  // Glow animé si survolé
-  const glow = hoveredEvent !== null ? 'drop-shadow-[0_0_16px_var(--accent-regular)]' : ''
+  // Reset expanded state when orientation changes
+  useEffect(() => {
+    setExpandedEvent(null)
+  }, [isHorizontal])
 
-  // Orientation horizontale ?
-  const isHorizontal = orientation === 'horizontal'
+  // Scroll to start when category changes
+  useEffect(() => {
+    if (isHorizontal && horizontalScrollRef.current) {
+      horizontalScrollRef.current.scrollLeft = 0
+    }
+  }, [selectedCategory, isHorizontal])
+
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: { 
+      opacity: 1,
+      transition: { 
+        staggerChildren: 0.1,
+        delayChildren: 0.3
+      }
+    }
+  }
+
+  const titleVariants = {
+    hidden: { opacity: 0, y: -20 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { 
+        duration: 0.6,
+        ease: [0.22, 1, 0.36, 1]
+      }
+    }
+  }
 
   return (
     <motion.section
       ref={containerRef}
-      className={`py-20 bg-[var(--gradient-subtle)] overflow-hidden rounded-3xl shadow-lg border border-[var(--gray-200)] ${isHorizontal ? 'px-0' : ''}`}
-      aria-label="Timeline: Our Journey"
-      initial={{ opacity: 0, y: 60 }}
-      animate={sectionInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.8, ease: 'easeOut' }}
+      className="relative py-16 px-4 overflow-hidden rounded-2xl bg-slate-50/5 backdrop-blur-lg border border-white/10"
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+      style={{
+        boxShadow: '0 10px 30px -5px rgba(2, 8, 23, 0.1), 0 1px 3px rgba(0, 0, 0, 0.05)',
+      }}
     >
-      <div className={`max-w-7xl mx-auto ${isHorizontal ? 'px-0' : 'px-4 sm:px-6 lg:px-8'}`}>
+      {/* Background elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute -top-[30%] -right-[10%] w-[40%] h-[50%] rounded-full bg-gradient-to-b from-indigo-500/20 to-purple-500/5 blur-3xl" />
+        <div className="absolute -bottom-[20%] -left-[10%] w-[40%] h-[50%] rounded-full bg-gradient-to-t from-blue-500/20 to-cyan-400/5 blur-3xl" />
+      </div>
+
+      {/* Header */}
+      <div className="relative text-center mb-12">
+        <motion.span 
+          className="inline-block px-3 py-1 text-xs font-medium tracking-wider text-indigo-600 uppercase rounded-full bg-indigo-100/80 mb-3"
+          variants={titleVariants}
+        >
+          {title === "Our Journey" ? "Timeline" : title}
+        </motion.span>
+        
+        <motion.h2
+          className="text-3xl md:text-4xl lg:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-violet-500 mb-4"
+          variants={titleVariants}
+        >
+          {title}
+        </motion.h2>
+        
+        <motion.p
+          className="text-slate-600 dark:text-slate-300 max-w-2xl mx-auto text-lg"
+          variants={titleVariants}
+        >
+          {subtitle}
+        </motion.p>
+
+        {/* Orientation toggle (not on mobile) */}
+        {!isMobile && (
+          <motion.div 
+            className="mt-8"
+            variants={titleVariants}
+          >
+            <div className="inline-flex p-1 rounded-full bg-slate-200/50 backdrop-blur-sm">
+              <button
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                  userOrientation === 'vertical' 
+                    ? 'bg-white text-indigo-600 shadow-sm' 
+                    : 'text-slate-600 hover:text-indigo-600'
+                }`}
+                onClick={() => setUserOrientation('vertical')}
+              >
+                Vertical
+              </button>
+              <button
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                  userOrientation === 'horizontal' 
+                    ? 'bg-white text-indigo-600 shadow-sm' 
+                    : 'text-slate-600 hover:text-indigo-600'
+                }`}
+                onClick={() => setUserOrientation('horizontal')}
+              >
+                Horizontal
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </div>
+
+      {/* Category filters */}
+      {categories.length > 1 && (
         <motion.div
-          className="text-center mb-12"
+          className="flex flex-wrap justify-center gap-2 mb-10 px-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ delay: 0.4, duration: 0.5 }}
         >
-          <h2 className="text-3xl font-bold text-[var(--accent-regular)] sm:text-4xl font-brand drop-shadow-md">{title}</h2>
-          <p className="mt-4 text-lg text-[var(--gray-400)]">{subtitle}</p>
-        </motion.div>
-
-        {/* Filtres par catégorie */}
-        {categories.length > 1 && (
-          <div className="flex flex-wrap justify-center gap-3 mb-10">
+          <button
+            className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+              !selectedCategory
+                ? 'bg-indigo-600 text-white shadow-md'
+                : 'bg-white/80 backdrop-blur-sm hover:bg-white text-slate-700 border border-slate-200 hover:border-indigo-200'
+            }`}
+            onClick={() => setSelectedCategory(null)}
+          >
+            All Categories
+          </button>
+          {categories.map(cat => (
             <button
-              className={`filter-btn px-4 py-1 rounded-full border font-semibold transition-all ${!selectedCategory ? 'bg-[var(--accent-regular)] text-[var(--accent-text-over)] border-[var(--accent-regular)]' : 'bg-[var(--gray-1003)] text-[var(--accent-regular)] border-[var(--accent-regular)] hover:bg-[var(--accent-light)] hover:text-[var(--accent-text-over)]'}`}
-              onClick={() => setSelectedCategory(null)}
+              key={cat}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 ${
+                selectedCategory === cat
+                  ? 'bg-indigo-600 text-white shadow-md'
+                  : 'bg-white/80 backdrop-blur-sm hover:bg-white text-slate-700 border border-slate-200 hover:border-indigo-200'
+              }`}
+              onClick={() => setSelectedCategory(cat || null)}
             >
-              Toutes
+              {cat && categoryIcons[cat] && (
+                <span className={selectedCategory === cat ? 'text-white' : 'text-indigo-500'}>
+                  {categoryIcons[cat]}
+                </span>
+              )}
+              {cat}
             </button>
-            {categories.map(cat => (
-              <button
-                key={cat}
-                className={`filter-btn px-4 py-1 rounded-full border font-semibold transition-all ${selectedCategory === cat ? 'bg-[var(--accent-regular)] text-[var(--accent-text-over)] border-[var(--accent-regular)]' : 'bg-[var(--gray-1003)] text-[var(--accent-regular)] border-[var(--accent-regular)] hover:bg-[var(--accent-light)] hover:text-[var(--accent-text-over)]'}`}
-                onClick={() => setSelectedCategory(cat || null)}
-              >
-                {cat}
-              </button>
-            ))}
+          ))}
+        </motion.div>
+      )}
+
+      {/* Main timeline container */}
+      <div
+        ref={horizontalScrollRef}
+        className={`relative ${isHorizontal ? 'overflow-x-auto hide-scrollbar' : ''}`}
+        style={isHorizontal ? {
+          paddingBottom: '2rem',
+          minHeight: '450px',
+          scrollBehavior: 'smooth'
+        } : {}}
+      >
+        {filteredEvents.length === 0 ? (
+          <motion.div
+            className="text-center text-indigo-600 py-10 font-medium"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+          >
+            No events to display for this category.
+          </motion.div>
+        ) : (
+          <div className={`relative ${isHorizontal ? 'px-8' : 'px-4 sm:px-6 lg:px-12'}`}>
+            {/* Center line */}
+            <motion.div
+              className={`
+                ${isHorizontal
+                  ? 'absolute top-1/2 left-0 right-0 h-[2px] bg-gradient-to-r'
+                  : 'absolute left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b'
+                }
+                from-indigo-300 via-indigo-500 to-violet-500
+              `}
+              initial={{ scaleX: isHorizontal ? 0 : 1, scaleY: isHorizontal ? 1 : 0 }}
+              animate={{ scaleX: 1, scaleY: 1 }}
+              transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
+            />
+
+            {/* Events list */}
+            <ol
+              className={`relative z-10 ${isHorizontal ? 'flex' : 'block'}`}
+              style={isHorizontal ? {
+                minWidth: filteredEvents.length * 350 + 'px',
+                gap: '3.5rem',
+                paddingTop: '2.5rem',
+                paddingBottom: '2.5rem'
+              } : {}}
+            >
+              <AnimatePresence mode="wait">
+                {filteredEvents.map((event, index) => (
+                  <TimelineItem
+                    key={`${event.year}-${index}`}
+                    event={event}
+                    index={index}
+                    isExpanded={expandedEvent === index}
+                    onToggle={() => setExpandedEvent(expandedEvent === index ? null : index)}
+                    isHorizontal={isHorizontal}
+                    total={filteredEvents.length}
+                  />
+                ))}
+              </AnimatePresence>
+            </ol>
           </div>
         )}
-
-        <div className={`relative ${isHorizontal ? 'overflow-x-auto pb-8' : ''}`} style={isHorizontal ? { WebkitOverflowScrolling: 'touch' } : {}}>
-          {/* Ligne centrale */}
-          {isHorizontal ? (
-            <motion.div
-              className={`absolute top-1/2 left-0 right-0 h-[2px] bg-gradient-to-r from-[var(--accent-light)] via-[var(--accent-regular)] to-[var(--accent-dark)] transition-all duration-300 ${glow}`}
-              style={{ scaleX, zIndex: 1 }}
-              aria-hidden="true"
-            />
-          ) : (
-            <motion.div
-              className={`absolute left-1/2 transform -translate-x-1/2 w-[2px] sm:w-1 h-full transition-all duration-300 ${glow}`}
-              style={{ scaleY: scaleX, background: 'linear-gradient(180deg, var(--accent-light), var(--accent-regular), var(--accent-dark))' }}
-              aria-hidden="true"
-            />
-          )}
-
-          {/* Flower icon */}
-          {isHorizontal ? (
-            <motion.div
-              className={`absolute left-0 right-0 mx-auto top-1/2 -translate-y-1/2 z-10 flex justify-center ${glow}`}
-              style={{ x: 0 }}
-              aria-hidden="true"
-            >
-              <div className="flex items-center justify-center">
-                <span className="absolute w-16 h-16 rounded-full bg-[var(--accent-overlay)] blur-2xl opacity-60 animate-pulse" />
-                <FlowerIcon progress={1} />
-              </div>
-            </motion.div>
-          ) : (
-            <motion.div
-              className={`sticky top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 text-[var(--accent-regular)] transition-all duration-300 ${glow}`}
-              style={{ y: useTransform(scrollYProgress, [0, 1], [0, 100]) }}
-              aria-hidden="true"
-            >
-              <div className="flex items-center justify-center">
-                <span className="absolute w-16 h-16 rounded-full bg-[var(--accent-overlay)] blur-2xl opacity-60 animate-pulse" />
-                <FlowerIcon progress={useTransform(scrollYProgress, [0, 1], [0.7, 1]) as any} />
-              </div>
-            </motion.div>
-          )}
-
-          <ol className={`relative z-10 ${isHorizontal ? 'flex flex-row gap-10 min-w-[700px] md:min-w-[900px] lg:min-w-[1200px] justify-between' : ''}`}>
-            {filteredEvents.map((event, index) => (
-              <TimelineEvent
-                key={event.year}
-                event={event}
-                index={index}
-                isExpanded={expandedEvent === index}
-                onToggle={() => setExpandedEvent(expandedEvent === index ? null : index)}
-                onHover={() => setHoveredEvent(index)}
-                onUnhover={() => setHoveredEvent(null)}
-                orientation={orientation}
-                total={filteredEvents.length}
-              />
-            ))}
-          </ol>
-        </div>
       </div>
+
+      {/* Scroll indicators for horizontal view */}
+      {isHorizontal && filteredEvents.length > 3 && (
+        <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2">
+          <div className="px-3 py-1.5 rounded-full bg-white/80 backdrop-blur-sm shadow-sm flex items-center gap-2 text-xs text-slate-600">
+            <svg className="w-4 h-4 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg>
+            <span>Scroll for more</span>
+            <svg className="w-4 h-4 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </div>
+        </div>
+      )}
     </motion.section>
   )
 }
 
-function TimelineEvent({
+// Timeline item component
+function TimelineItem({
   event,
   index,
   isExpanded,
   onToggle,
-  onHover,
-  onUnhover,
-  orientation = 'vertical',
-  total = 1,
+  isHorizontal,
+  total
 }: {
   event: TimelineEventType
   index: number
   isExpanded: boolean
   onToggle: () => void
-  onHover: () => void
-  onUnhover: () => void
-  orientation?: 'vertical' | 'horizontal'
-  total?: number
+  isHorizontal: boolean
+  total: number
 }) {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, amount: 0.5 })
   const isEven = index % 2 === 0
-  const isHorizontal = orientation === 'horizontal'
+  
+  // Animation variants
+  const itemVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 20,
+      x: isHorizontal ? 0 : (isEven ? 20 : -20)
+    },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      x: 0,
+      transition: { 
+        duration: 0.5,
+        ease: [0.22, 1, 0.36, 1]
+      }
+    }
+  }
+
+  const dotVariants = {
+    hidden: { scale: 0 },
+    visible: { 
+      scale: 1,
+      transition: { 
+        type: "spring",
+        stiffness: 300,
+        damping: 15,
+        delay: 0.2 + (index * 0.05)
+      }
+    },
+    hover: { 
+      scale: 1.2,
+      transition: { 
+        duration: 0.3
+      }
+    }
+  }
 
   return (
     <motion.li
-      ref={ref}
-      className={
-        isHorizontal
-          ? `relative flex flex-col items-center w-64 min-w-[220px] max-w-xs ${isEven ? 'justify-end' : 'justify-start'} pb-8 pt-8`
-          : `mb-12 flex flex-col md:flex-row justify-between items-center w-full ${isEven ? "md:flex-row-reverse" : ""}`
-      }
-      initial={{ opacity: 0, y: 50 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-      transition={{ duration: 0.8, delay: index * 0.1 }}
-      tabIndex={0}
-      aria-expanded={isExpanded}
-      aria-label={`Event ${event.year}: ${event.title}`}
-      onMouseEnter={onHover}
-      onMouseLeave={onUnhover}
-      onFocus={onHover}
-      onBlur={onUnhover}
-      style={isHorizontal ? { marginLeft: index === 0 ? 0 : undefined, marginRight: index === total - 1 ? 0 : undefined } : {}}
+      className={`
+        relative
+        ${isHorizontal
+          ? `flex-1 min-w-[320px] max-w-[380px] ${isEven ? 'pt-20 pb-4' : 'pb-20 pt-4'}`
+          : `mb-16 pb-2 ${isEven ? 'ml-auto mr-[calc(50%+2rem)]' : 'mr-auto ml-[calc(50%+2rem)]'}`
+        }
+      `}
+      style={!isHorizontal ? { maxWidth: 'calc(50% - 3rem)' } : {}}
+      variants={itemVariants}
     >
-      {/* Image si présente */}
-      {event.image && (
-        <div className={isHorizontal ? `w-full flex justify-center mb-4` : `w-full md:w-5/12 flex justify-center mb-4 md:mb-0`}>
-          <img
-            src={event.image}
-            alt={event.title}
-            className="rounded-xl shadow-md max-h-48 object-cover border border-[var(--gray-200)]"
-            loading="lazy"
-            style={{ maxWidth: '320px', width: '100%' }}
-          />
-        </div>
-      )}
-      <div className={isHorizontal ? 'z-20 w-full flex justify-center mb-2' : 'z-20 w-full md:w-5/12'}>
-        <div className="flex items-center justify-center w-10 h-10 bg-[var(--accent-regular)] rounded-full shadow-md border-4 border-[var(--gray-1002)] mx-auto md:mx-0">
-          <div className="w-4 h-4 bg-[var(--gray-999)] rounded-full" />
-        </div>
-      </div>
+      {/* Dot on the line */}
       <motion.div
-        className={isHorizontal ? 'w-full cursor-pointer group' : 'w-full md:w-5/12 cursor-pointer group'}
-        whileHover={{ scale: 1.04 }}
-        whileTap={{ scale: 0.98 }}
-        onClick={onToggle}
-        onKeyPress={e => (e.key === 'Enter' || e.key === ' ') && onToggle()}
-        tabIndex={0}
-        role="button"
-        aria-pressed={isExpanded}
+        className={`
+          absolute z-10 
+          ${isHorizontal
+            ? `left-1/2 -translate-x-1/2 ${isEven ? 'top-0' : 'bottom-0'}`
+            : `top-0 ${isEven ? 'right-0 translate-x-1/2' : 'left-0 -translate-x-1/2'}`
+          }
+        `}
+        variants={dotVariants}
+        whileHover="hover"
       >
-        <div className="p-6 bg-[var(--gray-1003)] rounded-xl shadow-md border border-[var(--accent-regular)] transition-all group-hover:shadow-lg group-hover:border-[var(--accent-light)]">
-          <span className="font-bold text-[var(--accent-regular)]">{event.year}</span>
-          {/* Titre cliquable si lien */}
+        <div className="relative">
+          <div className="w-10 h-10 rounded-full bg-white shadow-md flex items-center justify-center border-2 border-indigo-500">
+            {event.category && categoryIcons[event.category] ? (
+              <span className="text-indigo-600">{categoryIcons[event.category]}</span>
+            ) : (
+              <div className="w-3 h-3 bg-indigo-600 rounded-full" />
+            )}
+          </div>
+          {/* Year label */}
+          <div 
+            className={`
+              absolute whitespace-nowrap font-medium text-sm text-indigo-600 bg-white px-2 py-0.5 rounded-full shadow-sm border border-indigo-100
+              ${isHorizontal
+                ? `${isEven ? 'bottom-full mb-1' : 'top-full mt-1'} left-1/2 -translate-x-1/2`
+                : `${isEven ? 'left-full ml-1' : 'right-full mr-1'} top-1/2 -translate-y-1/2`
+              }
+            `}
+          >
+            {event.year}
+          </div>
+        </div>
+      </motion.div>
+
+      {/* Event content */}
+      <motion.div
+        className="relative overflow-hidden rounded-xl backdrop-blur-sm transition-all duration-300"
+        style={{
+          background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7))',
+          boxShadow: '0 4px 20px rgba(0, 0, 0, 0.05)',
+          border: '1px solid rgba(255, 255, 255, 0.8)',
+        }}
+        whileHover={{ 
+          y: -5,
+          boxShadow: '0 10px 25px rgba(0, 0, 0, 0.08)',
+          transition: {
+            duration: 0.3
+          }
+        }}
+        onClick={onToggle}
+        layout
+      >
+        <div className="p-6">
+          {/* Category tag */}
+          {event.category && (
+            <div className="mb-3">
+              <span className="px-2.5 py-1 rounded-full text-xs font-medium bg-indigo-100 text-indigo-700 inline-flex items-center gap-1">
+                {categoryIcons[event.category] && (
+                  <span>{categoryIcons[event.category]}</span>
+                )}
+                {event.category}
+              </span>
+            </div>
+          )}
+
+          {/* Title */}
           {event.link ? (
             <a
               href={event.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-lg font-semibold mb-1 text-[var(--gray-900)] font-brand underline hover:text-[var(--accent-regular)] block"
-              tabIndex={-1}
+              className="text-xl font-bold mb-2 text-slate-800 hover:text-indigo-600 transition-colors block"
+              onClick={(e) => e.stopPropagation()}
             >
               {event.title}
             </a>
           ) : (
-            <h3 className="text-lg font-semibold mb-1 text-[var(--gray-900)] font-brand">{event.title}</h3>
+            <h3 className="text-xl font-bold mb-2 text-slate-800">{event.title}</h3>
           )}
-          <p className="text-[var(--gray-400)]">{event.description}</p>
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: isExpanded ? "auto" : 0, opacity: isExpanded ? 1 : 0 }}
-            transition={{ duration: 0.3 }}
-            className="overflow-hidden"
-          >
-            <p className="mt-2 text-sm text-[var(--gray-300)]">{event.details}</p>
-          </motion.div>
-          <button
-            className="mt-4 px-4 py-1 rounded-full bg-[var(--accent-regular)] text-[var(--accent-text-over)] text-sm font-semibold shadow hover:bg-[var(--accent-light)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-regular)] transition-all"
-            aria-expanded={isExpanded}
-            aria-controls={`timeline-details-${index}`}
-            tabIndex={0}
-            onClick={e => { e.stopPropagation(); onToggle(); }}
-          >
-            {isExpanded ? 'Voir moins' : 'Voir plus'}
-          </button>
+
+          {/* Description */}
+          <p className="text-slate-600">{event.description}</p>
+
+          {/* Expanded content */}
+          <AnimatePresence>
+            {isExpanded && (
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: "auto", opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                <div className="mt-4 pt-4 border-t border-slate-200">
+                  <p className="text-slate-500">{event.details}</p>
+
+                  {event.image && (
+                    <motion.img
+                      src={event.image}
+                      alt={event.title}
+                      className="mt-4 rounded-lg w-full h-auto object-cover shadow-sm"
+                      loading="lazy"
+                      initial={{ scale: 0.9, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ duration: 0.3 }}
+                    />
+                  )}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* Toggle button */}
+          <div className="mt-4 flex justify-end">
+            <motion.button
+              className={`
+                inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium
+                ${isExpanded 
+                  ? 'bg-slate-200 text-slate-700' 
+                  : 'bg-indigo-500 text-white'}
+              `}
+              onClick={(e) => { e.stopPropagation(); onToggle(); }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              {isExpanded ? (
+                <>
+                  <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+                  </svg>
+                  Less
+                </>
+              ) : (
+                <>
+                  <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                  More
+                </>
+              )}
+            </motion.button>
+          </div>
         </div>
       </motion.div>
+
+      {/* Connected line decoration */}
+      <motion.div 
+        className={`
+          absolute z-0
+          ${isHorizontal
+            ? `w-px h-[20px] bg-indigo-400 left-1/2 ${isEven ? 'top-[10px]' : 'bottom-[10px]'}`
+            : `h-px w-[20px] bg-indigo-400 top-[10px] ${isEven ? 'right-[-20px]' : 'left-[-20px]'}`
+          }
+        `}
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        transition={{ delay: 0.3 + (index * 0.05) }}
+      />
     </motion.li>
   )
-} 
+}
+
+// Add CSS for hiding scrollbar while allowing scrolling
+// Add this at the end of your file (or in global CSS)
+const globalStyles = `
+.hide-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari and Opera */
+}
+`;
+
+// Add the global styles to the document
+if (typeof document !== 'undefined') {
+  const style = document.createElement('style');
+  style.textContent = globalStyles;
+  document.head.appendChild(style);
+}
