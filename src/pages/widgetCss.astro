@@ -26,8 +26,22 @@ const {
 
 <Layout title={LayoutTitle} description={descriptionLayout}>
   <MenuLinkNav namepage="work" />
-  <div class="stack gap-20 pt-20">
-    <main class="wrapper stack gap-8 lg:gap-16">
+  
+  <section class="presentation-section mt-16">
+    <div class="wrapper">
+      <div class="presentation-content">
+        <h1>CSS Widgets & Tools</h1>
+        <p>Explore my collection of CSS widgets, tools, and resources designed to enhance web experiences.</p>
+        <p>These components showcase my expertise in CSS animations, effects, and responsive design patterns.</p>
+        <div class="presentation-cta">
+          <a href="#widget-section" class="btn">Explore Widgets</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <div class="stack gap-20">
+    <main class="wrapper stack gap-8 lg:gap-16" id="widget-section">
       <Hero
         title="My widget Css"
         tagline="See my most recent projects below to get an idea of my past experience."
@@ -64,3 +78,74 @@ const {
     </div>
   </div>
 </Layout>
+
+<style>
+  /* Fix for top navigation overflow */
+  :global(header) {
+    margin-bottom: 0;
+  }
+  
+  .presentation-section {
+    padding: 8rem 0 4rem;
+    text-align: center;
+    margin-top: -4rem; /* Pull up to close the gap */
+    position: relative;
+    z-index: 0; /* Lower z-index than header */
+    overflow: hidden;
+  }
+
+  .mt-16 {
+    margin-top: 4rem;
+  }
+  
+  .presentation-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at top right, var(--accent-regular-alpha), transparent 60%),
+                radial-gradient(circle at bottom left, var(--accent-dark-alpha), transparent 60%);
+    opacity: 0.4;
+    z-index: -1;
+  }
+
+  .presentation-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .presentation-content h1 {
+    font-size: var(--text-3xl);
+    color: var(--gray-0);
+    margin-bottom: 1.5rem;
+  }
+
+  .presentation-content p {
+    font-size: var(--text-lg);
+    color: var(--gray-200);
+    margin-bottom: 1rem;
+    line-height: 1.6;
+  }
+
+  .presentation-cta {
+    margin-top: 2rem;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background: var(--gradient-accent);
+    color: var(--accent-text-over);
+    border-radius: 0.5rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .btn:hover {
+    box-shadow: 0 0 12px var(--accent-regular);
+    transform: translateY(-2px);
+  }
+</style>
