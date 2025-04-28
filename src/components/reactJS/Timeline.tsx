@@ -3,7 +3,7 @@
 import { useState, useRef } from "react"
 import { motion, useScroll, useTransform, useSpring, useInView } from "framer-motion"
 
-const timelineEvents = [
+const defaultTimelineEvents = [
   {
     year: 2018,
     title: "Flowers & Saints Founded",
@@ -70,15 +70,25 @@ const FlowerIcon = ({ progress }: { progress: number }) => (
   </svg>
 )
 
+interface TimelineEventType {
+  year: number
+  title: string
+  description: string
+  details: string
+}
+
 interface TimelineProps {
   title?: string
   subtitle?: string
+  events?: TimelineEventType[]
 }
 
 export default function Timeline({
   title = "Our Journey",
   subtitle = "The evolution of Flowers & Saints through the years",
+  events,
 }: TimelineProps) {
+  const timelineEvents = events && events.length > 0 ? events : defaultTimelineEvents
   const [expandedEvent, setExpandedEvent] = useState<number | null>(null)
   const [hoveredEvent, setHoveredEvent] = useState<number | null>(null)
   const containerRef = useRef<HTMLDivElement>(null)
@@ -166,7 +176,7 @@ function TimelineEvent({
   onHover,
   onUnhover,
 }: {
-  event: (typeof timelineEvents)[0]
+  event: (typeof defaultTimelineEvents)[0]
   index: number
   isExpanded: boolean
   onToggle: () => void
