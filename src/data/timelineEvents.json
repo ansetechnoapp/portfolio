@@ -3,24 +3,36 @@
     "year": 2015,
     "title": "Début de l'aventure",
     "description": "Premier projet freelance.",
-    "details": "J'ai commencé à travailler sur des sites web pour des clients locaux."
+    "details": "J'ai commencé à travailler sur des sites web pour des clients locaux.",
+    "category": "Web",
+    "image": "/assets/timeline/web1.jpg",
+    "link": "https://monsite.com/projet2015"
   },
   {
     "year": 2018,
     "title": "Création de ma société",
     "description": "Lancement officiel.",
-    "details": "J'ai fondé ma propre entreprise de développement web."
+    "details": "J'ai fondé ma propre entreprise de développement web.",
+    "category": "Entreprise",
+    "image": "/assets/timeline/company.jpg",
+    "link": "https://monsite.com/entreprise"
   },
   {
     "year": 2020,
     "title": "Passage au mobile",
     "description": "Première application mobile publiée.",
-    "details": "J'ai développé et publié ma première app sur l'App Store et Google Play."
+    "details": "J'ai développé et publié ma première app sur l'App Store et Google Play.",
+    "category": "Mobile",
+    "image": "/assets/timeline/mobile.jpg",
+    "link": "https://monsite.com/app2020"
   },
   {
     "year": 2023,
     "title": "Nouveaux horizons",
     "description": "Développement de solutions IA.",
-    "details": "Je me spécialise dans l'intégration d'outils d'intelligence artificielle pour mes clients."
+    "details": "Je me spécialise dans l'intégration d'outils d'intelligence artificielle pour mes clients.",
+    "category": "IA",
+    "image": "/assets/timeline/ai.jpg",
+    "link": "https://monsite.com/ia"
   }
 ] 
