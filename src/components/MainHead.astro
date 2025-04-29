@@ -5,29 +5,63 @@ import "../styles/style.css";
 interface Props {
   title?: string | undefined;
   description?: string | undefined;
+  image?: string | undefined;
+  canonicalURL?: URL | string | undefined;
 }
 
 import dataUser from "../data/User.json";
 
 const {
   title = `${dataUser.firstName} ${dataUser.lastName}: Personal Site`,
-  description = `The personal site of ${dataUser.firstName} ${dataUser.lastName}`,
+  description = `The personal site of ${dataUser.firstName} ${dataUser.lastName} - Freelance web and mobile developer specializing in React, React Native, Astro.js, and modern web technologies.`,
+  image = "/assets/social-preview.jpg",
+  canonicalURL = new URL(Astro.url.pathname, Astro.site),
 } = Astro.props;
+
+const socialImageURL = new URL(image, Astro.site).href;
 ---
 
+<!-- Global Metadata -->
 <meta charset="UTF-8" />
-<meta name="description" property="og:description" content={description} />
-<meta name="viewport" content="width=device-width" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="generator" content={Astro.generator} />
-<title>{title}</title>
 
+<!-- Primary Meta Tags -->
+<title>{title}</title>
+<meta name="title" content={title} />
+<meta name="description" content={description} />
+<meta name="author" content={`${dataUser.firstName} ${dataUser.lastName}`} />
+<meta name="keywords" content="web development, mobile apps, React, React Native, Astro, frontend, backend, developer, portfolio" />
+<link rel="canonical" href={canonicalURL} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={socialImageURL} />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={canonicalURL} />
+<meta property="twitter:title" content={title} />
+<meta property="twitter:description" content={description} />
+<meta property="twitter:image" content={socialImageURL} />
+
+<!-- Favicons -->
 <link rel="icon" type="image/svg+xml" href="/assets/Anscod_logo/Anscod_logo_dark.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/Anscod_logo/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
+
+<!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link
   href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,700;1,400&family=Rubik:wght@500;600&display=swap"
   rel="stylesheet"
 />
+
+<!-- Theme Toggle Script -->
 <script is:inline>
   // This code is inlined in the head to make dark mode instant & blocking.
   const getThemePreference = () => {

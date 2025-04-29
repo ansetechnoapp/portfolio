@@ -1,0 +1,21 @@
+{
+  "name": "Anscod - Web & Mobile Developer",
+  "short_name": "Anscod",
+  "description": "Portfolio of a talented web and mobile developer showcasing projects and services",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#6e56cf",
+  "icons": [
+    {
+      "src": "/assets/Anscod_logo/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/Anscod_logo/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+} 

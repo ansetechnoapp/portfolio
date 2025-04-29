@@ -40,7 +40,7 @@
             </div>
             <div>
               <h5 class="font-semibold">Phone</h5>
-              <p class="text-gray-600">(123) 456-7890</p>
+              <p class="text-gray-600">Contact via email</p>
             </div>
           </div>
           <div class="flex items-start">
@@ -71,26 +71,38 @@
           <h5 class="font-semibold mb-4">Follow Me</h5>
           <div class="flex space-x-4">
             <a
-              href="#"
+              href="https://github.com/anscod"
+              target="_blank"
+              rel="noopener noreferrer"
               class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-500 hover:bg-blue-500 hover:text-white transition-all"
+              aria-label="GitHub Profile"
             >
               <i class="fab fa-github"></i>
             </a>
             <a
-              href="#"
+              href="https://linkedin.com/in/anscod"
+              target="_blank"
+              rel="noopener noreferrer"
               class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-500 hover:bg-blue-500 hover:text-white transition-all"
+              aria-label="LinkedIn Profile"
             >
               <i class="fab fa-linkedin-in"></i>
             </a>
             <a
-              href="#"
+              href="https://twitter.com/anscod"
+              target="_blank"
+              rel="noopener noreferrer"
               class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-500 hover:bg-blue-500 hover:text-white transition-all"
+              aria-label="Twitter Profile"
             >
               <i class="fab fa-twitter"></i>
             </a>
             <a
-              href="#"
+              href="https://instagram.com/anscod"
+              target="_blank"
+              rel="noopener noreferrer"
               class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-500 hover:bg-blue-500 hover:text-white transition-all"
+              aria-label="Instagram Profile"
             >
               <i class="fab fa-instagram"></i>
             </a>
@@ -99,7 +111,7 @@
       </div>
 
       <div class="md:w-1/2 contact-form">
-        <form class="p-2 rounded-xl shadow-sm">
+        <form id="contact-form" class="p-2 rounded-xl shadow-sm">
           <div class="mb-6">
             <label for="name" class="block text-gray-700 font-medium mb-2"
               >Your Name</label
@@ -107,9 +119,13 @@
             <input
               type="text"
               id="name"
+              name="name"
               class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               placeholder="John Doe"
+              required
+              minlength="2"
             />
+            <div class="error-message text-red-500 text-sm mt-1 hidden" id="name-error">Please enter your name</div>
           </div>
           <div class="mb-6">
             <label for="email" class="block text-gray-700 font-medium mb-2"
@@ -118,9 +134,12 @@
             <input
               type="email"
               id="email"
+              name="email"
               class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               placeholder="john@example.com"
+              required
             />
+            <div class="error-message text-red-500 text-sm mt-1 hidden" id="email-error">Please enter a valid email address</div>
           </div>
           <div class="mb-6">
             <label for="subject" class="block text-gray-700 font-medium mb-2"
@@ -129,9 +148,12 @@
             <input
               type="text"
               id="subject"
+              name="subject"
               class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               placeholder="Project Inquiry"
+              required
             />
+            <div class="error-message text-red-500 text-sm mt-1 hidden" id="subject-error">Please enter a subject</div>
           </div>
           <div class="mb-6">
             <label for="message" class="block text-gray-700 font-medium mb-2"
@@ -139,16 +161,24 @@
             >
             <textarea
               id="message"
+              name="message"
               rows="5"
               class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              placeholder="Hello, I would like to talk about..."></textarea>
+              placeholder="Hello, I would like to talk about..."
+              required
+              minlength="10"></textarea>
+            <div class="error-message text-red-500 text-sm mt-1 hidden" id="message-error">Please enter your message (at least 10 characters)</div>
           </div>
           <button
             type="submit"
+            id="submit-button"
             class="submit w-full px-6 py-3 text-white rounded-lg shadow-md hover:shadow-lg transition-all"
           >
             Send Message
           </button>
+          <div class="success-message text-green-500 text-sm mt-2 hidden">
+            Your message has been sent successfully! We'll get back to you soon.
+          </div>
         </form>
       </div>
     </div>
@@ -176,3 +206,111 @@
     transition: all 0.45s ease;
   }
 </style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('contact-form');
+    const nameInput = document.getElementById('name');
+    const emailInput = document.getElementById('email');
+    const subjectInput = document.getElementById('subject');
+    const messageInput = document.getElementById('message');
+    const submitButton = document.getElementById('submit-button');
+    const successMessage = document.querySelector('.success-message');
+    
+    const nameError = document.getElementById('name-error');
+    const emailError = document.getElementById('email-error');
+    const subjectError = document.getElementById('subject-error');
+    const messageError = document.getElementById('message-error');
+    
+    const validateEmail = (email) => {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    };
+    
+    const validateForm = () => {
+      let valid = true;
+      
+      // Validate name
+      if (!nameInput.value.trim() || nameInput.value.length < 2) {
+        nameError.classList.remove('hidden');
+        valid = false;
+      } else {
+        nameError.classList.add('hidden');
+      }
+      
+      // Validate email
+      if (!emailInput.value.trim() || !validateEmail(emailInput.value)) {
+        emailError.classList.remove('hidden');
+        valid = false;
+      } else {
+        emailError.classList.add('hidden');
+      }
+      
+      // Validate subject
+      if (!subjectInput.value.trim()) {
+        subjectError.classList.remove('hidden');
+        valid = false;
+      } else {
+        subjectError.classList.add('hidden');
+      }
+      
+      // Validate message
+      if (!messageInput.value.trim() || messageInput.value.length < 10) {
+        messageError.classList.remove('hidden');
+        valid = false;
+      } else {
+        messageError.classList.add('hidden');
+      }
+      
+      return valid;
+    };
+    
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      if (validateForm()) {
+        // In a real implementation, you would send the form data to a server
+        // For now, we'll just show a success message
+        submitButton.disabled = true;
+        submitButton.innerHTML = 'Sending...';
+        
+        // Simulate form submission
+        setTimeout(() => {
+          form.reset();
+          submitButton.disabled = false;
+          submitButton.innerHTML = 'Send Message';
+          successMessage.classList.remove('hidden');
+          
+          // Hide success message after 5 seconds
+          setTimeout(() => {
+            successMessage.classList.add('hidden');
+          }, 5000);
+        }, 1500);
+      }
+    });
+    
+    // Live validation
+    nameInput.addEventListener('input', () => {
+      if (nameInput.value.trim() && nameInput.value.length >= 2) {
+        nameError.classList.add('hidden');
+      }
+    });
+    
+    emailInput.addEventListener('input', () => {
+      if (emailInput.value.trim() && validateEmail(emailInput.value)) {
+        emailError.classList.add('hidden');
+      }
+    });
+    
+    subjectInput.addEventListener('input', () => {
+      if (subjectInput.value.trim()) {
+        subjectError.classList.add('hidden');
+      }
+    });
+    
+    messageInput.addEventListener('input', () => {
+      if (messageInput.value.trim() && messageInput.value.length >= 10) {
+        messageError.classList.add('hidden');
+      }
+    });
+  });
+</script>

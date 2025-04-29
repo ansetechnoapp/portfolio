@@ -12,6 +12,17 @@ export default defineConfig({
       },
     },
   },
+  image: {
+    service: {
+      entrypoint: 'astro/assets/services/sharp',
+      config: {
+        // Default quality for WebP and AVIF formats
+        quality: 80,
+        // Allow WebP and AVIF formats
+        formats: ['webp', 'avif', 'png', 'jpg', 'jpeg'],
+      },
+    },
+  },
   integrations: [
     tailwind(),
     react()

@@ -82,6 +82,10 @@ const { heroTitle = `I am ${dataUser.firstName} ${dataUser.lastName}` } =
             width="480"
             height="620"
             src={Img1.src}
+            srcset={`${Img1.src} 480w`}
+            sizes="(max-width: 768px) 100vw, 480px"
+            loading="eager"
+            decoding="async"
           />
           <HeroMediaSocialNav />
 
