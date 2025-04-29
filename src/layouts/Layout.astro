@@ -21,7 +21,7 @@ const { title, description } = Astro.props;
   <head>
     <MainHead title={title} description={description} />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
     <link
@@ -60,47 +60,49 @@ const { title, description } = Astro.props;
       }
 
       // Enhanced micro-interactions script
-      document.addEventListener('DOMContentLoaded', () => {
+      document.addEventListener("DOMContentLoaded", () => {
         // Smooth transition between sections
         const setupSectionTransitions = () => {
-          const sections = document.querySelectorAll('section');
+          const sections = document.querySelectorAll("section");
           const options = {
             root: null,
-            rootMargin: '0px',
-            threshold: 0.1
+            rootMargin: "0px",
+            threshold: 0.1,
           };
 
           const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
+            entries.forEach((entry) => {
               if (entry.isIntersecting) {
-                entry.target.classList.add('section-visible');
+                entry.target.classList.add("section-visible");
               }
             });
           }, options);
 
-          sections.forEach(section => {
-            section.classList.add('section-transition');
+          sections.forEach((section) => {
+            section.classList.add("section-transition");
             observer.observe(section);
           });
         };
 
         // Button hover effects
         const setupButtonEffects = () => {
-          const buttons = document.querySelectorAll('button, .link, a.btn, .button');
-          
-          buttons.forEach(button => {
-            button.addEventListener('mouseenter', () => {
-              button.classList.add('button-hover');
+          const buttons = document.querySelectorAll(
+            "button, .link, a.btn, .button"
+          );
+
+          buttons.forEach((button) => {
+            button.addEventListener("mouseenter", () => {
+              button.classList.add("button-hover");
             });
-            
-            button.addEventListener('mouseleave', () => {
-              button.classList.remove('button-hover');
+
+            button.addEventListener("mouseleave", () => {
+              button.classList.remove("button-hover");
             });
-            
-            button.addEventListener('click', () => {
-              button.classList.add('button-active');
+
+            button.addEventListener("click", () => {
+              button.classList.add("button-active");
               setTimeout(() => {
-                button.classList.remove('button-active');
+                button.classList.remove("button-active");
               }, 300);
             });
           });
@@ -201,7 +203,9 @@ const { title, description } = Astro.props;
       .section-transition {
         opacity: 0;
         transform: translateY(20px);
-        transition: opacity 0.6s ease, transform 0.6s ease;
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
       }
 
       .section-visible {
@@ -232,4 +236,3 @@ const { title, description } = Astro.props;
     </style>
   </body>
 </html>
-

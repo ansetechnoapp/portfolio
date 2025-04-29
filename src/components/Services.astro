@@ -1,13 +1,16 @@
-<div id="service" class="py-16">
-  <div class="text-center mb-16">
-    <p class="text-lg mb-3 font-medium" style="color: var(--accent-regular);">
-      Professional Expertise
-    </p>
-    <h2 class="text-4xl font-bold">My Services</h2>
-    <div
-      class="w-24 h-1 mx-auto mt-4 rounded-full"
-      style="background-color: var(--accent-regular);"
-    >
+<section id="service" class="services-section py-20">
+  <div class="services-header text-center mb-20">
+    <div class="services-header-content">
+      <div class="services-eyebrow">Expertise</div>
+      <h2 class="services-title text-4xl font-bold">My Services</h2>
+      <p class="services-subtitle mt-4">
+        Specialized solutions tailored to your digital needs
+      </p>
+    </div>
+    <div class="services-header-decoration mt-6">
+      <div class="decoration-line"></div>
+      <div class="decoration-dot"></div>
+      <div class="decoration-line"></div>
     </div>
   </div>
 
@@ -184,14 +187,100 @@
       </div>
     </div>
   </div>
-</div>
+</section>
 
 <style>
+  /* Services Section Styling */
+  .services-section {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .services-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background: linear-gradient(
+      180deg,
+      var(--gray-999) 0%,
+      var(--gray-900) 100%
+    );
+    opacity: 0.5;
+    z-index: -1;
+  }
+
+  /* Header Styling */
+  .services-eyebrow {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wider);
+    color: var(--accent-secondary);
+    margin-bottom: 0.5rem;
+    display: inline-block;
+    padding: 0.25rem 1rem;
+    background: rgba(var(--gray-999-basis), 0.1);
+    border-radius: 2rem;
+    backdrop-filter: blur(8px);
+  }
+
+  .services-title {
+    color: var(--gray-0);
+    font-family: var(--font-display);
+    letter-spacing: var(--letter-spacing-tight);
+    line-height: var(--line-height-tight);
+  }
+
+  .services-subtitle {
+    color: var(--secondary-text);
+    font-size: var(--text-lg);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .services-header-decoration {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .decoration-line {
+    height: 2px;
+    width: 60px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--accent-regular),
+      transparent
+    );
+  }
+
+  .decoration-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent-regular);
+    box-shadow: 0 0 10px var(--accent-regular);
+  }
+
+  /* Card Styling */
   .service-card {
-    @apply rounded-xl shadow border backdrop-blur-sm p-6 transition-all duration-300 hover:shadow-lg hover:-translate-y-2 relative overflow-hidden;
+    @apply rounded-xl shadow border backdrop-blur-sm p-6 transition-all duration-500 relative overflow-hidden;
     color: var(--gray-200);
-    border-color: var(--gray-800);
+    border-color: rgba(var(--gray-999-basis), 0.1);
     background-color: var(--gray-999);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+  }
+
+  .service-card:hover {
+    @apply shadow-lg;
+    transform: translateY(-8px);
+    border-color: rgba(var(--gray-999-basis), 0.2);
   }
 
   .service-card::before {
@@ -201,44 +290,82 @@
     left: 0;
     width: 4px;
     height: 0;
-    background: var(--accent-regular);
-    transition: height 0.3s ease;
+    background: var(--accent-gradient);
+    transition: height 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 1;
   }
 
   .service-card:hover::before {
     height: 100%;
   }
 
+  .service-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(var(--gray-999-basis), 0.1) 0%,
+      transparent 100%
+    );
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+  }
+
+  .service-card:hover::after {
+    opacity: 1;
+  }
+
   .service-icon {
     @apply p-4 rounded-lg inline-flex mb-4 transition-all duration-300;
     background-color: var(--gray-800);
     color: var(--accent-regular);
+    position: relative;
+    z-index: 2;
   }
 
   .group:hover .service-icon {
-    background-color: var(--accent-regular);
+    background: var(--accent-gradient);
     color: var(--accent-text-over);
+    transform: translateZ(20px);
+    box-shadow: var(--accent-soft-glow);
   }
 
   .service-title {
     @apply text-xl font-semibold mb-3 transition-all duration-300;
-    color: var(--gray-100);
-    font-family: var(--font-brand);
+    color: var(--gray-0);
+    font-family: var(--font-display);
+    position: relative;
+    z-index: 2;
+  }
+
+  .group:hover .service-title {
+    transform: translateZ(15px);
+    color: var(--accent-regular);
   }
 
   .service-description {
     @apply mb-6 text-sm leading-relaxed;
-    color: var(--gray-300);
+    color: var(--secondary-text);
+    position: relative;
+    z-index: 2;
+  }
+
+  .group:hover .service-description {
+    transform: translateZ(10px);
   }
 
   .service-footer {
     @apply mt-auto pt-4 border-t;
-    border-color: var(--gray-800);
+    border-color: rgba(var(--gray-999-basis), 0.1);
+    position: relative;
+    z-index: 2;
   }
 
   .service-link {
     @apply font-medium inline-flex items-center gap-2 transition-all duration-300;
-    color: var(--link-color);
+    color: var(--accent-regular);
   }
 
   .service-link:hover {
@@ -250,7 +377,20 @@
   }
 
   .service-link:hover svg {
-    @apply translate-x-1;
+    @apply translate-x-2;
+    animation: pulse 1.5s infinite;
+  }
+
+  @keyframes pulse {
+    0% {
+      transform: translateX(0);
+    }
+    50% {
+      transform: translateX(4px);
+    }
+    100% {
+      transform: translateX(0);
+    }
   }
 
   @media (max-width: 768px) {
@@ -260,6 +400,10 @@
 
     .service-title {
       @apply text-lg;
+    }
+
+    .services-header-decoration {
+      display: none;
     }
   }
 </style>

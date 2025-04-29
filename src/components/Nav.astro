@@ -141,6 +141,23 @@ const iconLinks: {
 </nav>
 
 <script>
+  // Handle navigation scroll effect
+  document.addEventListener("DOMContentLoaded", () => {
+    const nav = document.querySelector("nav");
+
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        nav?.classList.add("scrolled");
+      } else {
+        nav?.classList.remove("scrolled");
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    // Initial check
+    handleScroll();
+  });
+
   class MenuButton extends HTMLElement {
     constructor() {
       super();
@@ -159,7 +176,7 @@ const iconLinks: {
       const setExpanded = (expand: boolean) => {
         btn.setAttribute("aria-expanded", expand ? "true" : "false");
         menu.hidden = !expand;
-        
+
         // Add transition classes
         if (expand) {
           menu.classList.add("menu-visible");
@@ -200,17 +217,23 @@ const iconLinks: {
     margin-bottom: 3.5rem;
   } */
   nav {
-		z-index: 9999;
-		position: fixed;
-		font-family: var(--font-brand);
-		font-weight: 500;
-		/* margin-bottom: 3.5rem; */
-		border-bottom: 1px solid #ffffff33;
-		width: 100%;
-		transition: 0.1s;
-		backdrop-filter: blur(8px);
-		background-color: rgba(var(--gray-999-basis), 0.8);
-	} 
+    z-index: 9999;
+    position: fixed;
+    font-family: var(--font-display);
+    font-weight: 500;
+    width: 100%;
+    transition: all var(--transition-medium);
+    backdrop-filter: blur(12px);
+    background-color: rgba(var(--gray-999-basis), 0.7);
+    border-bottom: 1px solid rgba(var(--gray-999-basis), 0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  }
+
+  nav.scrolled {
+    background-color: rgba(var(--gray-999-basis), 0.85);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    border-bottom-color: rgba(var(--gray-999-basis), 0.15);
+  }
 
   .menu-header {
     display: flex;
@@ -257,7 +280,9 @@ const iconLinks: {
     background: radial-gradient(var(--gray-900), var(--gray-800) 150%);
     box-shadow: var(--shadow-md);
     cursor: pointer;
-    transition: transform 0.2s ease, background-color 0.2s ease;
+    transition:
+      transform 0.2s ease,
+      background-color 0.2s ease;
   }
 
   .menu-button:hover {
@@ -294,13 +319,15 @@ const iconLinks: {
     opacity: 0;
     transform: translateY(-8px);
     pointer-events: none;
-    transition: opacity var(--menu-transition), transform var(--menu-transition);
+    transition:
+      opacity var(--menu-transition),
+      transform var(--menu-transition);
   }
 
   .menu-content.menu-visible {
     pointer-events: auto;
   }
-  
+
   .menu-content.menu-active {
     opacity: 1;
     transform: translateY(0);
@@ -330,7 +357,8 @@ const iconLinks: {
     overflow: hidden;
   }
 
-  .link:hover, .link:focus {
+  .link:hover,
+  .link:focus {
     color: var(--gray-100);
     background-color: var(--gray-1002);
     transform: translateX(4px);
@@ -368,16 +396,41 @@ const iconLinks: {
     padding: var(--icon-padding);
     text-decoration: none;
     color: var(--accent-dark);
-    transition: all var(--theme-transition);
+    transition: all var(--transition-medium);
     border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+    background-color: rgba(var(--gray-999-basis), 0.1);
+    backdrop-filter: blur(4px);
+  }
+
+  .social::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--accent-gradient);
+    opacity: 0;
+    transition: opacity var(--transition-medium);
+    z-index: 0;
+  }
+
+  .social > * {
+    position: relative;
+    z-index: 1;
   }
 
   .social:hover,
   .social:focus {
     color: var(--accent-text-over);
-    background-color: var(--accent-regular);
-    transform: translateY(-3px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(-3px) scale(1.1);
+    box-shadow:
+      0 8px 16px rgba(0, 0, 0, 0.15),
+      var(--accent-soft-glow);
+  }
+
+  .social:hover::before,
+  .social:focus::before {
+    opacity: 1;
   }
 
   .theme-toggle {
@@ -390,18 +443,18 @@ const iconLinks: {
     .site-logo {
       height: 2rem;
     }
-    
+
     /* Optimize spacing on mobile */
     .nav-items {
       padding: 1.5rem;
       gap: 0.75rem;
     }
-    
+
     .menu-footer {
       padding: 1.25rem;
     }
   }
-  
+
   @media (max-width: 30em) {
     .site-logo {
       height: 5rem;
@@ -443,10 +496,23 @@ const iconLinks: {
       flex-direction: row;
       font-size: var(--text-sm);
       border-radius: 999rem;
-      border: 0;
+      border: 1px solid rgba(var(--gray-999-basis), 0.1);
       padding: 0.5rem 0.5625rem;
-      background: radial-gradient(var(--gray-900), var(--gray-800) 150%);
-      box-shadow: var(--shadow-md);
+      background: linear-gradient(
+        to right,
+        rgba(var(--gray-999-basis), 0.05),
+        rgba(var(--gray-999-basis), 0.1)
+      );
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+      transition: all var(--transition-medium);
+    }
+
+    .nav-items:hover {
+      border-color: rgba(var(--gray-999-basis), 0.2);
+      box-shadow:
+        0 15px 40px -15px rgba(0, 0, 0, 0.15),
+        0 0 10px rgba(157, 78, 255, 0.1);
     }
 
     .nav-items::before {
@@ -462,21 +528,46 @@ const iconLinks: {
       padding: 0.5rem 1rem;
       border-radius: 999rem;
       transition:
-        color var(--theme-transition),
-        background-color var(--theme-transition),
-        transform var(--theme-transition);
+        color var(--transition-medium),
+        background-color var(--transition-medium),
+        transform var(--transition-medium),
+        box-shadow var(--transition-medium);
+      position: relative;
+      z-index: 1;
+    }
+
+    .link::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 999rem;
+      background: var(--accent-gradient);
+      opacity: 0;
+      z-index: -1;
+      transition: opacity var(--transition-medium);
     }
 
     .link:hover,
     .link:focus {
-      color: var(--gray-100);
-      background-color: var(--accent-subtle-overlay);
-      transform: none;
+      color: var(--gray-0);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .link:hover::before,
+    .link:focus::before {
+      opacity: 0.1;
     }
 
     .link.active {
       color: var(--accent-text-over);
       background-color: var(--accent-regular);
+      box-shadow: 0 4px 12px rgba(118, 17, 166, 0.4);
+      font-weight: 600;
+    }
+
+    .link.active::before {
+      opacity: 0;
     }
 
     .menu-footer {
