@@ -58,6 +58,57 @@ const { title, description } = Astro.props;
       } else {
         document.documentElement.classList.remove("dark", "theme-dark");
       }
+
+      // Enhanced micro-interactions script
+      document.addEventListener('DOMContentLoaded', () => {
+        // Smooth transition between sections
+        const setupSectionTransitions = () => {
+          const sections = document.querySelectorAll('section');
+          const options = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+          };
+
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('section-visible');
+              }
+            });
+          }, options);
+
+          sections.forEach(section => {
+            section.classList.add('section-transition');
+            observer.observe(section);
+          });
+        };
+
+        // Button hover effects
+        const setupButtonEffects = () => {
+          const buttons = document.querySelectorAll('button, .link, a.btn, .button');
+          
+          buttons.forEach(button => {
+            button.addEventListener('mouseenter', () => {
+              button.classList.add('button-hover');
+            });
+            
+            button.addEventListener('mouseleave', () => {
+              button.classList.remove('button-hover');
+            });
+            
+            button.addEventListener('click', () => {
+              button.classList.add('button-active');
+              setTimeout(() => {
+                button.classList.remove('button-active');
+              }, 300);
+            });
+          });
+        };
+
+        setupSectionTransitions();
+        setupButtonEffects();
+      });
     </script>
 
     <style>
@@ -143,6 +194,39 @@ const { title, description } = Astro.props;
           background: none;
           background-blend-mode: none;
           --bg-gradient-size: none;
+        }
+      }
+
+      /* Micro-interactions styles */
+      .section-transition {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+      }
+
+      .section-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .button-hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .button-active {
+        transform: scale(0.95);
+      }
+
+      /* Respect user's reduced motion preferences */
+      @media (prefers-reduced-motion: reduce) {
+        .section-transition,
+        .section-visible,
+        .button-hover,
+        .button-active {
+          transition: none;
+          transform: none;
+          animation: none;
         }
       }
     </style>

@@ -157,15 +157,15 @@ const {
       <br />
     </p>
     <br /><br />
-    <div class="grid grid-cols-1 gap-8">
+    <div class="grid grid-cols-1 gap-10">
       <!-- Tools & Skills -->
       <div
-        class="bg-white p-2 rounded-xl shadow-sm card-hover-effect"
+        class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm card-hover-effect"
         style="--animation-order: 1;"
       >
-        <div class="flex items-center mb-6">
+        <div class="flex items-center mb-8">
           <div
-            class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center mr-4"
+            class="w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-lg flex items-center justify-center mr-4"
           >
             <i class="fas fa-tools text-purple-500"></i>
           </div>
@@ -174,11 +174,11 @@ const {
 
         {
           skills.webDev && skills.webDev.length > 0 && (
-            <div>
-              <h3 class="text-xl font-semibold py-4">Web Development</h3>
-              <div class="flex flex-wrap gap-3">
+            <div class="mb-8">
+              <h3 class="text-xl font-semibold pb-4">Web Development</h3>
+              <div class="flex flex-wrap gap-4">
                 {skills.webDev.map((skill) => (
-                  <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">
+                  <span class="px-4 py-2 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-100 rounded-full text-sm font-medium transform transition-transform hover:scale-105">
                     {skill}
                   </span>
                 ))}
@@ -189,11 +189,11 @@ const {
 
         {
           skills.mobileDev && skills.mobileDev.length > 0 && (
-            <div>
-              <h3 class="text-xl font-semibold py-4">Mobile Development</h3>
-              <div class="flex flex-wrap gap-3">
+            <div class="mb-8">
+              <h3 class="text-xl font-semibold pb-4">Mobile Development</h3>
+              <div class="flex flex-wrap gap-4">
                 {skills.mobileDev.map((skill) => (
-                  <span class="px-3 py-1 bg-pink-100 text-pink-800 rounded-full text-sm">
+                  <span class="px-4 py-2 bg-pink-100 dark:bg-pink-900 text-pink-800 dark:text-pink-100 rounded-full text-sm font-medium transform transition-transform hover:scale-105">
                     {skill}
                   </span>
                 ))}
@@ -205,28 +205,13 @@ const {
         {
           skills.other && skills.other.length > 0 && (
             <div>
-              <h3 class="text-xl font-semibold py-4">Other</h3>
-              <div class="flex flex-wrap gap-3">
-                {skills.other.map((skill, index) => {
-                  // Alternate between different background colors
-                  const bgClasses = [
-                    "bg-red-100 text-red-800",
-                    "bg-blue-100 text-blue-800",
-                    "bg-indigo-100 text-indigo-800",
-                    "bg-purple-100 text-purple-800",
-                    "bg-green-100 text-green-800",
-                    "bg-yellow-100 text-yellow-800",
-                    "bg-gray-100 text-gray-800",
-                  ];
-                  const colorClass = bgClasses[index % bgClasses.length];
-                  return (
-                    <span
-                      class={`px-3 py-1 ${colorClass} rounded-full text-sm`}
-                    >
-                      {skill}
-                    </span>
-                  );
-                })}
+              <h3 class="text-xl font-semibold pb-4">Other Technologies</h3>
+              <div class="flex flex-wrap gap-4">
+                {skills.other.map((skill) => (
+                  <span class="px-4 py-2 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-100 rounded-full text-sm font-medium transform transition-transform hover:scale-105">
+                    {skill}
+                  </span>
+                ))}
               </div>
             </div>
           )

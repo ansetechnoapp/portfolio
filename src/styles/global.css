@@ -25,6 +25,7 @@
 	--gray-1001:rgb(237 237 238);
 	--gray-1002:#fdfdfd33;
 	--gray-1003:#f4f5f733;
+	--secondary-text: #a0a0a0;
 
 
 	--accent-light: #c561f6;
@@ -48,8 +49,8 @@
 		var(--gradient-stop-3)
 	);
 	--gradient-accent-orange: linear-gradient(
-		150deg,
-		#ca7879,
+		135deg,
+		#ca7879cc,
 		var(--accent-regular),
 		var(--accent-dark)
 	);
@@ -82,6 +83,7 @@
 
 	/* Transitions */
 	--theme-transition: 0.2s ease-in-out;
+	--menu-transition: 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 :root.theme-dark {
@@ -100,8 +102,10 @@
 	--gray-999: #090b11;
 	--gray-1001:#2a2a2a;
 	--gray-1002:#fdfdfd12;
+	--gray-1003:#f8f9fa20;
+	--secondary-text: #b8b8b8;
 
-	--accent-light: #1c0056;
+	--accent-light: #9b4ddb;
 	--accent-regular: #7611a6;
 	--accent-dark: #c561f6;
 	--accent-overlay: hsla(280, 89%, 67%, 0.33);
@@ -113,8 +117,8 @@
 	--gradient-stop-1: #4c11c6;
 	--gradient-subtle: linear-gradient(150deg, var(--gray-900) 19%, var(--gray-999) 81%);
 	--gradient-accent-orange: linear-gradient(
-		150deg,
-		#ca7879,
+		135deg,
+		#ca7879cc,
 		var(--accent-regular),
 		var(--accent-light)
 	);
@@ -220,6 +224,51 @@ h4 {
 
 h5 {
 	font-size: var(--text-xl);
+}
+
+/* Focus styles for accessibility */
+a:focus-visible,
+button:focus-visible {
+	outline: 2px solid var(--accent-regular);
+	outline-offset: 2px;
+	border-radius: 0.25rem;
+}
+
+/* Responsive typography */
+@media (max-width: 768px) {
+	:root {
+		--text-5xl: 3.5rem;
+		--text-4xl: 2.75rem;
+		--text-3xl: 2.25rem;
+		--text-2xl: 1.75rem;
+	}
+	
+	/* Improved mobile spacing */
+	section {
+		padding: 2rem 1rem;
+	}
+	
+	h1, h2, h3 {
+		margin-bottom: 1rem;
+	}
+	
+	p {
+		margin-bottom: 1.25rem;
+	}
+}
+
+@media (max-width: 480px) {
+	:root {
+		--text-5xl: 3rem;
+		--text-4xl: 2.5rem;
+		--text-3xl: 2rem;
+		--text-2xl: 1.5rem;
+	}
+	
+	/* Extra tight spacing for very small screens */
+	section {
+		padding: 1.5rem 0.875rem;
+	}
 }
 
 /* Utilities */

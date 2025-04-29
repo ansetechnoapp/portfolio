@@ -30,6 +30,7 @@ const iconLinks: {
         class="social-link"
         target="_blank"
         style={`--delay: ${index * 100}ms`}
+        aria-label={label}
       >
         <span class="sr-only">{label}</span>
         <Icon icon={icon} />
@@ -52,18 +53,20 @@ const iconLinks: {
     padding: 0.75rem;
     border-radius: 50%;
     background: var(--gray-800);
-    color: var(--gray-300);
+    color: var(--secondary-text);
     display: flex;
     align-items: center;
     justify-content: center;
     transition:
-      transform 0.3s ease,
-      background-color 0.3s ease;
+      transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+      background-color 0.3s ease,
+      box-shadow 0.3s ease;
     position: relative;
     overflow: hidden;
     animation: socialFadeIn 0.5s ease-out forwards;
     opacity: 0;
     animation-delay: var(--delay);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   }
 
   @keyframes socialFadeIn {
@@ -87,17 +90,29 @@ const iconLinks: {
     background: var(--accent-regular);
     border-radius: 50%;
     transform: scale(0);
-    transition: transform 0.3s ease;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     z-index: -1;
   }
 
-  .social-link:hover {
+  .social-link:hover,
+  .social-link:focus-visible {
     color: white;
-    transform: translateY(-5px);
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    outline: none;
   }
 
-  .social-link:hover::before {
+  .social-link:focus-visible {
+    box-shadow: 0 0 0 3px var(--accent-light);
+  }
+
+  .social-link:hover::before,
+  .social-link:focus-visible::before {
     transform: scale(1);
+  }
+
+  .social-link:active {
+    transform: translateY(-2px) scale(0.95);
   }
 
   @media (min-width: 48em) {
