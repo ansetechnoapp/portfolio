@@ -13,69 +13,72 @@ const imageDirs = [
   path.join(publicDir, 'assets/myprojects'),
   path.join(publicDir, 'assets/backgrounds'),
   path.join(publicDir, 'assets/img'),
+  path.join(publicDir, 'assets/timeline'),
+  path.join(publicDir, 'assets/blog'),
   // Add more directories as needed
 ];
 
 // Image formats to process
-const supportedFormats = ['.jpg', '.jpeg', '.png'];
+const supportedFormats = ['.jpg', '.jpeg', '.png', '.gif'];
 
 // Output formats to generate
 const outputFormats = [
   { format: 'webp', quality: 80 },
-  { format: 'avif', quality: 70 },
+  { format: 'avif', quality: 65 }, // Réduire la qualité AVIF pour une meilleure compression
 ];
 
 // Size variants for responsive images (width in pixels)
-const sizeVariants = [640, 1024, 1440];
+// Ajout de tailles plus petites pour les mobiles
+const sizeVariants = [320, 480, 640, 1024, 1440];
 
 async function processImage(imagePath) {
   const fileInfo = path.parse(imagePath);
-  
+
   if (!supportedFormats.includes(fileInfo.ext.toLowerCase())) {
     return;
   }
-  
+
   console.log(`Processing: ${imagePath}`);
   const imageBuffer = await fs.readFile(imagePath);
-  
+
   // Get image dimensions
   const metadata = await sharp(imageBuffer).metadata();
-  
+
   // Skip if already optimized (checking for _optimized in filename)
   if (fileInfo.name.includes('_optimized')) {
     return;
   }
-  
+
   // Only create size variants for images larger than the target size
   const applicableSizes = sizeVariants.filter(size => size < metadata.width);
-  
+
   // Original size conversion to modern formats
   for (const { format, quality } of outputFormats) {
     const outputPath = path.join(
-      fileInfo.dir, 
+      fileInfo.dir,
       `${fileInfo.name}_optimized.${format}`
     );
-    
+
     await sharp(imageBuffer)
       .toFormat(format, { quality })
       .toFile(outputPath);
-      
+
     console.log(`Created: ${outputPath}`);
   }
-  
+
   // Size variants for responsive images
   for (const size of applicableSizes) {
     for (const { format, quality } of outputFormats) {
       const outputPath = path.join(
-        fileInfo.dir, 
+        fileInfo.dir,
         `${fileInfo.name}_${size}w.${format}`
       );
-      
+
       await sharp(imageBuffer)
         .resize(size)
         .toFormat(format, { quality })
         .toFile(outputPath);
-        
+
       console.log(`Created: ${outputPath}`);
     }
   }
@@ -84,10 +87,10 @@ async function processImage(imagePath) {
 async function processDirectory(dir) {
   try {
     const entries = await fs.readdir(dir, { withFileTypes: true });
-    
+
     for (const entry of entries) {
       const fullPath = path.join(dir, entry.name);
-      
+
       if (entry.isDirectory()) {
         await processDirectory(fullPath);
       } else if (entry.isFile()) {
@@ -109,8 +112,8 @@ async function main() {
       console.error(`Directory ${dir} does not exist or is not accessible`);
     }
   }
-  
+
   console.log('Image optimization complete!');
 }
 
-main().catch(console.error); 
+main().catch(console.error);

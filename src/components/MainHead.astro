@@ -1,21 +1,28 @@
 ---
 import "../styles/global.css";
 import "../styles/style.css";
+import SchemaOrg from "./SchemaOrg.astro";
 
 interface Props {
   title?: string | undefined;
   description?: string | undefined;
   image?: string | undefined;
   canonicalURL?: URL | string | undefined;
+  schemaType?: string;
+  datePublished?: string;
+  dateModified?: string;
 }
 
 import dataUser from "../data/User.json";
 
 const {
-  title = `${dataUser.firstName} ${dataUser.lastName}: Personal Site`,
-  description = `The personal site of ${dataUser.firstName} ${dataUser.lastName} - Freelance web and mobile developer specializing in React, React Native, Astro.js, and modern web technologies.`,
+  title = `${dataUser.firstName} ${dataUser.lastName}: Portfolio`,
+  description = `Le site personnel de ${dataUser.firstName} ${dataUser.lastName} - Développeur web et mobile freelance spécialisé en React, React Native, Astro.js et technologies web modernes.`,
   image = "/assets/social-preview.jpg",
   canonicalURL = new URL(Astro.url.pathname, Astro.site),
+  schemaType = "Person",
+  datePublished = new Date().toISOString(),
+  dateModified = new Date().toISOString(),
 } = Astro.props;
 
 const socialImageURL = new URL(image, Astro.site).href;
@@ -31,7 +38,10 @@ const socialImageURL = new URL(image, Astro.site).href;
 <meta name="title" content={title} />
 <meta name="description" content={description} />
 <meta name="author" content={`${dataUser.firstName} ${dataUser.lastName}`} />
-<meta name="keywords" content="web development, mobile apps, React, React Native, Astro, frontend, backend, developer, portfolio" />
+<meta
+  name="keywords"
+  content="web development, mobile apps, React, React Native, Astro, frontend, backend, developer, portfolio"
+/>
 <link rel="canonical" href={canonicalURL} />
 
 <!-- Open Graph / Facebook -->
@@ -49,8 +59,16 @@ const socialImageURL = new URL(image, Astro.site).href;
 <meta property="twitter:image" content={socialImageURL} />
 
 <!-- Favicons -->
-<link rel="icon" type="image/svg+xml" href="/assets/Anscod_logo/Anscod_logo_dark.ico" />
-<link rel="apple-touch-icon" sizes="180x180" href="/assets/Anscod_logo/apple-touch-icon.png" />
+<link
+  rel="icon"
+  type="image/svg+xml"
+  href="/assets/Anscod_logo/Anscod_logo_dark.ico"
+/>
+<link
+  rel="apple-touch-icon"
+  sizes="180x180"
+  href="/assets/Anscod_logo/apple-touch-icon.png"
+/>
 <link rel="manifest" href="/site.webmanifest" />
 
 <!-- Fonts -->
@@ -59,6 +77,29 @@ const socialImageURL = new URL(image, Astro.site).href;
 <link
   href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,700;1,400&family=Rubik:wght@500;600&display=swap"
   rel="stylesheet"
+/>
+
+<!-- Schema.org Structured Data -->
+<SchemaOrg
+  type={schemaType}
+  name={title}
+  description={description}
+  image={image}
+  datePublished={datePublished}
+  dateModified={dateModified}
+  url={canonicalURL}
+/>
+
+<!-- Security Headers -->
+<meta
+  http-equiv="Content-Security-Policy"
+  content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https://cdnjs.cloudflare.com; connect-src 'self'; font-src-elem 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; style-src-elem 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com;"
+/>
+<meta http-equiv="X-Content-Type-Options" content="nosniff" />
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN" />
+<meta
+  http-equiv="Permissions-Policy"
+  content="camera=(), microphone=(), geolocation=()"
 />
 
 <!-- Theme Toggle Script -->
