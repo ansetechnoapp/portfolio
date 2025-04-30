@@ -1,14 +1,70 @@
 {
-    "firstName": "Kevin",
-    "lastName": "Otty",
-    "email": "contact@anscod.online",
-    "phone": "O1 97279001",
-    "natinality": "Béninoise",
-    "birthDay": "21/04/1998",
-    "address": {
-      "city": "cotonou",
-      "contry": "litoral",
-      "rue": "00229,Bénin",
-      "indicatif": "+229"
+  "firstName": "KEVIN",
+  "lastName": "OTTY ANSELME",
+  "email": "contact@anscod.online",
+  "phone": "+229 97 27 90 01",
+  "nationality": "Béninoise",
+  "website": "anscod.online",
+  "location": "Cotonou, Bénin",
+  "languages": {
+    "french": "Bien",
+    "english": {
+      "speaking": "Un peu",
+      "reading": "Assez bien",
+      "writing": "Assez bien"
     }
+  },
+  "address": {
+    "city": "Cotonou",
+    "country": "Bénin",
+    "rue": "Cotonou, Bénin",
+    "indicatif": "+229"
+  },
+  "socialMedia": {
+    "linkedin": "linkedin.com/in/anscod",
+    "github": "github.com/ansetechnoapp",
+    "pinterest": "pinterest.com/anscoddesign",
+    "instagram": "instagram.com/anscod.otty"
+  },
+  "profile": "Développeur Web & Mobile titulaire d'une licence en systèmes informatiques et logiciels. Passionné par l'innovation technologique, il cherche à mettre ses compétences techniques au service de projets concrets pour contribuer à la croissance des entreprises.",
+  "skills": {
+    "frameworks": [
+      "ReactJS",
+      "Next.js",
+      "React Native",
+      "NestJS",
+      "TypeScript",
+      "Astro.js",
+      "Laravel",
+      "WordPress",
+      "PHP",
+      "Python (Scraping)"
+    ],
+    "databases": [
+      "Firebase",
+      "Supabase",
+      "Prisma",
+      "SQL",
+      "PostgreSQL",
+      "Airtable"
+    ],
+    "tools": [
+      "SCSS",
+      "Tailwind CSS",
+      "jQuery",
+      "Redux Toolkit",
+      "GitHub",
+      "Cloudflare",
+      "Linux",
+      "GitHub Copilot"
+    ],
+    "design": [
+      "Figma",
+      "Photoshop",
+      "Canva"
+    ],
+    "maintenance": [
+      "Ordinateurs et systèmes"
+    ]
   }
+}
