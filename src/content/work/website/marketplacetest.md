@@ -4,7 +4,7 @@ publishDate: 2023-09-15 00:00:00
 number: 12
 img: /assets/myprojects/MarketPlace-Premium-Shopping-Experience.png
 img_alt: NFT marketplace platform with auction, fixed price, and decreasing price options
-github: https://github.com/ansetechnoapp/nft-marketplace
+github: https://github.com/ansetechnoapp/marketplacetest
 liveDemo: https://marketplacetest-virid.vercel.app/
 device: web
 description: |

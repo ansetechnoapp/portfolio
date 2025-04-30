@@ -4,7 +4,7 @@ publishDate: 2023-11-20 00:00:00
 number: 13
 img: /assets/myprojects/CryptoVision-Modern-Cryptocurrency-Dashboard.png
 img_alt: Modern dashboard interface with sidebar navigation and modular components
-github: https://github.com/ansetechnoapp/modern-dashboard
+github: https://github.com/ansetechnoapp/bitcointest
 liveDemo: https://bitcointest.vercel.app/dashboard
 device: web
 description: |
