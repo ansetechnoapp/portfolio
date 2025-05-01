@@ -25,9 +25,24 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content } = await entry.render();
+
+// Prepare project metadata for SEO
+const projectMetadata = {
+  publishedTime: entry.data.publishDate
+    ? new Date(entry.data.publishDate).toISOString()
+    : new Date().toISOString(),
+  modifiedTime: new Date().toISOString(), // Pas de date de mise à jour dans le schéma
+  tags: entry.data.tags || [],
+};
 ---
 
-<Layout title={entry.data.title} description={entry.data.description}>
+<Layout
+  title={entry.data.title}
+  description={entry.data.description}
+  image={entry.data.img || "/assets/social-preview.jpg"}
+  type="project"
+  article={projectMetadata}
+>
   <div class="project-container">
     <div class="project-header">
       <div class="header-content">

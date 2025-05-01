@@ -60,7 +60,12 @@ const { heroTitle = `I am ${dataUser.firstName} ${dataUser.lastName}` } =
   Astro.props;
 ---
 
-<Layout>
+<Layout
+  title={`${dataUser.firstName} ${dataUser.lastName} - Développeur Web & Mobile Freelance`}
+  description={`Portfolio de ${dataUser.firstName} ${dataUser.lastName}, développeur web et mobile freelance spécialisé en React, React Native, Astro.js et technologies web modernes.`}
+  image="/assets/social-preview.jpg"
+  type="website"
+>
   <MenuLinkNav namepage="home" />
   <div class="stack gap-15 pt-20">
     <div class="wrapper stack gap-8 lg:gap-20">

@@ -16,7 +16,12 @@ const remainingPosts = posts.slice(3);
 const allTags = [...new Set(posts.flatMap((post) => post.data.tags || []))];
 ---
 
-<Layout title="Blog | Portfolio">
+<Layout
+  title="Blog | Portfolio"
+  description="Découvrez mes articles sur le développement web, mobile et les technologies modernes"
+  image="/assets/social-preview.jpg"
+  type="website"
+>
   <MenuLinkNav namepage="blog" />
 
   <section class="presentation-section mt-16">

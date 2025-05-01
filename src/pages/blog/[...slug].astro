@@ -28,12 +28,28 @@ const formattedUpdatedDate = post.data.updatedDate
     })
   : null;
 
+// Prepare article metadata for SEO
+const articleMetadata = {
+  publishedTime: post.data.pubDate.toISOString(),
+  modifiedTime: post.data.updatedDate
+    ? post.data.updatedDate.toISOString()
+    : post.data.pubDate.toISOString(),
+  tags: post.data.tags || [],
+  authors: post.data.author ? [post.data.author] : [],
+};
+
 // Calculate reading time (rough estimate)
 const wordCount = post.body.split(/\s+/).length;
 const readingTime = Math.max(1, Math.round(wordCount / 200));
 ---
 
-<Layout title={`${post.data.title} | Blog`}>
+<Layout
+  title={`${post.data.title} | Blog`}
+  description={post.data.description}
+  image={post.data.heroImage || "/assets/social-preview.jpg"}
+  type="article"
+  article={articleMetadata}
+>
   <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-0 pt-16 sm:pt-20">
     <!-- Breadcrumb -->
     <nav class="py-6 text-sm" aria-label="Breadcrumb">

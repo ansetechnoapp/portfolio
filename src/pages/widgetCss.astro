@@ -24,22 +24,33 @@ const {
 } = Astro.props;
 ---
 
-<Layout title={LayoutTitle} description={descriptionLayout}>
+<Layout
+  title={LayoutTitle}
+  description={descriptionLayout}
+  image="/assets/social-preview.jpg"
+  type="website"
+>
   <MenuLinkNav namepage="work" />
-  
+
   <section class="presentation-section mt-16">
     <div class="wrapper">
       <div class="presentation-content">
         <h1>CSS Widgets & Tools</h1>
-        <p>Explore my collection of CSS widgets, tools, and resources designed to enhance web experiences.</p>
-        <p>These components showcase my expertise in CSS animations, effects, and responsive design patterns.</p>
+        <p>
+          Explore my collection of CSS widgets, tools, and resources designed to
+          enhance web experiences.
+        </p>
+        <p>
+          These components showcase my expertise in CSS animations, effects, and
+          responsive design patterns.
+        </p>
         <div class="presentation-cta">
           <a href="#widget-section" class="btn">Explore Widgets</a>
         </div>
       </div>
     </div>
   </section>
-  
+
   <div class="stack gap-20">
     <main class="wrapper stack gap-8 lg:gap-16" id="widget-section">
       <Hero
@@ -84,7 +95,7 @@ const {
   :global(header) {
     margin-bottom: 0;
   }
-  
+
   .presentation-section {
     padding: 8rem 0 4rem;
     text-align: center;
@@ -97,7 +108,7 @@ const {
   .mt-16 {
     margin-top: 4rem;
   }
-  
+
   .presentation-section::before {
     content: "";
     position: absolute;
@@ -105,8 +116,16 @@ const {
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(circle at top right, var(--accent-regular-alpha), transparent 60%),
-                radial-gradient(circle at bottom left, var(--accent-dark-alpha), transparent 60%);
+    background: radial-gradient(
+        circle at top right,
+        var(--accent-regular-alpha),
+        transparent 60%
+      ),
+      radial-gradient(
+        circle at bottom left,
+        var(--accent-dark-alpha),
+        transparent 60%
+      );
     opacity: 0.4;
     z-index: -1;
   }

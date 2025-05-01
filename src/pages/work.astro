@@ -24,15 +24,27 @@ const {
 } = Astro.props;
 ---
 
-<Layout title={LayoutTitle} description={descriptionLayout}>
+<Layout
+  title={LayoutTitle}
+  description={descriptionLayout}
+  image="/assets/social-preview.jpg"
+  type="website"
+>
   <MenuLinkNav namepage="work" />
-  
+
   <section class="presentation-section mt-16">
     <div class="wrapper">
       <div class="presentation-content">
         <h1>My Portfolio</h1>
-        <p>Welcome to my work showcase. Here you'll find a collection of projects that demonstrate my skills and experience in web development and design.</p>
-        <p>Each project represents a unique challenge and solution, showcasing different technologies and approaches I've worked with.</p>
+        <p>
+          Welcome to my work showcase. Here you'll find a collection of projects
+          that demonstrate my skills and experience in web development and
+          design.
+        </p>
+        <p>
+          Each project represents a unique challenge and solution, showcasing
+          different technologies and approaches I've worked with.
+        </p>
         <div class="presentation-cta">
           <a href="#portfolio-section" class="btn">View Projects</a>
         </div>
@@ -86,7 +98,7 @@ const {
   :global(header) {
     margin-bottom: 0;
   }
-  
+
   .presentation-section {
     padding: 8rem 0 4rem;
     text-align: center;
@@ -107,8 +119,16 @@ const {
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(circle at top right, var(--accent-regular-alpha), transparent 60%),
-                radial-gradient(circle at bottom left, var(--accent-dark-alpha), transparent 60%);
+    background: radial-gradient(
+        circle at top right,
+        var(--accent-regular-alpha),
+        transparent 60%
+      ),
+      radial-gradient(
+        circle at bottom left,
+        var(--accent-dark-alpha),
+        transparent 60%
+      );
     opacity: 0.4;
     z-index: -1;
   }

@@ -3,25 +3,48 @@
 // https://docs.astro.build/en/core-concepts/layouts/
 
 // Component Imports
-import MainHead from "../components/MainHead.astro";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
 import AccessibilityFeatures from "../components/AccessibilityFeatures.astro";
 import FontAwesomeFallback from "../components/FontAwesomeFallback.astro";
+import SEO from "../components/SEO.astro";
 import "../styles/global.css";
 
 interface Props {
   title?: string | undefined;
   description?: string | undefined;
+  image?: string | undefined;
+  type?: string | undefined;
+  article?: {
+    publishedTime?: string;
+    modifiedTime?: string;
+    tags?: string[];
+    authors?: string[];
+  };
 }
 
-const { title, description } = Astro.props;
+const {
+  title,
+  description,
+  image = "/assets/social-preview.jpg",
+  type = "website",
+  article,
+} = Astro.props;
 ---
 
 <!doctype html>
 <html lang="fr" class="scroll-smooth">
   <head>
-    <MainHead title={title} description={description} />
+    <!-- Utilisation du composant SEO pour toutes les balises meta -->
+    <SEO
+      title={title}
+      description={description}
+      image={image}
+      type={type}
+      article={article}
+    />
+
+    <!-- Autres balises head spécifiques à cette page -->
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
