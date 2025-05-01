@@ -27,6 +27,12 @@
 	--gray-1003: #f4f5f733;
 	--secondary-text: #7a7a8c;
 
+	/* Variables pour les textes */
+	--text-primary-color: var(--gray-200);
+	--text-secondary-color: var(--gray-300);
+	--text-muted-color: var(--gray-400);
+	--text-gray-600: rgb(75 85 99); /* Équivalent à la classe Tailwind text-gray-600 */
+
 	/* Primary Accent - Purple */
 	--accent-light: #9d4eff;
 	--accent-regular: #7611a6;
@@ -137,6 +143,12 @@
 	--gray-1002:#fdfdfd12;
 	--gray-1003:#f8f9fa20;
 	--secondary-text: #b8b8b8;
+
+	/* Variables pour les textes en mode sombre */
+	--text-primary-color: var(--gray-200);
+	--text-secondary-color: var(--gray-300);
+	--text-muted-color: var(--gray-0); /* Blanc en mode sombre pour meilleure lisibilité */
+	--text-gray-600: var(--gray-0); /* Blanc en mode sombre pour meilleure lisibilité */
 
 	--accent-light: #9b4ddb;
 	--accent-regular: #7611a6;

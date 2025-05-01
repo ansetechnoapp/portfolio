@@ -15,16 +15,16 @@ const currentYear = new Date().getFullYear();
       </p>
     </div>
     <div class="socials">
-      <a href="https://github.com/ansetechnoapp" class="text-gray-400 hover:text-white transition-colors">
+      <a href="https://github.com/ansetechnoapp" class="social-link">
         <i class="fab fa-github"></i>
       </a>
-      <a href="https://linkedin.com/in/anscod" class="text-gray-400 hover:text-white transition-colors">
+      <a href="https://linkedin.com/in/anscod" class="social-link">
         <i class="fab fa-linkedin-in"></i>
       </a>
-      <a href="https://pinterest.com/anscoddesign" class="text-gray-400 hover:text-white transition-colors">
+      <a href="https://pinterest.com/anscoddesign" class="social-link">
         <i class="fab fa-pinterest"></i>
       </a>
-      <a href="https://instagram.com/anscod.otty" class="text-gray-400 hover:text-white transition-colors">
+      <a href="https://instagram.com/anscod.otty" class="social-link">
         <i class="fab fa-instagram"></i>
       </a>
     </div>
@@ -33,7 +33,9 @@ const currentYear = new Date().getFullYear();
     <p class="description">
       Both my portfolio and a blog about programming and technology. It is a
       place where I share my thoughts, ideas, and experiences in the field. I
-      hope you find it useful and informative. I am always open to feedback and suggestions, so feel free to reach out to me if you have any questions or comments.
+      hope you find it useful and informative. I am always open to feedback and
+      suggestions, so feel free to reach out to me if you have any questions or
+      comments.
     </p>
   </div>
   <p class="copyright">
@@ -53,12 +55,12 @@ const currentYear = new Date().getFullYear();
     margin-top: auto;
     padding: 1.5rem 1rem;
     text-align: center;
-    color: var(--gray-400);
+    color: var(--text-muted-color); /* Utilise la variable globale */
     font-size: var(--text-sm);
   }
 
   .footer-content a {
-    color: var(--gray-400);
+    color: var(--text-muted-color); /* Utilise la variable globale */
     text-decoration: 1px solid underline transparent;
     text-underline-offset: 0.25em;
     transition: text-decoration-color var(--theme-transition);
@@ -90,6 +92,19 @@ const currentYear = new Date().getFullYear();
 
   .socials a {
     font-size: 1.2rem;
+    color: var(--text-muted-color); /* Utilise la variable globale */
+    transition:
+      color 0.3s ease,
+      transform 0.3s ease;
+  }
+
+  .socials a:hover {
+    color: var(--accent-regular);
+    transform: translateY(-3px);
+  }
+
+  :root.theme-dark .socials a:hover {
+    color: var(--accent-dark);
   }
 
   .description-container {
@@ -104,13 +119,13 @@ const currentYear = new Date().getFullYear();
     max-width: 36rem;
     font-size: 0.85rem;
     line-height: 1.5;
-    color: var(--gray-400);
+    color: var(--text-muted-color); /* Utilise la variable globale */
   }
 
   .copyright {
     text-align: center;
     font-size: 0.8rem;
-    color: var(--gray-400);
+    color: var(--text-muted-color); /* Utilise la variable globale */
     margin-bottom: 2.5rem;
   }
 

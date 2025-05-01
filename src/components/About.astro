@@ -580,25 +580,39 @@ const {
     }
   }
 
+  /* Variables pour les couleurs des textes */
+  :root {
+    /* Couleurs pour le badge d'expérience */
+    --years-text-color: var(--gray-0); /* Utilise la variable existante pour le noir */
+    --years-label-color: var(--accent-regular); /* Utilise la couleur d'accent existante */
+
+    /* Couleurs pour les textes secondaires */
+    --text-secondary-color: var(--gray-300); /* Couleur pour les textes secondaires en mode light */
+    --text-muted-color: var(--gray-400); /* Couleur pour les textes tertiaires en mode light */
+  }
+
+  :root.theme-dark {
+    /* Couleurs pour le badge d'expérience */
+    --years-text-color: var(--gray-0); /* En mode sombre, utilise la variable qui est déjà définie comme blanc */
+    --years-label-color: var(--gray-0); /* En mode sombre, utilise la même variable pour le blanc */
+
+    /* Couleurs pour les textes secondaires */
+    --text-secondary-color: var(--gray-300); /* Couleur pour les textes secondaires en mode dark */
+    --text-muted-color: var(--gray-0); /* Couleur pour les textes tertiaires en mode dark - blanc pour meilleure lisibilité */
+  }
+
   .badge-text .years {
     font-size: 1.1rem;
     font-weight: 700;
-    color: var(--gray-0);
+    color: var(--years-text-color); /* Utilise la variable */
     margin: 0;
   }
 
   .badge-text .label {
     font-size: 0.8rem;
-    color: var(--gray-300);
+    color: var(--years-label-color); /* Utilise la variable */
     margin: 0;
-  }
-
-  :root.theme-dark .badge-text .years {
-    color: var(--gray-999);
-  }
-
-  :root.theme-dark .badge-text .label {
-    color: var(--gray-400);
+    font-weight: 500; /* Légèrement plus gras pour une meilleure lisibilité */
   }
 
   .profile-actions {
@@ -745,7 +759,7 @@ const {
   }
 
   :root.theme-dark .section2-about .describe-about {
-    color: var(--gray-400);
+    color: var(--text-muted-color); /* Utilise la variable personnalisée */
   }
 
   .section2-about .btn-about {
@@ -943,12 +957,9 @@ const {
     color: white;
   }
 
-  :root:not(.theme-dark) .text-gray-600 {
-    color: black;
-  }
-
-  :root.theme-dark .text-gray-600 {
-    color: white;
+  /* Utilisation de la variable CSS pour text-gray-600 */
+  .text-gray-600 {
+    color: var(--text-gray-600);
   }
 
   /* Styles spécifiques pour les langues */

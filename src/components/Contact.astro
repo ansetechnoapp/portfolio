@@ -125,7 +125,12 @@
               required
               minlength="2"
             />
-            <div class="error-message text-red-500 text-sm mt-1 hidden" id="name-error">Please enter your name</div>
+            <div
+              class="error-message text-red-500 text-sm mt-1 hidden"
+              id="name-error"
+            >
+              Please enter your name
+            </div>
           </div>
           <div class="mb-6">
             <label for="email" class="block text-gray-700 font-medium mb-2"
@@ -139,7 +144,12 @@
               placeholder="john@example.com"
               required
             />
-            <div class="error-message text-red-500 text-sm mt-1 hidden" id="email-error">Please enter a valid email address</div>
+            <div
+              class="error-message text-red-500 text-sm mt-1 hidden"
+              id="email-error"
+            >
+              Please enter a valid email address
+            </div>
           </div>
           <div class="mb-6">
             <label for="subject" class="block text-gray-700 font-medium mb-2"
@@ -153,7 +163,12 @@
               placeholder="Project Inquiry"
               required
             />
-            <div class="error-message text-red-500 text-sm mt-1 hidden" id="subject-error">Please enter a subject</div>
+            <div
+              class="error-message text-red-500 text-sm mt-1 hidden"
+              id="subject-error"
+            >
+              Please enter a subject
+            </div>
           </div>
           <div class="mb-6">
             <label for="message" class="block text-gray-700 font-medium mb-2"
@@ -167,7 +182,12 @@
               placeholder="Hello, I would like to talk about..."
               required
               minlength="10"></textarea>
-            <div class="error-message text-red-500 text-sm mt-1 hidden" id="message-error">Please enter your message (at least 10 characters)</div>
+            <div
+              class="error-message text-red-500 text-sm mt-1 hidden"
+              id="message-error"
+            >
+              Please enter your message (at least 10 characters)
+            </div>
           </div>
           <button
             type="submit"
@@ -205,111 +225,126 @@
     background: var(--gradient-accent-orange);
     transition: all 0.45s ease;
   }
+
+  /* Utilisation de la variable CSS pour text-gray-600 */
+  .text-gray-600 {
+    color: var(--text-gray-600);
+  }
 </style>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('contact-form') as HTMLFormElement;
-    const nameInput = document.getElementById('name') as HTMLInputElement;
-    const emailInput = document.getElementById('email') as HTMLInputElement;
-    const subjectInput = document.getElementById('subject') as HTMLInputElement;
-    const messageInput = document.getElementById('message') as HTMLTextAreaElement;
-    const submitButton = document.getElementById('submit-button') as HTMLButtonElement;
-    const successMessage = document.querySelector('.success-message') as HTMLElement;
-    
-    const nameError = document.getElementById('name-error') as HTMLElement;
-    const emailError = document.getElementById('email-error') as HTMLElement;
-    const subjectError = document.getElementById('subject-error') as HTMLElement;
-    const messageError = document.getElementById('message-error') as HTMLElement;
-    
+  document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("contact-form") as HTMLFormElement;
+    const nameInput = document.getElementById("name") as HTMLInputElement;
+    const emailInput = document.getElementById("email") as HTMLInputElement;
+    const subjectInput = document.getElementById("subject") as HTMLInputElement;
+    const messageInput = document.getElementById(
+      "message"
+    ) as HTMLTextAreaElement;
+    const submitButton = document.getElementById(
+      "submit-button"
+    ) as HTMLButtonElement;
+    const successMessage = document.querySelector(
+      ".success-message"
+    ) as HTMLElement;
+
+    const nameError = document.getElementById("name-error") as HTMLElement;
+    const emailError = document.getElementById("email-error") as HTMLElement;
+    const subjectError = document.getElementById(
+      "subject-error"
+    ) as HTMLElement;
+    const messageError = document.getElementById(
+      "message-error"
+    ) as HTMLElement;
+
     const validateEmail = (email: string): boolean => {
       return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     };
-    
+
     const validateForm = (): boolean => {
       let valid = true;
-      
+
       // Validate name
       if (!nameInput?.value.trim() || nameInput.value.length < 2) {
-        nameError?.classList.remove('hidden');
+        nameError?.classList.remove("hidden");
         valid = false;
       } else {
-        nameError?.classList.add('hidden');
+        nameError?.classList.add("hidden");
       }
-      
+
       // Validate email
       if (!emailInput?.value.trim() || !validateEmail(emailInput.value)) {
-        emailError?.classList.remove('hidden');
+        emailError?.classList.remove("hidden");
         valid = false;
       } else {
-        emailError?.classList.add('hidden');
+        emailError?.classList.add("hidden");
       }
-      
+
       // Validate subject
       if (!subjectInput?.value.trim()) {
-        subjectError?.classList.remove('hidden');
+        subjectError?.classList.remove("hidden");
         valid = false;
       } else {
-        subjectError?.classList.add('hidden');
+        subjectError?.classList.add("hidden");
       }
-      
+
       // Validate message
       if (!messageInput?.value.trim() || messageInput.value.length < 10) {
-        messageError?.classList.remove('hidden');
+        messageError?.classList.remove("hidden");
         valid = false;
       } else {
-        messageError?.classList.add('hidden');
+        messageError?.classList.add("hidden");
       }
-      
+
       return valid;
     };
-    
-    form?.addEventListener('submit', (e) => {
+
+    form?.addEventListener("submit", (e) => {
       e.preventDefault();
-      
+
       if (validateForm()) {
         // In a real implementation, you would send the form data to a server
         // For now, we'll just show a success message
         if (submitButton) submitButton.disabled = true;
-        if (submitButton) submitButton.innerHTML = 'Sending...';
-        
+        if (submitButton) submitButton.innerHTML = "Sending...";
+
         // Simulate form submission
         setTimeout(() => {
           form?.reset();
           if (submitButton) submitButton.disabled = false;
-          if (submitButton) submitButton.innerHTML = 'Send Message';
-          successMessage?.classList.remove('hidden');
-          
+          if (submitButton) submitButton.innerHTML = "Send Message";
+          successMessage?.classList.remove("hidden");
+
           // Hide success message after 5 seconds
           setTimeout(() => {
-            successMessage?.classList.add('hidden');
+            successMessage?.classList.add("hidden");
           }, 5000);
         }, 1500);
       }
     });
-    
+
     // Live validation
-    nameInput?.addEventListener('input', () => {
+    nameInput?.addEventListener("input", () => {
       if (nameInput?.value.trim() && nameInput.value.length >= 2) {
-        nameError?.classList.add('hidden');
+        nameError?.classList.add("hidden");
       }
     });
-    
-    emailInput?.addEventListener('input', () => {
+
+    emailInput?.addEventListener("input", () => {
       if (emailInput?.value.trim() && validateEmail(emailInput.value)) {
-        emailError?.classList.add('hidden');
+        emailError?.classList.add("hidden");
       }
     });
-    
-    subjectInput?.addEventListener('input', () => {
+
+    subjectInput?.addEventListener("input", () => {
       if (subjectInput?.value.trim()) {
-        subjectError?.classList.add('hidden');
+        subjectError?.classList.add("hidden");
       }
     });
-    
-    messageInput?.addEventListener('input', () => {
+
+    messageInput?.addEventListener("input", () => {
       if (messageInput?.value.trim() && messageInput.value.length >= 10) {
-        messageError?.classList.add('hidden');
+        messageError?.classList.add("hidden");
       }
     });
   });

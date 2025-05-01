@@ -302,10 +302,11 @@ export default function Timeline({
               <button
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${userOrientation === 'vertical'
                   ? 'bg-white text-accent-regular shadow-sm'
-                  : 'text-gray-600 hover:text-accent-regular'
+                  : 'hover:text-accent-regular'
                   }`}
                 style={{
-                  boxShadow: userOrientation === 'vertical' ? 'var(--accent-soft-glow)' : 'none'
+                  boxShadow: userOrientation === 'vertical' ? 'var(--accent-soft-glow)' : 'none',
+                  color: userOrientation !== 'vertical' ? 'var(--text-gray-600)' : undefined
                 }}
                 onClick={() => handleSetUserOrientation('vertical')}
               >
@@ -314,10 +315,11 @@ export default function Timeline({
               <button
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${userOrientation === 'horizontal'
                   ? 'bg-white text-accent-regular shadow-sm'
-                  : 'text-gray-600 hover:text-accent-regular'
+                  : 'hover:text-accent-regular'
                   }`}
                 style={{
-                  boxShadow: userOrientation === 'horizontal' ? 'var(--accent-soft-glow)' : 'none'
+                  boxShadow: userOrientation === 'horizontal' ? 'var(--accent-soft-glow)' : 'none',
+                  color: userOrientation !== 'horizontal' ? 'var(--text-gray-600)' : undefined
                 }}
                 onClick={() => handleSetUserOrientation('horizontal')}
               >
@@ -371,7 +373,8 @@ export default function Timeline({
             </button>
           ))}
         </motion.div>
-      )}
+      )
+      }
 
       {/* Main timeline container */}
       <div
@@ -421,34 +424,36 @@ export default function Timeline({
       </div>
 
       {/* Scroll indicators - bottom indicator for both modes */}
-      {filteredEvents.length > 3 && (
-        <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2">
-          <div className="px-3 py-1.5 rounded-full bg-white/80 backdrop-blur-sm shadow-sm flex items-center gap-2 text-xs border border-white/40" style={{ color: 'var(--secondary-text)' }}>
-            {isHorizontal ? (
-              <>
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: 'var(--accent-regular)' }}>
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                </svg>
-                <span>Scroll horizontally for more</span>
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: 'var(--accent-regular)' }}>
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                </svg>
-              </>
-            ) : (
-              <>
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: 'var(--accent-regular)' }}>
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
-                </svg>
-                <span>Scroll vertically for more</span>
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: 'var(--accent-regular)' }}>
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </>
-            )}
+      {
+        filteredEvents.length > 3 && (
+          <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2">
+            <div className="px-3 py-1.5 rounded-full bg-white/80 backdrop-blur-sm shadow-sm flex items-center gap-2 text-xs border border-white/40" style={{ color: 'var(--secondary-text)' }}>
+              {isHorizontal ? (
+                <>
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: 'var(--accent-regular)' }}>
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                  </svg>
+                  <span>Scroll horizontally for more</span>
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: 'var(--accent-regular)' }}>
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                </>
+              ) : (
+                <>
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: 'var(--accent-regular)' }}>
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+                  </svg>
+                  <span>Scroll vertically for more</span>
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: 'var(--accent-regular)' }}>
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </>
+              )}
+            </div>
           </div>
-        </div>
-      )}
-    </motion.section>
+        )
+      }
+    </motion.section >
   )
 }
 
