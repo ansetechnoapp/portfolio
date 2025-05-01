@@ -1,8 +1,11 @@
 "use client"
 
-import { useState, useRef, useEffect } from "react"
+import { useState, useRef, useEffect, useMemo, useCallback } from "react"
 import type { ReactNode } from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import { FixedSizeList as List } from 'react-window'
+import AutoSizer from "react-virtualized-auto-sizer"
+import React from "react"
 
 // Types
 interface TimelineEventType {
@@ -155,16 +158,22 @@ export default function Timeline({
   const horizontalScrollRef = useRef<HTMLDivElement>(null)
 
   // Filter events by category
-  const categories = Array.from(new Set(timelineEvents.map(e => e.category).filter(Boolean)))
-  const filteredEvents = selectedCategory
+  const categories = useMemo(() => Array.from(new Set(timelineEvents.map(e => e.category).filter(Boolean))), [timelineEvents])
+  const filteredEvents = useMemo(() => selectedCategory
     ? timelineEvents.filter(e => e.category === selectedCategory)
-    : timelineEvents
+    : timelineEvents, [selectedCategory, timelineEvents])
 
   // Handle orientation
   const isMobile = useMediaQuery('(max-width: 767px)')
   const [userOrientation, setUserOrientation] = useState<'vertical' | 'horizontal'>(orientation)
   const effectiveOrientation = isMobile ? 'horizontal' : userOrientation
   const isHorizontal = effectiveOrientation === 'horizontal'
+
+  // Determine if we should use virtualization based on item count
+  const shouldVirtualize = useMemo(() => filteredEvents.length > 10, [filteredEvents.length])
+
+  // Track if the list has been rendered properly
+  const [listRendered, setListRendered] = useState(false)
 
   // Reset expanded state when orientation changes
   useEffect(() => {
@@ -176,7 +185,17 @@ export default function Timeline({
     if (isHorizontal && horizontalScrollRef.current) {
       horizontalScrollRef.current.scrollLeft = 0
     }
+    // Reset render status when category changes
+    setListRendered(false)
   }, [selectedCategory, isHorizontal])
+
+  // Set list rendered on initial load
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setListRendered(true);
+    }, 100);
+    return () => clearTimeout(timer);
+  }, []);
 
   // Animation variants
   const containerVariants = {
@@ -201,6 +220,28 @@ export default function Timeline({
       }
     }
   }
+
+  // Handlers
+  const handleSetUserOrientation = useCallback((orientation: 'vertical' | 'horizontal') => {
+    setUserOrientation(orientation)
+  }, [])
+
+  const handleSetSelectedCategory = useCallback((cat: string | null) => {
+    setSelectedCategory(cat)
+    setListRendered(false); // Reset rendered state when changing category
+    // Use a small timeout to ensure the DOM has time to update
+    setTimeout(() => setListRendered(true), 50);
+  }, [])
+
+  // Ajout d'un useEffect pour injecter le style global une seule fois
+  useEffect(() => {
+    if (typeof document !== 'undefined' && !document.getElementById('hide-scrollbar-style')) {
+      const style = document.createElement('style');
+      style.id = 'hide-scrollbar-style';
+      style.textContent = globalStyles;
+      document.head.appendChild(style);
+    }
+  }, [])
 
   return (
     <motion.section
@@ -266,7 +307,7 @@ export default function Timeline({
                 style={{
                   boxShadow: userOrientation === 'vertical' ? 'var(--accent-soft-glow)' : 'none'
                 }}
-                onClick={() => setUserOrientation('vertical')}
+                onClick={() => handleSetUserOrientation('vertical')}
               >
                 Vertical
               </button>
@@ -278,7 +319,7 @@ export default function Timeline({
                 style={{
                   boxShadow: userOrientation === 'horizontal' ? 'var(--accent-soft-glow)' : 'none'
                 }}
-                onClick={() => setUserOrientation('horizontal')}
+                onClick={() => handleSetUserOrientation('horizontal')}
               >
                 Horizontal
               </button>
@@ -304,7 +345,7 @@ export default function Timeline({
               backgroundColor: !selectedCategory ? 'var(--accent-regular)' : '',
               boxShadow: !selectedCategory ? 'var(--accent-soft-glow)' : ''
             }}
-            onClick={() => setSelectedCategory(null)}
+            onClick={() => handleSetSelectedCategory(null)}
           >
             All Categories
           </button>
@@ -319,7 +360,7 @@ export default function Timeline({
                 backgroundColor: selectedCategory === cat ? 'var(--accent-regular)' : '',
                 boxShadow: selectedCategory === cat ? 'var(--accent-soft-glow)' : ''
               }}
-              onClick={() => setSelectedCategory(cat || null)}
+              onClick={() => handleSetSelectedCategory(cat || null)}
             >
               {cat && categoryIcons[cat] && (
                 <span className={selectedCategory === cat ? 'text-white' : 'text-accent-regular'}>
@@ -335,12 +376,16 @@ export default function Timeline({
       {/* Main timeline container */}
       <div
         ref={horizontalScrollRef}
-        className={`relative ${isHorizontal ? 'overflow-x-auto hide-scrollbar' : ''}`}
-        style={isHorizontal ? {
-          paddingBottom: '2rem',
+        className={`relative ${isHorizontal ? 'overflow-x-auto hide-scrollbar' : 'overflow-y-auto timeline-scroll-container'}`}
+        style={{
           minHeight: '450px',
-          scrollBehavior: 'smooth'
-        } : {}}
+          height: isHorizontal ? '450px' : 'calc(70vh - 200px)',
+          maxHeight: isHorizontal ? '450px' : 'calc(70vh - 200px)',
+          scrollBehavior: 'smooth',
+          borderRadius: isHorizontal ? '0' : '8px',
+          width: '100%',
+          position: 'relative'
+        }}
       >
         {filteredEvents.length === 0 ? (
           <motion.div
@@ -355,57 +400,51 @@ export default function Timeline({
           <div className={`relative ${isHorizontal ? 'px-8' : 'px-4 sm:px-6 lg:px-12'}`}>
             {/* Center line */}
             <motion.div
-              className={`
-                ${isHorizontal
-                  ? 'absolute top-1/2 left-0 right-0 h-[2px] bg-gradient-to-r'
-                  : 'absolute left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b'
-                }
-                from-accent-light via-accent-regular to-accent-dark
-              `}
+              className={
+                isHorizontal
+                  ? 'absolute top-1/2 left-0 right-0 h-[2px] bg-gradient-to-r from-accent-light via-accent-regular to-accent-dark'
+                  : 'absolute left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-accent-light via-accent-regular to-accent-dark'
+              }
               initial={{ scaleX: isHorizontal ? 0 : 1, scaleY: isHorizontal ? 1 : 0 }}
               animate={{ scaleX: 1, scaleY: 1 }}
               transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
             />
-
-            {/* Events list */}
-            <ol
-              className={`relative z-10 ${isHorizontal ? 'flex' : 'block'}`}
-              style={isHorizontal ? {
-                minWidth: filteredEvents.length * 350 + 'px',
-                gap: '3.5rem',
-                paddingTop: '2.5rem',
-                paddingBottom: '2.5rem'
-              } : {}}
-            >
-              <AnimatePresence mode="wait">
-                {filteredEvents.map((event, index) => (
-                  <TimelineItem
-                    key={`${event.year}-${index}`}
-                    event={event}
-                    index={index}
-                    isExpanded={expandedEvent === index}
-                    onToggle={() => setExpandedEvent(expandedEvent === index ? null : index)}
-                    isHorizontal={isHorizontal}
-                    total={filteredEvents.length}
-                  />
-                ))}
-              </AnimatePresence>
-            </ol>
+            {/* Toujours utiliser StandardTimelineList, même pour All Categories */}
+            <StandardTimelineList
+              events={filteredEvents}
+              expandedEvent={expandedEvent}
+              setExpandedEvent={setExpandedEvent}
+              isHorizontal={isHorizontal}
+            />
           </div>
         )}
       </div>
 
-      {/* Scroll indicators for horizontal view */}
-      {isHorizontal && filteredEvents.length > 3 && (
+      {/* Scroll indicators - bottom indicator for both modes */}
+      {filteredEvents.length > 3 && (
         <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2">
           <div className="px-3 py-1.5 rounded-full bg-white/80 backdrop-blur-sm shadow-sm flex items-center gap-2 text-xs border border-white/40" style={{ color: 'var(--secondary-text)' }}>
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: 'var(--accent-regular)' }}>
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-            </svg>
-            <span>Scroll for more</span>
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: 'var(--accent-regular)' }}>
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-            </svg>
+            {isHorizontal ? (
+              <>
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: 'var(--accent-regular)' }}>
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                <span>Scroll horizontally for more</span>
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: 'var(--accent-regular)' }}>
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </>
+            ) : (
+              <>
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: 'var(--accent-regular)' }}>
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+                </svg>
+                <span>Scroll vertically for more</span>
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: 'var(--accent-regular)' }}>
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </>
+            )}
           </div>
         </div>
       )}
@@ -413,21 +452,54 @@ export default function Timeline({
   )
 }
 
+// Add a non-virtualized list component for fallback and smaller lists
+const StandardTimelineList = ({
+  events,
+  expandedEvent,
+  setExpandedEvent,
+  isHorizontal
+}: {
+  events: TimelineEventType[],
+  expandedEvent: number | null,
+  setExpandedEvent: (index: number | null) => void,
+  isHorizontal: boolean
+}) => {
+  return (
+    <ol
+      className={`relative z-10 ${isHorizontal ? 'flex timeline-horizontal-list gap-[3.5rem] py-[2.5rem]' : 'flex flex-col gap-[3.5rem] py-[2.5rem]'}`}
+      style={isHorizontal ? {
+        minWidth: events.length * 350 + 'px',
+      } : {}}
+    >
+      <AnimatePresence mode="wait">
+        {events.map((event, index) => (
+          <MemoTimelineItem
+            key={`${event.year}-${index}`}
+            event={event}
+            index={index}
+            isExpanded={expandedEvent === index}
+            onToggle={() => setExpandedEvent(expandedEvent === index ? null : index)}
+            isHorizontal={isHorizontal}
+          />
+        ))}
+      </AnimatePresence>
+    </ol>
+  );
+};
+
 // Timeline item component
 function TimelineItem({
   event,
   index,
   isExpanded,
   onToggle,
-  isHorizontal,
-  total
+  isHorizontal
 }: {
   event: TimelineEventType
   index: number
   isExpanded: boolean
   onToggle: () => void
   isHorizontal: boolean
-  total: number
 }) {
   const isEven = index % 2 === 0
 
@@ -474,7 +546,7 @@ function TimelineItem({
         relative
         ${isHorizontal
           ? `flex-1 min-w-[320px] max-w-[380px] ${isEven ? 'pt-20 pb-4' : 'pb-20 pt-4'}`
-          : `mb-16 pb-2 ${isEven ? 'ml-auto mr-[calc(50%+2rem)]' : 'mr-auto ml-[calc(50%+2rem)]'}`
+          : `${isEven ? 'ml-auto mr-[calc(50%+2rem)]' : 'mr-auto ml-[calc(50%+2rem)]'}`
         }
       `}
       style={!isHorizontal ? { maxWidth: 'calc(50% - 3rem)' } : {}}
@@ -648,6 +720,9 @@ function TimelineItem({
   )
 }
 
+// Mémoïsation du composant TimelineItem
+const MemoTimelineItem = React.memo(TimelineItem)
+
 // Add CSS for hiding scrollbar while allowing scrolling
 // Add this at the end of your file (or in global CSS)
 const globalStyles = `
@@ -658,11 +733,39 @@ const globalStyles = `
 .hide-scrollbar::-webkit-scrollbar {
   display: none;  /* Chrome, Safari and Opera */
 }
-`;
 
-// Add the global styles to the document
-if (typeof document !== 'undefined') {
-  const style = document.createElement('style');
-  style.textContent = globalStyles;
-  document.head.appendChild(style);
+/* Styled scrollbar for vertical mode */
+.overflow-y-auto::-webkit-scrollbar {
+  width: 8px;
 }
+
+.overflow-y-auto::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.overflow-y-auto::-webkit-scrollbar-thumb {
+  background: var(--accent-light);
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+.overflow-y-auto::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-regular);
+}
+
+/* Timeline scroll container styling */
+.timeline-scroll-container {
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+  padding-right: 10px;
+  transition: all 0.3s ease;
+}
+
+.timeline-scroll-container:hover {
+  box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.timeline-horizontal-list {
+  /* déjà géré par flex et gap */
+}
+`;
