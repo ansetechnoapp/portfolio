@@ -294,11 +294,11 @@ const {
     </div>
 
     <!-- Contact Information Grid -->
-    <div class="grid grid-cols-2 md:grid-cols-3 gap-4 my-8 contact-info-grid">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 my-8 contact-info-grid">
       {
         contactInfo.city && (
-          <div class="flex items-center">
-            <i class="fas fa-map-marker-alt text-blue-500 mr-2" />
+          <div class="flex items-center p-2 contact-info-item">
+            <i class="fas fa-map-marker-alt text-blue-500 mr-3 contact-icon" />
             <span class="text-black dark:text-white">
               {contactInfo.city} {contactInfo.street}
             </span>
@@ -307,16 +307,16 @@ const {
       }
       {
         contactInfo.email && (
-          <div class="flex items-center">
-            <i class="fas fa-envelope text-blue-500 mr-2" />
+          <div class="flex items-center p-2 contact-info-item">
+            <i class="fas fa-envelope text-blue-500 mr-3 contact-icon" />
             <span class="text-black dark:text-white">{contactInfo.email}</span>
           </div>
         )
       }
       {
         contactInfo.phone && (
-          <div class="flex items-center">
-            <i class="fas fa-phone text-blue-500 mr-2" />
+          <div class="flex items-center p-2 contact-info-item">
+            <i class="fas fa-phone text-blue-500 mr-3 contact-icon" />
             <span class="text-black dark:text-white">
               ({contactInfo.phonePrefix}) {contactInfo.phone}
             </span>
@@ -325,8 +325,8 @@ const {
       }
       {
         contactInfo.occupation && (
-          <div class="flex items-center">
-            <i class="fas fa-graduation-cap text-blue-500 mr-2" />
+          <div class="flex items-center p-2 contact-info-item">
+            <i class="fas fa-graduation-cap text-blue-500 mr-3 contact-icon" />
             <span class="text-black dark:text-white">
               {contactInfo.occupation}
             </span>
@@ -335,8 +335,8 @@ const {
       }
       {
         contactInfo.availability && (
-          <div class="flex items-center">
-            <i class="fas fa-briefcase text-blue-500 mr-2" />
+          <div class="flex items-center p-2 contact-info-item">
+            <i class="fas fa-briefcase text-blue-500 mr-3 contact-icon" />
             <span class="text-black dark:text-white">
               {contactInfo.availability}
             </span>
@@ -345,8 +345,8 @@ const {
       }
       {
         contactInfo.website && (
-          <div class="flex items-center">
-            <i class="fas fa-globe text-blue-500 mr-2" />
+          <div class="flex items-center p-2 contact-info-item">
+            <i class="fas fa-globe text-blue-500 mr-3 contact-icon" />
             <span class="text-black dark:text-white">
               {contactInfo.website}
             </span>
@@ -988,6 +988,14 @@ const {
   /* Contact info grid animations */
   .contact-info-grid {
     position: relative;
+    gap: 1rem; /* Espacement uniforme entre les éléments */
+  }
+
+  /* Ajustement de l'espacement pour différentes tailles d'écran */
+  @media (max-width: 639px) {
+    .contact-info-grid {
+      gap: 0.75rem; /* Espacement réduit sur les très petits écrans */
+    }
   }
 
   .contact-info-grid > div {
@@ -999,10 +1007,26 @@ const {
   .contact-info-grid span {
     color: black;
     font-weight: 500;
+    font-size: 0.9rem; /* Taille de base réduite pour les petits écrans */
+    line-height: 1.4;
+    word-break: break-word; /* Permet aux mots longs de se couper si nécessaire */
   }
 
   :root.theme-dark .contact-info-grid span {
     color: white;
+  }
+
+  /* Ajustement de la taille du texte pour différentes tailles d'écran */
+  @media (min-width: 640px) {
+    .contact-info-grid span {
+      font-size: 0.95rem;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .contact-info-grid span {
+      font-size: 1rem;
+    }
   }
 
   .contact-info-grid i {
@@ -1047,8 +1071,42 @@ const {
     transition: all 0.3s ease;
   }
 
-  .contact-info-grid > div:hover {
+  /* Styles pour les éléments de contact */
+  .contact-info-item {
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  }
+
+  :root.theme-dark .contact-info-item {
+    background-color: rgba(30, 30, 40, 0.3);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .contact-info-item:hover {
     transform: translateY(-5px);
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  }
+
+  :root.theme-dark .contact-info-item:hover {
+    background-color: rgba(40, 40, 55, 0.5);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+  }
+
+  .contact-icon {
+    font-size: 1rem;
+    min-width: 1.25rem; /* Assure une largeur minimale pour l'alignement */
+    display: flex;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+
+  @media (min-width: 640px) {
+    .contact-icon {
+      font-size: 1.1rem;
+    }
   }
 
   .contact-info-grid > div:hover i {
@@ -1064,6 +1122,17 @@ const {
 
   .contact-info-grid i {
     transition: all 0.3s ease;
+  }
+
+  /* Ajustements responsifs supplémentaires */
+  @media (max-width: 639px) {
+    .contact-info-item {
+      padding: 0.5rem 0.75rem; /* Padding réduit sur les très petits écrans */
+    }
+
+    .contact-icon {
+      margin-right: 0.5rem !important; /* Réduit la marge à droite de l'icône */
+    }
   }
 
   /* Action buttons animation */

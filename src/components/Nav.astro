@@ -250,12 +250,15 @@ const iconLinks: {
     line-height: 1.1;
     color: var(--gray-0);
     text-decoration: none;
+    max-width: 70%; /* Limite la largeur sur les petits écrans */
   }
 
   .site-logo {
     width: auto;
     height: 2.5rem;
     transition: all 0.3s ease;
+    max-width: 100%; /* Assure que le logo ne dépasse pas son conteneur */
+    object-fit: contain; /* Maintient les proportions */
   }
 
   /* Show/hide logos based on theme */
@@ -282,7 +285,15 @@ const iconLinks: {
     cursor: pointer;
     transition:
       transform 0.2s ease,
-      background-color 0.2s ease;
+      background-color 0.2s ease,
+      padding 0.3s ease,
+      font-size 0.3s ease;
+  }
+
+  .menu-button svg {
+    transition:
+      width 0.3s ease,
+      height 0.3s ease;
   }
 
   .menu-button:hover {
@@ -453,11 +464,74 @@ const iconLinks: {
     .menu-footer {
       padding: 1.25rem;
     }
+
+    .menu-header {
+      padding: 0.75rem 1rem; /* Réduit le padding sur mobile */
+    }
+
+    .menu-button {
+      padding: 0.4rem;
+      font-size: 1.3rem;
+    }
+
+    /* Réduire la taille de l'icône SVG dans le bouton */
+    .menu-button svg {
+      width: 32px;
+      height: 32px;
+    }
+  }
+
+  /* Media query pour les écrans de taille moyenne */
+  @media (min-width: 30.1em) and (max-width: 47.9em) {
+    .site-logo {
+      height: 2.2rem; /* Taille intermédiaire pour les écrans moyens */
+    }
   }
 
   @media (max-width: 30em) {
     .site-logo {
-      height: 5rem;
+      height: 1.8rem; /* Réduit la taille du logo sur les petits écrans */
+    }
+    .site-title {
+      max-width: 65%; /* Réduit davantage la largeur sur les petits écrans */
+    }
+
+    .menu-button {
+      padding: 0.35rem;
+      font-size: 1.2rem;
+    }
+
+    /* Réduire davantage la taille de l'icône SVG dans le bouton */
+    .menu-button svg {
+      width: 28px;
+      height: 28px;
+    }
+  }
+
+  /* Pour les très petits écrans */
+  @media (max-width: 23.4375em) {
+    /* 375px */
+    .site-logo {
+      height: 2.5rem; /* Réduit encore plus la taille du logo */
+    }
+    .site-title {
+      max-width: 60%;
+    }
+
+    .menu-button {
+      padding: 0.3rem;
+      font-size: 1.1rem;
+    }
+
+    /* Réduire encore plus la taille de l'icône SVG dans le bouton */
+    .menu-button svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    /* Réduire le padding du menu-header pour les très petits écrans */
+    .menu-header {
+      padding: 0.6rem 2rem;
     }
   }
 
@@ -494,10 +568,10 @@ const iconLinks: {
     .nav-items {
       position: relative;
       flex-direction: row;
-      font-size: var(--text-sm);
+      font-size: var(--text-sm1);
       border-radius: 999rem;
       border: 1px solid rgba(var(--gray-999-basis), 0.1);
-      padding: 0.5rem 0.5625rem;
+      padding: 0.2rem 0.5625rem;
       background: linear-gradient(
         to right,
         rgba(var(--gray-999-basis), 0.05),
