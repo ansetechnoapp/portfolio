@@ -2,7 +2,7 @@
 title: Woodshow
 publishDate: 2019-12-01 00:00:00
 number: 2
-img: /assets/myprojects/Bois-de-JOAO-ERIC-A-E-–-Wooden-pallets-pallets-wood-pellets-birch-briquettes-ash-oak-birch-alder-firewood.png
+img: /assets/myprojects/Bois-de-JOAO-ERIC-A-E-–-Wooden-pallets-pallets-wood-pellets-birch-briquettes-ash-oak-birch-alder-firewood_optimized.webp
 img_alt: A bright pink sheet of paper used to wrap flowers curves in front of rich blue background
 github: https://github.com/username/ecommerce-dashboard
 liveDemo: https://b-jeae.com/
@@ -18,9 +18,9 @@ tech:
   - PHP
   - mySql
 additionalImages:
-  - url: /assets/myprojects/About-us-–-Bois-de-JOAO-ERIC-A-E.png
+  - url: /assets/myprojects/About-us-–-Bois-de-JOAO-ERIC-A-E_optimized.webp
     alt: First additional image of the project
-  - url: /assets/myprojects/Gallery-–-Bois-de-JOAO-ERIC-A-E.png
+  - url: /assets/myprojects/Gallery-–-Bois-de-JOAO-ERIC-A-E_optimized.webp
     alt: Second additional image of the project
 ---
 

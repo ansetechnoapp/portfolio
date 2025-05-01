@@ -2,7 +2,7 @@
 title: Worldshop
 publishDate: 2020-03-04 00:00:00
 number: 7
-img: /assets/myprojects/worldshop.png
+img: /assets/myprojects/worldshop_optimized.webp
 img_alt: Pearls of silky soft white cotton, bubble up under vibrant lighting
 github: https://github.com/username/ecommerce-dashboard   // Should be your actual GitHub repo
 liveDemo: "#"
@@ -13,10 +13,10 @@ tags:
   - Design
   - Dev
   - Branding
-tech: 
+tech:
   - React Native
   - Expo
   - mySql
 ---
 
-Lorem ipsum 
+Lorem ipsum

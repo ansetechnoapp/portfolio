@@ -2,7 +2,7 @@
 title: Planetech sarl benin
 publishDate: 2020-03-04 00:00:00
 number: 4
-img: /assets/myprojects/Planetech-sarl(2).png
+img: /assets/myprojects/Planetech-sarl(2)_optimized.webp
 img_alt: Pearls of silky soft white cotton, bubble up under vibrant lighting
 github: https://github.com/username/ecommerce-dashboard
 liveDemo: https://www.planetechsarlbenin.com/
@@ -13,16 +13,16 @@ tags:
   - Design
   - Dev
   - Branding
-tech: 
+tech:
   - Next JS
   - Swiper
   - Radix UI
   - Tailwind CSS
   - shadcn/ui
 additionalImages:
-  - url: /assets/myprojects/Planetech-sarl(1).png
+  - url: /assets/myprojects/Planetech-sarl(1)_optimized.webp
     alt: First additional image of the project
-  - url: /assets/myprojects/Planetech-sarl.png
+  - url: /assets/myprojects/Planetech-sarl_optimized.webp
     alt: Second additional image of the project
 ---
 

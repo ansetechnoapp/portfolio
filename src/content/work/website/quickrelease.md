@@ -2,7 +2,7 @@
 title: Quickrelease
 publishDate: 2020-03-04 00:00:00
 number: 10
-img:   /assets/myprojects/Deblocage-rapide-de-vos-iPhone.png
+img:   /assets/myprojects/Deblocage-rapide-de-vos-iPhone_optimized.webp
 img_alt: Deblocage-rapide-de-vos-iPhone,secure Apple device unlocking with 24-hour service.
 github: https://github.com/ansetechnoapp/quickrelease
 liveDemo: https://anscod1.netlify.app/
@@ -23,9 +23,9 @@ tech:
   - Tailwind CSS
   - shadcn/ui
 additionalImages:
-  - url: /assets/myprojects/Deblocage-rapide-de-vos-iPhone2.png
+  - url: /assets/myprojects/Deblocage-rapide-de-vos-iPhone2_optimized.webp
     alt: First additional image of the project
-  - url: /assets/myprojects/Deblocage-rapide-de-vos-iPhone3.png
+  - url: /assets/myprojects/Deblocage-rapide-de-vos-iPhone3_optimized.webp
     alt: Second additional image of the project
 ---
 

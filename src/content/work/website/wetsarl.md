@@ -2,7 +2,7 @@
 title: Wet Sarl
 publishDate: 2019-12-01 00:00:00
 number: 5
-img: /assets/myprojects/Wet-Store.png
+img: /assets/myprojects/Wet-Store_optimized.webp
 img_alt: A bright pink sheet of paper used to wrap flowers curves in front of rich blue background
 github: https://github.com/username/ecommerce-dashboard
 liveDemo: https://www.wetsarl.com/
@@ -20,13 +20,13 @@ tech:
   - lucide-react
   - Swiper
 additionalImages:
-  - url: /assets/myprojects/Wet-Store(1).png
+  - url: /assets/myprojects/Wet-Store(1)_optimized.webp
     alt: First additional image of the project
-  - url: /assets/myprojects/Wet-Store(2).png
+  - url: /assets/myprojects/Wet-Store(2)_optimized.webp
     alt: Second additional image of the project
 ---
 
-> Wet Sarl 
+> Wet Sarl
 
 1. https://www.wetsarl.com/
 

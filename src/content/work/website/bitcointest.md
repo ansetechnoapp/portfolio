@@ -2,7 +2,7 @@
 title: Modern Dashboard
 publishDate: 2023-11-20 00:00:00
 number: 13
-img: /assets/myprojects/CryptoVision-Modern-Cryptocurrency-Dashboard.png
+img: /assets/myprojects/CryptoVision-Modern-Cryptocurrency-Dashboard_optimized.webp
 img_alt: Modern dashboard interface with sidebar navigation and modular components
 github: https://github.com/ansetechnoapp/bitcointest
 liveDemo: https://bitcointest.vercel.app/dashboard
@@ -20,7 +20,7 @@ tech:
   - shadcn/ui
   - Vercel
 additionalImages:
-  - url: /assets/myprojects/CryptoVision-Modern-Cryptocurrency-Dashboard(1).png
+  - url: /assets/myprojects/CryptoVision-Modern-Cryptocurrency-Dashboard(1)_optimized.webp
     alt: Land registry module interface
 ---
 

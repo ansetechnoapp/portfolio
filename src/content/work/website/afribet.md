@@ -2,7 +2,7 @@
 title: Afribet
 publishDate: 2025-27-02 00:00:00
 number: 11
-img:   /assets/myprojects/parisbet.png
+img:   /assets/myprojects/parisbet_optimized.webp
 img_alt: Deblocage-rapide-de-vos-iPhone,secure Apple device unlocking with 24-hour service.
 github: https://github.com/ansetechnoapp/parisbet
 liveDemo: https://parisbet.vercel.app/
@@ -15,7 +15,7 @@ tags:
   - Branding
 tech:
   - Next JS
-  - supabase 
+  - supabase
   - PostgreSQL
   - Lucide
   - Webpack
@@ -25,9 +25,9 @@ tech:
   - Tailwind CSS
   - shadcn/ui
 additionalImages:
-  - url: /assets/myprojects/parisbet2.png
+  - url: /assets/myprojects/parisbet2_optimized.webp
     alt: First additional image of the project
-  - url: /assets/myprojects/parisbet3.png
+  - url: /assets/myprojects/parisbet3_optimized.webp
     alt: Second additional image of the project
 ---
 

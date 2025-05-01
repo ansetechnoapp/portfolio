@@ -2,7 +2,7 @@
 title: NFT Marketplace
 publishDate: 2023-09-15 00:00:00
 number: 12
-img: /assets/myprojects/MarketPlace-Premium-Shopping-Experience.png
+img: /assets/myprojects/MarketPlace-Premium-Shopping-Experience_optimized.webp
 img_alt: NFT marketplace platform with auction, fixed price, and decreasing price options
 github: https://github.com/ansetechnoapp/marketplacetest
 liveDemo: https://marketplacetest-virid.vercel.app/
@@ -21,9 +21,9 @@ tech:
   - Smart Contracts
   - Vercel
 additionalImages:
-  - url: /assets/myprojects/MarketPlace-Premium-Shopping-Experience(1).png
+  - url: /assets/myprojects/MarketPlace-Premium-Shopping-Experience(1)_optimized.webp
     alt: NFT auction interface
-  - url: /assets/myprojects/MarketPlace-Premium-Shopping-Experience(2).png
+  - url: /assets/myprojects/MarketPlace-Premium-Shopping-Experience(2)_optimized.webp
     alt: NFT listing page
 ---
 
