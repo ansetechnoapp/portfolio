@@ -286,7 +286,7 @@ export default function Timeline({
 
         <motion.p
           className="max-w-2xl mx-auto text-lg"
-          style={{ color: 'var(--secondary-text)' }}
+          style={{ color: 'var(--accent-dark)' }}
           variants={titleVariants}
         >
           {subtitle}
@@ -427,7 +427,7 @@ export default function Timeline({
       {
         filteredEvents.length > 3 && (
           <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2">
-            <div className="px-3 py-1.5 rounded-full bg-white/80 backdrop-blur-sm shadow-sm flex items-center gap-2 text-xs border border-white/40" style={{ color: 'var(--secondary-text)' }}>
+            <div className="px-3 py-1.5 rounded-full bg-white/80 backdrop-blur-sm shadow-sm flex items-center gap-2 text-xs border border-white/40" style={{ color: 'var(--accent-dark)' }}>
               {isHorizontal ? (
                 <>
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: 'var(--accent-regular)' }}>
@@ -643,7 +643,7 @@ function TimelineItem({
           )}
 
           {/* Description */}
-          <p style={{ color: 'var(--secondary-text)' }}>{event.description}</p>
+          <p style={{ color: 'var(--accent-dark)' }}>{event.description}</p>
 
           {/* Expanded content */}
           <AnimatePresence>
@@ -655,7 +655,7 @@ function TimelineItem({
                 transition={{ duration: 0.3 }}
               >
                 <div className="mt-4 pt-4 border-t" style={{ borderColor: 'rgba(var(--gray-999-basis), 0.1)' }}>
-                  <p style={{ color: 'var(--secondary-text)', opacity: 0.8 }}>{event.details}</p>
+                  <p style={{ color: 'var(--accent-dark)', opacity: 0.8 }}>{event.details}</p>
 
                   {event.image && (
                     <motion.img
