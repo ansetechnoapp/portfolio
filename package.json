@@ -22,6 +22,8 @@
     "seo:performance": "node scripts/analyze-performance.js",
     "seo:pre-deploy": "node scripts/pre-deploy-seo.js",
     "seo:auto": "node scripts/auto-seo.js",
+    "seo:fix": "node scripts/auto-fix-seo.js",
+    "seo:sitemap": "node scripts/generate-sitemap.js",
     "setup-git-hooks": "node scripts/setup-git-hooks.js",
     "deploy": "npm run build && npm run preview",
     "predeploy": "npm run seo:auto",
