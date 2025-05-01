@@ -1,21 +1,16 @@
 <!-- app -->
 <div class="art-app">
-
   <!-- mobile top bar -->
   <div class="art-mobile-top-bar"></div>
 
   <!-- app wrapper -->
   <div class="art-app-wrapper">
-
     <!-- app container end -->
     <div class="art-app-container">
-
       <!-- info bar -->
       <div class="art-info-bar">
-
         <!-- info bar frame -->
         <div class="art-info-bar-frame">
-
           <!-- info bar header -->
           <div class="art-info-bar-header">
             <!-- info bar button -->
@@ -31,8 +26,13 @@
           <div class="art-header">
             <!-- avatar -->
             <div class="art-avatar">
-              <a data-fancybox="avatar" data-no-swup href="img/face-1.jpg" class="art-avatar-curtain">
-                <img src="../../assets/img/face-1.jpg" alt="avatar">
+              <a
+                data-fancybox="avatar"
+                data-no-swup
+                href="img/face-1.jpg"
+                class="art-avatar-curtain"
+              >
+                <img src="../../assets/img/face-1.jpg" alt="avatar" />
                 <i class="fas fa-expand"></i>
               </a>
               <!-- available -->
@@ -45,13 +45,14 @@
             <!-- name -->
             <h5 class="art-name mb-10"><a href="home.html">Artur Carter</a></h5>
             <!-- post -->
-            <div class="art-sm-text">Front-end Deweloper <br>Ui/UX Designer, </div>
+            <div class="art-sm-text">
+              Front-end Deweloper <br />Ui/UX Designer,
+            </div>
           </div>
           <!-- info bar header end -->
 
           <!-- scroll frame -->
           <div id="scrollbar2" class="art-scroll-frame">
-
             <!-- info bar about -->
             <div class="art-table p-15-15">
               <!-- about text -->
@@ -77,7 +78,6 @@
 
             <!-- language skills -->
             <div class="art-lang-skills p-30-15">
-
               <!-- skill -->
               <div class="art-lang-skills-item">
                 <div id="circleprog1" class="art-cirkle-progress"></div>
@@ -101,7 +101,6 @@
                 <h6>Spanish</h6>
               </div>
               <!-- skill end -->
-
             </div>
             <!-- language skills end -->
 
@@ -110,7 +109,6 @@
 
             <!-- hard skills -->
             <div class="art-hard-skills p-30-15">
-
               <!-- skill -->
               <div class="art-hard-skills-item">
                 <div class="art-skill-heading">
@@ -185,7 +183,6 @@
                 <!-- progressbar frame end -->
               </div>
               <!-- skill end -->
-
             </div>
             <!-- language skills end -->
 
@@ -210,13 +207,12 @@
 
             <!-- links frame -->
             <div class="art-links-frame p-15-15">
-
               <!-- download cv button -->
-              <a href="files/cv.txt" class="art-link" download data-no-swup>Download cv <i class="fas fa-download"></i></a>
-
+              <a href="files/cv.txt" class="art-link" download data-no-swup
+                >Download cv <i class="fas fa-download"></i></a
+              >
             </div>
             <!-- links frame end -->
-
           </div>
           <!-- scroll frame end -->
 
@@ -234,16 +230,13 @@
             <a href="#." target="_blank"><i class="fab fa-twitter"></i></a>
           </div>
           <!-- sidebar social end -->
-
         </div>
         <!-- menu bar frame end -->
-
       </div>
       <!-- info bar end -->
 
       <!-- content -->
       <div class="art-content">
-
         <!-- curtain -->
         <div class="art-curtain"></div>
 
@@ -255,22 +248,16 @@
         </div>
         <!-- top background end -->
 
-
         <!-- swup container -->
         <div class="transition-fade" id="swup">
-
           <!-- scroll frame -->
           <div id="scrollbar" class="art-scroll-frame">
-
             <!-- container -->
             <div class="container-fluid">
-
               <!-- row -->
               <div class="row p-30-0">
-
                 <!-- col -->
                 <div class="col-lg-12">
-
                   <!-- section title -->
                   <div class="art-section-title">
                     <!-- title frame -->
@@ -281,18 +268,36 @@
                     <!-- title frame end -->
                   </div>
                   <!-- section title end -->
-
                 </div>
                 <!-- col end -->
                 <!-- col -->
                 <div class="col-lg-6">
-
                   <!-- blog post card -->
                   <div class="art-a art-blog-card">
                     <!-- post cover -->
                     <a href="blog-post.html" class="art-port-cover">
                       <!-- img -->
-                      <img src="../../assets/img/blog/1.jpg" alt="blog post">
+                      <picture>
+                        <!-- AVIF format -->
+                        <source
+                          type="image/avif"
+                          srcset="/assets/img/blog/1_optimized.avif 1x, /assets/img/blog/1_640w.avif 640w, /assets/img/blog/1_1024w.avif 1024w"
+                          sizes="(max-width: 768px) 100vw, 400px"
+                        />
+                        <!-- WebP format -->
+                        <source
+                          type="image/webp"
+                          srcset="/assets/img/blog/1_optimized.webp 1x, /assets/img/blog/1_640w.webp 640w, /assets/img/blog/1_1024w.webp 1024w"
+                          sizes="(max-width: 768px) 100vw, 400px"
+                        />
+                        <!-- Fallback format -->
+                        <img
+                          src="../../assets/img/blog/1.jpg"
+                          alt="blog post"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      </picture>
                     </a>
                     <!-- post cover end -->
                     <!-- post description -->
@@ -302,25 +307,50 @@
                         <h5 class="mb-15">Blog post title</h5>
                       </a>
                       <!-- text -->
-                      <div class="mb-15">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet!</div>
+                      <div class="mb-15">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing
+                        elit. Amet!
+                      </div>
                       <!-- link -->
-                      <a href="blog-post.html" class="art-link art-color-link art-w-chevron">Read more</a>
+                      <a
+                        href="blog-post.html"
+                        class="art-link art-color-link art-w-chevron"
+                        >Read more</a
+                      >
                     </div>
                     <!-- post description end -->
                   </div>
                   <!-- blog post card end -->
-
                 </div>
                 <!-- col end -->
                 <!-- col -->
                 <div class="col-lg-6">
-
                   <!-- blog post card -->
                   <div class="art-a art-blog-card">
                     <!-- post cover -->
                     <a href="blog-post.html" class="art-port-cover">
                       <!-- img -->
-                      <img src="../../assets/img/blog/2.jpg" alt="blog post">
+                      <picture>
+                        <!-- AVIF format -->
+                        <source
+                          type="image/avif"
+                          srcset="/assets/img/blog/2_optimized.avif 1x, /assets/img/blog/2_640w.avif 640w, /assets/img/blog/2_1024w.avif 1024w"
+                          sizes="(max-width: 768px) 100vw, 400px"
+                        />
+                        <!-- WebP format -->
+                        <source
+                          type="image/webp"
+                          srcset="/assets/img/blog/2_optimized.webp 1x, /assets/img/blog/2_640w.webp 640w, /assets/img/blog/2_1024w.webp 1024w"
+                          sizes="(max-width: 768px) 100vw, 400px"
+                        />
+                        <!-- Fallback format -->
+                        <img
+                          src="../../assets/img/blog/2.jpg"
+                          alt="blog post"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      </picture>
                     </a>
                     <!-- post cover end -->
                     <!-- post description -->
@@ -330,25 +360,30 @@
                         <h5 class="mb-15">Blog post title</h5>
                       </a>
                       <!-- text -->
-                      <div class="mb-15">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet!</div>
+                      <div class="mb-15">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing
+                        elit. Amet!
+                      </div>
                       <!-- link -->
-                      <a href="blog-post.html" class="art-link art-color-link art-w-chevron">Read more</a>
+                      <a
+                        href="blog-post.html"
+                        class="art-link art-color-link art-w-chevron"
+                        >Read more</a
+                      >
                     </div>
                     <!-- post description end -->
                   </div>
                   <!-- blog post card end -->
-
                 </div>
                 <!-- col end -->
                 <!-- col -->
                 <div class="col-lg-6">
-
                   <!-- blog post card -->
                   <div class="art-a art-blog-card">
                     <!-- post cover -->
                     <a href="blog-post.html" class="art-port-cover">
                       <!-- img -->
-                      <img src="../../assets/img/blog/3.jpg" alt="blog post">
+                      <img src="../../assets/img/blog/3.jpg" alt="blog post" />
                     </a>
                     <!-- post cover end -->
                     <!-- post description -->
@@ -358,26 +393,31 @@
                         <h5 class="mb-15">Blog post title</h5>
                       </a>
                       <!-- text -->
-                      <div class="mb-15">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet!</div>
+                      <div class="mb-15">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing
+                        elit. Amet!
+                      </div>
                       <!-- link -->
-                      <a href="blog-post.html" class="art-link art-color-link art-w-chevron">Read more</a>
+                      <a
+                        href="blog-post.html"
+                        class="art-link art-color-link art-w-chevron"
+                        >Read more</a
+                      >
                     </div>
                     <!-- post description end -->
                   </div>
                   <!-- blog post card end -->
-
                 </div>
                 <!-- col end -->
 
                 <!-- col -->
                 <div class="col-lg-6">
-
                   <!-- blog post card -->
                   <div class="art-a art-blog-card">
                     <!-- post cover -->
                     <a href="blog-post.html" class="art-port-cover">
                       <!-- img -->
-                      <img src="../../assets/img/blog/4.jpg" alt="blog post">
+                      <img src="../../assets/img/blog/4.jpg" alt="blog post" />
                     </a>
                     <!-- post cover end -->
                     <!-- post description -->
@@ -387,25 +427,30 @@
                         <h5 class="mb-15">Blog post title</h5>
                       </a>
                       <!-- text -->
-                      <div class="mb-15">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet!</div>
+                      <div class="mb-15">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing
+                        elit. Amet!
+                      </div>
                       <!-- link -->
-                      <a href="blog-post.html" class="art-link art-color-link art-w-chevron">Read more</a>
+                      <a
+                        href="blog-post.html"
+                        class="art-link art-color-link art-w-chevron"
+                        >Read more</a
+                      >
                     </div>
                     <!-- post description end -->
                   </div>
                   <!-- blog post card end -->
-
                 </div>
                 <!-- col end -->
                 <!-- col -->
                 <div class="col-lg-6">
-
                   <!-- blog post card -->
                   <div class="art-a art-blog-card">
                     <!-- post cover -->
                     <a href="blog-post.html" class="art-port-cover">
                       <!-- img -->
-                      <img src="../../assets/img/blog/5.jpg" alt="blog post">
+                      <img src="../../assets/img/blog/5.jpg" alt="blog post" />
                     </a>
                     <!-- post cover end -->
                     <!-- post description -->
@@ -415,25 +460,30 @@
                         <h5 class="mb-15">Blog post title</h5>
                       </a>
                       <!-- text -->
-                      <div class="mb-15">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet!</div>
+                      <div class="mb-15">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing
+                        elit. Amet!
+                      </div>
                       <!-- link -->
-                      <a href="blog-post.html" class="art-link art-color-link art-w-chevron">Read more</a>
+                      <a
+                        href="blog-post.html"
+                        class="art-link art-color-link art-w-chevron"
+                        >Read more</a
+                      >
                     </div>
                     <!-- post description end -->
                   </div>
                   <!-- blog post card end -->
-
                 </div>
                 <!-- col end -->
                 <!-- col -->
                 <div class="col-lg-6">
-
                   <!-- blog post card -->
                   <div class="art-a art-blog-card">
                     <!-- post cover -->
                     <a href="blog-post.html" class="art-port-cover">
                       <!-- img -->
-                      <img src="../../assets/img/blog/6.jpg" alt="blog post">
+                      <img src="../../assets/img/blog/6.jpg" alt="blog post" />
                     </a>
                     <!-- post cover end -->
                     <!-- post description -->
@@ -443,26 +493,31 @@
                         <h5 class="mb-15">Blog post title</h5>
                       </a>
                       <!-- text -->
-                      <div class="mb-15">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet!</div>
+                      <div class="mb-15">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing
+                        elit. Amet!
+                      </div>
                       <!-- link -->
-                      <a href="blog-post.html" class="art-link art-color-link art-w-chevron">Read more</a>
+                      <a
+                        href="blog-post.html"
+                        class="art-link art-color-link art-w-chevron"
+                        >Read more</a
+                      >
                     </div>
                     <!-- post description end -->
                   </div>
                   <!-- blog post card end -->
-
                 </div>
                 <!-- col end -->
 
                 <!-- col -->
                 <div class="col-lg-6">
-
                   <!-- blog post card -->
                   <div class="art-a art-blog-card">
                     <!-- post cover -->
                     <a href="blog-post.html" class="art-port-cover">
                       <!-- img -->
-                      <img src="../../assets/img/blog/7.jpg" alt="blog post">
+                      <img src="../../assets/img/blog/7.jpg" alt="blog post" />
                     </a>
                     <!-- post cover end -->
                     <!-- post description -->
@@ -472,25 +527,30 @@
                         <h5 class="mb-15">Blog post title</h5>
                       </a>
                       <!-- text -->
-                      <div class="mb-15">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet!</div>
+                      <div class="mb-15">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing
+                        elit. Amet!
+                      </div>
                       <!-- link -->
-                      <a href="blog-post.html" class="art-link art-color-link art-w-chevron">Read more</a>
+                      <a
+                        href="blog-post.html"
+                        class="art-link art-color-link art-w-chevron"
+                        >Read more</a
+                      >
                     </div>
                     <!-- post description end -->
                   </div>
                   <!-- blog post card end -->
-
                 </div>
                 <!-- col end -->
                 <!-- col -->
                 <div class="col-lg-6">
-
                   <!-- blog post card -->
                   <div class="art-a art-blog-card">
                     <!-- post cover -->
                     <a href="blog-post.html" class="art-port-cover">
                       <!-- img -->
-                      <img src="../../assets/img/blog/8.jpg" alt="blog post">
+                      <img src="../../assets/img/blog/8.jpg" alt="blog post" />
                     </a>
                     <!-- post cover end -->
                     <!-- post description -->
@@ -500,36 +560,41 @@
                         <h5 class="mb-15">Blog post title</h5>
                       </a>
                       <!-- text -->
-                      <div class="mb-15">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet!</div>
+                      <div class="mb-15">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing
+                        elit. Amet!
+                      </div>
                       <!-- link -->
-                      <a href="blog-post.html" class="art-link art-color-link art-w-chevron">Read more</a>
+                      <a
+                        href="blog-post.html"
+                        class="art-link art-color-link art-w-chevron"
+                        >Read more</a
+                      >
                     </div>
                     <!-- post description end -->
                   </div>
                   <!-- blog post card end -->
-
                 </div>
                 <!-- col end -->
-
               </div>
               <!-- row end -->
-
             </div>
             <!-- container end -->
 
             <!-- container -->
             <div class="container-fluid">
-
               <!-- row -->
               <div class="row">
-
                 <!-- col -->
                 <div class="col-lg-12">
-
                   <!-- pagination -->
                   <div class="art-a art-pagination">
                     <!-- button -->
-                    <a href="blog-3-col.html" class="art-link art-color-link art-w-chevron art-left-link"><span>Previous page</span></a>
+                    <a
+                      href="blog-3-col.html"
+                      class="art-link art-color-link art-w-chevron art-left-link"
+                      ><span>Previous page</span></a
+                    >
                     <div class="art-pagination-center art-m-hidden">
                       <a href="blog-3-col.html"></a>
                       <a href="blog-3-col.html">1</a>
@@ -538,90 +603,85 @@
                       <a href="blog-3-col.html">...</a>
                     </div>
                     <!-- button -->
-                    <a href="blog-3-col.html" class="art-link art-color-link art-w-chevron"><span>Next page</span></a>
+                    <a
+                      href="blog-3-col.html"
+                      class="art-link art-color-link art-w-chevron"
+                      ><span>Next page</span></a
+                    >
                   </div>
                   <!-- pagination end -->
-
                 </div>
                 <!-- col end -->
-
               </div>
               <!-- row end -->
-
             </div>
             <!-- container end -->
 
             <!-- container -->
             <div class="container-fluid">
-
               <!-- row -->
               <div class="row">
-
                 <!-- col -->
                 <div class="col-6 col-lg-3">
                   <!-- brand -->
-                  <img class="art-brand" src="img/brands/1.png" alt="brand">
+                  <img class="art-brand" src="img/brands/1.png" alt="brand" />
                 </div>
                 <!-- col end -->
 
                 <!-- col -->
                 <div class="col-6 col-lg-3">
                   <!-- brand -->
-                  <img class="art-brand" src="img/brands/2.png" alt="brand">
+                  <img class="art-brand" src="img/brands/2.png" alt="brand" />
                 </div>
                 <!-- col end -->
 
                 <!-- col -->
                 <div class="col-6 col-lg-3">
                   <!-- brand -->
-                  <img class="art-brand" src="img/brands/3.png" alt="brand">
+                  <img class="art-brand" src="img/brands/3.png" alt="brand" />
                 </div>
                 <!-- col end -->
 
                 <!-- col -->
                 <div class="col-6 col-lg-3">
                   <!-- brand -->
-                  <img class="art-brand" src="img/brands/1.png" alt="brand">
+                  <img class="art-brand" src="img/brands/1.png" alt="brand" />
                 </div>
                 <!-- col end -->
-
               </div>
               <!-- row end -->
-
             </div>
             <!-- container end -->
 
             <!-- container -->
             <div class="container-fluid">
-
               <!-- footer -->
               <footer>
                 <!-- copyright -->
                 <div class="art-copy">© 2021 Artur Carter</div>
                 <!-- author ( Please! Do not delete it. You are awesome! :) -->
-                <div>Template author:&#160; <a href="https://themeforest.net/user/millerdigitaldesign" target="_blank" data-no-swup>Nazar Miller</a></div>
+                <div>
+                  Template author:&#160; <a
+                    href="https://themeforest.net/user/millerdigitaldesign"
+                    target="_blank"
+                    data-no-swup>Nazar Miller</a
+                  >
+                </div>
               </footer>
               <!-- footer end -->
-
             </div>
             <!-- container end -->
-
-
           </div>
           <!-- scroll frame end -->
-
         </div>
         <!-- swup container end -->
-
       </div>
       <!-- content end -->
 
       <!-- menu bar -->
       <div class="art-menu-bar">
-
         <!-- menu bar frame -->
         <div class="art-menu-bar-frame">
-
           <!-- menu bar header -->
           <div class="art-menu-bar-header">
             <!-- menu bar button -->
@@ -639,7 +699,6 @@
 
           <!-- scroll frame -->
           <div class="art-scroll-frame">
-
             <!-- menu -->
             <nav id="swupMenu">
               <!-- menu list -->
@@ -652,17 +711,31 @@
                   <!-- sub menu -->
                   <ul class="sub-menu">
                     <!-- lvl 2 nav link -->
-                    <li class="menu-item"><a href="portfolio-2-col.html">2 column</a></li>
+                    <li class="menu-item">
+                      <a href="portfolio-2-col.html">2 column</a>
+                    </li>
                     <!-- lvl 2 nav link -->
-                    <li class="menu-item"><a href="portfolio-3-col.html">3 column</a></li>
+                    <li class="menu-item">
+                      <a href="portfolio-3-col.html">3 column</a>
+                    </li>
                     <!-- lvl 2 nav link -->
-                    <li class="menu-item"><a href="portfolio-2-col-masonry.html">2 column masonry</a></li>
+                    <li class="menu-item">
+                      <a href="portfolio-2-col-masonry.html">2 column masonry</a
+                      >
+                    </li>
                     <!-- lvl 2 nav link -->
-                    <li class="menu-item"><a href="portfolio-3-col-masonry.html">3 column masonry</a></li>
+                    <li class="menu-item">
+                      <a href="portfolio-3-col-masonry.html">3 column masonry</a
+                      >
+                    </li>
                     <!-- lvl 2 nav link -->
-                    <li class="menu-item"><a href="portfolio-single.html">Single project</a></li>
+                    <li class="menu-item">
+                      <a href="portfolio-single.html">Single project</a>
+                    </li>
                     <!-- lvl 2 nav link -->
-                    <li class="menu-item"><a href="portfolio-single-2.html">Single project 2</a></li>
+                    <li class="menu-item">
+                      <a href="portfolio-single-2.html">Single project 2</a>
+                    </li>
                   </ul>
                   <!-- sub menu end -->
                 </li>
@@ -676,16 +749,25 @@
                   <!-- sub menu -->
                   <ul class="sub-menu">
                     <!-- lvl 2 nav link -->
-                    <li class="menu-item"><a href="blog-2-col.html">2 column</a></li>
+                    <li class="menu-item">
+                      <a href="blog-2-col.html">2 column</a>
+                    </li>
                     <!-- lvl 2 nav link -->
-                    <li class="menu-item"><a href="blog-3-col.html">3 column</a></li>
+                    <li class="menu-item">
+                      <a href="blog-3-col.html">3 column</a>
+                    </li>
                     <!-- lvl 2 nav link -->
-                    <li class="menu-item"><a href="blog-post.html">Publication</a></li>
+                    <li class="menu-item">
+                      <a href="blog-post.html">Publication</a>
+                    </li>
                   </ul>
                   <!-- sub menu end -->
                 </li>
                 <!-- menu item -->
-                <li class="menu-item"><a href="onepage.html" target="_blank" data-no-swup>Onepage</a></li>
+                <li class="menu-item">
+                  <a href="onepage.html" target="_blank" data-no-swup>Onepage</a
+                  >
+                </li>
               </ul>
               <!-- menu list end -->
             </nav>
@@ -699,19 +781,14 @@
               <li class="art-active-lang"><a href="#.">EN</a></li>
             </ul>
             <!-- language change end -->
-
           </div>
           <!-- scroll frame end -->
-
         </div>
         <!-- menu bar frame -->
-
       </div>
       <!-- menu bar end -->
-
     </div>
     <!-- app container end -->
-
   </div>
   <!-- app wrapper end -->
 
@@ -727,6 +804,5 @@
     <!-- preloader content end -->
   </div>
   <!-- preloader end -->
-
 </div>
 <!-- app end -->

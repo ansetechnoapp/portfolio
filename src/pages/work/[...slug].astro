@@ -31,10 +31,12 @@ const { Content } = await entry.render();
   <div class="project-container">
     <div class="project-header">
       <div class="header-content">
-        <a class="back-link" href="/work/"><Icon icon="arrow-left" /> Back to Projects</a>
+        <a class="back-link" href="/work/"
+          ><Icon icon="arrow-left" /> Back to Projects</a
+        >
         <h1 class="project-title">{entry.data.title}</h1>
         <p class="project-description">{entry.data.description}</p>
-        
+
         <div class="meta-container">
           <div class="tags-container">
             <h3>Category</h3>
@@ -42,59 +44,120 @@ const { Content } = await entry.render();
               {entry.data.tags.map((t) => <Pill>{t}</Pill>)}
             </div>
           </div>
-          
-          {entry.data.tech && (
-            <div class="tech-container">
-              <h3>Technologies</h3>
-              <div class="tech-list">
-                {entry.data.tech.map((tech) => (
-                  <Pill>{tech}</Pill>
-                ))}
+
+          {
+            entry.data.tech && (
+              <div class="tech-container">
+                <h3>Technologies</h3>
+                <div class="tech-list">
+                  {entry.data.tech.map((tech) => (
+                    <Pill>{tech}</Pill>
+                  ))}
+                </div>
               </div>
-            </div>
-          )}
+            )
+          }
         </div>
 
         <div class="cta-buttons">
-          {entry.data.liveDemo && (
-            <a href={entry.data.liveDemo} class="btn primary" target="_blank" rel="noopener">
-              <Icon icon="rocket-launch" /> Live Demo
-            </a>
-          )}
-          {entry.data.github && (
-            <a href={entry.data.github} class="btn secondary" target="_blank" rel="noopener">
-              <Icon icon="github-logo" /> View Code
-            </a>
-          )}
+          {
+            entry.data.liveDemo && (
+              <a
+                href={entry.data.liveDemo}
+                class="btn primary"
+                target="_blank"
+                rel="noopener"
+              >
+                <Icon icon="rocket-launch" /> Live Demo
+              </a>
+            )
+          }
+          {
+            entry.data.github && (
+              <a
+                href={entry.data.github}
+                class="btn secondary"
+                target="_blank"
+                rel="noopener"
+              >
+                <Icon icon="github-logo" /> View Code
+              </a>
+            )
+          }
         </div>
       </div>
     </div>
 
     <div class="project-showcase">
-      {entry.data.img && (
-        <div class="main-image">
-          <img src={entry.data.img} alt={entry.data.img_alt || ""} />
-        </div>
-      )}
+      {
+        entry.data.img && (
+          <div class="main-image">
+            <picture>
+              {/* AVIF format */}
+              <source
+                type="image/avif"
+                srcset={`${entry.data.img.replace(/\.(jpg|jpeg|png|gif)$/i, "_optimized.avif")} 1x, ${entry.data.img.replace(/\.(jpg|jpeg|png|gif)$/i, "_640w.avif")} 640w, ${entry.data.img.replace(/\.(jpg|jpeg|png|gif)$/i, "_1024w.avif")} 1024w`}
+                sizes="(max-width: 768px) 100vw, 1200px"
+              />
+              {/* WebP format */}
+              <source
+                type="image/webp"
+                srcset={`${entry.data.img.replace(/\.(jpg|jpeg|png|gif)$/i, "_optimized.webp")} 1x, ${entry.data.img.replace(/\.(jpg|jpeg|png|gif)$/i, "_640w.webp")} 640w, ${entry.data.img.replace(/\.(jpg|jpeg|png|gif)$/i, "_1024w.webp")} 1024w`}
+                sizes="(max-width: 768px) 100vw, 1200px"
+              />
+              {/* Fallback format */}
+              <img
+                src={entry.data.img}
+                alt={entry.data.img_alt || ""}
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
+          </div>
+        )
+      }
     </div>
 
     <div class="project-content">
       <div class="content-wrapper">
         <Content />
       </div>
-      
-      {entry.data.additionalImages && entry.data.additionalImages.length > 0 && (
-        <div class="additional-images">
-          <h2>Project Gallery</h2>
-          <div class="image-grid">
-            {entry.data.additionalImages.map((img) => (
-              <div class="gallery-image">
-                <img src={img.url} alt={img.alt || ""} />
+
+      {
+        entry.data.additionalImages &&
+          entry.data.additionalImages.length > 0 && (
+            <div class="additional-images">
+              <h2>Project Gallery</h2>
+              <div class="image-grid">
+                {entry.data.additionalImages.map((img) => (
+                  <div class="gallery-image">
+                    <picture>
+                      {/* AVIF format */}
+                      <source
+                        type="image/avif"
+                        srcset={`${img.url.replace(/\.(jpg|jpeg|png|gif)$/i, "_optimized.avif")} 1x, ${img.url.replace(/\.(jpg|jpeg|png|gif)$/i, "_640w.avif")} 640w, ${img.url.replace(/\.(jpg|jpeg|png|gif)$/i, "_1024w.avif")} 1024w`}
+                        sizes="(max-width: 768px) 100vw, 400px"
+                      />
+                      {/* WebP format */}
+                      <source
+                        type="image/webp"
+                        srcset={`${img.url.replace(/\.(jpg|jpeg|png|gif)$/i, "_optimized.webp")} 1x, ${img.url.replace(/\.(jpg|jpeg|png|gif)$/i, "_640w.webp")} 640w, ${img.url.replace(/\.(jpg|jpeg|png|gif)$/i, "_1024w.webp")} 1024w`}
+                        sizes="(max-width: 768px) 100vw, 400px"
+                      />
+                      {/* Fallback format */}
+                      <img
+                        src={img.url}
+                        alt={img.alt || ""}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </picture>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-        </div>
-      )}
+            </div>
+          )
+      }
     </div>
 
     <div class="next-section">
@@ -141,7 +204,10 @@ const { Content } = await entry.render();
     line-height: 1.1;
     font-weight: 700;
     margin-bottom: 1.5rem;
-    background: var(--gradient-text, linear-gradient(to right, var(--gray-0), var(--accent-light)));
+    background: var(
+      --gradient-text,
+      linear-gradient(to right, var(--gray-0), var(--accent-light))
+    );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -172,7 +238,7 @@ const { Content } = await entry.render();
     color: var(--gray-200);
   }
 
-  .tags, 
+  .tags,
   .tech-list {
     display: flex;
     gap: 0.5rem;
@@ -357,7 +423,7 @@ const { Content } = await entry.render();
     .meta-container {
       grid-template-columns: 1fr 1fr;
     }
-    
+
     .project-header {
       padding: 8rem 0 4rem;
     }
@@ -368,12 +434,12 @@ const { Content } = await entry.render();
       flex-direction: column;
       width: 100%;
     }
-    
+
     .btn {
       width: 100%;
       justify-content: center;
     }
-    
+
     .project-header {
       padding: 4rem 0 2rem;
     }

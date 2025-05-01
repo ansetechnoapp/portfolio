@@ -7,7 +7,14 @@ interface Props {
   title?: string;
   description?: string;
   secondaryDescription?: string;
-  imageSrc: ImageMetadata;
+  imageSrc: { src: string };
+  optimizedImageSrc?: {
+    avif: string;
+    webp: string;
+    fallback: string;
+    srcsetAvif: string;
+    srcsetWebp: string;
+  };
   yearsExperience?: number;
   skills?: {
     webDev?: string[];
@@ -36,6 +43,7 @@ const {
   title = "About Me",
   description = `As a seasoned Software Engineer with expertise in both web and mobile development, I bring a unique blend of technical proficiency and creative vision to every project. My background in computer systems enables me to architect robust solutions while my design sensibilities ensure exceptional user experiences. I specialize in creating innovative digital products that drive measurable business outcomes and enhance brand visibility. I thrive in collaborative environments and am passionate about leveraging cutting-edge technologies to solve complex challenges.I am always open to feedback and suggestions, so feel free to reach out to me if you have any questions or comments.`,
   imageSrc,
+  optimizedImageSrc,
   yearsExperience = 7,
   skills = {
     webDev: [
@@ -93,11 +101,38 @@ const {
     <div class="profile-container">
       <div class="image-frame">
         <div class="profile-image-container">
-          <img
-            src={imageSrc.src}
-            alt="Developer portrait"
-            class="profile-image"
-          />
+          {optimizedImageSrc ? (
+            <picture>
+              <!-- AVIF format -->
+              <source
+                type="image/avif"
+                srcset={`${optimizedImageSrc.avif} 1x, ${optimizedImageSrc.srcsetAvif}`}
+                sizes="(max-width: 768px) 100vw, 400px"
+              />
+              <!-- WebP format -->
+              <source
+                type="image/webp"
+                srcset={`${optimizedImageSrc.webp} 1x, ${optimizedImageSrc.srcsetWebp}`}
+                sizes="(max-width: 768px) 100vw, 400px"
+              />
+              <!-- Fallback format -->
+              <img
+                src={optimizedImageSrc.fallback}
+                alt="Developer portrait"
+                class="profile-image"
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
+          ) : (
+            <img
+              src={imageSrc.src}
+              alt="Developer portrait"
+              class="profile-image"
+              loading="lazy"
+              decoding="async"
+            />
+          )}
         </div>
 
         <div class="experience-badge">

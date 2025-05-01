@@ -53,9 +53,24 @@ export default function PortfolioPreview({ project, activeFilter = 'all' }: Port
   }
 
   return (
-    <article className="portfolio_item"> 
+    <article className="portfolio_item">
       <div className="portfolio_item-image">
-        <img src={data.img} alt={data.img_alt || ''} loading="lazy" decoding="async" />
+        <picture>
+          {/* AVIF format */}
+          <source
+            type="image/avif"
+            srcSet={`${data.img.replace(/\.(jpg|jpeg|png|gif)$/i, '_optimized.avif')} 1x, ${data.img.replace(/\.(jpg|jpeg|png|gif)$/i, '_640w.avif')} 640w, ${data.img.replace(/\.(jpg|jpeg|png|gif)$/i, '_1024w.avif')} 1024w`}
+            sizes="(max-width: 768px) 100vw, 400px"
+          />
+          {/* WebP format */}
+          <source
+            type="image/webp"
+            srcSet={`${data.img.replace(/\.(jpg|jpeg|png|gif)$/i, '_optimized.webp')} 1x, ${data.img.replace(/\.(jpg|jpeg|png|gif)$/i, '_640w.webp')} 640w, ${data.img.replace(/\.(jpg|jpeg|png|gif)$/i, '_1024w.webp')} 1024w`}
+            sizes="(max-width: 768px) 100vw, 400px"
+          />
+          {/* Fallback format */}
+          <img src={data.img} alt={data.img_alt || ''} loading="lazy" decoding="async" />
+        </picture>
         <div className="layer">
           <p>{data.description}</p>
           <a href={`/work/${slug}`} aria-label={`View details for ${data.title}`}>

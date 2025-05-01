@@ -1,9 +1,27 @@
 ---
 import { getCollection } from "astro:content";
 
-// image
-import Img1 from "../assets/otty_kevin/2.png";
-import Img2 from "../assets/otty_kevin/6.png";
+// image paths
+const Img1 = {
+  src: "/assets/otty_kevin_optimized/2.png",
+  srcsetWebp:
+    "/assets/otty_kevin_optimized/2_640w.webp 640w, /assets/otty_kevin_optimized/2_1024w.webp 1024w",
+  srcsetAvif:
+    "/assets/otty_kevin_optimized/2_640w.avif 640w, /assets/otty_kevin_optimized/2_1024w.avif 1024w",
+  webp: "/assets/otty_kevin_optimized/2_optimized.webp",
+  avif: "/assets/otty_kevin_optimized/2_optimized.avif",
+  fallback: "/assets/otty_kevin_optimized/2.png",
+};
+const Img2 = {
+  src: "/assets/otty_kevin_optimized/6.png",
+  srcsetWebp:
+    "/assets/otty_kevin_optimized/6_640w.webp 640w, /assets/otty_kevin_optimized/6_1024w.webp 1024w",
+  srcsetAvif:
+    "/assets/otty_kevin_optimized/6_640w.avif 640w, /assets/otty_kevin_optimized/6_1024w.avif 1024w",
+  webp: "/assets/otty_kevin_optimized/6_optimized.webp",
+  avif: "/assets/otty_kevin_optimized/6_optimized.avif",
+  fallback: "/assets/otty_kevin_optimized/6.png",
+};
 // Layout import — provides basic page elements: <head>, <nav>, <footer> etc.
 import Layout from "../layouts/Layout.astro";
 
@@ -78,87 +96,104 @@ const { heroTitle = `I am ${dataUser.firstName} ${dataUser.lastName}` } =
         </div>
 
         <div class="hero-image">
-          <img
-            alt=`${dataUser.firstName} ${dataUser.lastName} smiling in a red plaid shirt and tortoise shell glasses`
-            width="480"
-            height="620"
-            src={Img1.src}
-            srcset={`${Img1.src} 480w`}
-            sizes="(max-width: 768px) 100vw, 480px"
-            loading="eager"
-            decoding="async"
-          />
-          <HeroMediaSocialNav />
-
-          <div class="image-backdrop"></div>
+          <picture>
+            <source
+              srcset={Img1.srcsetAvif}
+              type="image/avif"
+              sizes="(max-width: 768px) 100vw, 480px"
+            />
+            <source
+              srcset={Img1.srcsetWebp}
+              type="image/webp"
+              sizes="(max-width: 768px) 100vw, 480px"
+            />
+            <img
+              alt=`${dataUser.firstName} ${dataUser.lastName} smiling in a red plaid shirt and tortoise shell glasses`
+              width="480"
+              height="620"
+              src={Img1.fallback}
+              loading="eager"
+              decoding="async"
+            />
+          </picture>
         </div>
+        <HeroMediaSocialNav />
+
+        <div class="image-backdrop"></div>
       </header>
     </div>
+  </div>
 
-    <main class="wrapper stack gap-20 lg:gap-35">
-      <Skills />
-    </main>
-    <main id="about" class="wrapper stack gap-20 lg:gap-35">
-      <About
-        imageSrc={Img2}
-        contactInfo={{
-          city: dataUser.address.city,
-          street: dataUser.address.rue,
-          email: dataUser.email,
-          phone: dataUser.phone,
-          phonePrefix: dataUser.address.indicatif,
-          occupation: "Programmer",
-          availability: "Freelance Available",
-          website: "www.anscod.online",
-        }}
-      />
-    </main>
-    <div class="wrapper stack gap-20 lg:gap-35">
-      <Timeline 
-        client:only="react" 
-        title="My Journey" 
-        subtitle="My professional experience and education through the years"
-        events={timelineEvents} 
-      />
-    </div>
+  <main class="wrapper stack gap-20 lg:gap-35">
+    <Skills />
+  </main>
+  <main id="about" class="wrapper stack gap-20 lg:gap-35">
+    <About
+      imageSrc={Img2}
+      optimizedImageSrc={{
+        avif: Img2.avif,
+        webp: Img2.webp,
+        fallback: Img2.fallback,
+        srcsetAvif: Img2.srcsetAvif,
+        srcsetWebp: Img2.srcsetWebp,
+      }}
+      contactInfo={{
+        city: dataUser.address.city,
+        street: dataUser.address.rue,
+        email: dataUser.email,
+        phone: dataUser.phone,
+        phonePrefix: dataUser.address.indicatif,
+        occupation: "Programmer",
+        availability: "Freelance Available",
+        website: "www.anscod.online",
+      }}
+    />
+  </main>
+  <div class="wrapper stack gap-20 lg:gap-35">
+    <Timeline
+      client:only="react"
+      title="My Journey"
+      subtitle="My professional experience and education through the years"
+      events={timelineEvents}
+    />
+  </div>
 
-    <ContactCTA />
-    <div class="wrapper stack gap-20 lg:gap-35">
-      <Services />
-      <section id="work" class="section with-background with-cta">
-        <header class="section-header stack gap-2 lg:gap-4">
-          <h3>Selected Work</h3>
-          <p>
-            Take a look below at some of my featured work for clients from the
-            past few years.
-          </p>
-        </header>
+  <ContactCTA />
+  <div class="wrapper stack gap-20 lg:gap-35">
+    <Services />
+    <section id="work" class="section with-background with-cta">
+      <header class="section-header stack gap-2 lg:gap-4">
+        <h3>Selected Work</h3>
+        <p>
+          Take a look below at some of my featured work for clients from the
+          past few years.
+        </p>
+      </header>
 
-        <div class="gallery">
-          <Card>
-            {
-              projects.map((project) => (
-                <li>
-                  <PortfolioPreview project={project} client:load />
-                </li>
-              ))
-            }
-          </Card>
-        </div>
+      <div class="gallery">
+        <Card>
+          {
+            projects.map((project) => (
+              <li>
+                <PortfolioPreview project={project} client:load />
+              </li>
+            ))
+          }
+        </Card>
+      </div>
 
-        <div class="cta">
-          <CallToAction href="/work/">
-            View All
-            <Icon icon="arrow-right" size="1.2em" />
-          </CallToAction>
-        </div>
-      </section>
-    </div>
+      <div class="cta">
+        <CallToAction href="/work/">
+          View All
+          <Icon icon="arrow-right" size="1.2em" />
+        </CallToAction>
+      </div>
+    </section>
+  </div>
 
-    <ContactCTA />
-    <div class="wrapper stack gap-20 lg:gap-48 p-left-right-3-rem">
-      <Contact />
-    </div>
+  <ContactCTA />
+  <div class="wrapper stack gap-20 lg:gap-48 p-left-right-3-rem">
+    <Contact />
   </div>
 </Layout>
 

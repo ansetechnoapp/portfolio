@@ -7,14 +7,16 @@ import sharp from 'sharp';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const publicDir = path.join(__dirname, '../public');
+const srcDir = path.join(__dirname, '../src');
 
 // Directories to process - add more as needed
 const imageDirs = [
   path.join(publicDir, 'assets/myprojects'),
   path.join(publicDir, 'assets/backgrounds'),
   path.join(publicDir, 'assets/img'),
-  path.join(publicDir, 'assets/timeline'),
-  path.join(publicDir, 'assets/blog'),
+  path.join(publicDir, 'assets/otty_kevin_optimized'),
+  path.join(publicDir, 'assets/icone'),
+  path.join(publicDir, 'assets/Anscod_logo'),
   // Add more directories as needed
 ];
 
