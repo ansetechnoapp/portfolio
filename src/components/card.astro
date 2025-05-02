@@ -1,45 +1,44 @@
 ---
+
 ---
 
 <div class="Work-grid offset">
-    <slot />
+  <slot />
 </div>
 
 <style>
-    
+  .Work-grid {
+    display: grid;
+    grid-auto-rows: 1fr;
+    gap: 1rem;
+    list-style: none;
+    padding: 0;
+  }
+
+  @media (min-width: 48em) {
     .Work-grid {
-      display: grid;
-      grid-auto-rows: 1fr;
-      gap: 1rem;
-      list-style: none;
-      padding: 0;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-2xl);
     }
-    
-  
-    @media (min-width: 48em) {
-      .Work-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 4rem;
-      }
-  
-      /* Shift first item in each row vertically to create staggered effect. */
-      .Work-grid.offset > :global(:nth-child(odd)) {
-        transform: translateY(var(--row-offset));
-      }
-  
-      /* If last row contains only one item, display it in the second column. */
-      .Work-grid.offset > :global(:last-child:nth-child(odd)) {
-        grid-column: 3 / 3;
-        transform: none;
-      }
+
+    /* Shift first item in each row vertically to create staggered effect. */
+    .Work-grid.offset > :global(:nth-child(odd)) {
+      transform: translateY(var(--row-offset));
     }
-    @media (min-width: 75em) {
-      .Work-grid {
-        grid-template-columns: 1fr 1fr 1fr;
-        gap: 4rem;
-      }
+
+    /* If last row contains only one item, display it in the second column. */
+    .Work-grid.offset > :global(:last-child:nth-child(odd)) {
+      grid-column: 3 / 3;
+      transform: none;
     }
-  </style>
+  }
+  @media (min-width: 75em) {
+    .Work-grid {
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 4rem;
+    }
+  }
+</style>
 
 <!-- <style>
   .portfolio_item-image:hover .layer {

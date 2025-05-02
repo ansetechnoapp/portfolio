@@ -193,65 +193,124 @@ const {
     </p>
     <br /><br />
     <div class="grid grid-cols-1 gap-10">
-      <!-- Tools & Skills -->
-      <div
-        class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm card-hover-effect"
-        style="--animation-order: 1;"
-      >
-        <div class="flex items-center mb-8">
-          <div
-            class="w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-lg flex items-center justify-center mr-4"
-          >
-            <i class="fas fa-tools text-purple-500"></i>
-          </div>
-          <h3 class="text-xl font-semibold dark:text-white">Tools & Skills</h3>
+      <!-- Section Tabs -->
+      <div class="flex justify-center gap-4 mb-6">
+        <button
+          class="tab-button active"
+          data-tab="skills"
+          aria-selected="true"
+          role="tab"
+        >
+          <i class="fas fa-tools mr-2"></i>
+          Tools & Skills
+        </button>
+        <button
+          class="tab-button"
+          data-tab="languages"
+          aria-selected="false"
+          role="tab"
+        >
+          <i class="fas fa-language mr-2"></i>
+          Languages
+        </button>
+        <button
+          class="tab-button"
+          data-tab="contact"
+          aria-selected="false"
+          role="tab"
+        >
+          <i class="fas fa-address-card mr-2"></i>
+          Contact Info
+        </button>
+      </div>
+
+      <!-- Tools & Skills Section -->
+      <div class="tab-content active" data-content="skills">
+        <div
+          class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm card-hover-effect"
+          style="--animation-order: 1;"
+        >
+          {
+            skills.webDev && skills.webDev.length > 0 && (
+              <div class="mb-8">
+                <h3 class="text-xl font-semibold pb-4 dark:text-white">
+                  Web Development
+                </h3>
+                <div class="flex flex-wrap gap-4">
+                  {skills.webDev.map((skill) => (
+                    <span class="px-4 py-2 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-100 rounded-full text-sm font-medium transform transition-transform hover:scale-105">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )
+          }
+
+          {
+            skills.mobileDev && skills.mobileDev.length > 0 && (
+              <div class="mb-8">
+                <h3 class="text-xl font-semibold pb-4 dark:text-white">
+                  Mobile Development
+                </h3>
+                <div class="flex flex-wrap gap-4">
+                  {skills.mobileDev.map((skill) => (
+                    <span class="px-4 py-2 bg-pink-100 dark:bg-pink-900 text-pink-800 dark:text-pink-100 rounded-full text-sm font-medium transform transition-transform hover:scale-105">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )
+          }
+
+          {
+            skills.other && skills.other.length > 0 && (
+              <div>
+                <h3 class="text-xl font-semibold pb-4 dark:text-white">
+                  Other Technologies
+                </h3>
+                <div class="flex flex-wrap gap-4">
+                  {skills.other.map((skill) => (
+                    <span class="px-4 py-2 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-100 rounded-full text-sm font-medium transform transition-transform hover:scale-105">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )
+          }
         </div>
+      </div>
 
+      <!-- Languages Section -->
+      <div class="tab-content" data-content="languages">
         {
-          skills.webDev && skills.webDev.length > 0 && (
-            <div class="mb-8">
-              <h3 class="text-xl font-semibold pb-4 dark:text-white">
-                Web Development
-              </h3>
-              <div class="flex flex-wrap gap-4">
-                {skills.webDev.map((skill) => (
-                  <span class="px-4 py-2 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-100 rounded-full text-sm font-medium transform transition-transform hover:scale-105">
-                    {skill}
-                  </span>
-                ))}
+          languages && languages.length > 0 && (
+            <div
+              class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm card-hover-effect"
+              style="--animation-order: 2;"
+            >
+              <div class="flex items-center mb-6">
+                <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+                  <i class="fas fa-language text-green-500" />
+                </div>
+                <h3 class="text-xl font-semibold dark:text-white">Languages</h3>
               </div>
-            </div>
-          )
-        }
-
-        {
-          skills.mobileDev && skills.mobileDev.length > 0 && (
-            <div class="mb-8">
-              <h3 class="text-xl font-semibold pb-4 dark:text-white">
-                Mobile Development
-              </h3>
-              <div class="flex flex-wrap gap-4">
-                {skills.mobileDev.map((skill) => (
-                  <span class="px-4 py-2 bg-pink-100 dark:bg-pink-900 text-pink-800 dark:text-pink-100 rounded-full text-sm font-medium transform transition-transform hover:scale-105">
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
-          )
-        }
-
-        {
-          skills.other && skills.other.length > 0 && (
-            <div>
-              <h3 class="text-xl font-semibold pb-4 dark:text-white">
-                Other Technologies
-              </h3>
-              <div class="flex flex-wrap gap-4">
-                {skills.other.map((skill) => (
-                  <span class="px-4 py-2 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-100 rounded-full text-sm font-medium transform transition-transform hover:scale-105">
-                    {skill}
-                  </span>
+              <div class="space-y-4">
+                {languages.map((lang) => (
+                  <div>
+                    <div class="flex justify-between mb-1">
+                      <span class="text-black dark:text-white">{lang.name}</span>
+                      <span class="text-black dark:text-white">{lang.level}</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
+                      <div
+                        class="bg-green-500 h-2 rounded-full progress-bar-animate"
+                        style={`width: 0%; --final-width: ${lang.percentage}%;`}
+                      />
+                    </div>
+                  </div>
                 ))}
               </div>
             </div>
@@ -259,100 +318,72 @@ const {
         }
       </div>
 
-      <!-- Languages -->
-      {
-        languages && languages.length > 0 && (
-          <div
-            class="bg-white p-2 rounded-xl shadow-sm card-hover-effect"
-            style="--animation-order: 2;"
-          >
-            <div class="flex items-center mb-6">
-              <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mr-4">
-                <i class="fas fa-language text-green-500" />
-              </div>
-              <h3 class="text-xl font-semibold dark:text-white">Languages</h3>
-            </div>
-            <div class="space-y-4">
-              {languages.map((lang) => (
-                <div>
-                  <div class="flex justify-between mb-1">
-                    <span class="text-black dark:text-white">{lang.name}</span>
-                    <span class="text-black dark:text-white">{lang.level}</span>
-                  </div>
-                  <div class="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
-                    <div
-                      class="bg-green-500 h-2 rounded-full progress-bar-animate"
-                      style={`width: 0%; --final-width: ${lang.percentage}%;`}
-                    />
-                  </div>
+      <!-- Contact Information Section -->
+      <div class="tab-content" data-content="contact">
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm card-hover-effect">
+          <!-- Contact Information Grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 my-8 contact-info-grid">
+            {
+              contactInfo.city && (
+                <div class="flex items-center p-2 contact-info-item">
+                  <i class="fas fa-map-marker-alt text-blue-500 mr-3 contact-icon" />
+                  <span class="text-black dark:text-white">
+                    {contactInfo.city} {contactInfo.street}
+                  </span>
                 </div>
-              ))}
-            </div>
+              )
+            }
+            {
+              contactInfo.email && (
+                <div class="flex items-center p-2 contact-info-item">
+                  <i class="fas fa-envelope text-blue-500 mr-3 contact-icon" />
+                  <span class="text-black dark:text-white">{contactInfo.email}</span>
+                </div>
+              )
+            }
+            {
+              contactInfo.phone && (
+                <div class="flex items-center p-2 contact-info-item">
+                  <i class="fas fa-phone text-blue-500 mr-3 contact-icon" />
+                  <span class="text-black dark:text-white">
+                    ({contactInfo.phonePrefix}) {contactInfo.phone}
+                  </span>
+                </div>
+              )
+            }
+            {
+              contactInfo.occupation && (
+                <div class="flex items-center p-2 contact-info-item">
+                  <i class="fas fa-graduation-cap text-blue-500 mr-3 contact-icon" />
+                  <span class="text-black dark:text-white">
+                    {contactInfo.occupation}
+                  </span>
+                </div>
+              )
+            }
+            {
+              contactInfo.availability && (
+                <div class="flex items-center p-2 contact-info-item">
+                  <i class="fas fa-briefcase text-blue-500 mr-3 contact-icon" />
+                  <span class="text-black dark:text-white">
+                    {contactInfo.availability}
+                  </span>
+                </div>
+              )
+            }
+            {
+              contactInfo.website && (
+                <div class="flex items-center p-2 contact-info-item">
+                  <i class="fas fa-globe text-blue-500 mr-3 contact-icon" />
+                  <span class="text-black dark:text-white">
+                    {contactInfo.website}
+                  </span>
+                </div>
+              )
+            }
           </div>
-        )
-      }
-    </div>
-
-    <!-- Contact Information Grid -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 my-8 contact-info-grid">
-      {
-        contactInfo.city && (
-          <div class="flex items-center p-2 contact-info-item">
-            <i class="fas fa-map-marker-alt text-blue-500 mr-3 contact-icon" />
-            <span class="text-black dark:text-white">
-              {contactInfo.city} {contactInfo.street}
-            </span>
-          </div>
-        )
-      }
-      {
-        contactInfo.email && (
-          <div class="flex items-center p-2 contact-info-item">
-            <i class="fas fa-envelope text-blue-500 mr-3 contact-icon" />
-            <span class="text-black dark:text-white">{contactInfo.email}</span>
-          </div>
-        )
-      }
-      {
-        contactInfo.phone && (
-          <div class="flex items-center p-2 contact-info-item">
-            <i class="fas fa-phone text-blue-500 mr-3 contact-icon" />
-            <span class="text-black dark:text-white">
-              ({contactInfo.phonePrefix}) {contactInfo.phone}
-            </span>
-          </div>
-        )
-      }
-      {
-        contactInfo.occupation && (
-          <div class="flex items-center p-2 contact-info-item">
-            <i class="fas fa-graduation-cap text-blue-500 mr-3 contact-icon" />
-            <span class="text-black dark:text-white">
-              {contactInfo.occupation}
-            </span>
-          </div>
-        )
-      }
-      {
-        contactInfo.availability && (
-          <div class="flex items-center p-2 contact-info-item">
-            <i class="fas fa-briefcase text-blue-500 mr-3 contact-icon" />
-            <span class="text-black dark:text-white">
-              {contactInfo.availability}
-            </span>
-          </div>
-        )
-      }
-      {
-        contactInfo.website && (
-          <div class="flex items-center p-2 contact-info-item">
-            <i class="fas fa-globe text-blue-500 mr-3 contact-icon" />
-            <span class="text-black dark:text-white">
-              {contactInfo.website}
-            </span>
-          </div>
-        )
-      }
+        </div>
+      </div>
     </div>
 
     <div class="btn-about gap-10 action-buttons">
@@ -368,6 +399,77 @@ const {
 
 <style>
   /* Section About Styles */
+  .tab-button {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    background-color: var(--gray-100, #f3f4f6);
+    color: var(--gray-800, #1f2937);
+    border: 2px solid transparent;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .tab-button::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--accent-regular, #3b82f6);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+  }
+
+  .tab-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .tab-button.active {
+    background-color: var(--accent-regular, #3b82f6);
+    color: white;
+    border-color: var(--accent-regular, #3b82f6);
+  }
+
+  .tab-button.active::after {
+    transform: scaleX(1);
+  }
+
+  .tab-content {
+    display: none;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .tab-content.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 640px) {
+    .tab-button {
+      padding: 0.5rem 1rem;
+      font-size: 0.875rem;
+    }
+
+    .flex.justify-center.gap-4.mb-6 {
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .tab-button i {
+      font-size: 1rem;
+    }
+  }
   .section-about-img {
     display: flex;
     justify-content: center;
@@ -380,18 +482,20 @@ const {
     flex-direction: column;
     align-items: center;
     position: relative;
-    max-width: 400px;
+    max-width: 100%;
+    width: 100%;
     margin: 0 auto;
   }
 
   .image-frame {
     position: relative;
     margin-bottom: 1.5rem;
+    width: 100%;
+    max-width: 320px; /* Limite la taille sur mobile */
   }
 
   .profile-image-container {
-    /* width: 280px;
-    height: 280px; */
+    width: 100%;
     border-radius: 5%;
     padding: 8px;
     background: linear-gradient(
@@ -481,19 +585,44 @@ const {
     right: 0;
     background: white;
     border-radius: 12px;
-    padding: 12px;
+    padding: 10px;
     display: flex;
     align-items: center;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
     border-left: 4px solid var(--accent-regular);
     transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
     animation: badge-float 3s ease-in-out infinite alternate;
+    z-index: 2;
   }
 
   :root.theme-dark .experience-badge {
     background: var(--gray-800);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
     border-left: 4px solid var(--accent-dark);
+  }
+
+  /* Ajustements pour les petits écrans */
+  @media (max-width: 480px) {
+    .experience-badge {
+      padding: 8px;
+      border-radius: 10px;
+      transform: scale(0.9);
+      transform-origin: bottom right;
+    }
+
+    .badge-text .years {
+      font-size: 1rem;
+    }
+
+    .badge-text .label {
+      font-size: 0.7rem;
+    }
+
+    .badge-icon {
+      width: 35px;
+      height: 35px;
+      margin-right: 8px;
+    }
   }
 
   @keyframes badge-float {
@@ -711,6 +840,7 @@ const {
   .section-about {
     display: grid;
     gap: 2rem;
+    padding: 1rem;
   }
 
   .section2-about .title-about {
@@ -719,6 +849,24 @@ const {
     padding-bottom: 1rem;
     margin-bottom: 2rem;
     color: var(--gray-0);
+    font-size: 1.75rem;
+  }
+
+  @media (max-width: 480px) {
+    .section-about {
+      padding: 0.5rem;
+      gap: 1rem;
+    }
+
+    .section2-about .title-about {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .section2-about .describe-about {
+      font-size: 0.95rem;
+      margin: 1rem 0;
+    }
   }
 
   :root.theme-dark .section2-about .title-about {
@@ -784,7 +932,7 @@ const {
   .card-hover-effect {
     transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
     border: 1px solid rgba(0, 0, 0, 0.05);
-    padding: 1.5rem !important;
+    padding: 1.25rem !important;
     border-radius: 16px !important;
     background: rgba(255, 255, 255, 0.95) !important;
     position: relative;
@@ -793,6 +941,23 @@ const {
     transform: translateY(20px);
     animation: fadeInUp 0.8s forwards;
     animation-delay: calc(var(--animation-order, 0) * 0.2s);
+    width: 100%;
+  }
+
+  /* Ajustements pour les petits écrans */
+  @media (max-width: 480px) {
+    .card-hover-effect {
+      padding: 1rem !important;
+    }
+
+    .card-hover-effect h3 {
+      font-size: 1.1rem;
+    }
+
+    .card-hover-effect span {
+      font-size: 0.75rem !important;
+      padding: 0.35rem 0.7rem !important;
+    }
   }
 
   :root.theme-dark .card-hover-effect {
@@ -1000,12 +1165,26 @@ const {
   .contact-info-grid {
     position: relative;
     gap: 1rem; /* Espacement uniforme entre les éléments */
+    display: grid;
+    grid-template-columns: 1fr; /* Par défaut, une seule colonne sur mobile */
   }
 
   /* Ajustement de l'espacement pour différentes tailles d'écran */
   @media (max-width: 639px) {
     .contact-info-grid {
       gap: 0.75rem; /* Espacement réduit sur les très petits écrans */
+    }
+  }
+
+  @media (min-width: 640px) {
+    .contact-info-grid {
+      grid-template-columns: repeat(2, 1fr); /* 2 colonnes sur tablette */
+    }
+  }
+
+  @media (min-width: 768px) {
+    .contact-info-grid {
+      grid-template-columns: repeat(3, 1fr); /* 3 colonnes sur desktop */
     }
   }
 
@@ -1185,4 +1364,119 @@ const {
     transform: scale(1);
     animation: pulse-light 2s infinite;
   }
+
+  /* Tabs Styles */
+  .tab-button {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    background-color: var(--gray-100);
+    color: var(--gray-800);
+    border: 2px solid transparent;
+  }
+
+  :root.theme-dark .tab-button {
+    background-color: var(--gray-800);
+    color: var(--gray-200);
+  }
+
+  .tab-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  :root.theme-dark .tab-button:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  .tab-button.active {
+    background-color: var(--accent-regular);
+    color: white;
+    border-color: var(--accent-regular);
+  }
+
+  :root.theme-dark .tab-button.active {
+    background-color: var(--accent-dark);
+    border-color: var(--accent-dark);
+  }
+
+  .tab-content {
+    display: none;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease-in-out;
+  }
+
+  .tab-content.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 640px) {
+    .tab-button {
+      padding: 0.5rem 1rem;
+      font-size: 0.875rem;
+    }
+
+    .flex.justify-center.gap-4.mb-6 {
+      gap: 0.5rem;
+    }
+  }
 </style>
+
+<script is:inline>
+  // Function to handle tab switching
+  function switchTab(tabId) {
+    // Get all tab buttons and content sections
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    // Update button states
+    tabButtons.forEach(button => {
+      const buttonId = button.getAttribute('data-tab');
+      if (buttonId === tabId) {
+        button.classList.add('active');
+        button.setAttribute('aria-selected', 'true');
+      } else {
+        button.classList.remove('active');
+        button.setAttribute('aria-selected', 'false');
+      }
+    });
+
+    // Update content visibility
+    tabContents.forEach(content => {
+      const contentId = content.getAttribute('data-content');
+      if (contentId === tabId) {
+        content.classList.add('active');
+      } else {
+        content.classList.remove('active');
+      }
+    });
+  }
+
+  // Initialize tab functionality
+  function initTabs() {
+    const tabButtons = document.querySelectorAll('.tab-button');
+
+    // Add click event listeners to all tab buttons
+    tabButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const tabId = this.getAttribute('data-tab');
+        if (tabId) {
+          switchTab(tabId);
+        }
+      });
+    });
+  }
+
+  // Run initialization on page load
+  document.addEventListener('astro:page-load', initTabs);
+  document.addEventListener('DOMContentLoaded', initTabs);
+
+  // Also run immediately if the page is already loaded
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    initTabs();
+  }
+</script>

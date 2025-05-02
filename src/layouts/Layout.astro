@@ -9,6 +9,7 @@ import AccessibilityFeatures from "../components/AccessibilityFeatures.astro";
 import FontAwesomeFallback from "../components/FontAwesomeFallback.astro";
 import SEO from "../components/SEO.astro";
 import "../styles/global.css";
+import "../styles/mobile.css";
 
 interface Props {
   title?: string | undefined;
@@ -56,14 +57,14 @@ const {
   </head>
   <body
     class="bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 min-h-screen font-[Inter]"
+    style="margin: 0; padding: 0;"
   >
     <AccessibilityFeatures />
     <FontAwesomeFallback />
-
-    <div class="stack backgrounds">
+    <div class="stack backgrounds" style="margin-top: 0; padding-top: 0; top: 0; position: absolute; width: 100%; left: 0;">
       <Nav />
 
-      <main id="main-content">
+      <main id="main-content" class="site-content-spacing">
         <slot />
       </main>
 
@@ -217,7 +218,28 @@ const {
           /*header1*/ var(--bg-svg-blend-mode),
           /*header2*/ normal,
           /*base*/ normal;
+        margin-top: 0;
+        padding-top: 0;
+        top: 0;
       }
+      
+      /* Assurer que tout le contenu est collé au bord supérieur sur mobile */
+      @media (max-width: 640px) {
+        body {
+          margin: 0;
+          padding: 0;
+        }
+        
+        .stack.backgrounds {
+          margin-top: 0;
+          padding-top: 0;
+        }
+        
+        #main-content {
+          padding-top: 0;
+        }
+      }
+      
       @media (forced-colors: active) {
         /* Deactivate custom backgrounds for high contrast users. */
         .backgrounds {
@@ -259,6 +281,20 @@ const {
           transition: none;
           transform: none;
           animation: none;
+        }
+      }
+
+      /* Ajout pour garantir un espacement constant entre la navigation et le contenu principal */
+      #main-content {
+        padding-top: var(--space-md);
+        margin-top: var(--nav-height, 70px);
+        position: relative;
+      }
+
+      @media (max-width: 640px) {
+        #main-content {
+          padding-top: 0;
+          margin-top: var(--mobile-nav-height, 60px);
         }
       }
     </style>

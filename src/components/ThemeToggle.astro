@@ -44,6 +44,20 @@ const { togglelightdarktheme, toggleiconelightdarktheme } = Astro.props;
     cursor: pointer;
   }
 
+  @media (max-width: 640px) {
+    button.togglehigh,
+    button.toggleside {
+      transform: scale(0.9);
+      margin: var(--space-xs);
+    }
+
+    .icon {
+      padding: 0.4rem;
+      width: 1.8rem;
+      height: 1.8rem;
+    }
+  }
+
   .icon {
     z-index: 1;
     position: relative;

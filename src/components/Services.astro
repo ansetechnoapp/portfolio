@@ -1,9 +1,9 @@
-<section id="service" class="services-section py-20">
-  <div class="services-header text-center mb-20">
-    <div class="services-header-content">
-      <div class="services-eyebrow">Expertise</div>
-      <h2 class="services-title text-4xl font-bold">My Services</h2>
-      <p class="services-subtitle mt-4">
+<section id="service" class="services-section container">
+  <div class="services-header text-center mb-xl">
+    <div class="services-header-content content-width-md">
+      <div class="services-eyebrow mb-sm">Expertise</div>
+      <h2 class="services-title text-4xl font-bold mb-md">My Services</h2>
+      <p class="services-subtitle">
         Specialized solutions tailored to your digital needs
       </p>
     </div>
@@ -13,11 +13,10 @@
       <div class="decoration-line"></div>
     </div>
   </div>
-
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-xl p-lg">
     <!-- Web Development Service -->
-    <div class="service-card group">
-      <div class="service-icon">
+    <div class="service-card group p-lg">
+      <div class="service-icon mb-md">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -404,6 +403,42 @@
 
     .services-header-decoration {
       display: none;
+    }
+  }
+
+  /* Mobile optimizations for Services */
+  @media (max-width: 640px) {
+    .services-section {
+      padding: var(--space-xl) var(--container-padding);
+    }
+
+    .services-header {
+      margin-bottom: var(--space-lg);
+    }
+
+    .services-title {
+      font-size: var(--text-2xl);
+      margin-bottom: var(--space-sm);
+    }
+
+    .services-subtitle {
+      font-size: var(--text-base);
+      padding: 0 var(--space-sm);
+    }
+
+    .service-card {
+      padding: var(--space-md);
+      margin-bottom: var(--space-md);
+    }
+
+    .service-icon {
+      transform: scale(0.9);
+      margin-bottom: var(--space-sm);
+    }
+
+    .service-description {
+      font-size: var(--text-sm);
+      line-height: 1.5;
     }
   }
 </style>

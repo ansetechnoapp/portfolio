@@ -10,7 +10,7 @@ const { align = "center", tagline, tagline1, title } = Astro.props;
 ---
 
 <div class:list={["hero stack gap-4", align]}>
-  <div class="hero-background">
+  <div class="hero-background container">
     <div class="hero-bg-element hero-bg-element-1"></div>
     <div class="hero-bg-element hero-bg-element-2"></div>
     <div class="hero-bg-element hero-bg-element-3"></div>
@@ -35,6 +35,12 @@ const { align = "center", tagline, tagline1, title } = Astro.props;
     position: relative;
     animation: fadeIn 1s cubic-bezier(0.16, 1, 0.3, 1);
     overflow: hidden;
+    padding: 5rem 0;
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
   /* Enhanced Background Elements */
@@ -140,6 +146,8 @@ const { align = "center", tagline, tagline1, title } = Astro.props;
     margin: 0 auto;
     position: relative;
     z-index: 1;
+    padding: 0 var(--container-padding);
+    width: 100%;
   }
 
   .hero-eyebrow {
@@ -235,6 +243,8 @@ const { align = "center", tagline, tagline1, title } = Astro.props;
   @media (min-width: 48em) {
     .hero {
       font-size: var(--text-xl);
+      padding: 6rem 0;
+      min-height: 70vh;
     }
 
     .title {
@@ -254,6 +264,134 @@ const { align = "center", tagline, tagline1, title } = Astro.props;
     .start .hero-text-container {
       align-items: flex-start;
       margin: 0;
+    }
+    
+    .hero {
+      min-height: 80vh;
+    }
+  }
+
+  /* Mobile optimizations for Hero */
+  @media (max-width: 640px) {
+    .hero {
+      padding: 4rem 0 3rem;
+      font-size: var(--text-md);
+      min-height: 50vh;
+      justify-content: flex-start;
+    }
+
+    .hero-text-container {
+      text-align: center;
+      padding: 0 var(--container-padding);
+      max-width: 100%;
+    }
+
+    .hero-eyebrow {
+      font-size: var(--text-xs);
+      margin-bottom: 0.75rem;
+      padding: 0.4rem 0.8rem;
+    }
+
+    .title {
+      font-size: var(--text-3xl);
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .tagline {
+      font-size: var(--text-md);
+      line-height: 1.4;
+      margin-bottom: 1rem;
+    }
+
+    .tagline1 {
+      font-size: var(--text-sm);
+      margin-top: 0.5rem;
+      padding: 0;
+      line-height: 1.5;
+    }
+
+    /* Ajuster les éléments de fond pour mobile */
+    .hero-background {
+      opacity: 0.5;
+    }
+
+    .hero-bg-element {
+      filter: blur(40px);
+    }
+    
+    .hero-bg-element-1 {
+      width: 60%;
+      height: 50%;
+      top: -10%;
+      right: -20%;
+    }
+    
+    .hero-bg-element-2 {
+      width: 50%;
+      height: 40%;
+      bottom: -10%;
+      left: -20%;
+    }
+    
+    .hero-bg-element-3 {
+      width: 30%;
+      height: 30%;
+      top: 50%;
+      right: 10%;
+    }
+
+    /* Ajuster la taille du highlight pour mobile */
+    .highlight::after {
+      height: 0.25em;
+      bottom: 0.05em;
+    }
+    
+    /* Optimiser les animations pour mobile */
+    @keyframes float {
+      0% {
+        transform: translateY(0) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-10px) rotate(3deg);
+      }
+      100% {
+        transform: translateY(0) rotate(0deg);
+      }
+    }
+  }
+
+  /* Ajustements pour les très petits écrans */
+  @media (max-width: 380px) {
+    .hero {
+      padding: 3.5rem 0 2.5rem;
+      min-height: 40vh;
+    }
+
+    .title {
+      font-size: var(--text-2xl);
+      margin-bottom: 0.75rem;
+    }
+
+    .tagline {
+      font-size: var(--text-base);
+      margin-bottom: 0.75rem;
+    }
+
+    .tagline1 {
+      font-size: var(--text-xs);
+      line-height: 1.4;
+    }
+
+    .hero-bg-element {
+      opacity: 0.1;
+      filter: blur(30px);
+    }
+    
+    .hero-eyebrow {
+      font-size: 0.65rem;
+      padding: 0.35rem 0.7rem;
+      margin-bottom: 0.5rem;
     }
   }
 </style>

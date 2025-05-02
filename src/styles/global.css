@@ -123,6 +123,50 @@
 	--transition-slow: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 	--theme-transition: var(--transition-medium);
 	--menu-transition: var(--transition-medium);
+
+	/* Layout & Spacing */
+	--container-max-width: 96rem; /* 1536px */
+	--container-padding: 1.5rem; /* 24px par défaut */
+	--container-padding-mobile: 1rem; /* 16px sur mobile */
+	--container-padding-sm: 0.875rem; /* 14px pour très petits écrans */
+	--section-spacing: 5rem; /* 80px entre les sections */
+	--section-spacing-mobile: 3rem; /* 48px entre les sections sur mobile */
+	--section-spacing-sm: 2rem; /* 32px pour très petits écrans */
+
+	/* Variables pour la navigation fixe */
+	--nav-height: 70px; /* Hauteur de la navigation sur desktop */
+	--mobile-nav-height: 60px; /* Hauteur de la navigation sur mobile */
+
+	/* Container widths */
+	--container-sm: 640px;
+	--container-md: 768px;
+	--container-lg: 1024px;
+	--container-xl: 1280px;
+
+	/* Spacing System */
+	--space-xs: 0.25rem;  /* 4px */
+	--space-sm: 0.5rem;   /* 8px */
+	--space-md: 1rem;     /* 16px */
+	--space-lg: 1.5rem;   /* 24px */
+	--space-xl: 2rem;     /* 32px */
+	--space-2xl: 3rem;    /* 48px */
+	--space-3xl: 4rem;    /* 64px */
+
+	/* Component Specific Spacing */
+	--header-padding: var(--space-lg);
+	--footer-padding: var(--space-xl);
+	--section-gap: var(--space-2xl);
+	--card-padding: var(--space-lg);
+
+	/* Content Width Constraints */
+	--content-width-sm: 40ch;   /* For short text content */
+	--content-width-md: 65ch;   /* For optimal reading length */
+	--content-width-lg: 85ch;   /* For wider content */
+
+	/* Mobile Specific Variables */
+	--mobile-padding: 1rem;
+	--mobile-section-gap: 2rem;
+	--mobile-button-size: 42px;
 }
 
 :root.theme-dark {
@@ -181,6 +225,10 @@ html,
 body {
 	height: 100%;
 	overflow-x: hidden;
+	scroll-behavior: smooth;
+	scroll-padding-top: var(--nav-height);
+	margin: 0;
+	padding: 0;
 }
 
 body {
@@ -214,26 +262,6 @@ body {
 	  scrollbar-color: var(--sb-thumb-color)
 					   var(--sb-track-color);
 	}
-  }
-
-* {
-	padding: 0;
-	border: none;
-	outline: none;
-	box-shadow: none;
-}
-*,
-*::after,
-*::before {
-	box-sizing: border-box;
-	margin: 0;
-	list-style: none;
-	text-decoration: none;
-	scroll-behavior: smooth;
-}
-img {
-	max-width: 100%;
-	height: auto;
 }
 
 a {
@@ -286,6 +314,8 @@ button:focus-visible {
 		--text-4xl: 2.75rem;
 		--text-3xl: 2.25rem;
 		--text-2xl: 1.75rem;
+		--container-padding: var(--container-padding-mobile);
+		--section-spacing: var(--section-spacing-mobile);
 	}
 
 	/* Improved mobile spacing */
@@ -346,6 +376,14 @@ button:focus-visible {
 	gap: 12rem;
 }
 
+.gap-xs { gap: var(--space-xs); }
+.gap-sm { gap: var(--space-sm); }
+.gap-md { gap: var(--space-md); }
+.gap-lg { gap: var(--space-lg); }
+.gap-xl { gap: var(--space-xl); }
+.gap-2xl { gap: var(--space-2xl); }
+.gap-3xl { gap: var(--space-3xl); }
+
 @media (min-width: 48em) {
 	.lg\:gap-2 {
 		gap: 0.5rem;
@@ -375,4 +413,424 @@ button:focus-visible {
 		gap: 12rem;
 	}
 
+}
+
+/* Container class de base - classe centralisée pour tous les conteneurs du site */
+.container, .wrapper, .content-container, .section-inner {
+	width: 100%;
+	max-width: var(--container-max-width);
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: var(--container-padding);
+	padding-right: var(--container-padding);
+	box-sizing: border-box; /* Pour s'assurer que le padding est inclus dans la largeur */
+}
+
+/* Container sizes */
+.container-sm, .wrapper-sm {
+	max-width: var(--container-sm);
+}
+
+.container-md, .wrapper-md {
+	max-width: var(--container-md);
+}
+
+.container-lg, .wrapper-lg {
+	max-width: var(--container-lg);
+}
+
+.container-xl, .wrapper-xl {
+	max-width: var(--container-xl);
+}
+
+/* Section spacing */
+section, .section {
+	padding-top: var(--section-spacing);
+	padding-bottom: var(--section-spacing);
+}
+
+/* Classe helper pour le contenu centré */
+.content-wrapper {
+	max-width: var(--content-width-md);
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: var(--container-padding);
+	padding-right: var(--container-padding);
+}
+
+/* Content Width Classes */
+.content-width-sm {
+  max-width: var(--content-width-sm);
+  margin-inline: auto;
+}
+
+.content-width-md {
+  max-width: var(--content-width-md);
+  margin-inline: auto;
+}
+
+.content-width-lg {
+  max-width: var(--content-width-lg);
+  margin-inline: auto;
+}
+
+/* Padding & Margin Utilities */
+.m-xs { margin: var(--space-xs); }
+.m-sm { margin: var(--space-sm); }
+.m-md { margin: var(--space-md); }
+.m-lg { margin: var(--space-lg); }
+.m-xl { margin: var(--space-xl); }
+
+.mx-xs { margin-inline: var(--space-xs); }
+.mx-sm { margin-inline: var(--space-sm); }
+.mx-md { margin-inline: var(--space-md); }
+.mx-lg { margin-inline: var(--space-lg); }
+.mx-xl { margin-inline: var(--space-xl); }
+
+.my-xs { margin-block: var(--space-xs); }
+.my-sm { margin-block: var(--space-sm); }
+.my-md { margin-block: var(--space-md); }
+.my-lg { margin-block: var(--space-lg); }
+.my-xl { margin-block: var(--space-xl); }
+
+.mt-xs { margin-top: var(--space-xs); }
+.mt-sm { margin-top: var(--space-sm); }
+.mt-md { margin-top: var(--space-md); }
+.mt-lg { margin-top: var(--space-lg); }
+.mt-xl { margin-top: var(--space-xl); }
+
+.mb-xs { margin-bottom: var(--space-xs); }
+.mb-sm { margin-bottom: var(--space-sm); }
+.mb-md { margin-bottom: var(--space-md); }
+.mb-lg { margin-bottom: var(--space-lg); }
+.mb-xl { margin-bottom: var(--space-xl); }
+
+.p-xs { padding: var(--space-xs); }
+.p-sm { padding: var(--space-sm); }
+.p-md { padding: var(--space-md); }
+.p-lg { padding: var(--space-lg); }
+.p-xl { padding: var(--space-xl); }
+
+.px-xs { padding-inline: var(--space-xs); }
+.px-sm { padding-inline: var(--space-sm); }
+.px-md { padding-inline: var(--space-md); }
+.px-lg { padding-inline: var(--space-lg); }
+.px-xl { padding-inline: var(--space-xl); }
+
+.py-xs { padding-block: var(--space-xs); }
+.py-sm { padding-block: var(--space-sm); }
+.py-md { padding-block: var(--space-md); }
+.py-lg { padding-block: var(--space-lg); }
+.py-xl { padding-block: var(--space-xl); }
+
+/* Section Layout */
+section {
+  padding-block: var(--section-gap);
+}
+
+.section-inner {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin-inline: auto;
+  padding-inline: var(--container-padding);
+}
+
+/* Media Queries for responsive layout */
+@media (max-width: 1024px) {
+  :root {
+    --container-padding: 1.25rem;
+    --section-spacing: 4rem;
+  }
+}
+
+@media (max-width: 768px) {
+	:root {
+		--text-5xl: 3.5rem;
+		--text-4xl: 2.75rem;
+		--text-3xl: 2.25rem;
+		--text-2xl: 1.75rem;
+		--container-padding: var(--container-padding-mobile);
+		--section-spacing: var(--section-spacing-mobile);
+	}
+
+	/* Improved mobile spacing */
+	section, .section {
+		padding-top: var(--section-spacing);
+		padding-bottom: var(--section-spacing);
+	}
+
+	h1, h2, h3 {
+		margin-bottom: 1rem;
+	}
+
+	p {
+		margin-bottom: 1.25rem;
+	}
+}
+
+@media (max-width: 640px) {
+  :root {
+    /* Réduire les espacements sur mobile */
+    --container-padding: var(--container-padding-mobile);
+    --section-spacing: 2.5rem;
+    --space-2xl: 1.75rem;
+    --space-xl: 1.25rem;
+    --space-lg: 0.875rem;
+
+    /* Ajuster la typographie pour mobile */
+    --text-5xl: 2.25rem;
+    --text-4xl: 1.875rem;
+    --text-3xl: 1.625rem;
+    --text-2xl: 1.375rem;
+    --text-xl: 1.125rem;
+  }
+
+  /* Ajustements container sur mobile */
+  .container, .wrapper, .content-container, .section-inner {
+    padding-left: var(--container-padding);
+    padding-right: var(--container-padding);
+    width: 100%;
+    overflow-x: hidden;
+  }
+  
+  /* Ajuster les marges des sections sur mobile */
+  section, .section {
+    padding-top: var(--section-spacing);
+    padding-bottom: var(--section-spacing);
+  }
+
+  body {
+    scroll-padding-top: var(--mobile-nav-height);
+  }
+}
+
+@media (max-width: 380px) {
+  :root {
+    --container-padding: var(--container-padding-sm);
+    --section-spacing: var(--section-spacing-sm);
+  }
+  
+  /* Ajuster les marges des sections sur très petits écrans */
+  section, .section {
+    padding-top: var(--section-spacing);
+    padding-bottom: var(--section-spacing);
+  }
+}
+
+/* Classes utilitaires responsives */
+.hide-on-mobile {
+  @media (max-width: 640px) {
+    display: none !important;
+  }
+}
+
+.show-on-mobile {
+  @media (min-width: 641px) {
+    display: none !important;
+  }
+}
+
+/* Ajustements de la navigation sur mobile */
+@media (max-width: 640px) {
+  nav {
+    padding: var(--space-sm) var(--container-padding);
+    height: var(--mobile-nav-height);
+    display: flex;
+    align-items: center;
+  }
+
+  .menu-header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: 0.5rem var(--container-padding);
+    width: 100%;
+  }
+
+  /* Améliorer l'apparence du menu mobile */
+  .menu-content {
+    position: fixed;
+    top: var(--mobile-nav-height);
+    left: 0;
+    right: 0;
+    background-color: var(--gray-999);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    transform: translateY(-100%);
+    opacity: 0;
+    max-height: calc(100vh - var(--mobile-nav-height));
+    overflow-y: auto;
+    z-index: 998;
+  }
+  
+  .menu-content.menu-visible {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .nav-items {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .nav-items a {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+  }
+  
+  .nav-items a:active {
+    background-color: rgba(var(--gray-999-basis), 0.1);
+  }
+
+  /* Ajuster les icônes sociales sur mobile */
+  .socials {
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 0.5rem 0;
+  }
+  
+  .menu-footer {
+    padding: 0.75rem 1rem 1.25rem;
+    border-top: 1px solid rgba(var(--gray-999-basis), 0.1);
+  }
+}
+
+/* Ajout d'une classe pour forcer l'affichage sur une seule colonne sur mobile */
+@media (max-width: 640px) {
+  .mobile-stack {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  
+  .mobile-full-width {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  
+  .mobile-center {
+    text-align: center !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+  
+  .mobile-padding {
+    padding: var(--mobile-padding) !important;
+  }
+  
+  .mobile-small-text {
+    font-size: 0.9rem !important;
+  }
+  
+  .mobile-touch-target {
+    min-height: 44px !important;
+    min-width: 44px !important;
+  }
+}
+
+/* Utilitaires pour améliorer l'ergonomie sur appareils tactiles */
+@media (max-width: 1024px) {
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  .touch-spacing > * + * {
+    margin-top: 0.5rem;
+  }
+  
+  /* Améliorations pour les formulaires sur mobile */
+  input, select, textarea {
+    font-size: 16px !important; /* Évite le zoom automatique iOS */
+    padding: 0.75rem !important;
+    border-radius: 8px !important;
+  }
+}
+
+/* Nouvelle classe utilitaire pour appliquer un espacement cohérent */
+.site-content-spacing {
+  padding-left: var(--container-padding);
+  padding-right: var(--container-padding);
+  max-width: var(--container-max-width);
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+/* Variantes de largeur pour site-content-spacing */
+.site-content-spacing-sm {
+  max-width: var(--container-sm);
+}
+
+.site-content-spacing-md {
+  max-width: var(--container-md);
+}
+
+.site-content-spacing-lg {
+  max-width: var(--container-lg);
+}
+
+.site-content-spacing-xl {
+  max-width: var(--container-xl);
+}
+
+/* Classe pour contenu étroit comme du texte */
+.site-content-narrow {
+  max-width: var(--content-width-md);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--container-padding);
+  padding-right: var(--container-padding);
+  width: 100%;
+}
+
+/* Classe pour contenu très étroit */
+.site-content-very-narrow {
+  max-width: var(--content-width-sm);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--container-padding);
+  padding-right: var(--container-padding);
+  width: 100%;
+}
+
+/* Classe pour contenu large */
+.site-content-wide {
+  max-width: var(--content-width-lg);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--container-padding);
+  padding-right: var(--container-padding);
+  width: 100%;
+}
+
+/* Styles pour s'assurer que la classe backgrounds est collée en haut */
+.backgrounds {
+  min-height: 100%;
+  margin-top: 0;
+  padding-top: 0;
+}
+
+@media (max-width: 640px) {
+  .stack.backgrounds {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+}
+
+/* Assurer que le bloc stack backgrounds est collé en haut */
+.stack.backgrounds {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+  position: relative;
+  top: 0;
 }

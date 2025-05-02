@@ -32,28 +32,26 @@ const {
 >
   <MenuLinkNav namepage="work" />
 
-  <section class="presentation-section mt-16">
-    <div class="wrapper">
-      <div class="presentation-content">
-        <h1>My Portfolio</h1>
-        <p>
-          Welcome to my work showcase. Here you'll find a collection of projects
-          that demonstrate my skills and experience in web development and
-          design.
-        </p>
-        <p>
-          Each project represents a unique challenge and solution, showcasing
-          different technologies and approaches I've worked with.
-        </p>
-        <div class="presentation-cta">
-          <a href="#portfolio-section" class="btn">View Projects</a>
-        </div>
+  <section class="presentation-section site-content-spacing mt-mobile-0">
+    <div class="presentation-content">
+      <h1>My Portfolio</h1>
+      <p>
+        Welcome to my work showcase. Here you'll find a collection of projects
+        that demonstrate my skills and experience in web development and
+        design.
+      </p>
+      <p>
+        Each project represents a unique challenge and solution, showcasing
+        different technologies and approaches I've worked with.
+      </p>
+      <div class="presentation-cta">
+        <a href="#portfolio-section" class="btn">View Projects</a>
       </div>
     </div>
   </section>
 
-  <div class="stack gap-20">
-    <main class="wrapper stack gap-8 lg:gap-20">
+  <div class="stack gap-20 site-content-spacing">
+    <main class="stack gap-8 lg:gap-20">
       <Hero
         title="My Work"
         tagline="See my most recent projects below to get an idea of my past experience."
@@ -73,9 +71,7 @@ const {
       </div>
     </main>
     <ContactCTA />
-    <div class="wrapper stack gap-20 lg:gap-48">
-      <Contact />
-    </div>
+    <Contact />
   </div>
 </Layout>
 
@@ -100,9 +96,8 @@ const {
   }
 
   .presentation-section {
-    padding: 8rem 0 4rem;
+    padding: 6rem 0 4rem; /* Réduit légèrement le padding pour un meilleur espacement */
     text-align: center;
-    margin-top: -4rem; /* Pull up to close the gap */
     position: relative;
     z-index: 0; /* Lower z-index than header */
     overflow: hidden;
@@ -110,6 +105,18 @@ const {
 
   .mt-16 {
     margin-top: 4rem;
+  }
+  
+  /* Classe spécifique pour le mobile */
+  @media (max-width: 640px) {
+    .mt-mobile-0 {
+      margin-top: 0 !important;
+      padding-top: 1rem !important;
+    }
+    
+    .presentation-section {
+      padding-top: 1rem;
+    }
   }
 
   .presentation-section::before {
