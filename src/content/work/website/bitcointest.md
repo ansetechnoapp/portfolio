@@ -5,7 +5,7 @@ number: 13
 img: /assets/myprojects/CryptoVision-Modern-Cryptocurrency-Dashboard_optimized.webp
 img_alt: Modern dashboard interface with sidebar navigation and modular components
 github: https://github.com/ansetechnoapp/bitcointest
-liveDemo: https://bitcointest.vercel.app/dashboard
+liveDemo: https://bitcointest.vercel.app/
 device: web
 description: |
   A versatile and modern dashboard application built with Next.js, featuring a modular design that can be adapted for blockchain applications, data management, and various business needs.
