@@ -153,6 +153,14 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://anscod.online/en/blog/hibernate/"/>
   </url>
   <url>
+    <loc>https://anscod.online/blog/hibernate-swap-file/</loc>
+    <lastmod>2025-05-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://anscod.online/blog/hibernate-swap-file/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://anscod.online/en/blog/hibernate-swap-file/"/>
+  </url>
+  <url>
     <loc>https://anscod.online/blog/hackintosh-hp-probook/</loc>
     <lastmod>2025-05-18</lastmod>
     <changefreq>monthly</changefreq>
