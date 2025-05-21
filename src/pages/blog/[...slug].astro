@@ -1,27 +1,39 @@
 ---
-import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
+import { getPostBySlug, parsePostDates } from "../../data/blog/index.js";
 
-export async function getStaticPaths() {
-  const posts = await getCollection("blog");
-  return posts.map((post) => ({
-    params: { slug: post.slug },
-    props: { post },
-  }));
+export function getStaticPaths() {
+  // This function is needed for Astro to generate static pages
+  // The actual data fetching happens in the component
+  return [
+    { params: { slug: "face-swap-tools" } },
+    { params: { slug: "hackintosh-hp-probook" } },
+    { params: { slug: "hibernate-swap-file" } },
+    { params: { slug: "hibernate" } },
+    { params: { slug: "windows-default-boot-grub" } },
+  ];
 }
 
-const { post } = Astro.props;
-const { Content } = await post.render();
+const { slug } = Astro.params;
+const postData = getPostBySlug(slug);
+
+// Parse dates from ISO strings to Date objects
+const post = parsePostDates(postData);
+
+// If post not found, redirect to 404
+if (!post) {
+  return Astro.redirect("/404");
+}
 
 // Get formatted date
-const formattedDate = post.data.pubDate.toLocaleDateString("en-US", {
+const formattedDate = new Date(post.pubDate).toLocaleDateString("en-US", {
   year: "numeric",
   month: "long",
   day: "numeric",
 });
 
-const formattedUpdatedDate = post.data.updatedDate
-  ? post.data.updatedDate.toLocaleDateString("en-US", {
+const formattedUpdatedDate = post.updatedDate
+  ? new Date(post.updatedDate).toLocaleDateString("en-US", {
       year: "numeric",
       month: "long",
       day: "numeric",
@@ -30,23 +42,23 @@ const formattedUpdatedDate = post.data.updatedDate
 
 // Prepare article metadata for SEO
 const articleMetadata = {
-  publishedTime: post.data.pubDate.toISOString(),
-  modifiedTime: post.data.updatedDate
-    ? post.data.updatedDate.toISOString()
-    : post.data.pubDate.toISOString(),
-  tags: post.data.tags || [],
-  authors: post.data.author ? [post.data.author] : [],
+  publishedTime: post.pubDate.toISOString(),
+  modifiedTime: post.updatedDate
+    ? post.updatedDate.toISOString()
+    : post.pubDate.toISOString(),
+  tags: post.tags || [],
+  authors: post.author ? [post.author] : [],
 };
 
 // Calculate reading time (rough estimate)
-const wordCount = post.body.split(/\s+/).length;
+const wordCount = post.markdown.split(/\s+/).length;
 const readingTime = Math.max(1, Math.round(wordCount / 200));
 ---
 
 <Layout
-  title={`${post.data.title} | Blog`}
-  description={post.data.description}
-  image={post.data.heroImage || "/assets/social-preview.jpg"}
+  title={`${post.title} | Blog`}
+  description={post.description}
+  image={post.heroImage || "/assets/social-preview.jpg"}
   type="article"
   article={articleMetadata}
 >
@@ -83,32 +95,32 @@ const readingTime = Math.max(1, Math.round(wordCount / 200));
           </svg>
         </li>
         <li class="text-gray-800 dark:text-gray-200 font-medium truncate">
-          {post.data.title}
+          {post.title}
         </li>
       </ol>
     </nav>
 
     <!-- Hero Image (if available) -->
     {
-      post.data.heroImage && (
+      post.heroImage && (
         <div class="relative w-full h-[60vh] mb-12 rounded-xl overflow-hidden">
           <picture>
             {/* AVIF format */}
             <source
               type="image/avif"
-              srcset={`${post.data.heroImage.replace(/\.(jpg|jpeg|png|gif)$/i, "_optimized.avif")} 1x, ${post.data.heroImage.replace(/\.(jpg|jpeg|png|gif)$/i, "_640w.avif")} 640w, ${post.data.heroImage.replace(/\.(jpg|jpeg|png|gif)$/i, "_1024w.avif")} 1024w`}
+              srcset={`${post.heroImage.replace(/\.(jpg|jpeg|png|gif)$/i, "_optimized.avif")} 1x, ${post.heroImage.replace(/\.(jpg|jpeg|png|gif)$/i, "_640w.avif")} 640w, ${post.heroImage.replace(/\.(jpg|jpeg|png|gif)$/i, "_1024w.avif")} 1024w`}
               sizes="(max-width: 768px) 100vw, 1200px"
             />
             {/* WebP format */}
             <source
               type="image/webp"
-              srcset={`${post.data.heroImage.replace(/\.(jpg|jpeg|png|gif)$/i, "_optimized.webp")} 1x, ${post.data.heroImage.replace(/\.(jpg|jpeg|png|gif)$/i, "_640w.webp")} 640w, ${post.data.heroImage.replace(/\.(jpg|jpeg|png|gif)$/i, "_1024w.webp")} 1024w`}
+              srcset={`${post.heroImage.replace(/\.(jpg|jpeg|png|gif)$/i, "_optimized.webp")} 1x, ${post.heroImage.replace(/\.(jpg|jpeg|png|gif)$/i, "_640w.webp")} 640w, ${post.heroImage.replace(/\.(jpg|jpeg|png|gif)$/i, "_1024w.webp")} 1024w`}
               sizes="(max-width: 768px) 100vw, 1200px"
             />
             {/* Fallback format */}
             <img
-              src={post.data.heroImage}
-              alt={post.data.title}
+              src={post.heroImage}
+              alt={post.title}
               width="1200"
               height="600"
               class="w-full h-full object-cover"
@@ -118,9 +130,9 @@ const readingTime = Math.max(1, Math.round(wordCount / 200));
           </picture>
           <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
           <div class="absolute bottom-0 left-0 w-full p-8 text-white">
-            {post.data.tags && (
+            {post.tags && (
               <div class="flex flex-wrap gap-2 mb-4">
-                {post.data.tags.map((tag) => (
+                {post.tags.map((tag) => (
                   <span class="bg-white/20 backdrop-blur-sm text-white text-xs font-medium px-3 py-1 rounded-full">
                     {tag}
                   </span>
@@ -128,11 +140,11 @@ const readingTime = Math.max(1, Math.round(wordCount / 200));
               </div>
             )}
             <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">
-              {post.data.title}
+              {post.title}
             </h1>
-            {post.data.description && (
+            {post.description && (
               <p class="text-lg text-white/90 mt-4 max-w-2xl">
-                {post.data.description}
+                {post.description}
               </p>
             )}
           </div>
@@ -141,11 +153,11 @@ const readingTime = Math.max(1, Math.round(wordCount / 200));
     }
 
     {
-      !post.data.heroImage && (
+      !post.heroImage && (
         <header class="mb-12 pt-12">
-          {post.data.tags && (
+          {post.tags && (
             <div class="flex flex-wrap gap-2 mb-6">
-              {post.data.tags.map((tag) => (
+              {post.tags.map((tag) => (
                 <span class="bg-indigo-100 dark:bg-indigo-900/50 text-indigo-800 dark:text-indigo-200 text-xs font-medium px-3 py-1 rounded-full">
                   {tag}
                 </span>
@@ -153,11 +165,11 @@ const readingTime = Math.max(1, Math.round(wordCount / 200));
             </div>
           )}
           <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">
-            {post.data.title}
+            {post.title}
           </h1>
-          {post.data.description && (
+          {post.description && (
             <p class="text-xl text-gray-600 dark:text-gray-300 leading-relaxed max-w-2xl">
-              {post.data.description}
+              {post.description}
             </p>
           )}
         </header>
@@ -170,16 +182,16 @@ const readingTime = Math.max(1, Math.round(wordCount / 200));
         <div
           class="h-10 w-10 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-sm"
         >
-          {post.data.author ? post.data.author.charAt(0).toUpperCase() : "A"}
+          {post.author ? post.author.charAt(0).toUpperCase() : "A"}
         </div>
         <div>
           <div class="font-medium text-gray-900 dark:text-white">
-            {post.data.author || "Author"}
+            {post.author || "Author"}
           </div>
           <div
             class="text-sm text-gray-500 dark:text-gray-400 flex items-center gap-2"
           >
-            <time datetime={post.data.pubDate.toISOString()}>
+            <time datetime={post.pubDate.toISOString()}>
               {formattedDate}
             </time>
             <span class="inline-block h-1 w-1 rounded-full bg-gray-400"></span>
@@ -270,9 +282,8 @@ const readingTime = Math.max(1, Math.round(wordCount / 200));
       prose-blockquote:border-l-indigo-500 prose-blockquote:bg-gray-50 dark:prose-blockquote:bg-gray-800/50 prose-blockquote:py-0.5 prose-blockquote:px-4 prose-blockquote:rounded-r-lg
       prose-code:text-indigo-600 dark:prose-code:text-indigo-400 prose-code:bg-indigo-50 dark:prose-code:bg-indigo-900/30 prose-code:px-1 prose-code:py-0.5 prose-code:rounded
       mb-16"
-    >
-      <Content />
-    </div>
+      set:html={post.content}
+    />
 
     <!-- Next/Previous Article Navigation -->
     <div class="border-t border-gray-200 dark:border-gray-800 py-10 mb-10">
@@ -310,11 +321,11 @@ const readingTime = Math.max(1, Math.round(wordCount / 200));
         <div
           class="h-16 w-16 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full flex items-center justify-center text-white text-xl font-bold shrink-0"
         >
-          {post.data.author ? post.data.author.charAt(0).toUpperCase() : "A"}
+          {post.author ? post.author.charAt(0).toUpperCase() : "A"}
         </div>
         <div>
           <h3 class="text-xl font-bold text-gray-900 dark:text-white">
-            {post.data.author || "Author"}
+            {post.author || "Author"}
           </h3>
           <p class="text-gray-600 dark:text-gray-300 mt-2">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at

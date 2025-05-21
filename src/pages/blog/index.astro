@@ -1,11 +1,22 @@
 ---
-import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 import { Image } from "astro:assets";
 import MenuLinkNav from "../../components/menuLinkNav.astro";
+import {
+  getAllPosts,
+  getAllTags,
+  parsePostDates,
+} from "../../data/blog/index.js";
 
-const posts = await getCollection("blog");
-posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+// Get all posts sorted by date
+const posts = getAllPosts().map((post) => ({
+  ...post,
+  data: {
+    ...post,
+    pubDate: new Date(post.pubDate),
+    updatedDate: post.updatedDate ? new Date(post.updatedDate) : undefined,
+  },
+}));
 
 // Get featured posts (top 3)
 const featuredPosts = posts.slice(0, 3);
@@ -13,7 +24,7 @@ const featuredPosts = posts.slice(0, 3);
 const remainingPosts = posts.slice(3);
 
 // Extract all unique tags from posts
-const allTags = [...new Set(posts.flatMap((post) => post.data.tags || []))];
+const allTags = getAllTags();
 ---
 
 <Layout
