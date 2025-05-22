@@ -15,16 +15,25 @@ const currentYear = new Date().getFullYear();
       </p>
     </div>
     <div class="socials">
-      <a href="https://github.com/ansetechnoapp" class="social-link touch-target">
+      <a
+        href="https://github.com/ansetechnoapp"
+        class="social-link touch-target"
+      >
         <i class="fab fa-github"></i>
       </a>
       <a href="https://linkedin.com/in/anscod" class="social-link touch-target">
         <i class="fab fa-linkedin-in"></i>
       </a>
-      <a href="https://pinterest.com/anscoddesign" class="social-link touch-target">
+      <a
+        href="https://pinterest.com/anscoddesign"
+        class="social-link touch-target"
+      >
         <i class="fab fa-pinterest"></i>
       </a>
-      <a href="https://instagram.com/anscod.otty" class="social-link touch-target">
+      <a
+        href="https://instagram.com/anscod.otty"
+        class="social-link touch-target"
+      >
         <i class="fab fa-instagram"></i>
       </a>
     </div>
@@ -38,6 +47,10 @@ const currentYear = new Date().getFullYear();
       comments.
     </p>
   </div>
+  <div class="footer-links">
+    <a href="/api-docs/" class="footer-link">API Documentation</a>
+    <a href="/docs/" class="footer-link">Documentation Platform</a>
+  </div>
   <p class="copyright">
     &copy; {currentYear} OTTY KEVIN ANSELME. All rights reserved.
   </p>
@@ -46,7 +59,11 @@ const currentYear = new Date().getFullYear();
   footer {
     padding: 0.75rem;
     margin-top: 1.5rem;
-    background: linear-gradient(to bottom, transparent, rgba(var(--gray-999-basis), 0.1));
+    background: linear-gradient(
+      to bottom,
+      transparent,
+      rgba(var(--gray-999-basis), 0.1)
+    );
     border-top: 1px solid rgba(var(--gray-999-basis), 0.1);
   }
 
@@ -137,6 +154,30 @@ const currentYear = new Date().getFullYear();
     color: var(--text-muted-color); /* Utilise la variable globale */
   }
 
+  .footer-links {
+    text-align: center;
+    margin: 0.5rem 0;
+    padding: 0.5rem 0;
+  }
+
+  .footer-link {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    margin: 0 0.25rem;
+    font-size: 0.85rem;
+    color: var(--text-muted-color);
+    text-decoration: none;
+    border: 1px solid rgba(var(--gray-999-basis), 0.1);
+    border-radius: 4px;
+    transition: all 0.2s ease;
+  }
+
+  .footer-link:hover {
+    background-color: rgba(var(--accent-light-basis), 0.1);
+    color: var(--accent-regular);
+    border-color: var(--accent-regular);
+  }
+
   .copyright {
     text-align: center;
     font-size: 0.75rem;
@@ -152,12 +193,12 @@ const currentYear = new Date().getFullYear();
       padding: 1rem 0 0.5rem;
       margin-top: 1rem;
     }
-    
+
     .footer-content {
       padding: 1rem var(--container-padding);
       gap: 1.5rem;
     }
-    
+
     .description-container {
       padding: 0 var(--container-padding);
     }
@@ -176,7 +217,7 @@ const currentYear = new Date().getFullYear();
     .group p {
       font-size: 0.8rem;
     }
-    
+
     .social-link {
       font-size: 0.9rem;
       min-width: 36px;
@@ -229,23 +270,23 @@ const currentYear = new Date().getFullYear();
     .description-container {
       padding: 0 3rem;
     }
-    
+
     .social-link {
       min-width: 42px;
       min-height: 42px;
     }
   }
-  
+
   /* Large devices (desktops) */
   @media (min-width: 62em) {
     .footer-content {
       padding: 1.5rem 5rem;
     }
-    
+
     .description-container {
       padding: 0 5rem;
     }
-    
+
     .social-link {
       min-width: 44px;
       min-height: 44px;
