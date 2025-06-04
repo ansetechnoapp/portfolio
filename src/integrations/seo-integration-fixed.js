@@ -2,6 +2,8 @@
 import fs from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { exec } from 'child_process';
+import { promisify } from 'util';
 
 // Configuration SEO par défaut
 const defaultSeoConfig = {
@@ -51,10 +53,8 @@ export default function seoIntegration(options = {}) {
 async function generateSitemap(config) {
   // Exécuter le script de génération du sitemap
   try {
-    const { exec } = require('child_process');
-    const { promisify } = require('util');
     const execAsync = promisify(exec);
-    
+
     await execAsync('node scripts/generate-sitemap.js');
     console.log('✅ Sitemap généré avec succès.');
   } catch (error) {

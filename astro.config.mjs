@@ -2,9 +2,14 @@
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 import react from '@astrojs/react';
+import node from '@astrojs/node';
 import seoIntegration from './src/integrations/seo-integration-fixed.js';
 
 export default defineConfig({
+  output: 'server',
+  adapter: node({
+    mode: 'standalone'
+  }),
   site: 'https://anscod.online/',
   vite: {
     build: {

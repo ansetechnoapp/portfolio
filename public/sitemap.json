@@ -1,0 +1,978 @@
+[
+  {
+    "loc": "https://anscod.online/work",
+    "lastmod": "2025-06-04",
+    "changefreq": "monthly",
+    "priority": 0.8,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://anscod.online/work"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://anscod.online/en/work"
+      }
+    ]
+  },
+  {
+    "loc": "https://anscod.online/widgetCss",
+    "lastmod": "2025-06-04",
+    "changefreq": "monthly",
+    "priority": 0.6,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://anscod.online/widgetCss"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://anscod.online/en/widgetCss"
+      }
+    ]
+  },
+  {
+    "loc": "https://anscod.online/",
+    "lastmod": "2025-06-04",
+    "changefreq": "monthly",
+    "priority": 0.5,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://anscod.online/"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://anscod.online/en/"
+      }
+    ]
+  },
+  {
+    "loc": "https://anscod.online/generalFedapayCallback",
+    "lastmod": "2025-06-04",
+    "changefreq": "monthly",
+    "priority": 0.5,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://anscod.online/generalFedapayCallback"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://anscod.online/en/generalFedapayCallback"
+      }
+    ]
+  },
+  {
+    "loc": "https://anscod.online/404",
+    "lastmod": "2025-06-04",
+    "changefreq": "monthly",
+    "priority": 0.5,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://anscod.online/404"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://anscod.online/en/404"
+      }
+    ]
+  },
+  {
+    "loc": "https://anscod.online/portfolio\\portfolio-single",
+    "lastmod": "2025-06-04",
+    "changefreq": "monthly",
+    "priority": 0.5,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://anscod.online/portfolio\\portfolio-single"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://anscod.online/en/portfolio\\portfolio-single"
+      }
+    ]
+  },
+  {
+    "loc": "https://anscod.online/portfolio\\portfolio-single-2",
+    "lastmod": "2025-06-04",
+    "changefreq": "monthly",
+    "priority": 0.5,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://anscod.online/portfolio\\portfolio-single-2"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://anscod.online/en/portfolio\\portfolio-single-2"
+      }
+    ]
+  },
+  {
+    "loc": "https://anscod.online/portfolio\\portfolio-3-col",
+    "lastmod": "2025-06-04",
+    "changefreq": "monthly",
+    "priority": 0.5,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://anscod.online/portfolio\\portfolio-3-col"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://anscod.online/en/portfolio\\portfolio-3-col"
+      }
+    ]
+  },
+  {
+    "loc": "https://anscod.online/portfolio\\portfolio-3-col-masonry",
+    "lastmod": "2025-06-04",
+    "changefreq": "monthly",
+    "priority": 0.5,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://anscod.online/portfolio\\portfolio-3-col-masonry"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://anscod.online/en/portfolio\\portfolio-3-col-masonry"
+      }
+    ]
+  },
+  {
+    "loc": "https://anscod.online/portfolio\\portfolio-2-col",
+    "lastmod": "2025-06-04",
+    "changefreq": "monthly",
+    "priority": 0.5,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://anscod.online/portfolio\\portfolio-2-col"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://anscod.online/en/portfolio\\portfolio-2-col"
+      }
+    ]
+  },
+  {
+    "loc": "https://anscod.online/portfolio\\portfolio-2-col-masonry",
+    "lastmod": "2025-06-04",
+    "changefreq": "monthly",
+    "priority": 0.5,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://anscod.online/portfolio\\portfolio-2-col-masonry"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://anscod.online/en/portfolio\\portfolio-2-col-masonry"
+      }
+    ]
+  },
+  {
+    "loc": "https://anscod.online/portfolio\\onepage",
+    "lastmod": "2025-06-04",
+    "changefreq": "monthly",
+    "priority": 0.5,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://anscod.online/portfolio\\onepage"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://anscod.online/en/portfolio\\onepage"
+      }
+    ]
+  },
+  {
+    "loc": "https://anscod.online/portfolio\\history",
+    "lastmod": "2025-06-04",
+    "changefreq": "monthly",
+    "priority": 0.5,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://anscod.online/portfolio\\history"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://anscod.online/en/portfolio\\history"
+      }
+    ]
+  },
+  {
+    "loc": "https://anscod.online/portfolio\\Cv",
+    "lastmod": "2025-06-04",
+    "changefreq": "monthly",
+    "priority": 0.5,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://anscod.online/portfolio\\Cv"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://anscod.online/en/portfolio\\Cv"
+      }
+    ]
+  },
+  {
+    "loc": "https://anscod.online/portfolio\\contact",
+    "lastmod": "2025-06-04",
+    "changefreq": "monthly",
+    "priority": 0.5,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://anscod.online/portfolio\\contact"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://anscod.online/en/portfolio\\contact"
+      }
+    ]
+  },
+  {
+    "loc": "https://anscod.online/portfolio\\blog-post",
+    "lastmod": "2025-06-04",
+    "changefreq": "monthly",
+    "priority": 0.5,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://anscod.online/portfolio\\blog-post"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://anscod.online/en/portfolio\\blog-post"
+      }
+    ]
+  },
+  {
+    "loc": "https://anscod.online/portfolio\\blog-3-col",
+    "lastmod": "2025-06-04",
+    "changefreq": "monthly",
+    "priority": 0.5,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://anscod.online/portfolio\\blog-3-col"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://anscod.online/en/portfolio\\blog-3-col"
+      }
+    ]
+  },
+  {
+    "loc": "https://anscod.online/portfolio\\blog-2-col",
+    "lastmod": "2025-06-04",
+    "changefreq": "monthly",
+    "priority": 0.5,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://anscod.online/portfolio\\blog-2-col"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://anscod.online/en/portfolio\\blog-2-col"
+      }
+    ]
+  },
+  {
+    "loc": "https://anscod.online/docs\\verify-email",
+    "lastmod": "2025-06-04",
+    "changefreq": "monthly",
+    "priority": 0.5,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://anscod.online/docs\\verify-email"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://anscod.online/en/docs\\verify-email"
+      }
+    ]
+  },
+  {
+    "loc": "https://anscod.online/docs\\verify-email-request",
+    "lastmod": "2025-06-04",
+    "changefreq": "monthly",
+    "priority": 0.5,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://anscod.online/docs\\verify-email-request"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://anscod.online/en/docs\\verify-email-request"
+      }
+    ]
+  },
+  {
+    "loc": "https://anscod.online/docs\\reset-password",
+    "lastmod": "2025-06-04",
+    "changefreq": "monthly",
+    "priority": 0.5,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://anscod.online/docs\\reset-password"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://anscod.online/en/docs\\reset-password"
+      }
+    ]
+  },
+  {
+    "loc": "https://anscod.online/docs\\reset-password-request",
+    "lastmod": "2025-06-04",
+    "changefreq": "monthly",
+    "priority": 0.5,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://anscod.online/docs\\reset-password-request"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://anscod.online/en/docs\\reset-password-request"
+      }
+    ]
+  },
+  {
+    "loc": "https://anscod.online/docs\\register",
+    "lastmod": "2025-06-04",
+    "changefreq": "monthly",
+    "priority": 0.5,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://anscod.online/docs\\register"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://anscod.online/en/docs\\register"
+      }
+    ]
+  },
+  {
+    "loc": "https://anscod.online/docs\\register-confirmation",
+    "lastmod": "2025-06-04",
+    "changefreq": "monthly",
+    "priority": 0.5,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://anscod.online/docs\\register-confirmation"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://anscod.online/en/docs\\register-confirmation"
+      }
+    ]
+  },
+  {
+    "loc": "https://anscod.online/docs\\login",
+    "lastmod": "2025-06-04",
+    "changefreq": "monthly",
+    "priority": 0.5,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://anscod.online/docs\\login"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://anscod.online/en/docs\\login"
+      }
+    ]
+  },
+  {
+    "loc": "https://anscod.online/docs\\index",
+    "lastmod": "2025-06-04",
+    "changefreq": "monthly",
+    "priority": 0.5,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://anscod.online/docs\\index"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://anscod.online/en/docs\\index"
+      }
+    ]
+  },
+  {
+    "loc": "https://anscod.online/docs\\dashboard",
+    "lastmod": "2025-06-04",
+    "changefreq": "monthly",
+    "priority": 0.5,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://anscod.online/docs\\dashboard"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://anscod.online/en/docs\\dashboard"
+      }
+    ]
+  },
+  {
+    "loc": "https://anscod.online/blog\\index",
+    "lastmod": "2025-06-04",
+    "changefreq": "monthly",
+    "priority": 0.5,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://anscod.online/blog\\index"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://anscod.online/en/blog\\index"
+      }
+    ]
+  },
+  {
+    "loc": "https://anscod.online/docs\\workspaces\\[id]",
+    "lastmod": "2025-06-04",
+    "changefreq": "monthly",
+    "priority": 0.5,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://anscod.online/docs\\workspaces\\[id]"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://anscod.online/en/docs\\workspaces\\[id]"
+      }
+    ]
+  },
+  {
+    "loc": "https://anscod.online/docs\\projects\\[id]\\index",
+    "lastmod": "2025-06-04",
+    "changefreq": "monthly",
+    "priority": 0.5,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://anscod.online/docs\\projects\\[id]\\index"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://anscod.online/en/docs\\projects\\[id]\\index"
+      }
+    ]
+  },
+  {
+    "loc": "https://anscod.online/docs\\projects\\[id]\\docs\\[docId]",
+    "lastmod": "2025-06-04",
+    "changefreq": "monthly",
+    "priority": 0.5,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://anscod.online/docs\\projects\\[id]\\docs\\[docId]"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://anscod.online/en/docs\\projects\\[id]\\docs\\[docId]"
+      }
+    ]
+  },
+  {
+    "loc": "https://anscod.online/docs\\projects\\[id]\\docs\\new",
+    "lastmod": "2025-06-04",
+    "changefreq": "monthly",
+    "priority": 0.5,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://anscod.online/docs\\projects\\[id]\\docs\\new"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://anscod.online/en/docs\\projects\\[id]\\docs\\new"
+      }
+    ]
+  },
+  {
+    "loc": "https://anscod.online/docs\\projects\\[id]\\api\\[endpointId]",
+    "lastmod": "2025-06-04",
+    "changefreq": "monthly",
+    "priority": 0.5,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://anscod.online/docs\\projects\\[id]\\api\\[endpointId]"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://anscod.online/en/docs\\projects\\[id]\\api\\[endpointId]"
+      }
+    ]
+  },
+  {
+    "loc": "https://anscod.online/docs\\projects\\[id]\\api\\new",
+    "lastmod": "2025-06-04",
+    "changefreq": "monthly",
+    "priority": 0.5,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://anscod.online/docs\\projects\\[id]\\api\\new"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://anscod.online/en/docs\\projects\\[id]\\api\\new"
+      }
+    ]
+  },
+  {
+    "loc": "https://anscod.online/widgetCss/untitledui/",
+    "lastmod": "2025-06-04",
+    "changefreq": "monthly",
+    "priority": 0.6,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://anscod.online/widgetCss/untitledui/"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://anscod.online/en/widgetCss/untitledui/"
+      }
+    ]
+  },
+  {
+    "loc": "https://anscod.online/widgetCss/uiverse/",
+    "lastmod": "2025-06-04",
+    "changefreq": "monthly",
+    "priority": 0.6,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://anscod.online/widgetCss/uiverse/"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://anscod.online/en/widgetCss/uiverse/"
+      }
+    ]
+  },
+  {
+    "loc": "https://anscod.online/widgetCss/shadcn/",
+    "lastmod": "2025-06-04",
+    "changefreq": "monthly",
+    "priority": 0.6,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://anscod.online/widgetCss/shadcn/"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://anscod.online/en/widgetCss/shadcn/"
+      }
+    ]
+  },
+  {
+    "loc": "https://anscod.online/widgetCss/Scrollbar/",
+    "lastmod": "2025-06-04",
+    "changefreq": "monthly",
+    "priority": 0.6,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://anscod.online/widgetCss/Scrollbar/"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://anscod.online/en/widgetCss/Scrollbar/"
+      }
+    ]
+  },
+  {
+    "loc": "https://anscod.online/widgetCss/readme/",
+    "lastmod": "2025-06-04",
+    "changefreq": "monthly",
+    "priority": 0.6,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://anscod.online/widgetCss/readme/"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://anscod.online/en/widgetCss/readme/"
+      }
+    ]
+  },
+  {
+    "loc": "https://anscod.online/widgetCss/radix-ui/",
+    "lastmod": "2025-06-04",
+    "changefreq": "monthly",
+    "priority": 0.6,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://anscod.online/widgetCss/radix-ui/"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://anscod.online/en/widgetCss/radix-ui/"
+      }
+    ]
+  },
+  {
+    "loc": "https://anscod.online/widgetCss/quickref/",
+    "lastmod": "2025-06-04",
+    "changefreq": "monthly",
+    "priority": 0.6,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://anscod.online/widgetCss/quickref/"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://anscod.online/en/widgetCss/quickref/"
+      }
+    ]
+  },
+  {
+    "loc": "https://anscod.online/widgetCss/outils-css/",
+    "lastmod": "2025-06-04",
+    "changefreq": "monthly",
+    "priority": 0.6,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://anscod.online/widgetCss/outils-css/"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://anscod.online/en/widgetCss/outils-css/"
+      }
+    ]
+  },
+  {
+    "loc": "https://anscod.online/widgetCss/Melvynx/",
+    "lastmod": "2025-06-04",
+    "changefreq": "monthly",
+    "priority": 0.6,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://anscod.online/widgetCss/Melvynx/"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://anscod.online/en/widgetCss/Melvynx/"
+      }
+    ]
+  },
+  {
+    "loc": "https://anscod.online/widgetCss/lundevweb/",
+    "lastmod": "2025-06-04",
+    "changefreq": "monthly",
+    "priority": 0.6,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://anscod.online/widgetCss/lundevweb/"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://anscod.online/en/widgetCss/lundevweb/"
+      }
+    ]
+  },
+  {
+    "loc": "https://anscod.online/widgetCss/icons8/",
+    "lastmod": "2025-06-04",
+    "changefreq": "monthly",
+    "priority": 0.6,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://anscod.online/widgetCss/icons8/"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://anscod.online/en/widgetCss/icons8/"
+      }
+    ]
+  },
+  {
+    "loc": "https://anscod.online/widgetCss/hyperui/",
+    "lastmod": "2025-06-04",
+    "changefreq": "monthly",
+    "priority": 0.6,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://anscod.online/widgetCss/hyperui/"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://anscod.online/en/widgetCss/hyperui/"
+      }
+    ]
+  },
+  {
+    "loc": "https://anscod.online/widgetCss/exercism/",
+    "lastmod": "2025-06-04",
+    "changefreq": "monthly",
+    "priority": 0.6,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://anscod.online/widgetCss/exercism/"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://anscod.online/en/widgetCss/exercism/"
+      }
+    ]
+  },
+  {
+    "loc": "https://anscod.online/widgetCss/dev/",
+    "lastmod": "2025-06-04",
+    "changefreq": "monthly",
+    "priority": 0.6,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://anscod.online/widgetCss/dev/"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://anscod.online/en/widgetCss/dev/"
+      }
+    ]
+  },
+  {
+    "loc": "https://anscod.online/work/woodshow/",
+    "lastmod": "2025-06-04",
+    "changefreq": "monthly",
+    "priority": 0.8,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://anscod.online/work/woodshow/"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://anscod.online/en/work/woodshow/"
+      }
+    ]
+  },
+  {
+    "loc": "https://anscod.online/work/wetsarl/",
+    "lastmod": "2025-06-04",
+    "changefreq": "monthly",
+    "priority": 0.8,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://anscod.online/work/wetsarl/"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://anscod.online/en/work/wetsarl/"
+      }
+    ]
+  },
+  {
+    "loc": "https://anscod.online/work/quickrelease/",
+    "lastmod": "2025-06-04",
+    "changefreq": "monthly",
+    "priority": 0.8,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://anscod.online/work/quickrelease/"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://anscod.online/en/work/quickrelease/"
+      }
+    ]
+  },
+  {
+    "loc": "https://anscod.online/work/planetechsarlbenin/",
+    "lastmod": "2025-06-04",
+    "changefreq": "monthly",
+    "priority": 0.8,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://anscod.online/work/planetechsarlbenin/"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://anscod.online/en/work/planetechsarlbenin/"
+      }
+    ]
+  },
+  {
+    "loc": "https://anscod.online/work/marketplacetest/",
+    "lastmod": "2025-06-04",
+    "changefreq": "monthly",
+    "priority": 0.8,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://anscod.online/work/marketplacetest/"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://anscod.online/en/work/marketplacetest/"
+      }
+    ]
+  },
+  {
+    "loc": "https://anscod.online/work/immohouse/",
+    "lastmod": "2025-06-04",
+    "changefreq": "monthly",
+    "priority": 0.8,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://anscod.online/work/immohouse/"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://anscod.online/en/work/immohouse/"
+      }
+    ]
+  },
+  {
+    "loc": "https://anscod.online/work/bitcointest/",
+    "lastmod": "2025-06-04",
+    "changefreq": "monthly",
+    "priority": 0.8,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://anscod.online/work/bitcointest/"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://anscod.online/en/work/bitcointest/"
+      }
+    ]
+  },
+  {
+    "loc": "https://anscod.online/work/afribet/",
+    "lastmod": "2025-06-04",
+    "changefreq": "monthly",
+    "priority": 0.8,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://anscod.online/work/afribet/"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://anscod.online/en/work/afribet/"
+      }
+    ]
+  },
+  {
+    "loc": "https://anscod.online/work/worldshop/",
+    "lastmod": "2025-06-04",
+    "changefreq": "monthly",
+    "priority": 0.8,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://anscod.online/work/worldshop/"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://anscod.online/en/work/worldshop/"
+      }
+    ]
+  },
+  {
+    "loc": "https://anscod.online/work/medicalfood/",
+    "lastmod": "2025-06-04",
+    "changefreq": "monthly",
+    "priority": 0.8,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://anscod.online/work/medicalfood/"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://anscod.online/en/work/medicalfood/"
+      }
+    ]
+  },
+  {
+    "loc": "https://anscod.online/work/chez_nous_chez_vous/",
+    "lastmod": "2025-06-04",
+    "changefreq": "monthly",
+    "priority": 0.8,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://anscod.online/work/chez_nous_chez_vous/"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://anscod.online/en/work/chez_nous_chez_vous/"
+      }
+    ]
+  },
+  {
+    "loc": "https://anscod.online/work/chantierpro/",
+    "lastmod": "2025-06-04",
+    "changefreq": "monthly",
+    "priority": 0.8,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://anscod.online/work/chantierpro/"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://anscod.online/en/work/chantierpro/"
+      }
+    ]
+  },
+  {
+    "loc": "https://anscod.online/work/top-sac-a-langer/",
+    "lastmod": "2025-06-04",
+    "changefreq": "monthly",
+    "priority": 0.8,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://anscod.online/work/top-sac-a-langer/"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://anscod.online/en/work/top-sac-a-langer/"
+      }
+    ]
+  }
+]

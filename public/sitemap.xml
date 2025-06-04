@@ -1,138 +1,490 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://anscod.online/</loc>
-    <lastmod>2025-05-22</lastmod>
+    <loc>https://anscod.online/work</loc>
+    <lastmod>2025-06-04</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>1</priority>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://anscod.online/work"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://anscod.online/en/work"/>
+  </url>
+  <url>
+    <loc>https://anscod.online/widgetCss</loc>
+    <lastmod>2025-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://anscod.online/widgetCss"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://anscod.online/en/widgetCss"/>
+  </url>
+  <url>
+    <loc>https://anscod.online/</loc>
+    <lastmod>2025-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://anscod.online/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://anscod.online/en/"/>
   </url>
   <url>
-    <loc>https://anscod.online/work/</loc>
-    <lastmod>2025-05-22</lastmod>
+    <loc>https://anscod.online/generalFedapayCallback</loc>
+    <lastmod>2025-06-04</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://anscod.online/work/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://anscod.online/en/work/"/>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://anscod.online/generalFedapayCallback"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://anscod.online/en/generalFedapayCallback"/>
   </url>
   <url>
-    <loc>https://anscod.online/blog/</loc>
-    <lastmod>2025-05-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://anscod.online/blog/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://anscod.online/en/blog/"/>
+    <loc>https://anscod.online/404</loc>
+    <lastmod>2025-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://anscod.online/404"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://anscod.online/en/404"/>
   </url>
   <url>
-    <loc>https://anscod.online/widgetCss/</loc>
-    <lastmod>2025-05-22</lastmod>
+    <loc>https://anscod.online/portfolio\portfolio-single</loc>
+    <lastmod>2025-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://anscod.online/portfolio\portfolio-single"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://anscod.online/en/portfolio\portfolio-single"/>
+  </url>
+  <url>
+    <loc>https://anscod.online/portfolio\portfolio-single-2</loc>
+    <lastmod>2025-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://anscod.online/portfolio\portfolio-single-2"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://anscod.online/en/portfolio\portfolio-single-2"/>
+  </url>
+  <url>
+    <loc>https://anscod.online/portfolio\portfolio-3-col</loc>
+    <lastmod>2025-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://anscod.online/portfolio\portfolio-3-col"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://anscod.online/en/portfolio\portfolio-3-col"/>
+  </url>
+  <url>
+    <loc>https://anscod.online/portfolio\portfolio-3-col-masonry</loc>
+    <lastmod>2025-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://anscod.online/portfolio\portfolio-3-col-masonry"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://anscod.online/en/portfolio\portfolio-3-col-masonry"/>
+  </url>
+  <url>
+    <loc>https://anscod.online/portfolio\portfolio-2-col</loc>
+    <lastmod>2025-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://anscod.online/portfolio\portfolio-2-col"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://anscod.online/en/portfolio\portfolio-2-col"/>
+  </url>
+  <url>
+    <loc>https://anscod.online/portfolio\portfolio-2-col-masonry</loc>
+    <lastmod>2025-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://anscod.online/portfolio\portfolio-2-col-masonry"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://anscod.online/en/portfolio\portfolio-2-col-masonry"/>
+  </url>
+  <url>
+    <loc>https://anscod.online/portfolio\onepage</loc>
+    <lastmod>2025-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://anscod.online/portfolio\onepage"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://anscod.online/en/portfolio\onepage"/>
+  </url>
+  <url>
+    <loc>https://anscod.online/portfolio\history</loc>
+    <lastmod>2025-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://anscod.online/portfolio\history"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://anscod.online/en/portfolio\history"/>
+  </url>
+  <url>
+    <loc>https://anscod.online/portfolio\Cv</loc>
+    <lastmod>2025-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://anscod.online/portfolio\Cv"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://anscod.online/en/portfolio\Cv"/>
+  </url>
+  <url>
+    <loc>https://anscod.online/portfolio\contact</loc>
+    <lastmod>2025-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://anscod.online/portfolio\contact"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://anscod.online/en/portfolio\contact"/>
+  </url>
+  <url>
+    <loc>https://anscod.online/portfolio\blog-post</loc>
+    <lastmod>2025-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://anscod.online/portfolio\blog-post"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://anscod.online/en/portfolio\blog-post"/>
+  </url>
+  <url>
+    <loc>https://anscod.online/portfolio\blog-3-col</loc>
+    <lastmod>2025-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://anscod.online/portfolio\blog-3-col"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://anscod.online/en/portfolio\blog-3-col"/>
+  </url>
+  <url>
+    <loc>https://anscod.online/portfolio\blog-2-col</loc>
+    <lastmod>2025-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://anscod.online/portfolio\blog-2-col"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://anscod.online/en/portfolio\blog-2-col"/>
+  </url>
+  <url>
+    <loc>https://anscod.online/docs\verify-email</loc>
+    <lastmod>2025-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://anscod.online/docs\verify-email"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://anscod.online/en/docs\verify-email"/>
+  </url>
+  <url>
+    <loc>https://anscod.online/docs\verify-email-request</loc>
+    <lastmod>2025-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://anscod.online/docs\verify-email-request"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://anscod.online/en/docs\verify-email-request"/>
+  </url>
+  <url>
+    <loc>https://anscod.online/docs\reset-password</loc>
+    <lastmod>2025-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://anscod.online/docs\reset-password"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://anscod.online/en/docs\reset-password"/>
+  </url>
+  <url>
+    <loc>https://anscod.online/docs\reset-password-request</loc>
+    <lastmod>2025-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://anscod.online/docs\reset-password-request"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://anscod.online/en/docs\reset-password-request"/>
+  </url>
+  <url>
+    <loc>https://anscod.online/docs\register</loc>
+    <lastmod>2025-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://anscod.online/docs\register"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://anscod.online/en/docs\register"/>
+  </url>
+  <url>
+    <loc>https://anscod.online/docs\register-confirmation</loc>
+    <lastmod>2025-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://anscod.online/docs\register-confirmation"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://anscod.online/en/docs\register-confirmation"/>
+  </url>
+  <url>
+    <loc>https://anscod.online/docs\login</loc>
+    <lastmod>2025-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://anscod.online/docs\login"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://anscod.online/en/docs\login"/>
+  </url>
+  <url>
+    <loc>https://anscod.online/docs\index</loc>
+    <lastmod>2025-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://anscod.online/docs\index"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://anscod.online/en/docs\index"/>
+  </url>
+  <url>
+    <loc>https://anscod.online/docs\dashboard</loc>
+    <lastmod>2025-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://anscod.online/docs\dashboard"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://anscod.online/en/docs\dashboard"/>
+  </url>
+  <url>
+    <loc>https://anscod.online/blog\index</loc>
+    <lastmod>2025-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://anscod.online/blog\index"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://anscod.online/en/blog\index"/>
+  </url>
+  <url>
+    <loc>https://anscod.online/docs\workspaces\[id]</loc>
+    <lastmod>2025-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://anscod.online/docs\workspaces\[id]"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://anscod.online/en/docs\workspaces\[id]"/>
+  </url>
+  <url>
+    <loc>https://anscod.online/docs\projects\[id]\index</loc>
+    <lastmod>2025-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://anscod.online/docs\projects\[id]\index"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://anscod.online/en/docs\projects\[id]\index"/>
+  </url>
+  <url>
+    <loc>https://anscod.online/docs\projects\[id]\docs\[docId]</loc>
+    <lastmod>2025-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://anscod.online/docs\projects\[id]\docs\[docId]"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://anscod.online/en/docs\projects\[id]\docs\[docId]"/>
+  </url>
+  <url>
+    <loc>https://anscod.online/docs\projects\[id]\docs\new</loc>
+    <lastmod>2025-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://anscod.online/docs\projects\[id]\docs\new"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://anscod.online/en/docs\projects\[id]\docs\new"/>
+  </url>
+  <url>
+    <loc>https://anscod.online/docs\projects\[id]\api\[endpointId]</loc>
+    <lastmod>2025-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://anscod.online/docs\projects\[id]\api\[endpointId]"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://anscod.online/en/docs\projects\[id]\api\[endpointId]"/>
+  </url>
+  <url>
+    <loc>https://anscod.online/docs\projects\[id]\api\new</loc>
+    <lastmod>2025-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://anscod.online/docs\projects\[id]\api\new"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://anscod.online/en/docs\projects\[id]\api\new"/>
+  </url>
+  <url>
+    <loc>https://anscod.online/widgetCss/untitledui/</loc>
+    <lastmod>2025-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://anscod.online/widgetCss/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://anscod.online/en/widgetCss/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://anscod.online/widgetCss/untitledui/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://anscod.online/en/widgetCss/untitledui/"/>
+  </url>
+  <url>
+    <loc>https://anscod.online/widgetCss/uiverse/</loc>
+    <lastmod>2025-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://anscod.online/widgetCss/uiverse/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://anscod.online/en/widgetCss/uiverse/"/>
+  </url>
+  <url>
+    <loc>https://anscod.online/widgetCss/shadcn/</loc>
+    <lastmod>2025-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://anscod.online/widgetCss/shadcn/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://anscod.online/en/widgetCss/shadcn/"/>
+  </url>
+  <url>
+    <loc>https://anscod.online/widgetCss/Scrollbar/</loc>
+    <lastmod>2025-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://anscod.online/widgetCss/Scrollbar/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://anscod.online/en/widgetCss/Scrollbar/"/>
+  </url>
+  <url>
+    <loc>https://anscod.online/widgetCss/readme/</loc>
+    <lastmod>2025-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://anscod.online/widgetCss/readme/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://anscod.online/en/widgetCss/readme/"/>
+  </url>
+  <url>
+    <loc>https://anscod.online/widgetCss/radix-ui/</loc>
+    <lastmod>2025-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://anscod.online/widgetCss/radix-ui/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://anscod.online/en/widgetCss/radix-ui/"/>
+  </url>
+  <url>
+    <loc>https://anscod.online/widgetCss/quickref/</loc>
+    <lastmod>2025-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://anscod.online/widgetCss/quickref/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://anscod.online/en/widgetCss/quickref/"/>
+  </url>
+  <url>
+    <loc>https://anscod.online/widgetCss/outils-css/</loc>
+    <lastmod>2025-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://anscod.online/widgetCss/outils-css/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://anscod.online/en/widgetCss/outils-css/"/>
+  </url>
+  <url>
+    <loc>https://anscod.online/widgetCss/Melvynx/</loc>
+    <lastmod>2025-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://anscod.online/widgetCss/Melvynx/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://anscod.online/en/widgetCss/Melvynx/"/>
+  </url>
+  <url>
+    <loc>https://anscod.online/widgetCss/lundevweb/</loc>
+    <lastmod>2025-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://anscod.online/widgetCss/lundevweb/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://anscod.online/en/widgetCss/lundevweb/"/>
+  </url>
+  <url>
+    <loc>https://anscod.online/widgetCss/icons8/</loc>
+    <lastmod>2025-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://anscod.online/widgetCss/icons8/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://anscod.online/en/widgetCss/icons8/"/>
+  </url>
+  <url>
+    <loc>https://anscod.online/widgetCss/hyperui/</loc>
+    <lastmod>2025-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://anscod.online/widgetCss/hyperui/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://anscod.online/en/widgetCss/hyperui/"/>
+  </url>
+  <url>
+    <loc>https://anscod.online/widgetCss/exercism/</loc>
+    <lastmod>2025-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://anscod.online/widgetCss/exercism/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://anscod.online/en/widgetCss/exercism/"/>
+  </url>
+  <url>
+    <loc>https://anscod.online/widgetCss/dev/</loc>
+    <lastmod>2025-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://anscod.online/widgetCss/dev/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://anscod.online/en/widgetCss/dev/"/>
   </url>
   <url>
     <loc>https://anscod.online/work/woodshow/</loc>
-    <lastmod>2025-05-22</lastmod>
+    <lastmod>2025-06-04</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://anscod.online/work/woodshow/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://anscod.online/en/work/woodshow/"/>
   </url>
   <url>
     <loc>https://anscod.online/work/wetsarl/</loc>
-    <lastmod>2025-05-22</lastmod>
+    <lastmod>2025-06-04</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://anscod.online/work/wetsarl/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://anscod.online/en/work/wetsarl/"/>
   </url>
   <url>
     <loc>https://anscod.online/work/quickrelease/</loc>
-    <lastmod>2025-05-22</lastmod>
+    <lastmod>2025-06-04</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://anscod.online/work/quickrelease/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://anscod.online/en/work/quickrelease/"/>
   </url>
   <url>
     <loc>https://anscod.online/work/planetechsarlbenin/</loc>
-    <lastmod>2025-05-22</lastmod>
+    <lastmod>2025-06-04</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://anscod.online/work/planetechsarlbenin/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://anscod.online/en/work/planetechsarlbenin/"/>
   </url>
   <url>
     <loc>https://anscod.online/work/marketplacetest/</loc>
-    <lastmod>2025-05-22</lastmod>
+    <lastmod>2025-06-04</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://anscod.online/work/marketplacetest/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://anscod.online/en/work/marketplacetest/"/>
   </url>
   <url>
     <loc>https://anscod.online/work/immohouse/</loc>
-    <lastmod>2025-05-22</lastmod>
+    <lastmod>2025-06-04</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://anscod.online/work/immohouse/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://anscod.online/en/work/immohouse/"/>
   </url>
   <url>
     <loc>https://anscod.online/work/bitcointest/</loc>
-    <lastmod>2025-05-22</lastmod>
+    <lastmod>2025-06-04</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://anscod.online/work/bitcointest/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://anscod.online/en/work/bitcointest/"/>
   </url>
   <url>
     <loc>https://anscod.online/work/afribet/</loc>
-    <lastmod>2025-05-22</lastmod>
+    <lastmod>2025-06-04</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://anscod.online/work/afribet/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://anscod.online/en/work/afribet/"/>
   </url>
   <url>
     <loc>https://anscod.online/work/worldshop/</loc>
-    <lastmod>2025-05-22</lastmod>
+    <lastmod>2025-06-04</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://anscod.online/work/worldshop/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://anscod.online/en/work/worldshop/"/>
   </url>
   <url>
     <loc>https://anscod.online/work/medicalfood/</loc>
-    <lastmod>2025-05-22</lastmod>
+    <lastmod>2025-06-04</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://anscod.online/work/medicalfood/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://anscod.online/en/work/medicalfood/"/>
   </url>
   <url>
     <loc>https://anscod.online/work/chez_nous_chez_vous/</loc>
-    <lastmod>2025-05-22</lastmod>
+    <lastmod>2025-06-04</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://anscod.online/work/chez_nous_chez_vous/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://anscod.online/en/work/chez_nous_chez_vous/"/>
   </url>
   <url>
     <loc>https://anscod.online/work/chantierpro/</loc>
-    <lastmod>2025-05-22</lastmod>
+    <lastmod>2025-06-04</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://anscod.online/work/chantierpro/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://anscod.online/en/work/chantierpro/"/>
   </url>
   <url>
     <loc>https://anscod.online/work/top-sac-a-langer/</loc>
-    <lastmod>2025-05-22</lastmod>
+    <lastmod>2025-06-04</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://anscod.online/work/top-sac-a-langer/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://anscod.online/en/work/top-sac-a-langer/"/>
   </url>
