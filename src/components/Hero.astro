@@ -1,0 +1,397 @@
+---
+interface Props {
+  title: string;
+  tagline?: string;
+  tagline1?: string;
+  align?: "start" | "center";
+}
+
+const { align = "center", tagline, tagline1, title } = Astro.props;
+---
+
+<div class:list={["hero stack gap-4", align]}>
+  <div class="hero-background container">
+    <div class="hero-bg-element hero-bg-element-1"></div>
+    <div class="hero-bg-element hero-bg-element-2"></div>
+    <div class="hero-bg-element hero-bg-element-3"></div>
+    <div class="hero-bg-grid"></div>
+  </div>
+
+  <div class="hero-text-container">
+    <div class="hero-eyebrow">Welcome to my portfolio</div>
+    <h1 class="title">
+      <span class="highlight">{title}</span>
+    </h1>
+    {tagline && <h3 class="tagline">{tagline}</h3>}
+    {tagline1 && <p class="tagline1">{tagline1}</p>}
+  </div>
+  <slot />
+</div>
+
+<style>
+  .hero {
+    font-size: var(--text-lg);
+    text-align: center;
+    position: relative;
+    animation: fadeIn 1s cubic-bezier(0.16, 1, 0.3, 1);
+    overflow: hidden;
+    padding: 5rem 0;
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Enhanced Background Elements */
+  .hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    overflow: hidden;
+  }
+
+  .hero-bg-element {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.15;
+  }
+
+  .hero-bg-element-1 {
+    top: -15%;
+    right: -5%;
+    width: 45%;
+    height: 70%;
+    background: linear-gradient(
+      135deg,
+      var(--accent-light) 0%,
+      var(--accent-dark) 100%
+    );
+    animation: float 15s ease-in-out infinite;
+  }
+
+  .hero-bg-element-2 {
+    bottom: -20%;
+    left: -10%;
+    width: 40%;
+    height: 60%;
+    background: linear-gradient(
+      135deg,
+      var(--accent-secondary-light) 0%,
+      var(--accent-secondary-dark) 100%
+    );
+    animation: float 18s ease-in-out infinite reverse;
+  }
+
+  .hero-bg-element-3 {
+    top: 40%;
+    right: 20%;
+    width: 25%;
+    height: 40%;
+    background: linear-gradient(
+      135deg,
+      var(--accent-tertiary-light) 0%,
+      var(--accent-tertiary-dark) 100%
+    );
+    animation: float 12s ease-in-out infinite 2s;
+  }
+
+  .hero-bg-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: linear-gradient(
+        rgba(255, 255, 255, 0.05) 1px,
+        transparent 1px
+      ),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+    opacity: 0.2;
+  }
+
+  @keyframes float {
+    0% {
+      transform: translateY(0) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-20px) rotate(5deg);
+    }
+    100% {
+      transform: translateY(0) rotate(0deg);
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .hero-text-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+    padding: 0 var(--container-padding);
+    width: 100%;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wider);
+    color: var(--accent-secondary);
+    margin-bottom: 1rem;
+    padding: 0.5rem 1rem;
+    background: rgba(var(--gray-999-basis), 0.1);
+    border-radius: 2rem;
+    backdrop-filter: blur(8px);
+    animation: slideDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s backwards;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .title {
+    font-size: var(--text-4xl);
+    color: var(--gray-0);
+    margin-bottom: 1.5rem;
+    line-height: var(--line-height-tight);
+    position: relative;
+    font-weight: 800;
+    letter-spacing: var(--letter-spacing-tight);
+    animation: fadeScale 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s backwards;
+  }
+
+  @keyframes fadeScale {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .highlight {
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+  }
+
+  .highlight::after {
+    content: "";
+    position: absolute;
+    bottom: 0.1em;
+    left: -0.25em;
+    right: -0.25em;
+    height: 0.3em;
+    background: var(--accent-gradient);
+    z-index: -1;
+    transform: rotate(-1deg) skewX(-15deg);
+    opacity: 0.3;
+    transition: all var(--transition-medium);
+  }
+
+  .highlight:hover::after {
+    height: 0.4em;
+    opacity: 0.4;
+    transform: rotate(-2deg) skewX(-15deg) scale(1.05);
+  }
+
+  .tagline {
+    font-weight: 600;
+    color: var(--accent-regular);
+    margin-bottom: 1.5rem;
+    font-size: var(--text-xl);
+    letter-spacing: var(--letter-spacing-tight);
+    animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.6s backwards;
+  }
+
+  .tagline1 {
+    line-height: var(--line-height-relaxed);
+    color: var(--secondary-text);
+    max-width: 650px;
+    font-size: var(--text-lg);
+    animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.8s backwards;
+  }
+
+  @media (min-width: 48em) {
+    .hero {
+      font-size: var(--text-xl);
+      padding: 6rem 0;
+      min-height: 70vh;
+    }
+
+    .title {
+      font-size: var(--text-5xl);
+    }
+
+    .tagline {
+      font-size: var(--text-xl);
+    }
+  }
+
+  @media (min-width: 62em) {
+    .start {
+      text-align: left;
+    }
+
+    .start .hero-text-container {
+      align-items: flex-start;
+      margin: 0;
+    }
+    
+    .hero {
+      min-height: 80vh;
+    }
+  }
+
+  /* Mobile optimizations for Hero */
+  @media (max-width: 640px) {
+    .hero {
+      padding: 4rem 0 3rem;
+      font-size: var(--text-md);
+      min-height: 50vh;
+      justify-content: flex-start;
+    }
+
+    .hero-text-container {
+      text-align: center;
+      padding: 0 var(--container-padding);
+      max-width: 100%;
+    }
+
+    .hero-eyebrow {
+      font-size: var(--text-xs);
+      margin-bottom: 0.75rem;
+      padding: 0.4rem 0.8rem;
+    }
+
+    .title {
+      font-size: var(--text-3xl);
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .tagline {
+      font-size: var(--text-md);
+      line-height: 1.4;
+      margin-bottom: 1rem;
+    }
+
+    .tagline1 {
+      font-size: var(--text-sm);
+      margin-top: 0.5rem;
+      padding: 0;
+      line-height: 1.5;
+    }
+
+    /* Ajuster les éléments de fond pour mobile */
+    .hero-background {
+      opacity: 0.5;
+    }
+
+    .hero-bg-element {
+      filter: blur(40px);
+    }
+    
+    .hero-bg-element-1 {
+      width: 60%;
+      height: 50%;
+      top: -10%;
+      right: -20%;
+    }
+    
+    .hero-bg-element-2 {
+      width: 50%;
+      height: 40%;
+      bottom: -10%;
+      left: -20%;
+    }
+    
+    .hero-bg-element-3 {
+      width: 30%;
+      height: 30%;
+      top: 50%;
+      right: 10%;
+    }
+
+    /* Ajuster la taille du highlight pour mobile */
+    .highlight::after {
+      height: 0.25em;
+      bottom: 0.05em;
+    }
+    
+    /* Optimiser les animations pour mobile */
+    @keyframes float {
+      0% {
+        transform: translateY(0) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-10px) rotate(3deg);
+      }
+      100% {
+        transform: translateY(0) rotate(0deg);
+      }
+    }
+  }
+
+  /* Ajustements pour les très petits écrans */
+  @media (max-width: 380px) {
+    .hero {
+      padding: 3.5rem 0 2.5rem;
+      min-height: 40vh;
+    }
+
+    .title {
+      font-size: var(--text-2xl);
+      margin-bottom: 0.75rem;
+    }
+
+    .tagline {
+      font-size: var(--text-base);
+      margin-bottom: 0.75rem;
+    }
+
+    .tagline1 {
+      font-size: var(--text-xs);
+      line-height: 1.4;
+    }
+
+    .hero-bg-element {
+      opacity: 0.1;
+      filter: blur(30px);
+    }
+    
+    .hero-eyebrow {
+      font-size: 0.65rem;
+      padding: 0.35rem 0.7rem;
+      margin-bottom: 0.5rem;
+    }
+  }
+</style>

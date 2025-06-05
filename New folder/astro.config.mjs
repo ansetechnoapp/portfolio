@@ -10,7 +10,7 @@ export default defineConfig({
   adapter: node({
     mode: 'standalone'
   }),
-  site: 'https://anscod.online/',
+  site: 'https://zoddev.site/',
   vite: {
     build: {
       rollupOptions: {
@@ -33,12 +33,12 @@ export default defineConfig({
     tailwind(),
     react(),
     seoIntegration({
-      titleTemplate: '%s | Anscod Portfolio',
-      defaultTitle: 'Anscod Portfolio',
+      titleTemplate: '%s | zoddev Portfolio',
+      defaultTitle: 'zoddev Portfolio',
       defaultDescription: 'Portfolio de développeur web et mobile freelance spécialisé en React, React Native, Astro.js et technologies web modernes.',
       defaultImage: '/assets/social-preview.jpg',
-      siteUrl: 'https://anscod.online',
-      twitterHandle: '@anscod',
+      siteUrl: 'https://zoddev.site',
+      twitterHandle: '@zoddev',
       language: 'fr',
     })
   ],
