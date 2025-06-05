@@ -385,38 +385,6 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://zoddev.site/en/widgetCss/dev/"/>
   </url>
   <url>
-    <loc>https://zoddev.site/work/worldshop/</loc>
-    <lastmod>2025-06-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://zoddev.site/work/worldshop/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://zoddev.site/en/work/worldshop/"/>
-  </url>
-  <url>
-    <loc>https://zoddev.site/work/medicalfood/</loc>
-    <lastmod>2025-06-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://zoddev.site/work/medicalfood/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://zoddev.site/en/work/medicalfood/"/>
-  </url>
-  <url>
-    <loc>https://zoddev.site/work/chez_nous_chez_vous/</loc>
-    <lastmod>2025-06-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://zoddev.site/work/chez_nous_chez_vous/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://zoddev.site/en/work/chez_nous_chez_vous/"/>
-  </url>
-  <url>
-    <loc>https://zoddev.site/work/chantierpro/</loc>
-    <lastmod>2025-06-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://zoddev.site/work/chantierpro/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://zoddev.site/en/work/chantierpro/"/>
-  </url>
-  <url>
     <loc>https://zoddev.site/work/woodshow/</loc>
     <lastmod>2025-06-05</lastmod>
     <changefreq>monthly</changefreq>
@@ -479,6 +447,38 @@
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://zoddev.site/work/afribet/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://zoddev.site/en/work/afribet/"/>
+  </url>
+  <url>
+    <loc>https://zoddev.site/work/worldshop/</loc>
+    <lastmod>2025-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zoddev.site/work/worldshop/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zoddev.site/en/work/worldshop/"/>
+  </url>
+  <url>
+    <loc>https://zoddev.site/work/medicalfood/</loc>
+    <lastmod>2025-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zoddev.site/work/medicalfood/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zoddev.site/en/work/medicalfood/"/>
+  </url>
+  <url>
+    <loc>https://zoddev.site/work/chez_nous_chez_vous/</loc>
+    <lastmod>2025-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zoddev.site/work/chez_nous_chez_vous/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zoddev.site/en/work/chez_nous_chez_vous/"/>
+  </url>
+  <url>
+    <loc>https://zoddev.site/work/chantierpro/</loc>
+    <lastmod>2025-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zoddev.site/work/chantierpro/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zoddev.site/en/work/chantierpro/"/>
   </url>
   <url>
     <loc>https://zoddev.site/work/top-sac-a-langer/</loc>

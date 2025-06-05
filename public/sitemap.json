@@ -768,70 +768,6 @@
     ]
   },
   {
-    "loc": "https://zoddev.site/work/worldshop/",
-    "lastmod": "2025-06-05",
-    "changefreq": "monthly",
-    "priority": 0.8,
-    "alternates": [
-      {
-        "hreflang": "fr",
-        "href": "https://zoddev.site/work/worldshop/"
-      },
-      {
-        "hreflang": "en",
-        "href": "https://zoddev.site/en/work/worldshop/"
-      }
-    ]
-  },
-  {
-    "loc": "https://zoddev.site/work/medicalfood/",
-    "lastmod": "2025-06-05",
-    "changefreq": "monthly",
-    "priority": 0.8,
-    "alternates": [
-      {
-        "hreflang": "fr",
-        "href": "https://zoddev.site/work/medicalfood/"
-      },
-      {
-        "hreflang": "en",
-        "href": "https://zoddev.site/en/work/medicalfood/"
-      }
-    ]
-  },
-  {
-    "loc": "https://zoddev.site/work/chez_nous_chez_vous/",
-    "lastmod": "2025-06-05",
-    "changefreq": "monthly",
-    "priority": 0.8,
-    "alternates": [
-      {
-        "hreflang": "fr",
-        "href": "https://zoddev.site/work/chez_nous_chez_vous/"
-      },
-      {
-        "hreflang": "en",
-        "href": "https://zoddev.site/en/work/chez_nous_chez_vous/"
-      }
-    ]
-  },
-  {
-    "loc": "https://zoddev.site/work/chantierpro/",
-    "lastmod": "2025-06-05",
-    "changefreq": "monthly",
-    "priority": 0.8,
-    "alternates": [
-      {
-        "hreflang": "fr",
-        "href": "https://zoddev.site/work/chantierpro/"
-      },
-      {
-        "hreflang": "en",
-        "href": "https://zoddev.site/en/work/chantierpro/"
-      }
-    ]
-  },
-  {
     "loc": "https://zoddev.site/work/woodshow/",
     "lastmod": "2025-06-05",
     "changefreq": "monthly",
@@ -956,6 +892,70 @@
       {
         "hreflang": "en",
         "href": "https://zoddev.site/en/work/afribet/"
+      }
+    ]
+  },
+  {
+    "loc": "https://zoddev.site/work/worldshop/",
+    "lastmod": "2025-06-05",
+    "changefreq": "monthly",
+    "priority": 0.8,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://zoddev.site/work/worldshop/"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://zoddev.site/en/work/worldshop/"
+      }
+    ]
+  },
+  {
+    "loc": "https://zoddev.site/work/medicalfood/",
+    "lastmod": "2025-06-05",
+    "changefreq": "monthly",
+    "priority": 0.8,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://zoddev.site/work/medicalfood/"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://zoddev.site/en/work/medicalfood/"
+      }
+    ]
+  },
+  {
+    "loc": "https://zoddev.site/work/chez_nous_chez_vous/",
+    "lastmod": "2025-06-05",
+    "changefreq": "monthly",
+    "priority": 0.8,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://zoddev.site/work/chez_nous_chez_vous/"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://zoddev.site/en/work/chez_nous_chez_vous/"
+      }
+    ]
+  },
+  {
+    "loc": "https://zoddev.site/work/chantierpro/",
+    "lastmod": "2025-06-05",
+    "changefreq": "monthly",
+    "priority": 0.8,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://zoddev.site/work/chantierpro/"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://zoddev.site/en/work/chantierpro/"
       }
     ]
   },
