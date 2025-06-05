@@ -2,20 +2,6 @@
 import Layout from "../../layouts/Layout.astro";
 import { getPostBySlug, parsePostDates } from "../../data/blog/index.js";
 
-// Add a type definition for the blog post
-type BlogPost = {
-  title: string;
-  description?: string;
-  heroImage?: string;
-  tags?: string[];
-  author?: string;
-  pubDate: Date;
-  updatedDate?: Date;
-  markdown: string;
-  content: string;
-  // ...add any other fields you use...
-};
-
 export function getStaticPaths() {
   // This function is needed for Astro to generate static pages
   // The actual data fetching happens in the component
@@ -30,10 +16,10 @@ export function getStaticPaths() {
 }
 
 const { slug } = Astro.params;
-const postData = getPostBySlug(slug) as BlogPost | undefined;
+const postData = getPostBySlug(slug);
 
 // Parse dates from ISO strings to Date objects
-const post = postData ? (parsePostDates(postData) as BlogPost) : undefined;
+const post = parsePostDates(postData);
 
 // If post not found, redirect to 404
 if (!post) {
