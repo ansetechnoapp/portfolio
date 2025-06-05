@@ -3,12 +3,12 @@ import { Traverse } from 'neotraverse/modern';
 import pLimit from 'p-limit';
 import { r as removeBase, i as isRemotePath, p as prependForwardSlash } from './path_Cvt6sEOY.mjs';
 import { V as VALID_INPUT_FORMATS } from './consts_BmVDRGlB.mjs';
-import { A as AstroError, U as UnknownContentCollectionError, a as createComponent, k as RenderUndefinedEntryError, u as unescapeHTML, d as renderTemplate, l as renderUniqueStylesheet, n as renderScriptElement, o as createHeadAndContent, e as renderComponent, c as createAstro, m as maybeRenderHead, b as addAttribute, r as renderSlot } from './astro/server_n6hXvmcT.mjs';
+import { A as AstroError, U as UnknownContentCollectionError, a as createComponent, k as RenderUndefinedEntryError, u as unescapeHTML, d as renderTemplate, l as renderUniqueStylesheet, n as renderScriptElement, o as createHeadAndContent, e as renderComponent, c as createAstro, m as maybeRenderHead, b as addAttribute, r as renderSlot } from './astro/server_ZODBcONi.mjs';
 import 'kleur/colors';
 import * as devalue from 'devalue';
 import 'clsx';
 /* empty css                         */
-import { I as Icon } from './Layout_BwB_lZY-.mjs';
+import { I as Icon } from './Layout_CN2odi0l.mjs';
 
 const CONTENT_IMAGE_FLAG = "astroContentImageFlag";
 const IMAGE_IMPORT_PREFIX = "__ASTRO_IMAGE_";
@@ -68,7 +68,7 @@ class ImmutableDataStore {
    */
   static async fromModule() {
     try {
-      const data = await import('./_astro_data-layer-content_DDDsHvIZ.mjs');
+      const data = await import('./_astro_data-layer-content_CkXNkNF6.mjs');
       if (data.default instanceof Map) {
         return ImmutableDataStore.fromMap(data.default);
       }
@@ -215,7 +215,7 @@ const CONTENT_LAYER_IMAGE_REGEX = /__ASTRO_IMAGE_="([^"]+)"/g;
 async function updateImageReferencesInBody(html, fileName) {
   const { default: imageAssetMap } = await import('./content-assets_DleWbedO.mjs');
   const imageObjects = /* @__PURE__ */ new Map();
-  const { getImage } = await import('./_astro_assets_It0S08Q9.mjs').then(n => n._);
+  const { getImage } = await import('./_astro_assets_DNQXPoTA.mjs').then(n => n._);
   for (const [_full, imagePath] of html.matchAll(CONTENT_LAYER_IMAGE_REGEX)) {
     try {
       const decodedImagePath = JSON.parse(imagePath.replaceAll("&#x22;", '"'));

@@ -1,7 +1,7 @@
 /* empty css                                     */
-import { c as createAstro, a as createComponent, e as renderComponent, d as renderTemplate, m as maybeRenderHead } from '../../chunks/astro/server_n6hXvmcT.mjs';
+import { c as createAstro, a as createComponent, e as renderComponent, d as renderTemplate, m as maybeRenderHead } from '../../chunks/astro/server_ZODBcONi.mjs';
 import 'kleur/colors';
-import { a as $$Layout } from '../../chunks/Layout_BwB_lZY-.mjs';
+import { a as $$Layout } from '../../chunks/Layout_CN2odi0l.mjs';
 import { R as RequestEmailVerification } from '../../chunks/EmailVerification_C_wgKRQc.mjs';
 import { s as supabase } from '../../chunks/supabase_B2xMZoNq.mjs';
 export { renderers } from '../../renderers.mjs';

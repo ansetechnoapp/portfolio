@@ -1,8 +1,8 @@
-import { J as decryptString, K as createSlotValueFromString, O as isAstroComponentFactory, e as renderComponent, d as renderTemplate, P as ROUTE_TYPE_HEADER, Q as REROUTE_DIRECTIVE_HEADER, A as AstroError, S as i18nNoLocaleFoundInPath, T as ResponseSentError, V as MiddlewareNoDataOrNextCalled, W as MiddlewareNotAResponse, X as originPathnameSymbol, Y as RewriteWithBodyUsed, Z as GetStaticPathsRequired, _ as InvalidGetStaticPathsReturn, $ as InvalidGetStaticPathsEntry, a0 as GetStaticPathsExpectedParams, a1 as GetStaticPathsInvalidRouteParam, a2 as PageNumberParamNotFound, D as DEFAULT_404_COMPONENT, a3 as ActionNotFoundError, a4 as NoMatchingStaticPathFound, a5 as PrerenderDynamicEndpointPathCollide, a6 as ReservedSlotName, a7 as renderSlotToString, a8 as renderJSX, a9 as chunkToString, aa as isRenderInstruction, ab as ForbiddenRewrite, ac as SessionStorageSaveError, ad as SessionStorageInitError, ae as ASTRO_VERSION, af as LocalsReassigned, ag as PrerenderClientAddressNotAvailable, ah as clientAddressSymbol, ai as ClientAddressNotAvailable, aj as StaticClientAddressNotAvailable, ak as AstroResponseHeadersReassigned, al as responseSentSymbol$1, am as renderPage, an as REWRITE_DIRECTIVE_HEADER_KEY, ao as REWRITE_DIRECTIVE_HEADER_VALUE, ap as renderEndpoint, aq as LocalsNotAnObject, ar as REROUTABLE_STATUS_CODES } from './astro/server_n6hXvmcT.mjs';
+import { J as decryptString, K as createSlotValueFromString, O as isAstroComponentFactory, e as renderComponent, d as renderTemplate, P as ROUTE_TYPE_HEADER, Q as REROUTE_DIRECTIVE_HEADER, A as AstroError, S as i18nNoLocaleFoundInPath, T as ResponseSentError, V as MiddlewareNoDataOrNextCalled, W as MiddlewareNotAResponse, X as originPathnameSymbol, Y as RewriteWithBodyUsed, Z as GetStaticPathsRequired, _ as InvalidGetStaticPathsReturn, $ as InvalidGetStaticPathsEntry, a0 as GetStaticPathsExpectedParams, a1 as GetStaticPathsInvalidRouteParam, a2 as PageNumberParamNotFound, D as DEFAULT_404_COMPONENT, a3 as ActionNotFoundError, a4 as NoMatchingStaticPathFound, a5 as PrerenderDynamicEndpointPathCollide, a6 as ReservedSlotName, a7 as renderSlotToString, a8 as renderJSX, a9 as chunkToString, aa as isRenderInstruction, ab as ForbiddenRewrite, ac as SessionStorageSaveError, ad as SessionStorageInitError, ae as ASTRO_VERSION, af as CspNotEnabled, ag as LocalsReassigned, ah as PrerenderClientAddressNotAvailable, ai as clientAddressSymbol, aj as ClientAddressNotAvailable, ak as StaticClientAddressNotAvailable, al as AstroResponseHeadersReassigned, am as responseSentSymbol$1, an as renderPage, ao as REWRITE_DIRECTIVE_HEADER_KEY, ap as REWRITE_DIRECTIVE_HEADER_VALUE, aq as renderEndpoint, ar as LocalsNotAnObject, as as REROUTABLE_STATUS_CODES } from './astro/server_ZODBcONi.mjs';
 import { bold, red, yellow, dim, blue, green } from 'kleur/colors';
 import 'clsx';
 import { serialize, parse as parse$2 } from 'cookie';
-import { A as ActionError, d as deserializeActionResult, s as serializeActionResult, a as ACTION_RPC_ROUTE_PATTERN, b as ACTION_QUERY_PARAMS, g as getActionQueryString, D as DEFAULT_404_ROUTE, c as default404Instance, N as NOOP_MIDDLEWARE_FN, e as ensure404Route } from './astro-designed-error-pages_C073JDny.mjs';
+import { A as ActionError, d as deserializeActionResult, s as serializeActionResult, a as ACTION_RPC_ROUTE_PATTERN, b as ACTION_QUERY_PARAMS, g as getActionQueryString, D as DEFAULT_404_ROUTE, c as default404Instance, N as NOOP_MIDDLEWARE_FN, e as ensure404Route } from './astro-designed-error-pages_5KXV5aQW.mjs';
 import 'es-module-lexer';
 import buffer from 'node:buffer';
 import crypto$1 from 'node:crypto';
@@ -1566,11 +1566,11 @@ class Pipeline {
     } else if (this.middleware) {
       const middlewareInstance = await this.middleware();
       const onRequest = middlewareInstance.onRequest ?? NOOP_MIDDLEWARE_FN;
+      const internalMiddlewares = [onRequest];
       if (this.manifest.checkOrigin) {
-        this.resolvedMiddleware = sequence(createOriginCheckMiddleware(), onRequest);
-      } else {
-        this.resolvedMiddleware = onRequest;
+        internalMiddlewares.unshift(createOriginCheckMiddleware());
       }
+      this.resolvedMiddleware = sequence(...internalMiddlewares);
       return this.resolvedMiddleware;
     } else {
       this.resolvedMiddleware = NOOP_MIDDLEWARE_FN;
@@ -1782,11 +1782,11 @@ function sequence(...handlers) {
             if (payload instanceof Request) {
               newRequest = payload;
             } else if (payload instanceof URL) {
-              newRequest = new Request(payload, handleContext.request);
+              newRequest = new Request(payload, handleContext.request.clone());
             } else {
               newRequest = new Request(
                 new URL(payload, handleContext.url.origin),
-                handleContext.request
+                handleContext.request.clone()
               );
             }
             const oldPathname = handleContext.url.pathname;
@@ -2260,6 +2260,7 @@ class RenderContext {
    * A safety net in case of loops
    */
   counter = 0;
+  result = void 0;
   static async create({
     locals = {},
     middleware,
@@ -2385,10 +2386,10 @@ class RenderContext {
         case "redirect":
           return renderRedirect(this);
         case "page": {
-          const result = await this.createResult(componentInstance, actionApiContext);
+          this.result = await this.createResult(componentInstance, actionApiContext);
           try {
             response2 = await renderPage(
-              result,
+              this.result,
               componentInstance?.default,
               props,
               slots,
@@ -2396,7 +2397,7 @@ class RenderContext {
               this.routeData
             );
           } catch (e) {
-            result.cancelled = true;
+            this.result.cancelled = true;
             throw e;
           }
           response2.headers.set(ROUTE_TYPE_HEADER, "page");
@@ -2528,6 +2529,36 @@ class RenderContext {
           return void 0;
         }
         return renderContext.session;
+      },
+      insertDirective(payload) {
+        if (!pipeline.manifest.csp) {
+          throw new AstroError(CspNotEnabled);
+        }
+        renderContext.result?.directives.push(payload);
+      },
+      insertScriptResource(resource) {
+        if (!pipeline.manifest.csp) {
+          throw new AstroError(CspNotEnabled);
+        }
+        renderContext.result?.scriptResources.push(resource);
+      },
+      insertStyleResource(resource) {
+        if (!pipeline.manifest.csp) {
+          throw new AstroError(CspNotEnabled);
+        }
+        renderContext.result?.styleResources.push(resource);
+      },
+      insertStyleHash(hash) {
+        if (!pipeline.manifest.csp) {
+          throw new AstroError(CspNotEnabled);
+        }
+        renderContext.result?.styleHashes.push(hash);
+      },
+      insertScriptHash(hash) {
+        if (!!pipeline.manifest.csp === false) {
+          throw new AstroError(CspNotEnabled);
+        }
+        renderContext.result?.scriptHashes.push(hash);
       }
     };
   }
@@ -2584,8 +2615,19 @@ class RenderContext {
         hasRenderedServerIslandRuntime: false,
         headInTree: false,
         extraHead: [],
+        extraStyleHashes: [],
+        extraScriptHashes: [],
         propagators: /* @__PURE__ */ new Set()
-      }
+      },
+      shouldInjectCspMetaTags: !!manifest.csp,
+      cspAlgorithm: manifest.csp?.algorithm ?? "SHA-256",
+      // The following arrays must be cloned, otherwise they become mutable across routes.
+      scriptHashes: manifest.csp?.scriptHashes ? [...manifest.csp.scriptHashes] : [],
+      scriptResources: manifest.csp?.scriptResources ? [...manifest.csp.scriptResources] : [],
+      styleHashes: manifest.csp?.styleHashes ? [...manifest.csp.styleHashes] : [],
+      styleResources: manifest.csp?.styleResources ? [...manifest.csp.styleResources] : [],
+      directives: manifest.csp?.directives ? [...manifest.csp.directives] : [],
+      isStrictDynamic: manifest.csp?.isStrictDynamic ?? false
     };
     return result;
   }
@@ -2698,6 +2740,36 @@ class RenderContext {
       url,
       get originPathname() {
         return getOriginPathname(renderContext.request);
+      },
+      insertDirective(payload) {
+        if (!pipeline.manifest.csp) {
+          throw new AstroError(CspNotEnabled);
+        }
+        renderContext.result?.directives.push(payload);
+      },
+      insertScriptResource(resource) {
+        if (!pipeline.manifest.csp) {
+          throw new AstroError(CspNotEnabled);
+        }
+        renderContext.result?.scriptResources.push(resource);
+      },
+      insertStyleResource(resource) {
+        if (!pipeline.manifest.csp) {
+          throw new AstroError(CspNotEnabled);
+        }
+        renderContext.result?.styleResources.push(resource);
+      },
+      insertStyleHash(hash) {
+        if (!pipeline.manifest.csp) {
+          throw new AstroError(CspNotEnabled);
+        }
+        renderContext.result?.styleHashes.push(hash);
+      },
+      insertScriptHash(hash) {
+        if (!!pipeline.manifest.csp === false) {
+          throw new AstroError(CspNotEnabled);
+        }
+        renderContext.result?.scriptHashes.push(hash);
       }
     };
   }

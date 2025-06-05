@@ -1,7 +1,7 @@
 /* empty css                                              */
-import { c as createAstro, a as createComponent, d as renderTemplate, g as defineScriptVars, e as renderComponent, m as maybeRenderHead, b as addAttribute } from '../../../../../chunks/astro/server_n6hXvmcT.mjs';
+import { c as createAstro, a as createComponent, d as renderTemplate, g as defineScriptVars, e as renderComponent, m as maybeRenderHead, b as addAttribute } from '../../../../../chunks/astro/server_ZODBcONi.mjs';
 import 'kleur/colors';
-import { a as $$Layout } from '../../../../../chunks/Layout_BwB_lZY-.mjs';
+import { a as $$Layout } from '../../../../../chunks/Layout_CN2odi0l.mjs';
 import { D as DocEditor } from '../../../../../chunks/DocEditor_DjimoKdz.mjs';
 import { s as supabase, h as hasProjectAccess, g as getProject } from '../../../../../chunks/supabase_B2xMZoNq.mjs';
 /* empty css                                               */

@@ -1,5 +1,5 @@
 import { j as joinPaths, i as isRemotePath } from './path_Cvt6sEOY.mjs';
-import { A as AstroError, E as ExpectedImage, L as LocalImageUsedWrongly, p as MissingImageDimension, q as UnsupportedImageFormat, I as IncompatibleDescriptorOptions, s as UnsupportedImageConversion, t as toStyleString, v as NoImageMetadata, w as FailedToFetchRemoteImageDimensions, x as ExpectedImageOptions, y as ExpectedNotESMImage, z as InvalidImageService, c as createAstro, a as createComponent, B as ImageMissingAlt, m as maybeRenderHead, b as addAttribute, C as spreadAttributes, d as renderTemplate, G as ExperimentalFontsNotEnabled, H as FontFamilyNotFound, u as unescapeHTML } from './astro/server_n6hXvmcT.mjs';
+import { A as AstroError, E as ExpectedImage, L as LocalImageUsedWrongly, p as MissingImageDimension, q as UnsupportedImageFormat, I as IncompatibleDescriptorOptions, s as UnsupportedImageConversion, t as toStyleString, v as NoImageMetadata, w as FailedToFetchRemoteImageDimensions, x as ExpectedImageOptions, y as ExpectedNotESMImage, z as InvalidImageService, c as createAstro, a as createComponent, B as ImageMissingAlt, m as maybeRenderHead, b as addAttribute, C as spreadAttributes, d as renderTemplate, G as ExperimentalFontsNotEnabled, H as FontFamilyNotFound, u as unescapeHTML } from './astro/server_ZODBcONi.mjs';
 import { D as DEFAULT_OUTPUT_FORMAT, a as VALID_SUPPORTED_FORMATS, b as DEFAULT_HASH_PROPS } from './consts_BmVDRGlB.mjs';
 import { t as typeHandlers, a as types } from './index_DfOMS8cV.mjs';
 import * as mime from 'mrmime';
@@ -507,7 +507,7 @@ async function getConfiguredImageService() {
   if (!globalThis?.astroAsset?.imageService) {
     const { default: service } = await import(
       // @ts-expect-error
-      './sharp_D5pjmMaZ.mjs'
+      './sharp_DBgHpVQv.mjs'
     ).catch((e) => {
       const error = new AstroError(InvalidImageService);
       error.cause = e;
@@ -679,7 +679,7 @@ const $$Image = createComponent(async ($$result, $$props, $$slots) => {
   }
   const { class: className, ...attributes } = { ...additionalAttributes, ...image.attributes };
   return renderTemplate`${maybeRenderHead()}<img${addAttribute(image.src, "src")}${spreadAttributes(attributes)}${addAttribute(className, "class")}>`;
-}, "C:/Users/kevin/Allproject/portfolio/node_modules/.pnpm/astro@5.8.1_@types+node@22._a8d06dc33ffcba3519559bc0a45e989a/node_modules/astro/components/Image.astro", void 0);
+}, "C:/Users/kevin/Allproject/portfolio/node_modules/.pnpm/astro@5.9.0_@types+node@22._ecbbae974f47d430c2c9b6d84c1d710c/node_modules/astro/components/Image.astro", void 0);
 
 const $$Astro$1 = createAstro("https://zoddev.site/");
 const $$Picture = createComponent(async ($$result, $$props, $$slots) => {
@@ -750,7 +750,7 @@ const $$Picture = createComponent(async ($$result, $$props, $$slots) => {
     const srcsetAttribute = props.densities || !props.densities && !props.widths && !useResponsive ? `${image.src}${image.srcSet.values.length > 0 ? ", " + image.srcSet.attribute : ""}` : image.srcSet.attribute;
     return renderTemplate`<source${addAttribute(srcsetAttribute, "srcset")}${addAttribute(mime.lookup(image.options.format ?? image.src) ?? `image/${image.options.format}`, "type")}${spreadAttributes(sourceAdditionalAttributes)}>`;
   })}  <img${addAttribute(fallbackImage.src, "src")}${spreadAttributes(attributes)}${addAttribute(className, "class")}> </picture>`;
-}, "C:/Users/kevin/Allproject/portfolio/node_modules/.pnpm/astro@5.8.1_@types+node@22._a8d06dc33ffcba3519559bc0a45e989a/node_modules/astro/components/Picture.astro", void 0);
+}, "C:/Users/kevin/Allproject/portfolio/node_modules/.pnpm/astro@5.9.0_@types+node@22._ecbbae974f47d430c2c9b6d84c1d710c/node_modules/astro/components/Picture.astro", void 0);
 
 const mod = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   __proto__: null
@@ -773,7 +773,7 @@ const $$Font = createComponent(($$result, $$props, $$slots) => {
     });
   }
   return renderTemplate`${preload && data.preloadData.map(({ url, type }) => renderTemplate`<link rel="preload"${addAttribute(url, "href")} as="font"${addAttribute(`font/${type}`, "type")} crossorigin>`)}<style>${unescapeHTML(data.css)}</style>`;
-}, "C:/Users/kevin/Allproject/portfolio/node_modules/.pnpm/astro@5.8.1_@types+node@22._a8d06dc33ffcba3519559bc0a45e989a/node_modules/astro/components/Font.astro", void 0);
+}, "C:/Users/kevin/Allproject/portfolio/node_modules/.pnpm/astro@5.9.0_@types+node@22._ecbbae974f47d430c2c9b6d84c1d710c/node_modules/astro/components/Font.astro", void 0);
 
 const imageConfig = {"endpoint":{"route":"/_image"},"service":{"entrypoint":"astro/assets/services/sharp","config":{"quality":80,"formats":["webp","avif","png","jpg","jpeg"]}},"domains":[],"remotePatterns":[],"experimentalDefaultStyles":true,"experimentalResponsiveImages":false};
 							const getImage = async (options) => await getImage$1(options, imageConfig);
