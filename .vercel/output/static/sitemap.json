@@ -1,0 +1,978 @@
+[
+  {
+    "loc": "https://zoddev.site/work",
+    "lastmod": "2025-06-05",
+    "changefreq": "monthly",
+    "priority": 0.8,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://zoddev.site/work"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://zoddev.site/en/work"
+      }
+    ]
+  },
+  {
+    "loc": "https://zoddev.site/widgetCss",
+    "lastmod": "2025-06-05",
+    "changefreq": "monthly",
+    "priority": 0.6,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://zoddev.site/widgetCss"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://zoddev.site/en/widgetCss"
+      }
+    ]
+  },
+  {
+    "loc": "https://zoddev.site/",
+    "lastmod": "2025-06-05",
+    "changefreq": "monthly",
+    "priority": 0.5,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://zoddev.site/"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://zoddev.site/en/"
+      }
+    ]
+  },
+  {
+    "loc": "https://zoddev.site/generalFedapayCallback",
+    "lastmod": "2025-06-05",
+    "changefreq": "monthly",
+    "priority": 0.5,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://zoddev.site/generalFedapayCallback"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://zoddev.site/en/generalFedapayCallback"
+      }
+    ]
+  },
+  {
+    "loc": "https://zoddev.site/404",
+    "lastmod": "2025-06-05",
+    "changefreq": "monthly",
+    "priority": 0.5,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://zoddev.site/404"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://zoddev.site/en/404"
+      }
+    ]
+  },
+  {
+    "loc": "https://zoddev.site/portfolio\\portfolio-single",
+    "lastmod": "2025-06-05",
+    "changefreq": "monthly",
+    "priority": 0.5,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://zoddev.site/portfolio\\portfolio-single"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://zoddev.site/en/portfolio\\portfolio-single"
+      }
+    ]
+  },
+  {
+    "loc": "https://zoddev.site/portfolio\\portfolio-single-2",
+    "lastmod": "2025-06-05",
+    "changefreq": "monthly",
+    "priority": 0.5,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://zoddev.site/portfolio\\portfolio-single-2"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://zoddev.site/en/portfolio\\portfolio-single-2"
+      }
+    ]
+  },
+  {
+    "loc": "https://zoddev.site/portfolio\\portfolio-3-col",
+    "lastmod": "2025-06-05",
+    "changefreq": "monthly",
+    "priority": 0.5,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://zoddev.site/portfolio\\portfolio-3-col"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://zoddev.site/en/portfolio\\portfolio-3-col"
+      }
+    ]
+  },
+  {
+    "loc": "https://zoddev.site/portfolio\\portfolio-3-col-masonry",
+    "lastmod": "2025-06-05",
+    "changefreq": "monthly",
+    "priority": 0.5,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://zoddev.site/portfolio\\portfolio-3-col-masonry"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://zoddev.site/en/portfolio\\portfolio-3-col-masonry"
+      }
+    ]
+  },
+  {
+    "loc": "https://zoddev.site/portfolio\\portfolio-2-col",
+    "lastmod": "2025-06-05",
+    "changefreq": "monthly",
+    "priority": 0.5,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://zoddev.site/portfolio\\portfolio-2-col"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://zoddev.site/en/portfolio\\portfolio-2-col"
+      }
+    ]
+  },
+  {
+    "loc": "https://zoddev.site/portfolio\\portfolio-2-col-masonry",
+    "lastmod": "2025-06-05",
+    "changefreq": "monthly",
+    "priority": 0.5,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://zoddev.site/portfolio\\portfolio-2-col-masonry"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://zoddev.site/en/portfolio\\portfolio-2-col-masonry"
+      }
+    ]
+  },
+  {
+    "loc": "https://zoddev.site/portfolio\\onepage",
+    "lastmod": "2025-06-05",
+    "changefreq": "monthly",
+    "priority": 0.5,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://zoddev.site/portfolio\\onepage"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://zoddev.site/en/portfolio\\onepage"
+      }
+    ]
+  },
+  {
+    "loc": "https://zoddev.site/portfolio\\history",
+    "lastmod": "2025-06-05",
+    "changefreq": "monthly",
+    "priority": 0.5,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://zoddev.site/portfolio\\history"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://zoddev.site/en/portfolio\\history"
+      }
+    ]
+  },
+  {
+    "loc": "https://zoddev.site/portfolio\\Cv",
+    "lastmod": "2025-06-05",
+    "changefreq": "monthly",
+    "priority": 0.5,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://zoddev.site/portfolio\\Cv"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://zoddev.site/en/portfolio\\Cv"
+      }
+    ]
+  },
+  {
+    "loc": "https://zoddev.site/portfolio\\contact",
+    "lastmod": "2025-06-05",
+    "changefreq": "monthly",
+    "priority": 0.5,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://zoddev.site/portfolio\\contact"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://zoddev.site/en/portfolio\\contact"
+      }
+    ]
+  },
+  {
+    "loc": "https://zoddev.site/portfolio\\blog-post",
+    "lastmod": "2025-06-05",
+    "changefreq": "monthly",
+    "priority": 0.5,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://zoddev.site/portfolio\\blog-post"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://zoddev.site/en/portfolio\\blog-post"
+      }
+    ]
+  },
+  {
+    "loc": "https://zoddev.site/portfolio\\blog-3-col",
+    "lastmod": "2025-06-05",
+    "changefreq": "monthly",
+    "priority": 0.5,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://zoddev.site/portfolio\\blog-3-col"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://zoddev.site/en/portfolio\\blog-3-col"
+      }
+    ]
+  },
+  {
+    "loc": "https://zoddev.site/portfolio\\blog-2-col",
+    "lastmod": "2025-06-05",
+    "changefreq": "monthly",
+    "priority": 0.5,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://zoddev.site/portfolio\\blog-2-col"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://zoddev.site/en/portfolio\\blog-2-col"
+      }
+    ]
+  },
+  {
+    "loc": "https://zoddev.site/docs\\verify-email",
+    "lastmod": "2025-06-05",
+    "changefreq": "monthly",
+    "priority": 0.5,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://zoddev.site/docs\\verify-email"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://zoddev.site/en/docs\\verify-email"
+      }
+    ]
+  },
+  {
+    "loc": "https://zoddev.site/docs\\verify-email-request",
+    "lastmod": "2025-06-05",
+    "changefreq": "monthly",
+    "priority": 0.5,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://zoddev.site/docs\\verify-email-request"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://zoddev.site/en/docs\\verify-email-request"
+      }
+    ]
+  },
+  {
+    "loc": "https://zoddev.site/docs\\reset-password",
+    "lastmod": "2025-06-05",
+    "changefreq": "monthly",
+    "priority": 0.5,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://zoddev.site/docs\\reset-password"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://zoddev.site/en/docs\\reset-password"
+      }
+    ]
+  },
+  {
+    "loc": "https://zoddev.site/docs\\reset-password-request",
+    "lastmod": "2025-06-05",
+    "changefreq": "monthly",
+    "priority": 0.5,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://zoddev.site/docs\\reset-password-request"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://zoddev.site/en/docs\\reset-password-request"
+      }
+    ]
+  },
+  {
+    "loc": "https://zoddev.site/docs\\register",
+    "lastmod": "2025-06-05",
+    "changefreq": "monthly",
+    "priority": 0.5,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://zoddev.site/docs\\register"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://zoddev.site/en/docs\\register"
+      }
+    ]
+  },
+  {
+    "loc": "https://zoddev.site/docs\\register-confirmation",
+    "lastmod": "2025-06-05",
+    "changefreq": "monthly",
+    "priority": 0.5,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://zoddev.site/docs\\register-confirmation"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://zoddev.site/en/docs\\register-confirmation"
+      }
+    ]
+  },
+  {
+    "loc": "https://zoddev.site/docs\\login",
+    "lastmod": "2025-06-05",
+    "changefreq": "monthly",
+    "priority": 0.5,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://zoddev.site/docs\\login"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://zoddev.site/en/docs\\login"
+      }
+    ]
+  },
+  {
+    "loc": "https://zoddev.site/docs\\index",
+    "lastmod": "2025-06-05",
+    "changefreq": "monthly",
+    "priority": 0.5,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://zoddev.site/docs\\index"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://zoddev.site/en/docs\\index"
+      }
+    ]
+  },
+  {
+    "loc": "https://zoddev.site/docs\\dashboard",
+    "lastmod": "2025-06-05",
+    "changefreq": "monthly",
+    "priority": 0.5,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://zoddev.site/docs\\dashboard"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://zoddev.site/en/docs\\dashboard"
+      }
+    ]
+  },
+  {
+    "loc": "https://zoddev.site/blog\\index",
+    "lastmod": "2025-06-05",
+    "changefreq": "monthly",
+    "priority": 0.5,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://zoddev.site/blog\\index"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://zoddev.site/en/blog\\index"
+      }
+    ]
+  },
+  {
+    "loc": "https://zoddev.site/docs\\workspaces\\[id]",
+    "lastmod": "2025-06-05",
+    "changefreq": "monthly",
+    "priority": 0.5,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://zoddev.site/docs\\workspaces\\[id]"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://zoddev.site/en/docs\\workspaces\\[id]"
+      }
+    ]
+  },
+  {
+    "loc": "https://zoddev.site/docs\\projects\\[id]\\index",
+    "lastmod": "2025-06-05",
+    "changefreq": "monthly",
+    "priority": 0.5,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://zoddev.site/docs\\projects\\[id]\\index"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://zoddev.site/en/docs\\projects\\[id]\\index"
+      }
+    ]
+  },
+  {
+    "loc": "https://zoddev.site/docs\\projects\\[id]\\docs\\[docId]",
+    "lastmod": "2025-06-05",
+    "changefreq": "monthly",
+    "priority": 0.5,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://zoddev.site/docs\\projects\\[id]\\docs\\[docId]"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://zoddev.site/en/docs\\projects\\[id]\\docs\\[docId]"
+      }
+    ]
+  },
+  {
+    "loc": "https://zoddev.site/docs\\projects\\[id]\\docs\\new",
+    "lastmod": "2025-06-05",
+    "changefreq": "monthly",
+    "priority": 0.5,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://zoddev.site/docs\\projects\\[id]\\docs\\new"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://zoddev.site/en/docs\\projects\\[id]\\docs\\new"
+      }
+    ]
+  },
+  {
+    "loc": "https://zoddev.site/docs\\projects\\[id]\\api\\[endpointId]",
+    "lastmod": "2025-06-05",
+    "changefreq": "monthly",
+    "priority": 0.5,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://zoddev.site/docs\\projects\\[id]\\api\\[endpointId]"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://zoddev.site/en/docs\\projects\\[id]\\api\\[endpointId]"
+      }
+    ]
+  },
+  {
+    "loc": "https://zoddev.site/docs\\projects\\[id]\\api\\new",
+    "lastmod": "2025-06-05",
+    "changefreq": "monthly",
+    "priority": 0.5,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://zoddev.site/docs\\projects\\[id]\\api\\new"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://zoddev.site/en/docs\\projects\\[id]\\api\\new"
+      }
+    ]
+  },
+  {
+    "loc": "https://zoddev.site/widgetCss/untitledui/",
+    "lastmod": "2025-06-05",
+    "changefreq": "monthly",
+    "priority": 0.6,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://zoddev.site/widgetCss/untitledui/"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://zoddev.site/en/widgetCss/untitledui/"
+      }
+    ]
+  },
+  {
+    "loc": "https://zoddev.site/widgetCss/uiverse/",
+    "lastmod": "2025-06-05",
+    "changefreq": "monthly",
+    "priority": 0.6,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://zoddev.site/widgetCss/uiverse/"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://zoddev.site/en/widgetCss/uiverse/"
+      }
+    ]
+  },
+  {
+    "loc": "https://zoddev.site/widgetCss/shadcn/",
+    "lastmod": "2025-06-05",
+    "changefreq": "monthly",
+    "priority": 0.6,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://zoddev.site/widgetCss/shadcn/"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://zoddev.site/en/widgetCss/shadcn/"
+      }
+    ]
+  },
+  {
+    "loc": "https://zoddev.site/widgetCss/Scrollbar/",
+    "lastmod": "2025-06-05",
+    "changefreq": "monthly",
+    "priority": 0.6,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://zoddev.site/widgetCss/Scrollbar/"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://zoddev.site/en/widgetCss/Scrollbar/"
+      }
+    ]
+  },
+  {
+    "loc": "https://zoddev.site/widgetCss/readme/",
+    "lastmod": "2025-06-05",
+    "changefreq": "monthly",
+    "priority": 0.6,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://zoddev.site/widgetCss/readme/"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://zoddev.site/en/widgetCss/readme/"
+      }
+    ]
+  },
+  {
+    "loc": "https://zoddev.site/widgetCss/radix-ui/",
+    "lastmod": "2025-06-05",
+    "changefreq": "monthly",
+    "priority": 0.6,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://zoddev.site/widgetCss/radix-ui/"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://zoddev.site/en/widgetCss/radix-ui/"
+      }
+    ]
+  },
+  {
+    "loc": "https://zoddev.site/widgetCss/quickref/",
+    "lastmod": "2025-06-05",
+    "changefreq": "monthly",
+    "priority": 0.6,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://zoddev.site/widgetCss/quickref/"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://zoddev.site/en/widgetCss/quickref/"
+      }
+    ]
+  },
+  {
+    "loc": "https://zoddev.site/widgetCss/outils-css/",
+    "lastmod": "2025-06-05",
+    "changefreq": "monthly",
+    "priority": 0.6,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://zoddev.site/widgetCss/outils-css/"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://zoddev.site/en/widgetCss/outils-css/"
+      }
+    ]
+  },
+  {
+    "loc": "https://zoddev.site/widgetCss/Melvynx/",
+    "lastmod": "2025-06-05",
+    "changefreq": "monthly",
+    "priority": 0.6,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://zoddev.site/widgetCss/Melvynx/"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://zoddev.site/en/widgetCss/Melvynx/"
+      }
+    ]
+  },
+  {
+    "loc": "https://zoddev.site/widgetCss/lundevweb/",
+    "lastmod": "2025-06-05",
+    "changefreq": "monthly",
+    "priority": 0.6,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://zoddev.site/widgetCss/lundevweb/"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://zoddev.site/en/widgetCss/lundevweb/"
+      }
+    ]
+  },
+  {
+    "loc": "https://zoddev.site/widgetCss/icons8/",
+    "lastmod": "2025-06-05",
+    "changefreq": "monthly",
+    "priority": 0.6,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://zoddev.site/widgetCss/icons8/"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://zoddev.site/en/widgetCss/icons8/"
+      }
+    ]
+  },
+  {
+    "loc": "https://zoddev.site/widgetCss/hyperui/",
+    "lastmod": "2025-06-05",
+    "changefreq": "monthly",
+    "priority": 0.6,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://zoddev.site/widgetCss/hyperui/"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://zoddev.site/en/widgetCss/hyperui/"
+      }
+    ]
+  },
+  {
+    "loc": "https://zoddev.site/widgetCss/exercism/",
+    "lastmod": "2025-06-05",
+    "changefreq": "monthly",
+    "priority": 0.6,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://zoddev.site/widgetCss/exercism/"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://zoddev.site/en/widgetCss/exercism/"
+      }
+    ]
+  },
+  {
+    "loc": "https://zoddev.site/widgetCss/dev/",
+    "lastmod": "2025-06-05",
+    "changefreq": "monthly",
+    "priority": 0.6,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://zoddev.site/widgetCss/dev/"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://zoddev.site/en/widgetCss/dev/"
+      }
+    ]
+  },
+  {
+    "loc": "https://zoddev.site/work/woodshow/",
+    "lastmod": "2025-06-05",
+    "changefreq": "monthly",
+    "priority": 0.8,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://zoddev.site/work/woodshow/"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://zoddev.site/en/work/woodshow/"
+      }
+    ]
+  },
+  {
+    "loc": "https://zoddev.site/work/wetsarl/",
+    "lastmod": "2025-06-05",
+    "changefreq": "monthly",
+    "priority": 0.8,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://zoddev.site/work/wetsarl/"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://zoddev.site/en/work/wetsarl/"
+      }
+    ]
+  },
+  {
+    "loc": "https://zoddev.site/work/quickrelease/",
+    "lastmod": "2025-06-05",
+    "changefreq": "monthly",
+    "priority": 0.8,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://zoddev.site/work/quickrelease/"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://zoddev.site/en/work/quickrelease/"
+      }
+    ]
+  },
+  {
+    "loc": "https://zoddev.site/work/planetechsarlbenin/",
+    "lastmod": "2025-06-05",
+    "changefreq": "monthly",
+    "priority": 0.8,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://zoddev.site/work/planetechsarlbenin/"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://zoddev.site/en/work/planetechsarlbenin/"
+      }
+    ]
+  },
+  {
+    "loc": "https://zoddev.site/work/marketplacetest/",
+    "lastmod": "2025-06-05",
+    "changefreq": "monthly",
+    "priority": 0.8,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://zoddev.site/work/marketplacetest/"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://zoddev.site/en/work/marketplacetest/"
+      }
+    ]
+  },
+  {
+    "loc": "https://zoddev.site/work/immohouse/",
+    "lastmod": "2025-06-05",
+    "changefreq": "monthly",
+    "priority": 0.8,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://zoddev.site/work/immohouse/"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://zoddev.site/en/work/immohouse/"
+      }
+    ]
+  },
+  {
+    "loc": "https://zoddev.site/work/bitcointest/",
+    "lastmod": "2025-06-05",
+    "changefreq": "monthly",
+    "priority": 0.8,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://zoddev.site/work/bitcointest/"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://zoddev.site/en/work/bitcointest/"
+      }
+    ]
+  },
+  {
+    "loc": "https://zoddev.site/work/afribet/",
+    "lastmod": "2025-06-05",
+    "changefreq": "monthly",
+    "priority": 0.8,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://zoddev.site/work/afribet/"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://zoddev.site/en/work/afribet/"
+      }
+    ]
+  },
+  {
+    "loc": "https://zoddev.site/work/worldshop/",
+    "lastmod": "2025-06-05",
+    "changefreq": "monthly",
+    "priority": 0.8,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://zoddev.site/work/worldshop/"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://zoddev.site/en/work/worldshop/"
+      }
+    ]
+  },
+  {
+    "loc": "https://zoddev.site/work/medicalfood/",
+    "lastmod": "2025-06-05",
+    "changefreq": "monthly",
+    "priority": 0.8,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://zoddev.site/work/medicalfood/"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://zoddev.site/en/work/medicalfood/"
+      }
+    ]
+  },
+  {
+    "loc": "https://zoddev.site/work/chez_nous_chez_vous/",
+    "lastmod": "2025-06-05",
+    "changefreq": "monthly",
+    "priority": 0.8,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://zoddev.site/work/chez_nous_chez_vous/"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://zoddev.site/en/work/chez_nous_chez_vous/"
+      }
+    ]
+  },
+  {
+    "loc": "https://zoddev.site/work/chantierpro/",
+    "lastmod": "2025-06-05",
+    "changefreq": "monthly",
+    "priority": 0.8,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://zoddev.site/work/chantierpro/"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://zoddev.site/en/work/chantierpro/"
+      }
+    ]
+  },
+  {
+    "loc": "https://zoddev.site/work/top-sac-a-langer/",
+    "lastmod": "2025-06-05",
+    "changefreq": "monthly",
+    "priority": 0.8,
+    "alternates": [
+      {
+        "hreflang": "fr",
+        "href": "https://zoddev.site/work/top-sac-a-langer/"
+      },
+      {
+        "hreflang": "en",
+        "href": "https://zoddev.site/en/work/top-sac-a-langer/"
+      }
+    ]
+  }
+]

@@ -1,0 +1,119 @@
+---
+// Composant pour les données structurées Schema.org
+import dataUser from "../data/User.json";
+
+interface Props {
+  type?: string;
+  name?: string;
+  description?: string;
+  image?: string;
+  datePublished?: string;
+  dateModified?: string;
+  url?: string | URL;
+}
+
+const {
+  type = "Person",
+  name = `${dataUser.firstName} ${dataUser.lastName}`,
+  description = `Développeur Web & Mobile freelance spécialisé en React, React Native, Astro.js et technologies web modernes.`,
+  image = "/assets/social-preview.jpg",
+  datePublished = new Date().toISOString(),
+  dateModified = new Date().toISOString(),
+  url = Astro.site?.toString() || "https://zoddev.site/",
+} = Astro.props;
+
+// Données de base pour une personne (portfolio personnel)
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: name,
+  description: description,
+  image: typeof image === "string" ? new URL(image, Astro.site).href : image,
+  url: url,
+  jobTitle: "Développeur Web & Mobile Freelance",
+  worksFor: {
+    "@type": "Organization",
+    name: "zoddev",
+    url: "https://zoddev.site/",
+  },
+  sameAs: [
+    `https://${dataUser.socialMedia.linkedin}`,
+    `https://${dataUser.socialMedia.github}`,
+    `https://${dataUser.socialMedia.pinterest}`,
+    `https://${dataUser.socialMedia.instagram}`,
+  ],
+  knowsAbout: [
+    "Développement Web",
+    "Développement Mobile",
+    "React",
+    "React Native",
+    "Astro.js",
+    "Next.js",
+    "TypeScript",
+    "JavaScript",
+  ],
+};
+
+// Données pour un article de blog
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: name,
+  description: description,
+  image: typeof image === "string" ? new URL(image, Astro.site).href : image,
+  datePublished: datePublished,
+  dateModified: dateModified,
+  author: {
+    "@type": "Person",
+    name: `${dataUser.firstName} ${dataUser.lastName}`,
+    url: url,
+  },
+  publisher: {
+    "@type": "Organization",
+    name: "zoddev",
+    logo: {
+      "@type": "ImageObject",
+      url: new URL("/assets/zoddev_logo/zoddev_logo_dark_mode.png", Astro.site)
+        .href,
+    },
+  },
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": url,
+  },
+};
+
+// Données pour un projet (CreativeWork)
+const projectSchema = {
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  name: name,
+  description: description,
+  image: typeof image === "string" ? new URL(image, Astro.site).href : image,
+  datePublished: datePublished,
+  dateModified: dateModified,
+  author: {
+    "@type": "Person",
+    name: `${dataUser.firstName} ${dataUser.lastName}`,
+    url: url,
+  },
+  url: url,
+};
+
+// Sélectionner le schéma approprié en fonction du type
+let schema;
+switch (type) {
+  case "Article":
+    schema = articleSchema;
+    break;
+  case "CreativeWork":
+  case "Project":
+    schema = projectSchema;
+    break;
+  case "Person":
+  default:
+    schema = personSchema;
+}
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

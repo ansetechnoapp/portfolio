@@ -1,0 +1,161 @@
+---
+// import Icon from './Icon.astro';
+import type { iconPaths } from "./IconPaths";
+import ThemeToggle from "./ThemeToggle.astro";
+// import { AboutTexteHomeCv } from './aboutTexteHomeCv';
+
+interface Props {
+  namepage?: string | undefined;
+}
+
+const { namepage } = Astro.props;
+
+/** Icon links to social media — edit these with links to your profiles! */
+const iconLinks: {
+  label: string;
+  href: string;
+  icon: keyof typeof iconPaths;
+}[] = [{ label: "Home", href: "/", icon: "house-logo" }];
+
+function test() {
+  let iconImgLinks: { label: string; href: string }[] = [];
+
+  if (namepage === "home") {
+    iconImgLinks = [
+      {
+        label: `/assets/icone_optimized/icons8-home-50.png`,
+        href: "#hero_home",
+      },
+      {
+        label: `/assets/icone_optimized/icons8-maintenance-50.png`,
+        href: "#skills",
+      },
+      { label: `/assets/icone_optimized/icons8-about.svg`, href: "#about" },
+      {
+        label: `/assets/icone_optimized/icons8-development-skill-50.png`,
+        href: "#service",
+      },
+      {
+        label: `/assets/icone_optimized/icons8-development-service-50.png`,
+        href: "#work",
+      },
+      {
+        label: `/assets/icone_optimized/icons8-contact-50.png`,
+        href: "#contact",
+      },
+    ];
+  }
+
+  if (namepage === "about") {
+    iconImgLinks = [
+      { label: `/assets/icone_optimized/icons8-home-50.png`, href: "#about" },
+    ];
+  }
+
+  if (namepage === "work") {
+    iconImgLinks = [
+      { label: `/assets/icone_optimized/icons8-home-50.png`, href: "#work" },
+    ];
+  }
+
+  return iconImgLinks;
+}
+---
+
+<div class="menu-link-nav">
+  {
+    test().map(({ href, label }) => (
+      <a
+        aria-current={Astro.url.pathname === href}
+        href={href}
+        class:list={[
+          "social",
+          {
+            active:
+              Astro.url.pathname === href ||
+              (href !== "/" && Astro.url.pathname.startsWith(href)),
+          },
+        ]}
+      >
+        <span class="sr-only">{label}</span>
+        <img width="15" height="15" src={label} alt={label} />
+      </a>
+    ))
+  }
+  <ThemeToggle
+    togglelightdarktheme="toggleside"
+    toggleiconelightdarktheme="lighty"
+  />
+</div>
+<style>
+  .menu-link-nav {
+    background: radial-gradient(#f3f4f7, #090b11 150%);
+    box-shadow: var(--shadow-md);
+    width: max-content;
+    display: block;
+    padding: 0.5rem 0.5625rem;
+    z-index: 2;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0.1rem;
+    display: flex;
+    border-radius: 999rem;
+    backdrop-filter: blur(15px);
+    line-height: 1.2;
+  }
+
+  .menu-link-nav a {
+    padding: 0.5rem 1rem;
+    border-radius: 999rem;
+    display: flex;
+    font-size: var(--text-sm);
+    color: var(--gray-300);
+    transition:
+      color var(--theme-transition),
+      background-color var(--theme-transition);
+  }
+  .menu-link-nav a:hover {
+    background: var(--accent-subtle-overlay);
+  }
+  .menu-link-nav a.active {
+    background-color: var(--accent-regular);
+    color: var(--accent-text-over);
+  }
+  @media (min-width: 48em) {
+    .menu-link-nav {
+      background: #ead5f285;
+      padding: 1.7rem 0rem 1.7rem 0rem;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      gap: 1rem;
+      flex-direction: column;
+      margin-left: 0.5rem;
+      left: 0;
+      bottom: 0;
+      height: fit-content;
+    }
+
+    .menu-link-nav a {
+      padding: 0.5rem 1rem;
+      border-radius: 999rem;
+      display: flex;
+      font-size: var(--text-sm);
+      color: var(--gray-300);
+      transition:
+        color var(--theme-transition),
+        background-color var(--theme-transition);
+    }
+    .menu-link-nav a:hover {
+      background: var(--accent-subtle-overlay);
+    }
+    .menu-link-nav a.active {
+      background-color: var(--accent-regular);
+      color: var(--accent-text-over);
+    }
+    .menu-link-nav theme-toggle {
+      /* code dans ./styles/style.css */
+    }
+  }
+</style>

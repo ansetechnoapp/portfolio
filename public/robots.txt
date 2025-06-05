@@ -1,0 +1,27 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://zoddev.site/sitemap.xml
+
+# Interdire l'accès aux dossiers de templates et autres fichiers non destinés aux utilisateurs
+Disallow: /template/
+Disallow: /corbeille/
+Disallow: /*.json$
+Disallow: /*.js$
+Disallow: /*.ts$
+Disallow: /*.md$
+Disallow: /*.astro$
+
+# Autoriser les ressources statiques
+Allow: /*.css$
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.png$
+Allow: /*.gif$
+Allow: /*.svg$
+Allow: /*.webp$
+Allow: /*.avif$
+Allow: /*.ico$
+Allow: /*.woff$
+Allow: /*.woff2$
