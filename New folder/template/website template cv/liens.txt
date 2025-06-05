@@ -1,5 +1,0 @@
-ligth mode
-input email
-about me avec download cv
-scrool avec les point forme cercle
-skill avec la bar de pourcentage
