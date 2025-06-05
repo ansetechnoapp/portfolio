@@ -8,7 +8,6 @@ import Footer from "../components/Footer.astro";
 import AccessibilityFeatures from "../components/AccessibilityFeatures.astro";
 import FontAwesomeFallback from "../components/FontAwesomeFallback.astro";
 import SEO from "../components/SEO.astro";
-import AuthProvider from "../components/AuthProvider";
 import "../styles/global.css";
 import "../styles/mobile.css";
 
@@ -62,16 +61,11 @@ const {
   >
     <AccessibilityFeatures />
     <FontAwesomeFallback />
-    <div
-      class="stack backgrounds"
-      style="margin-top: 0; padding-top: 0; top: 0; position: absolute; width: 100%; left: 0;"
-    >
+    <div class="stack backgrounds" style="margin-top: 0; padding-top: 0; top: 0; position: absolute; width: 100%; left: 0;">
       <Nav />
 
       <main id="main-content" class="site-content-spacing">
-        <AuthProvider client:load>
-          <slot />
-        </AuthProvider>
+        <slot />
       </main>
 
       <Footer />
@@ -228,24 +222,24 @@ const {
         padding-top: 0;
         top: 0;
       }
-
+      
       /* Assurer que tout le contenu est collé au bord supérieur sur mobile */
       @media (max-width: 640px) {
         body {
           margin: 0;
           padding: 0;
         }
-
+        
         .stack.backgrounds {
           margin-top: 0;
           padding-top: 0;
         }
-
+        
         #main-content {
           padding-top: 0;
         }
       }
-
+      
       @media (forced-colors: active) {
         /* Deactivate custom backgrounds for high contrast users. */
         .backgrounds {

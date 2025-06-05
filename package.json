@@ -35,7 +35,7 @@
     "@astrojs/react": "^4.3.0",
     "@astrojs/tailwind": "^6.0.2",
     "@radix-ui/react-slot": "^1.1.2",
-    "@supabase/supabase-js": "^2.39.0",
+    "@supabase/supabase-js": "^2.49.8",
     "@tailwindcss/vite": "^4.0.17",
     "@types/react-window": "^1.8.8",
     "airtable": "0.12.2",
