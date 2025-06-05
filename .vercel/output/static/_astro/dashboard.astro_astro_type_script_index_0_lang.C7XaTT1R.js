@@ -1,1 +1,0 @@
-import{s as t}from"./supabase.DnZPE_vy.js";import"./_commonjsHelpers.gnU0ypJ3.js";document.getElementById("logout-button")?.addEventListener("click",async()=>{await t.auth.signOut(),window.location.href="/docs/login"});
