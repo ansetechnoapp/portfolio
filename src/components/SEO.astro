@@ -30,9 +30,13 @@ interface Props {
 
 import dataUser from "../data/User.json";
 
+// Enhanced default values with better SEO optimization
+const defaultTitle = `${dataUser.firstName} ${dataUser.lastName} - Expert Développeur Web & Mobile | React, Astro.js, React Native`;
+const defaultDescription = `Portfolio professionnel de ${dataUser.firstName} ${dataUser.lastName}, développeur web et mobile freelance basé à ${dataUser.address.city}. Spécialisé en React, React Native, Astro.js, Next.js et technologies web modernes. Création d'applications web et mobiles performantes.`;
+
 const {
-  title = `${dataUser.firstName} ${dataUser.lastName}: Portfolio`,
-  description = `Le site personnel de ${dataUser.firstName} ${dataUser.lastName} - Développeur web et mobile freelance spécialisé en React, React Native, Astro.js et technologies web modernes.`,
+  title = defaultTitle,
+  description = defaultDescription,
   image = "/assets/social-preview.jpg",
   canonicalURL = new URL(Astro.url.pathname, Astro.site),
   type = "website",
@@ -74,10 +78,40 @@ const twitterData = {
 <meta name="title" content={title} />
 <meta name="description" content={description} />
 <meta name="author" content={`${dataUser.firstName} ${dataUser.lastName}`} />
+<!-- Enhanced keywords with location and specific technologies -->
 <meta
   name="keywords"
-  content="web development, mobile apps, React, React Native, Astro, frontend, backend, developer, portfolio"
+  content={`développeur web ${dataUser.address.city}, développeur mobile ${dataUser.address.country}, React developer, React Native, Astro.js, Next.js, TypeScript, JavaScript, freelance developer, portfolio, ${dataUser.firstName} ${dataUser.lastName}, développement web, application mobile, frontend, backend, Supabase, Firebase, Tailwind CSS`}
 />
+
+<!-- Additional SEO meta tags -->
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+<meta name="googlebot" content="index, follow" />
+<meta name="bingbot" content="index, follow" />
+<meta name="language" content="fr-FR" />
+<meta name="geo.region" content={dataUser.address.country} />
+<meta name="geo.placename" content={dataUser.address.city} />
+<meta name="geo.position" content="6.3703;2.3912" /> <!-- Coordinates for Cotonou, Benin -->
+<meta name="ICBM" content="6.3703, 2.3912" />
+
+<!-- Professional and business meta tags -->
+<meta name="classification" content="Business" />
+<meta name="category" content="Technology, Web Development, Mobile Development" />
+<meta name="coverage" content="Worldwide" />
+<meta name="distribution" content="Global" />
+<meta name="rating" content="General" />
+<meta name="revisit-after" content="7 days" />
+
+<!-- Social media and contact -->
+<meta name="contact" content={dataUser.email} />
+<meta name="reply-to" content={dataUser.email} />
+
+<!-- Performance and technical -->
+<meta name="theme-color" content="#6366f1" />
+<meta name="msapplication-TileColor" content="#6366f1" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<meta name="format-detection" content="telephone=yes" />
 <link rel="canonical" href={canonicalURL} />
 
 <!-- Open Graph / Facebook -->

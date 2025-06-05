@@ -59,8 +59,8 @@ const readingTime = Math.max(1, Math.round(wordCount / 200));
 ---
 
 <Layout
-  title={`${post.title} | Blog`}
-  description={post.description}
+  title={`${post.title} | Blog Kevin Otty - Développeur Web & Mobile`}
+  description={post.description || `Article de blog par Kevin Otty sur ${post.title}. Découvrez des conseils et techniques de développement web et mobile, React, React Native, et technologies modernes.`}
   image={post.heroImage || "/assets/social-preview.jpg"}
   type="article"
   article={articleMetadata}
@@ -123,7 +123,7 @@ const readingTime = Math.max(1, Math.round(wordCount / 200));
             {/* Fallback format */}
             <img
               src={post.heroImage}
-              alt={post.title}
+              alt={`Image d'illustration pour l'article "${post.title}" par Kevin Otty, développeur web et mobile`}
               width="1200"
               height="600"
               class="w-full h-full object-cover"

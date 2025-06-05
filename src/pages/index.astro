@@ -64,7 +64,7 @@ const { heroTitle = `I am ${dataUser.firstName} ${dataUser.lastName}` } =
 
 <Layout
   title={`${dataUser.firstName} ${dataUser.lastName} - Développeur Web & Mobile Freelance`}
-  description={`Portfolio de ${dataUser.firstName} ${dataUser.lastName}, développeur web et mobile freelance spécialisé en React, React Native, Astro.js et technologies web modernes.`}
+  description={`Portfolio de ${dataUser.firstName} ${dataUser.lastName}, développeur freelance à ${dataUser.address.city}. Expert React, React Native, Astro.js. Applications web et mobiles performantes.`}
   image="/assets/social-preview.jpg"
   type="website"
 >
@@ -115,7 +115,7 @@ const { heroTitle = `I am ${dataUser.firstName} ${dataUser.lastName}` } =
               sizes="(max-width: 768px) 100vw, 480px"
             />
             <img
-              alt=`${dataUser.firstName} ${dataUser.lastName} smiling in a red plaid shirt and tortoise shell glasses`
+              alt={`${dataUser.firstName} ${dataUser.lastName}, développeur web et mobile freelance basé à ${dataUser.address.city}, ${dataUser.address.country}. Expert en React, React Native et Astro.js`}
               width="480"
               height="620"
               src={Img1.fallback}
@@ -170,10 +170,11 @@ const { heroTitle = `I am ${dataUser.firstName} ${dataUser.lastName}` } =
     <Services />
     <section id="work" class="section with-background with-cta">
       <header class="section-header stack gap-2 lg:gap-4">
-        <h3>Selected Work</h3>
+        <h2>Projets Sélectionnés</h2>
         <p>
-          Take a look below at some of my featured work for clients from the
-          past few years.
+          Découvrez ci-dessous quelques-uns de mes projets phares réalisés pour des clients
+          au cours des dernières années. Chaque projet démontre mon expertise en développement
+          web et mobile.
         </p>
       </header>
 

@@ -28,19 +28,23 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const { Content } = await entry.render();
 
+// Enhanced SEO metadata for projects
+const projectTitle = `${entry.data.title} | Kevin Otty - Développeur Web & Mobile`;
+const projectDescription = entry.data.description || `Découvrez ${entry.data.title}, un projet de développement ${entry.data.device === 'mobile' ? 'mobile' : 'web'} réalisé par Kevin Otty. Technologies utilisées: ${entry.data.tech?.join(', ') || 'développement moderne'}.`;
+
 // Prepare project metadata for SEO
 const projectMetadata = {
   publishedTime: entry.data.publishDate
     ? new Date(entry.data.publishDate).toISOString()
     : new Date().toISOString(),
-  modifiedTime: new Date().toISOString(), // Pas de date de mise à jour dans le schéma
+  modifiedTime: new Date().toISOString(),
   tags: entry.data.tags || [],
 };
 ---
 
 <Layout
-  title={entry.data.title}
-  description={entry.data.description}
+  title={projectTitle}
+  description={projectDescription}
   image={entry.data.img || "/assets/social-preview.jpg"}
   type="project"
   article={projectMetadata}

@@ -41,7 +41,7 @@ interface Props {
 // Set default values
 const {
   title = "About Me",
-  description = `As a seasoned Software Engineer with expertise in both web and mobile development, I bring a unique blend of technical proficiency and creative vision to every project. My background in computer systems enables me to architect robust solutions while my design sensibilities ensure exceptional user experiences. I specialize in creating innovative digital products that drive measurable business outcomes and enhance brand visibility. I thrive in collaborative environments and am passionate about leveraging cutting-edge technologies to solve complex challenges.I am always open to feedback and suggestions, so feel free to reach out to me if you have any questions or comments.`,
+  description = `En tant qu'ingénieur logiciel expérimenté avec une expertise en développement web et mobile, j'apporte un mélange unique de compétences techniques et de vision créative à chaque projet. Ma formation en systèmes informatiques me permet d'architecturer des solutions robustes tandis que ma sensibilité au design garantit des expériences utilisateur exceptionnelles. Je me spécialise dans la création de produits numériques innovants qui génèrent des résultats commerciaux mesurables et améliorent la visibilité de la marque. Je prospère dans des environnements collaboratifs et suis passionné par l'utilisation de technologies de pointe pour résoudre des défis complexes.`,
   imageSrc,
   optimizedImageSrc,
   yearsExperience = 7,
@@ -118,7 +118,7 @@ const {
               <!-- Fallback format -->
               <img
                 src={optimizedImageSrc.fallback}
-                alt="Developer portrait"
+                alt="Portrait professionnel de Kevin Otty, développeur web et mobile freelance spécialisé en React, React Native et Astro.js, basé à Cotonou, Bénin"
                 class="profile-image"
                 loading="lazy"
                 decoding="async"
@@ -127,7 +127,7 @@ const {
           ) : (
             <img
               src={imageSrc.src}
-              alt="Developer portrait"
+              alt="Portrait professionnel de Kevin Otty, développeur web et mobile freelance spécialisé en React, React Native et Astro.js, basé à Cotonou, Bénin"
               class="profile-image"
               loading="lazy"
               decoding="async"
@@ -189,7 +189,15 @@ const {
     <h3 class="title-about">{title}</h3>
     <p class="describe-about">
       {description}
-      <br />
+    </p>
+    <p class="describe-about-secondary">
+      Basé à <strong>Cotonou, Bénin</strong>, je travaille avec des clients du monde entier pour créer des
+      <a href="/work/?filter=web" class="internal-link">applications web modernes</a> et des
+      <a href="/work/?filter=mobile" class="internal-link">applications mobiles performantes</a>.
+      Mon expertise couvre l'ensemble du stack technologique, de la conception d'interfaces utilisateur
+      intuitives au développement d'architectures backend robustes.
+      <a href="/work/" class="internal-link">Découvrez mes projets récents</a> pour voir comment je transforme
+      les idées en solutions numériques concrètes.
     </p>
     <br /><br />
     <div class="grid grid-cols-1 gap-10">
@@ -458,6 +466,44 @@ const {
     display: block;
     opacity: 1;
     transform: translateY(0);
+  }
+
+  /* Internal linking styles */
+  .internal-link {
+    color: var(--accent-regular, #3b82f6);
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 1px solid transparent;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .internal-link:hover {
+    color: var(--accent-dark, #2563eb);
+    border-bottom-color: var(--accent-regular, #3b82f6);
+    transform: translateY(-1px);
+  }
+
+  .internal-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--accent-regular, #3b82f6);
+    transition: width 0.3s ease;
+  }
+
+  .internal-link:hover::after {
+    width: 100%;
+  }
+
+  .describe-about-secondary {
+    margin-top: 1rem;
+    line-height: 1.7;
+    color: var(--gray-300);
+    font-size: var(--text-base);
   }
 
   @media (max-width: 640px) {

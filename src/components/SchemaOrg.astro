@@ -22,20 +22,74 @@ const {
   url = Astro.site?.toString() || "https://zoddev.site/",
 } = Astro.props;
 
-// Données de base pour une personne (portfolio personnel)
+// Enhanced person schema with comprehensive professional information
 const personSchema = {
   "@context": "https://schema.org",
   "@type": "Person",
+  "@id": `${url}#person`,
   name: name,
+  givenName: dataUser.firstName,
+  familyName: dataUser.lastName,
   description: description,
-  image: typeof image === "string" ? new URL(image, Astro.site).href : image,
+  image: {
+    "@type": "ImageObject",
+    url: typeof image === "string" ? new URL(image, Astro.site).href : image,
+    width: 1200,
+    height: 630,
+  },
   url: url,
+  mainEntityOfPage: url,
   jobTitle: "Développeur Web & Mobile Freelance",
+  hasOccupation: {
+    "@type": "Occupation",
+    name: "Développeur Web & Mobile",
+    occupationLocation: {
+      "@type": "Place",
+      name: dataUser.address.city,
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: dataUser.address.city,
+        addressCountry: dataUser.address.country,
+      },
+    },
+    skills: [
+      "React Development",
+      "React Native Development",
+      "Astro.js Development",
+      "Next.js Development",
+      "TypeScript Programming",
+      "JavaScript Programming",
+      "Mobile App Development",
+      "Web Application Development",
+      "Frontend Development",
+      "Backend Development",
+    ],
+  },
   worksFor: {
     "@type": "Organization",
+    "@id": `${url}#organization`,
     name: "zoddev",
     url: "https://zoddev.site/",
+    logo: {
+      "@type": "ImageObject",
+      url: new URL("/assets/zoddev_logo/zoddev_logo_dark_mode.png", Astro.site).href,
+    },
+    contactPoint: {
+      "@type": "ContactPoint",
+      telephone: dataUser.phone,
+      email: dataUser.email,
+      contactType: "customer service",
+      availableLanguage: ["French", "English"],
+    },
   },
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: dataUser.address.city,
+    addressCountry: dataUser.address.country,
+  },
+  email: dataUser.email,
+  telephone: dataUser.phone,
+  nationality: dataUser.nationality,
   sameAs: [
     `https://${dataUser.socialMedia.linkedin}`,
     `https://${dataUser.socialMedia.github}`,
@@ -51,7 +105,33 @@ const personSchema = {
     "Next.js",
     "TypeScript",
     "JavaScript",
+    "Supabase",
+    "Firebase",
+    "Tailwind CSS",
+    "Laravel",
+    "WordPress",
+    "Python",
+    "PostgreSQL",
+    "MySQL",
   ],
+  knowsLanguage: [
+    {
+      "@type": "Language",
+      name: "French",
+      proficiencyLevel: "Native",
+    },
+    {
+      "@type": "Language",
+      name: "English",
+      proficiencyLevel: "Intermediate",
+    },
+  ],
+  hasCredential: {
+    "@type": "EducationalOccupationalCredential",
+    name: "Licence en Systèmes Informatiques et Logiciels",
+    credentialCategory: "Bachelor's Degree",
+    educationalLevel: "Bachelor",
+  },
 };
 
 // Données pour un article de blog
@@ -83,21 +163,135 @@ const articleSchema = {
   },
 };
 
-// Données pour un projet (CreativeWork)
+// Enhanced project schema with comprehensive details
 const projectSchema = {
   "@context": "https://schema.org",
   "@type": "CreativeWork",
+  "@id": `${url}#project`,
   name: name,
+  headline: name,
   description: description,
-  image: typeof image === "string" ? new URL(image, Astro.site).href : image,
+  image: {
+    "@type": "ImageObject",
+    url: typeof image === "string" ? new URL(image, Astro.site).href : image,
+    width: 1200,
+    height: 630,
+  },
   datePublished: datePublished,
   dateModified: dateModified,
+  dateCreated: datePublished,
   author: {
     "@type": "Person",
+    "@id": `${Astro.site}#person`,
     name: `${dataUser.firstName} ${dataUser.lastName}`,
-    url: url,
+    url: Astro.site,
+    jobTitle: "Développeur Web & Mobile Freelance",
+  },
+  creator: {
+    "@type": "Person",
+    "@id": `${Astro.site}#person`,
+    name: `${dataUser.firstName} ${dataUser.lastName}`,
+  },
+  publisher: {
+    "@type": "Organization",
+    "@id": `${Astro.site}#organization`,
+    name: "zoddev",
+    url: Astro.site,
+    logo: {
+      "@type": "ImageObject",
+      url: new URL("/assets/zoddev_logo/zoddev_logo_dark_mode.png", Astro.site).href,
+    },
   },
   url: url,
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": url,
+  },
+  genre: ["Web Development", "Mobile Development", "Software Development"],
+  keywords: ["React", "React Native", "Astro.js", "TypeScript", "JavaScript", "Web Development", "Mobile Development"],
+  inLanguage: "fr-FR",
+  isAccessibleForFree: true,
+  isFamilyFriendly: true,
+  copyrightHolder: {
+    "@type": "Person",
+    name: `${dataUser.firstName} ${dataUser.lastName}`,
+  },
+  copyrightYear: new Date(datePublished).getFullYear(),
+  license: "All rights reserved",
+};
+
+// Organization schema for business/freelance entity
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": `${Astro.site}#organization`,
+  name: "zoddev",
+  alternateName: `${dataUser.firstName} ${dataUser.lastName} - Développeur Freelance`,
+  description: `Agence de développement web et mobile dirigée par ${dataUser.firstName} ${dataUser.lastName}, spécialisée dans la création d'applications web et mobiles modernes et performantes.`,
+  url: Astro.site,
+  logo: {
+    "@type": "ImageObject",
+    url: new URL("/assets/zoddev_logo/zoddev_logo_dark_mode.png", Astro.site).href,
+    width: 512,
+    height: 512,
+  },
+  image: {
+    "@type": "ImageObject",
+    url: new URL("/assets/social-preview.jpg", Astro.site).href,
+    width: 1200,
+    height: 630,
+  },
+  founder: {
+    "@type": "Person",
+    "@id": `${Astro.site}#person`,
+    name: `${dataUser.firstName} ${dataUser.lastName}`,
+  },
+  employee: {
+    "@type": "Person",
+    "@id": `${Astro.site}#person`,
+    name: `${dataUser.firstName} ${dataUser.lastName}`,
+  },
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: dataUser.address.city,
+    addressCountry: dataUser.address.country,
+  },
+  contactPoint: {
+    "@type": "ContactPoint",
+    telephone: dataUser.phone,
+    email: dataUser.email,
+    contactType: "customer service",
+    availableLanguage: ["French", "English"],
+    areaServed: "Worldwide",
+  },
+  sameAs: [
+    `https://${dataUser.socialMedia.linkedin}`,
+    `https://${dataUser.socialMedia.github}`,
+    `https://${dataUser.socialMedia.pinterest}`,
+    `https://${dataUser.socialMedia.instagram}`,
+  ],
+  serviceType: [
+    "Web Development",
+    "Mobile App Development",
+    "Frontend Development",
+    "Backend Development",
+    "React Development",
+    "React Native Development",
+  ],
+  areaServed: {
+    "@type": "Place",
+    name: "Worldwide",
+  },
+  knowsAbout: [
+    "React",
+    "React Native",
+    "Astro.js",
+    "Next.js",
+    "TypeScript",
+    "JavaScript",
+    "Web Development",
+    "Mobile Development",
+  ],
 };
 
 // Sélectionner le schéma approprié en fonction du type
@@ -109,6 +303,9 @@ switch (type) {
   case "CreativeWork":
   case "Project":
     schema = projectSchema;
+    break;
+  case "Organization":
+    schema = organizationSchema;
     break;
   case "Person":
   default:
