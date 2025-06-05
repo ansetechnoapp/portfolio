@@ -4,9 +4,13 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "node scripts/auto-optimize-images.js && astro build",
+    "build:only": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "optimize-images": "node scripts/auto-optimize-images.js",
+    "cleanup-images": "node scripts/cleanup-existing-images.js",
+    "setup-images": "node scripts/cleanup-existing-images.js && node scripts/auto-optimize-images.js"
   },
   "dependencies": {
     "@astrojs/react": "^4.3.0",

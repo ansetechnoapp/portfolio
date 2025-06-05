@@ -1,7 +1,7 @@
 /* empty css                                     */
 import { c as createAstro, a as createComponent, e as renderComponent, f as renderScript, d as renderTemplate, m as maybeRenderHead } from '../../chunks/astro/server_ZODBcONi.mjs';
 import 'kleur/colors';
-import { a as $$Layout } from '../../chunks/Layout_CN2odi0l.mjs';
+import { a as $$Layout } from '../../chunks/Layout_D1S7Kv86.mjs';
 import { jsxs, jsx, Fragment } from 'react/jsx-runtime';
 import { useState, useEffect } from 'react';
 import { s as supabase } from '../../chunks/supabase_B2xMZoNq.mjs';

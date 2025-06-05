@@ -1,7 +1,7 @@
 /* empty css                                     */
 import { a as createComponent, e as renderComponent, d as renderTemplate, m as maybeRenderHead } from '../../chunks/astro/server_ZODBcONi.mjs';
 import 'kleur/colors';
-import { a as $$Layout } from '../../chunks/Layout_CN2odi0l.mjs';
+import { a as $$Layout } from '../../chunks/Layout_D1S7Kv86.mjs';
 import { E as EmailVerificationStatus } from '../../chunks/EmailVerification_C_wgKRQc.mjs';
 export { renderers } from '../../renderers.mjs';
 

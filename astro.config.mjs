@@ -25,6 +25,8 @@ export default defineConfig({
         formats: ['webp', 'avif', 'png', 'jpg', 'jpeg'],
       },
     },
+    // Enable experimental responsive images for automatic optimization
+    experimentalResponsiveImages: true,
   },
   integrations: [
     tailwind(),
