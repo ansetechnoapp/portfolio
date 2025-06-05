@@ -4,8 +4,9 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "prebuild": "npm run seo:pre-deploy",
-    "build": "npm run process-images && astro build",
+    "prebuild": "echo 'Skipping SEO pre-deploy for serverless compatibility'",
+    "build": "astro build",
+    "build:full": "npm run process-images && astro build",
     "preview": "astro preview",
     "astro": "astro",
     "optimize-images": "node scripts/optimize-images.js",

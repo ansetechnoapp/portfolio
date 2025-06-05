@@ -3,7 +3,7 @@ import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 import react from '@astrojs/react';
 import vercel from '@astrojs/vercel';
-import seoIntegration from './src/integrations/seo-integration-fixed.js';
+import seoIntegrationServerless from './src/integrations/seo-integration-serverless.js';
 
 export default defineConfig({
   output: 'server',
@@ -30,7 +30,7 @@ export default defineConfig({
   integrations: [
     tailwind(),
     react(),
-    seoIntegration({
+    seoIntegrationServerless({
       titleTemplate: '%s | zoddev Portfolio',
       defaultTitle: 'zoddev Portfolio',
       defaultDescription: 'Portfolio de développeur web et mobile freelance spécialisé en React, React Native, Astro.js et technologies web modernes.',
