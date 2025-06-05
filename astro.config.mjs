@@ -7,7 +7,9 @@ import seoIntegrationServerless from './src/integrations/seo-integration-serverl
 
 export default defineConfig({
   output: 'server',
-  adapter: vercel(),
+  adapter: vercel({
+    webAnalytics: { enabled: true }
+  }),
   site: 'https://zoddev.site/',
   vite: {
     build: {

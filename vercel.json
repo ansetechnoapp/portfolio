@@ -1,4 +1,10 @@
 {
-  "buildCommand": "npm run build",
-  "installCommand": "pnpm install --no-frozen-lockfile"
+  "buildCommand": "pnpm run build",
+  "installCommand": "pnpm install --no-frozen-lockfile",
+  "framework": null,
+  "functions": {
+    "_render.func": {
+      "maxDuration": 30
+    }
+  }
 }
