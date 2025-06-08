@@ -9,6 +9,10 @@ import ContactCTA from "../../components/ContactCTA.astro";
 import Hero from "../../components/Hero.astro";
 import Icon from "../../components/reactJS/Icon";
 import Pill from "../../components/reactJS/Pill";
+import ProjectGallery from "../../components/ProjectGallery.astro";
+import FeatureModal from "../../components/FeatureModal.astro";
+import ProjectTabs from "../../components/ProjectTabs.astro";
+import ProjectCTA from "../../components/ProjectCTA.astro";
 
 interface Props {
   entry: CollectionEntry<"work">;
@@ -40,6 +44,66 @@ const projectMetadata = {
   modifiedTime: new Date().toISOString(),
   tags: entry.data.tags || [],
 };
+
+// Define project features for the modal
+const projectFeatures = [
+  {
+    id: "architecture",
+    title: "Architecture Moderne",
+    description: "Structure de code optimisée et maintenable",
+    details: `Ce projet utilise une architecture moderne avec séparation des préoccupations, permettant une maintenance facile et une évolutivité optimale. L'organisation du code suit les meilleures pratiques de l'industrie.`,
+    technologies: entry.data.tech || [],
+    benefits: [
+      "Code maintenable et évolutif",
+      "Performance optimisée",
+      "Sécurité renforcée",
+      "Tests automatisés"
+    ]
+  },
+  {
+    id: "responsive",
+    title: "Design Responsive",
+    description: "Interface adaptée à tous les appareils",
+    details: `L'interface utilisateur s'adapte parfaitement à tous les types d'écrans, des smartphones aux écrans de bureau, garantissant une expérience utilisateur optimale sur tous les appareils.`,
+    benefits: [
+      "Expérience utilisateur cohérente",
+      "Accessibilité améliorée",
+      "Performance mobile optimisée",
+      "SEO friendly"
+    ]
+  },
+  {
+    id: "performance",
+    title: "Performance Optimisée",
+    description: "Temps de chargement ultra-rapides",
+    details: `Optimisations avancées pour garantir des temps de chargement rapides et une expérience utilisateur fluide. Utilisation de techniques modernes de cache et d'optimisation des ressources.`,
+    benefits: [
+      "Temps de chargement < 3 secondes",
+      "Score Lighthouse > 90",
+      "Optimisation des images",
+      "Cache intelligent"
+    ]
+  }
+];
+
+// Define tabs for project organization
+const projectTabs = [
+  {
+    id: "overview",
+    label: "Présentation",
+    icon: `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>`
+  },
+  {
+    id: "features",
+    label: "Fonctionnalités",
+    icon: `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>`
+  },
+  {
+    id: "technologies",
+    label: "Technologies",
+    icon: `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>`
+  }
+];
 ---
 
 <Layout
@@ -109,77 +173,76 @@ const projectMetadata = {
       </div>
     </div>
 
-    <div class="project-showcase">
-      {
-        entry.data.img && (
-          <div class="main-image">
-            <picture>
-              {/* AVIF format */}
-              <source
-                type="image/avif"
-                srcset={`${entry.data.img.replace(/\.(jpg|jpeg|png|gif)$/i, "_optimized.avif")} 1x, ${entry.data.img.replace(/\.(jpg|jpeg|png|gif)$/i, "_640w.avif")} 640w, ${entry.data.img.replace(/\.(jpg|jpeg|png|gif)$/i, "_1024w.avif")} 1024w`}
-                sizes="(max-width: 768px) 100vw, 1200px"
-              />
-              {/* WebP format */}
-              <source
-                type="image/webp"
-                srcset={`${entry.data.img.replace(/\.(jpg|jpeg|png|gif)$/i, "_optimized.webp")} 1x, ${entry.data.img.replace(/\.(jpg|jpeg|png|gif)$/i, "_640w.webp")} 640w, ${entry.data.img.replace(/\.(jpg|jpeg|png|gif)$/i, "_1024w.webp")} 1024w`}
-                sizes="(max-width: 768px) 100vw, 1200px"
-              />
-              {/* Fallback format */}
-              <img
-                src={entry.data.img}
-                alt={entry.data.img_alt || ""}
-                loading="lazy"
-                decoding="async"
-              />
-            </picture>
-          </div>
-        )
-      }
-    </div>
+    {entry.data.img && (
+      <ProjectGallery
+        mainImage={entry.data.img}
+        mainImageAlt={entry.data.img_alt || `${entry.data.title} - Image principale`}
+        additionalImages={entry.data.additionalImages}
+        title={entry.data.title}
+      />
+    )}
 
     <div class="project-content">
-      <div class="content-wrapper">
-        <Content />
-      </div>
+      <ProjectTabs tabs={projectTabs} defaultTab="overview">
+        <div slot="overview" class="tab-content">
+          <div class="content-wrapper">
+            <Content />
+          </div>
+        </div>
 
-      {
-        entry.data.additionalImages &&
-          entry.data.additionalImages.length > 0 && (
-            <div class="additional-images">
-              <h2>Project Gallery</h2>
-              <div class="image-grid">
-                {entry.data.additionalImages.map((img) => (
-                  <div class="gallery-image">
-                    <picture>
-                      {/* AVIF format */}
-                      <source
-                        type="image/avif"
-                        srcset={`${img.url.replace(/\.(jpg|jpeg|png|gif)$/i, "_optimized.avif")} 1x, ${img.url.replace(/\.(jpg|jpeg|png|gif)$/i, "_640w.avif")} 640w, ${img.url.replace(/\.(jpg|jpeg|png|gif)$/i, "_1024w.avif")} 1024w`}
-                        sizes="(max-width: 768px) 100vw, 400px"
-                      />
-                      {/* WebP format */}
-                      <source
-                        type="image/webp"
-                        srcset={`${img.url.replace(/\.(jpg|jpeg|png|gif)$/i, "_optimized.webp")} 1x, ${img.url.replace(/\.(jpg|jpeg|png|gif)$/i, "_640w.webp")} 640w, ${img.url.replace(/\.(jpg|jpeg|png|gif)$/i, "_1024w.webp")} 1024w`}
-                        sizes="(max-width: 768px) 100vw, 400px"
-                      />
-                      {/* Fallback format */}
-                      <img
-                        src={img.url}
-                        alt={img.alt || ""}
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </picture>
+        <div slot="features" class="tab-content">
+          <FeatureModal features={projectFeatures} />
+        </div>
+
+        <div slot="technologies" class="tab-content">
+          <div class="technologies-section">
+            <h3>Stack Technique</h3>
+            <div class="tech-grid">
+              {entry.data.tech?.map((tech) => (
+                <div class="tech-item">
+                  <div class="tech-icon">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+                    </svg>
                   </div>
-                ))}
+                  <span class="tech-name">{tech}</span>
+                </div>
+              ))}
+            </div>
+
+            <div class="tech-details">
+              <h4>Pourquoi ces technologies ?</h4>
+              <p>
+                Chaque technologie a été choisie pour ses avantages spécifiques dans le contexte de ce projet.
+                Cette stack garantit performance, maintenabilité et évolutivité.
+              </p>
+
+              <div class="tech-benefits">
+                <div class="benefit-item">
+                  <h5>Performance</h5>
+                  <p>Optimisations avancées pour des temps de chargement rapides</p>
+                </div>
+                <div class="benefit-item">
+                  <h5>Sécurité</h5>
+                  <p>Implémentation des meilleures pratiques de sécurité</p>
+                </div>
+                <div class="benefit-item">
+                  <h5>Évolutivité</h5>
+                  <p>Architecture modulaire permettant l'ajout de nouvelles fonctionnalités</p>
+                </div>
               </div>
             </div>
-          )
-      }
+          </div>
+        </div>
+      </ProjectTabs>
     </div>
+
+    <ProjectCTA
+      githubUrl={entry.data.github}
+      liveUrl={entry.data.liveDemo}
+      title={entry.data.title}
+      description={`Découvrez ${entry.data.title} en action et explorez le code source pour comprendre les techniques utilisées.`}
+    />
 
     <div class="next-section">
       <h2>Interested in working together?</h2>
@@ -440,6 +503,117 @@ const projectMetadata = {
     color: var(--gray-100);
   }
 
+  /* New component styles */
+  .tab-content {
+    min-height: 400px;
+  }
+
+  .technologies-section {
+    padding: 2rem 0;
+  }
+
+  .technologies-section h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: var(--gray-0);
+    text-align: center;
+  }
+
+  .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .tech-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: var(--gray-999);
+    border: 1px solid rgba(var(--gray-999-basis), 0.1);
+    border-radius: 1rem;
+    transition: all 0.3s ease;
+  }
+
+  .tech-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    border-color: rgba(var(--accent-regular), 0.3);
+  }
+
+  .tech-icon {
+    width: 3rem;
+    height: 3rem;
+    background: var(--accent-gradient);
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    flex-shrink: 0;
+  }
+
+  .tech-icon svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .tech-name {
+    font-weight: 600;
+    color: var(--gray-0);
+    font-size: 1.1rem;
+  }
+
+  .tech-details {
+    background: rgba(var(--gray-999-basis), 0.05);
+    border-radius: 1rem;
+    padding: 2rem;
+    margin-top: 2rem;
+  }
+
+  .tech-details h4 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--gray-0);
+  }
+
+  .tech-details p {
+    color: var(--gray-300);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+
+  .tech-benefits {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .benefit-item {
+    padding: 1.5rem;
+    background: var(--gray-999);
+    border-radius: 0.75rem;
+    border: 1px solid rgba(var(--gray-999-basis), 0.1);
+  }
+
+  .benefit-item h5 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--accent-regular);
+  }
+
+  .benefit-item p {
+    color: var(--gray-300);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0;
+  }
+
   @media (min-width: 768px) {
     .meta-container {
       grid-template-columns: 1fr 1fr;
@@ -463,6 +637,37 @@ const projectMetadata = {
 
     .project-header {
       padding: 1rem 0 2rem;
+    }
+
+    .tech-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .tech-item {
+      padding: 1rem;
+    }
+
+    .tech-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+
+    .tech-benefits {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .benefit-item {
+      padding: 1rem;
+    }
+
+    .technologies-section h3 {
+      font-size: 1.75rem;
+    }
+
+    .tech-details {
+      padding: 1.5rem;
     }
   }
 </style>

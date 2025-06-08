@@ -1,0 +1,496 @@
+---
+interface Feature {
+  id: string;
+  title: string;
+  description: string;
+  details: string;
+  image?: string;
+  technologies?: string[];
+  benefits?: string[];
+}
+
+interface Props {
+  features: Feature[];
+}
+
+const { features } = Astro.props;
+---
+
+<div class="features-section">
+  <h3 class="features-title">Fonctionnalités Clés</h3>
+  <div class="features-grid">
+    {features.map((feature) => (
+      <div class="feature-card" data-feature-id={feature.id}>
+        <div class="feature-icon">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+          </svg>
+        </div>
+        <h4 class="feature-title">{feature.title}</h4>
+        <p class="feature-description">{feature.description}</p>
+        <button 
+          class="feature-learn-more"
+          onclick={`openFeatureModal('${feature.id}')`}
+        >
+          En savoir plus
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+          </svg>
+        </button>
+      </div>
+    ))}
+  </div>
+</div>
+
+<!-- Feature Modal -->
+<div id="featureModal" class="feature-modal" onclick="closeFeatureModal(event)">
+  <div class="feature-modal-content">
+    <button class="feature-modal-close" onclick="closeFeatureModal()" aria-label="Fermer">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+      </svg>
+    </button>
+    
+    <div class="feature-modal-header">
+      <div class="feature-modal-icon">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+        </svg>
+      </div>
+      <h3 id="modalFeatureTitle" class="feature-modal-title"></h3>
+    </div>
+    
+    <div class="feature-modal-body">
+      <div id="modalFeatureImage" class="feature-modal-image-container" style="display: none;">
+        <img id="modalFeatureImg" src="" alt="" class="feature-modal-image" />
+      </div>
+      
+      <div class="feature-modal-content-grid">
+        <div class="feature-modal-main">
+          <h4 class="feature-modal-section-title">Description détaillée</h4>
+          <p id="modalFeatureDetails" class="feature-modal-details"></p>
+          
+          <div id="modalFeatureBenefits" class="feature-benefits" style="display: none;">
+            <h4 class="feature-modal-section-title">Avantages</h4>
+            <ul id="modalBenefitsList" class="benefits-list"></ul>
+          </div>
+        </div>
+        
+        <div class="feature-modal-sidebar">
+          <div id="modalFeatureTech" class="feature-technologies" style="display: none;">
+            <h4 class="feature-modal-section-title">Technologies utilisées</h4>
+            <div id="modalTechList" class="tech-tags"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .features-section {
+    margin: 3rem 0;
+  }
+
+  .features-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: var(--gray-0);
+    text-align: center;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .feature-card {
+    background: var(--gray-999);
+    border: 1px solid rgba(var(--gray-999-basis), 0.1);
+    border-radius: 1rem;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--accent-gradient);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    border-color: rgba(var(--accent-regular), 0.3);
+  }
+
+  .feature-card:hover::before {
+    transform: scaleX(1);
+  }
+
+  .feature-icon {
+    width: 4rem;
+    height: 4rem;
+    background: var(--accent-gradient);
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    color: white;
+  }
+
+  .feature-icon svg {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .feature-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--gray-0);
+  }
+
+  .feature-description {
+    color: var(--gray-300);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .feature-learn-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+    border: 2px solid var(--accent-regular);
+    color: var(--accent-regular);
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .feature-learn-more:hover {
+    background: var(--accent-regular);
+    color: white;
+    transform: translateY(-2px);
+  }
+
+  .feature-learn-more svg {
+    width: 1rem;
+    height: 1rem;
+    transition: transform 0.3s ease;
+  }
+
+  .feature-learn-more:hover svg {
+    transform: translateX(4px);
+  }
+
+  /* Modal Styles */
+  .feature-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    padding: 2rem;
+  }
+
+  .feature-modal.active {
+    display: flex;
+  }
+
+  .feature-modal-content {
+    background: var(--gray-999);
+    border-radius: 1rem;
+    max-width: 800px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+  }
+
+  .feature-modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(0, 0, 0, 0.1);
+    border: none;
+    border-radius: 0.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 1001;
+  }
+
+  .feature-modal-close:hover {
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  .feature-modal-close svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    color: var(--gray-400);
+  }
+
+  .feature-modal-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 2rem 2rem 1rem;
+    border-bottom: 1px solid rgba(var(--gray-999-basis), 0.1);
+  }
+
+  .feature-modal-icon {
+    width: 3rem;
+    height: 3rem;
+    background: var(--accent-gradient);
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    flex-shrink: 0;
+  }
+
+  .feature-modal-icon svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .feature-modal-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--gray-0);
+    margin: 0;
+  }
+
+  .feature-modal-body {
+    padding: 2rem;
+  }
+
+  .feature-modal-image-container {
+    margin-bottom: 2rem;
+    border-radius: 0.75rem;
+    overflow: hidden;
+  }
+
+  .feature-modal-image {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .feature-modal-content-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+  }
+
+  .feature-modal-section-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--gray-0);
+    margin-bottom: 1rem;
+  }
+
+  .feature-modal-details {
+    color: var(--gray-300);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+
+  .feature-benefits {
+    margin-bottom: 2rem;
+  }
+
+  .benefits-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .benefits-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+    color: var(--gray-300);
+  }
+
+  .benefits-list li::before {
+    content: '✓';
+    color: var(--accent-regular);
+    font-weight: bold;
+    flex-shrink: 0;
+    margin-top: 0.125rem;
+  }
+
+  .feature-technologies {
+    background: rgba(var(--gray-999-basis), 0.05);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+  }
+
+  .tech-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tech-tag {
+    background: var(--accent-light);
+    color: var(--accent-text-over);
+    padding: 0.375rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .features-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .feature-modal {
+      padding: 1rem;
+    }
+
+    .feature-modal-content {
+      max-height: 95vh;
+    }
+
+    .feature-modal-content-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .feature-modal-header {
+      padding: 1.5rem 1.5rem 1rem;
+    }
+
+    .feature-modal-body {
+      padding: 1.5rem;
+    }
+
+    .feature-card {
+      padding: 1.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .feature-modal-header {
+      flex-direction: column;
+      text-align: center;
+      gap: 0.75rem;
+    }
+
+    .feature-modal-title {
+      font-size: 1.25rem;
+    }
+
+    .features-title {
+      font-size: 1.75rem;
+    }
+  }
+</style>
+
+<script define:vars={{ features }}>
+  function openFeatureModal(featureId) {
+    const feature = features.find(f => f.id === featureId);
+    if (!feature) return;
+
+    const modal = document.getElementById('featureModal');
+    const title = document.getElementById('modalFeatureTitle');
+    const details = document.getElementById('modalFeatureDetails');
+    const imageContainer = document.getElementById('modalFeatureImage');
+    const image = document.getElementById('modalFeatureImg');
+    const benefitsContainer = document.getElementById('modalFeatureBenefits');
+    const benefitsList = document.getElementById('modalBenefitsList');
+    const techContainer = document.getElementById('modalFeatureTech');
+    const techList = document.getElementById('modalTechList');
+
+    // Set content
+    title.textContent = feature.title;
+    details.textContent = feature.details;
+
+    // Handle image
+    if (feature.image) {
+      image.src = feature.image;
+      image.alt = feature.title;
+      imageContainer.style.display = 'block';
+    } else {
+      imageContainer.style.display = 'none';
+    }
+
+    // Handle benefits
+    if (feature.benefits && feature.benefits.length > 0) {
+      benefitsList.innerHTML = feature.benefits
+        .map(benefit => `<li>${benefit}</li>`)
+        .join('');
+      benefitsContainer.style.display = 'block';
+    } else {
+      benefitsContainer.style.display = 'none';
+    }
+
+    // Handle technologies
+    if (feature.technologies && feature.technologies.length > 0) {
+      techList.innerHTML = feature.technologies
+        .map(tech => `<span class="tech-tag">${tech}</span>`)
+        .join('');
+      techContainer.style.display = 'block';
+    } else {
+      techContainer.style.display = 'none';
+    }
+
+    // Show modal
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeFeatureModal(event) {
+    if (event && event.target !== event.currentTarget) return;
+    
+    const modal = document.getElementById('featureModal');
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  // Keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    const modal = document.getElementById('featureModal');
+    if (modal.classList.contains('active') && e.key === 'Escape') {
+      closeFeatureModal();
+    }
+  });
+
+  // Make functions global
+  window.openFeatureModal = openFeatureModal;
+  window.closeFeatureModal = closeFeatureModal;
+</script>

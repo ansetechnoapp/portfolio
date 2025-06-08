@@ -1,0 +1,260 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+  post: {
+    slug: string;
+    data: {
+      title: string;
+      description: string;
+      pubDate: Date;
+      heroImage?: string;
+      tags?: string[];
+    };
+  };
+  featured?: boolean;
+  index?: number;
+}
+
+const { post, featured = false, index = 0 } = Astro.props;
+---
+
+<article 
+  class={`blog-card-enhanced group ${featured ? 'featured-post' : ''}`}
+  data-tags={post.data.tags?.join(",")}
+>
+  <div class="blog-card-image-container">
+    {post.data.heroImage && (
+      <Image
+        src={post.data.heroImage}
+        alt={post.data.title}
+        width={800}
+        height={600}
+        class="blog-card-image"
+      />
+    )}
+    <div class="blog-card-overlay"></div>
+    <div class="blog-card-hover-content">
+      <span class="read-more-text">Lire l'article</span>
+      <svg class="read-more-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+      </svg>
+    </div>
+    
+    {post.data.tags && (
+      <div class="blog-card-tags">
+        {post.data.tags.slice(0, 2).map((tag) => (
+          <span class="blog-tag">{tag}</span>
+        ))}
+      </div>
+    )}
+  </div>
+
+  <div class="blog-card-content">
+    <time 
+      datetime={post.data.pubDate.toISOString()}
+      class="blog-card-date"
+    >
+      {post.data.pubDate.toLocaleDateString("fr-FR", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      })}
+    </time>
+
+    <h3 class={`blog-card-title ${featured ? 'featured-title' : ''}`}>
+      <a href={`/blog/${post.slug}`} class="blog-card-link">
+        {post.data.title}
+      </a>
+    </h3>
+
+    <p class="blog-card-description">
+      {post.data.description}
+    </p>
+
+    <div class="blog-card-footer">
+      <a href={`/blog/${post.slug}`} class="blog-card-read-more">
+        Lire la suite
+        <svg class="blog-card-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</article>
+
+<style>
+  .blog-card-enhanced {
+    @apply rounded-xl overflow-hidden shadow-sm transition-all duration-500 ease-out;
+    background: var(--gray-999);
+    border: 1px solid rgba(var(--gray-999-basis), 0.1);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+  }
+
+  .blog-card-enhanced:hover {
+    @apply shadow-2xl;
+    transform: translateY(-8px) scale(1.02);
+    border-color: rgba(var(--accent-regular), 0.3);
+    box-shadow: 
+      0 20px 40px rgba(0, 0, 0, 0.1),
+      0 0 20px rgba(var(--accent-regular), 0.1);
+  }
+
+  .blog-card-enhanced.featured-post {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+
+  .blog-card-image-container {
+    @apply relative overflow-hidden;
+    aspect-ratio: 16/9;
+    position: relative;
+  }
+
+  .featured-post .blog-card-image-container {
+    aspect-ratio: 16/10;
+  }
+
+  .blog-card-image {
+    @apply w-full h-full object-cover transition-transform duration-700 ease-out;
+  }
+
+  .blog-card-enhanced:hover .blog-card-image {
+    transform: scale(1.1) rotate(1deg);
+  }
+
+  .blog-card-overlay {
+    @apply absolute inset-0 transition-opacity duration-500;
+    background: linear-gradient(
+      135deg,
+      rgba(var(--accent-regular), 0.8) 0%,
+      rgba(var(--accent-dark), 0.6) 100%
+    );
+    opacity: 0;
+  }
+
+  .blog-card-enhanced:hover .blog-card-overlay {
+    opacity: 1;
+  }
+
+  .blog-card-hover-content {
+    @apply absolute inset-0 flex items-center justify-center opacity-0 transition-all duration-500;
+    transform: translateY(20px);
+  }
+
+  .blog-card-enhanced:hover .blog-card-hover-content {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .read-more-text {
+    @apply text-white font-semibold text-lg mr-2;
+  }
+
+  .read-more-icon {
+    @apply w-6 h-6 text-white transition-transform duration-300;
+  }
+
+  .blog-card-enhanced:hover .read-more-icon {
+    transform: translateX(4px);
+  }
+
+  .blog-card-tags {
+    @apply absolute top-4 left-4 z-10 flex flex-wrap gap-2;
+  }
+
+  .blog-tag {
+    @apply px-3 py-1 text-xs font-medium rounded-full backdrop-blur-sm;
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--accent-dark);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .blog-card-content {
+    @apply p-6;
+  }
+
+  .featured-post .blog-card-content {
+    @apply p-8;
+  }
+
+  .blog-card-date {
+    @apply text-sm font-medium mb-3 block;
+    color: var(--accent-regular);
+  }
+
+  .blog-card-title {
+    @apply font-bold mb-4 transition-colors duration-300;
+    color: var(--gray-0);
+    font-size: 1.25rem;
+    line-height: 1.4;
+  }
+
+  .featured-title {
+    font-size: 1.75rem;
+    line-height: 1.3;
+  }
+
+  .blog-card-link {
+    @apply block transition-all duration-300;
+    text-decoration: none;
+  }
+
+  .blog-card-enhanced:hover .blog-card-link {
+    color: var(--accent-regular);
+  }
+
+  .blog-card-description {
+    @apply mb-6 line-clamp-3;
+    color: var(--gray-300);
+    line-height: 1.6;
+  }
+
+  .featured-post .blog-card-description {
+    @apply line-clamp-4;
+    font-size: 1.1rem;
+  }
+
+  .blog-card-footer {
+    @apply flex items-center justify-between;
+  }
+
+  .blog-card-read-more {
+    @apply inline-flex items-center font-medium transition-all duration-300;
+    color: var(--accent-regular);
+    text-decoration: none;
+  }
+
+  .blog-card-read-more:hover {
+    color: var(--accent-light);
+  }
+
+  .blog-card-arrow {
+    @apply ml-2 w-4 h-4 transition-transform duration-300;
+  }
+
+  .blog-card-read-more:hover .blog-card-arrow {
+    transform: translateX(4px);
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .blog-card-enhanced.featured-post {
+      grid-column: span 1;
+      grid-row: span 1;
+    }
+
+    .featured-title {
+      font-size: 1.5rem;
+    }
+
+    .featured-post .blog-card-content {
+      @apply p-6;
+    }
+
+    .featured-post .blog-card-description {
+      font-size: 1rem;
+    }
+  }
+</style>

@@ -1,0 +1,406 @@
+---
+interface Props {
+  githubUrl?: string;
+  liveUrl?: string;
+  title: string;
+  description?: string;
+}
+
+const { githubUrl, liveUrl, title, description } = Astro.props;
+---
+
+<div class="project-cta-section">
+  <div class="cta-content">
+    <h3 class="cta-title">Intéressé par ce projet ?</h3>
+    <p class="cta-description">
+      {description || `Découvrez ${title} en action ou explorez le code source pour voir comment il a été construit.`}
+    </p>
+    
+    <div class="cta-buttons">
+      {liveUrl && (
+        <a 
+          href={liveUrl} 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="cta-button cta-primary"
+        >
+          <span class="cta-icon">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+            </svg>
+          </span>
+          <span class="cta-text">
+            <span class="cta-label">Voir la démo</span>
+            <span class="cta-sublabel">Tester en direct</span>
+          </span>
+          <span class="cta-arrow">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+            </svg>
+          </span>
+        </a>
+      )}
+      
+      {githubUrl && (
+        <a 
+          href={githubUrl} 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="cta-button cta-secondary"
+        >
+          <span class="cta-icon">
+            <svg fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+          </span>
+          <span class="cta-text">
+            <span class="cta-label">Code source</span>
+            <span class="cta-sublabel">Explorer sur GitHub</span>
+          </span>
+          <span class="cta-arrow">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+            </svg>
+          </span>
+        </a>
+      )}
+    </div>
+  </div>
+  
+  <div class="cta-decoration">
+    <div class="decoration-circle decoration-1"></div>
+    <div class="decoration-circle decoration-2"></div>
+    <div class="decoration-circle decoration-3"></div>
+  </div>
+</div>
+
+<style>
+  .project-cta-section {
+    position: relative;
+    background: var(--accent-gradient);
+    border-radius: 1.5rem;
+    padding: 3rem 2rem;
+    margin: 4rem 0;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .project-cta-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .cta-content {
+    position: relative;
+    z-index: 2;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .cta-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .cta-description {
+    font-size: 1.125rem;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+  }
+
+  .cta-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 2rem;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    min-width: 250px;
+    justify-content: space-between;
+  }
+
+  .cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+  }
+
+  .cta-button:hover::before {
+    left: 100%;
+  }
+
+  .cta-primary {
+    background: white;
+    color: var(--accent-dark);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .cta-primary:hover {
+    background: rgba(255, 255, 255, 0.95);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  }
+
+  .cta-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+  }
+
+  .cta-secondary:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  }
+
+  .cta-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 0.5rem;
+    background: rgba(var(--accent-regular), 0.1);
+    flex-shrink: 0;
+  }
+
+  .cta-primary .cta-icon {
+    background: var(--accent-light);
+    color: white;
+  }
+
+  .cta-secondary .cta-icon {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .cta-icon svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  .cta-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-grow: 1;
+    margin-left: 0.5rem;
+  }
+
+  .cta-label {
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  .cta-sublabel {
+    font-size: 0.875rem;
+    opacity: 0.8;
+    font-weight: 400;
+  }
+
+  .cta-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+  }
+
+  .cta-button:hover .cta-arrow {
+    transform: translateX(4px);
+  }
+
+  .cta-arrow svg {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .cta-decoration {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .decoration-circle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .decoration-1 {
+    width: 100px;
+    height: 100px;
+    top: 10%;
+    left: 10%;
+    animation-delay: 0s;
+  }
+
+  .decoration-2 {
+    width: 60px;
+    height: 60px;
+    top: 60%;
+    right: 15%;
+    animation-delay: 2s;
+  }
+
+  .decoration-3 {
+    width: 80px;
+    height: 80px;
+    bottom: 20%;
+    left: 20%;
+    animation-delay: 4s;
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-20px) rotate(180deg);
+    }
+  }
+
+  /* Responsive design */
+  @media (min-width: 640px) {
+    .cta-buttons {
+      flex-direction: row;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+
+    .cta-button {
+      min-width: 220px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .project-cta-section {
+      padding: 2rem 1.5rem;
+      margin: 3rem 0;
+    }
+
+    .cta-title {
+      font-size: 1.75rem;
+    }
+
+    .cta-description {
+      font-size: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .cta-button {
+      min-width: 200px;
+      padding: 0.875rem 1.5rem;
+    }
+
+    .cta-icon {
+      width: 2rem;
+      height: 2rem;
+    }
+
+    .cta-icon svg {
+      width: 1rem;
+      height: 1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .project-cta-section {
+      padding: 1.5rem 1rem;
+      border-radius: 1rem;
+    }
+
+    .cta-title {
+      font-size: 1.5rem;
+    }
+
+    .cta-button {
+      min-width: 100%;
+      padding: 1rem 1.25rem;
+    }
+
+    .cta-text {
+      margin-left: 0.25rem;
+    }
+
+    .cta-label {
+      font-size: 0.9rem;
+    }
+
+    .cta-sublabel {
+      font-size: 0.8rem;
+    }
+  }
+
+  /* Accessibility improvements */
+  @media (prefers-reduced-motion: reduce) {
+    .cta-button,
+    .cta-arrow,
+    .decoration-circle {
+      animation: none;
+      transition: none;
+    }
+
+    .cta-button:hover {
+      transform: none;
+    }
+
+    .cta-button:hover .cta-arrow {
+      transform: none;
+    }
+  }
+
+  /* Focus styles */
+  .cta-button:focus {
+    outline: 3px solid rgba(255, 255, 255, 0.5);
+    outline-offset: 2px;
+  }
+
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+    .cta-primary {
+      border: 2px solid var(--accent-dark);
+    }
+
+    .cta-secondary {
+      border-width: 3px;
+    }
+  }
+</style>

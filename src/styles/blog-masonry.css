@@ -1,0 +1,310 @@
+/* Blog Masonry Layout Styles */
+
+.blog-masonry-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  align-items: start;
+  margin-bottom: 3rem;
+}
+
+/* Featured post takes more space */
+.blog-masonry-grid .featured-post {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+/* Enhanced sorting and filtering controls */
+.blog-sort-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  align-items: center;
+}
+
+.sort-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.sort-button {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background: var(--gray-999);
+  border: 1px solid rgba(var(--gray-999-basis), 0.2);
+  border-radius: 0.5rem;
+  color: var(--gray-200);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.sort-button:hover {
+  background: var(--gray-800);
+  border-color: var(--accent-regular);
+}
+
+.sort-button svg {
+  margin-left: 0.5rem;
+  width: 1rem;
+  height: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.sort-dropdown.open .sort-button svg {
+  transform: rotate(180deg);
+}
+
+.sort-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--gray-999);
+  border: 1px solid rgba(var(--gray-999-basis), 0.2);
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  z-index: 10;
+  min-width: 200px;
+}
+
+.sort-dropdown.open .sort-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.sort-option {
+  display: block;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  text-align: left;
+  background: none;
+  border: none;
+  color: var(--gray-200);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid rgba(var(--gray-999-basis), 0.1);
+}
+
+.sort-option:last-child {
+  border-bottom: none;
+}
+
+.sort-option:hover {
+  background: var(--gray-800);
+  color: var(--accent-regular);
+}
+
+.sort-option.active {
+  background: var(--accent-regular);
+  color: white;
+}
+
+/* Enhanced filter buttons */
+.filter-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.filter-btn {
+  padding: 0.75rem 1.25rem;
+  border-radius: 2rem;
+  font-weight: 500;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.filter-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.filter-btn:hover::before {
+  left: 100%;
+}
+
+.filter-btn:not(.active) {
+  background: rgba(var(--gray-999-basis), 0.05);
+  color: var(--gray-300);
+  border-color: rgba(var(--gray-999-basis), 0.1);
+}
+
+.filter-btn:not(.active):hover {
+  background: rgba(var(--gray-999-basis), 0.1);
+  color: var(--gray-200);
+  border-color: rgba(var(--accent-regular), 0.3);
+  transform: translateY(-2px);
+}
+
+.filter-btn.active {
+  background: var(--accent-gradient);
+  color: white;
+  border-color: var(--accent-regular);
+  box-shadow: 0 4px 15px rgba(var(--accent-regular), 0.3);
+}
+
+/* Animation for filtering */
+.post-card {
+  transition: all 0.5s ease;
+}
+
+.post-card.filtering-out {
+  opacity: 0;
+  transform: scale(0.8) translateY(20px);
+}
+
+.post-card.filtering-in {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+/* Loading animation for dynamic content */
+.blog-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem;
+}
+
+.blog-spinner {
+  width: 2rem;
+  height: 2rem;
+  border: 3px solid rgba(var(--accent-regular), 0.3);
+  border-top: 3px solid var(--accent-regular);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+  .blog-masonry-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .blog-masonry-grid .featured-post {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .blog-masonry-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .blog-sort-controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+
+  .filter-controls {
+    justify-content: center;
+  }
+
+  .filter-btn {
+    padding: 0.625rem 1rem;
+    font-size: 0.8rem;
+  }
+
+  .sort-menu {
+    position: fixed;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 1rem 1rem 0 0;
+    max-height: 50vh;
+    overflow-y: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .blog-masonry-grid {
+    gap: 1rem;
+  }
+
+  .filter-controls {
+    gap: 0.5rem;
+  }
+
+  .filter-btn {
+    padding: 0.5rem 0.875rem;
+    font-size: 0.75rem;
+  }
+}
+
+/* Dark mode adjustments */
+:root.theme-dark .sort-button,
+:root.theme-dark .sort-menu {
+  background: var(--gray-800);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+:root.theme-dark .sort-option:hover {
+  background: var(--gray-700);
+}
+
+:root.theme-dark .filter-btn:not(.active) {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--gray-300);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+:root.theme-dark .filter-btn:not(.active):hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--gray-200);
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  .blog-masonry-grid,
+  .filter-btn,
+  .sort-button,
+  .sort-menu,
+  .post-card {
+    transition: none;
+  }
+
+  .filter-btn::before {
+    display: none;
+  }
+
+  .blog-spinner {
+    animation: none;
+  }
+}
+
+/* Focus styles for accessibility */
+.filter-btn:focus,
+.sort-button:focus,
+.sort-option:focus {
+  outline: 2px solid var(--accent-regular);
+  outline-offset: 2px;
+}

@@ -1,0 +1,265 @@
+---
+interface Props {
+  tags: string[];
+}
+
+const { tags } = Astro.props;
+---
+
+<div class="blog-sort-controls">
+  <div class="sort-dropdown" id="sortDropdown">
+    <button class="sort-button" id="sortButton" aria-haspopup="true" aria-expanded="false">
+      <span id="sortButtonText">Trier par date (récent)</span>
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+      </svg>
+    </button>
+    <div class="sort-menu" id="sortMenu" role="menu">
+      <button class="sort-option active" data-sort="date-desc" role="menuitem">
+        Trier par date (récent)
+      </button>
+      <button class="sort-option" data-sort="date-asc" role="menuitem">
+        Trier par date (ancien)
+      </button>
+      <button class="sort-option" data-sort="title-asc" role="menuitem">
+        Trier par titre (A-Z)
+      </button>
+      <button class="sort-option" data-sort="title-desc" role="menuitem">
+        Trier par titre (Z-A)
+      </button>
+      <button class="sort-option" data-sort="popularity" role="menuitem">
+        Trier par popularité
+      </button>
+    </div>
+  </div>
+
+  <div class="filter-controls">
+    <button
+      class="filter-btn active"
+      data-tag="all"
+      aria-pressed="true"
+    >
+      Tous les sujets
+    </button>
+    {tags.map((tag) => (
+      <button
+        class="filter-btn"
+        data-tag={tag}
+        aria-pressed="false"
+      >
+        {tag}
+      </button>
+    ))}
+  </div>
+</div>
+
+<script>
+  class BlogSortControls {
+    private sortDropdown: HTMLElement;
+    private sortButton: HTMLElement;
+    private sortMenu: HTMLElement;
+    private sortButtonText: HTMLElement;
+    private sortOptions: NodeListOf<HTMLElement>;
+    private filterButtons: NodeListOf<HTMLElement>;
+    private postCards: NodeListOf<HTMLElement>;
+    private currentSort: string = 'date-desc';
+    private currentFilter: string = 'all';
+
+    constructor() {
+      this.sortDropdown = document.getElementById('sortDropdown')!;
+      this.sortButton = document.getElementById('sortButton')!;
+      this.sortMenu = document.getElementById('sortMenu')!;
+      this.sortButtonText = document.getElementById('sortButtonText')!;
+      this.sortOptions = document.querySelectorAll('.sort-option');
+      this.filterButtons = document.querySelectorAll('.filter-btn');
+      this.postCards = document.querySelectorAll('.post-card, .blog-card-enhanced');
+
+      this.init();
+    }
+
+    private init(): void {
+      this.setupSortDropdown();
+      this.setupFilterButtons();
+      this.setupKeyboardNavigation();
+    }
+
+    private setupSortDropdown(): void {
+      this.sortButton.addEventListener('click', () => {
+        const isOpen = this.sortDropdown.classList.contains('open');
+        this.sortDropdown.classList.toggle('open');
+        this.sortButton.setAttribute('aria-expanded', (!isOpen).toString());
+      });
+
+      this.sortOptions.forEach(option => {
+        option.addEventListener('click', () => {
+          const sortType = option.getAttribute('data-sort')!;
+          this.handleSort(sortType, option.textContent!);
+        });
+      });
+
+      // Close dropdown when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!this.sortDropdown.contains(e.target as Node)) {
+          this.sortDropdown.classList.remove('open');
+          this.sortButton.setAttribute('aria-expanded', 'false');
+        }
+      });
+    }
+
+    private setupFilterButtons(): void {
+      this.filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          const tag = button.getAttribute('data-tag')!;
+          this.handleFilter(tag, button);
+        });
+      });
+    }
+
+    private setupKeyboardNavigation(): void {
+      this.sortButton.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          this.sortButton.click();
+        }
+      });
+
+      this.sortOptions.forEach((option, index) => {
+        option.addEventListener('keydown', (e) => {
+          if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            const nextIndex = (index + 1) % this.sortOptions.length;
+            this.sortOptions[nextIndex].focus();
+          } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            const prevIndex = index === 0 ? this.sortOptions.length - 1 : index - 1;
+            this.sortOptions[prevIndex].focus();
+          } else if (e.key === 'Escape') {
+            this.sortDropdown.classList.remove('open');
+            this.sortButton.setAttribute('aria-expanded', 'false');
+            this.sortButton.focus();
+          }
+        });
+      });
+    }
+
+    private handleSort(sortType: string, sortText: string): void {
+      this.currentSort = sortType;
+      
+      // Update active state
+      this.sortOptions.forEach(option => option.classList.remove('active'));
+      const activeOption = document.querySelector(`[data-sort="${sortType}"]`);
+      activeOption?.classList.add('active');
+      
+      // Update button text
+      this.sortButtonText.textContent = sortText;
+      
+      // Close dropdown
+      this.sortDropdown.classList.remove('open');
+      this.sortButton.setAttribute('aria-expanded', 'false');
+      
+      // Apply sorting
+      this.applySorting();
+    }
+
+    private handleFilter(tag: string, button: HTMLElement): void {
+      this.currentFilter = tag;
+      
+      // Update active state
+      this.filterButtons.forEach(btn => {
+        btn.classList.remove('active');
+        btn.setAttribute('aria-pressed', 'false');
+      });
+      button.classList.add('active');
+      button.setAttribute('aria-pressed', 'true');
+      
+      // Apply filtering
+      this.applyFiltering();
+    }
+
+    private applySorting(): void {
+      const container = document.querySelector('.blog-masonry-grid, .grid');
+      if (!container) return;
+
+      const posts = Array.from(this.postCards);
+      
+      posts.sort((a, b) => {
+        switch (this.currentSort) {
+          case 'date-desc':
+            return this.compareDates(b, a);
+          case 'date-asc':
+            return this.compareDates(a, b);
+          case 'title-asc':
+            return this.compareTitles(a, b);
+          case 'title-desc':
+            return this.compareTitles(b, a);
+          case 'popularity':
+            return this.comparePopularity(b, a);
+          default:
+            return 0;
+        }
+      });
+
+      // Animate and reorder
+      posts.forEach((post, index) => {
+        (post as HTMLElement).style.order = index.toString();
+      });
+    }
+
+    private applyFiltering(): void {
+      this.postCards.forEach(card => {
+        const cardElement = card as HTMLElement;
+        const cardTags = cardElement.getAttribute('data-tags') || '';
+        
+        if (this.currentFilter === 'all' || cardTags.includes(this.currentFilter)) {
+          cardElement.classList.remove('filtering-out');
+          cardElement.classList.add('filtering-in');
+          cardElement.style.display = 'block';
+        } else {
+          cardElement.classList.remove('filtering-in');
+          cardElement.classList.add('filtering-out');
+          setTimeout(() => {
+            cardElement.style.display = 'none';
+          }, 300);
+        }
+      });
+    }
+
+    private compareDates(a: Element, b: Element): number {
+      const dateA = this.extractDate(a);
+      const dateB = this.extractDate(b);
+      return dateA.getTime() - dateB.getTime();
+    }
+
+    private compareTitles(a: Element, b: Element): number {
+      const titleA = this.extractTitle(a);
+      const titleB = this.extractTitle(b);
+      return titleA.localeCompare(titleB);
+    }
+
+    private comparePopularity(a: Element, b: Element): number {
+      // For now, use a simple heuristic based on tags count
+      const tagsA = (a.getAttribute('data-tags') || '').split(',').length;
+      const tagsB = (b.getAttribute('data-tags') || '').split(',').length;
+      return tagsA - tagsB;
+    }
+
+    private extractDate(element: Element): Date {
+      const timeElement = element.querySelector('time');
+      if (timeElement) {
+        const datetime = timeElement.getAttribute('datetime');
+        return datetime ? new Date(datetime) : new Date();
+      }
+      return new Date();
+    }
+
+    private extractTitle(element: Element): string {
+      const titleElement = element.querySelector('h3 a, .blog-card-title a');
+      return titleElement?.textContent?.trim() || '';
+    }
+  }
+
+  // Initialize when DOM is loaded
+  document.addEventListener('DOMContentLoaded', () => {
+    new BlogSortControls();
+  });
+</script>

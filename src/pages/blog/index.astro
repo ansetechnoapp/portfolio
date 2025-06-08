@@ -4,11 +4,14 @@ export const prerender = true;
 import Layout from "../../layouts/Layout.astro";
 import { Image } from "astro:assets";
 import MenuLinkNav from "../../components/menuLinkNav.astro";
+import BlogCardEnhanced from "../../components/BlogCardEnhanced.astro";
+import BlogSortControls from "../../components/BlogSortControls.astro";
 import {
   getAllPosts,
   getAllTags,
   parsePostDates,
 } from "../../data/blog/index.js";
+import "../../styles/blog-masonry.css";
 
 // Get all posts sorted by date
 const posts = getAllPosts().map((post) => ({
@@ -109,82 +112,14 @@ const allTags = getAllTags();
         </div>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="blog-masonry-grid">
         {
           featuredPosts.map((post, index) => (
-            <article
-              class={`group rounded-xl bg-white dark:bg-gray-800 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 ${index === 0 ? "md:col-span-2 md:row-span-2" : ""}`}
-            >
-              <div class="relative aspect-video md:aspect-auto md:h-64 overflow-hidden">
-                {post.data.heroImage && (
-                  <Image
-                    src={post.data.heroImage}
-                    alt={post.data.title}
-                    width={800}
-                    height={600}
-                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                )}
-                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-                <div class="absolute top-4 left-4 z-10">
-                  {post.data.tags &&
-                    post.data.tags
-                      .slice(0, 2)
-                      .map((tag) => (
-                        <span class="inline-block bg-indigo-600 text-white text-xs font-medium px-3 py-1 rounded-full mr-2 mb-2">
-                          {tag}
-                        </span>
-                      ))}
-                </div>
-              </div>
-
-              <div class="p-6">
-                <time
-                  datetime={post.data.pubDate.toISOString()}
-                  class="text-sm text-indigo-500 dark:text-indigo-400 font-medium mb-2 block"
-                >
-                  {post.data.pubDate.toLocaleDateString("en-US", {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  })}
-                </time>
-
-                <h3
-                  class={`font-bold mb-3 text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors ${index === 0 ? "text-2xl md:text-3xl" : "text-xl"}`}
-                >
-                  <a href={`/blog/${post.slug}`} class="block">
-                    {post.data.title}
-                  </a>
-                </h3>
-
-                <p class="text-gray-600 dark:text-gray-300 mb-6 line-clamp-3">
-                  {post.data.description}
-                </p>
-
-                <a
-                  href={`/blog/${post.slug}`}
-                  class="inline-flex items-center font-medium text-indigo-600 dark:text-indigo-400 group-hover:text-indigo-700 dark:group-hover:text-indigo-300 transition-colors"
-                >
-                  Read article
-                  <svg
-                    class="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M14 5l7 7m0 0l-7 7m7-7H3"
-                    />
-                  </svg>
-                </a>
-              </div>
-            </article>
+            <BlogCardEnhanced
+              post={post}
+              featured={index === 0}
+              index={index}
+            />
           ))
         }
       </div>
@@ -204,119 +139,15 @@ const allTags = getAllTags();
         </p>
       </div>
 
-      <div class="flex flex-wrap gap-3 mb-12">
-        <button
-          class="filter-btn active px-4 py-2 rounded-full text-white font-medium transition-all duration-300 shadow-sm"
-          style="background: var(--accent-regular); box-shadow: var(--accent-soft-glow);"
-          data-tag="all"
-        >
-          All Topics
-        </button>
-        {
-          allTags.map((tag) => (
-            <button
-              class="filter-btn px-4 py-2 rounded-full bg-white/80 backdrop-blur-sm text-gray-800 dark:text-gray-200 font-medium border border-white/40 hover:border-accent-light/30 transition-all duration-300"
-              data-tag={tag}
-            >
-              {tag}
-            </button>
-          ))
-        }
-      </div>
+      <BlogSortControls tags={allTags} />
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="blog-masonry-grid">
         {
           remainingPosts.map((post) => (
-            <article
-              class="post-card group bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
-              data-tags={post.data.tags?.join(",")}
-            >
-              <div class="relative aspect-video overflow-hidden">
-                {post.data.heroImage && (
-                  <Image
-                    src={post.data.heroImage}
-                    alt={post.data.title}
-                    width={800}
-                    height={600}
-                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                )}
-                <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              </div>
-
-              <div class="p-6">
-                <div class="flex flex-wrap mb-3">
-                  {post.data.tags &&
-                    post.data.tags.map((tag) => (
-                      <span
-                        class="inline-block text-xs font-medium px-2.5 py-1 rounded-full mr-2 mb-1 transition-all duration-300 border border-white/40"
-                        style={{
-                          background: "var(--accent-light)",
-                          color: "var(--accent-text-over)",
-                          opacity: "0.9",
-                        }}
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                </div>
-
-                <h3
-                  class="text-xl font-bold mb-3 text-gray-900 dark:text-white transition-colors"
-                  style="font-family: var(--font-display);"
-                >
-                  <a
-                    href={`/blog/${post.slug}`}
-                    class="block transition-all duration-300"
-                    style="&:hover { color: var(--accent-regular); }"
-                  >
-                    {post.data.title}
-                  </a>
-                </h3>
-
-                <p
-                  class="mb-6 line-clamp-3"
-                  style="color: var(--secondary-text); line-height: var(--line-height-relaxed);"
-                >
-                  {post.data.description}
-                </p>
-
-                <div class="flex items-center justify-between">
-                  <time
-                    datetime={post.data.pubDate.toISOString()}
-                    class="text-sm text-gray-500 dark:text-gray-400"
-                  >
-                    {post.data.pubDate.toLocaleDateString("en-US", {
-                      year: "numeric",
-                      month: "short",
-                      day: "numeric",
-                    })}
-                  </time>
-
-                  <a
-                    href={`/blog/${post.slug}`}
-                    class="inline-flex items-center font-medium transition-all duration-300"
-                    style="color: var(--accent-regular);"
-                  >
-                    Read more
-                    <svg
-                      class="ml-1 w-4 h-4 transition-transform group-hover:translate-x-1"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M14 5l7 7m0 0l-7 7m7-7H3"
-                      />
-                    </svg>
-                  </a>
-                </div>
-              </div>
-            </article>
+            <BlogCardEnhanced
+              post={post}
+              featured={false}
+            />
           ))
         }
       </div>
@@ -534,72 +365,4 @@ const allTags = getAllTags();
   }
 </style>
 
-<script>
-  // Filter functionality for post categories
-  document.addEventListener("DOMContentLoaded", () => {
-    const filterButtons = document.querySelectorAll<HTMLElement>(".filter-btn");
-    const postCards = document.querySelectorAll<HTMLElement>(".post-card");
-
-    filterButtons.forEach((button) => {
-      button.addEventListener("click", () => {
-        // Remove active class from all buttons
-        filterButtons.forEach((btn) => {
-          btn.classList.remove("active");
-          btn.style.background = "";
-          btn.style.boxShadow = "";
-          btn.classList.add(
-            "bg-white/80",
-            "text-gray-800",
-            "dark:text-gray-200",
-            "border",
-            "border-white/40"
-          );
-        });
-
-        // Add active class to clicked button
-        button.classList.add("active", "text-white");
-        button.classList.remove(
-          "bg-white/80",
-          "text-gray-800",
-          "dark:text-gray-200",
-          "border",
-          "border-white/40"
-        );
-        button.style.background = "var(--accent-regular)";
-        button.style.boxShadow = "var(--accent-soft-glow)";
-
-        const tag = button.getAttribute("data-tag") || "";
-
-        // Show all posts if "All" is selected, otherwise filter
-        if (tag === "all") {
-          postCards.forEach((card) => {
-            card.style.display = "block";
-          });
-        } else {
-          postCards.forEach((card) => {
-            const cardTags = card.getAttribute("data-tags") || "";
-            if (cardTags && cardTags.indexOf(tag) !== -1) {
-              card.style.display = "block";
-            } else {
-              card.style.display = "none";
-            }
-          });
-        }
-      });
-    });
-
-    // Featured posts navigation (could be expanded with a carousel)
-    const prevButton = document.getElementById("prev-featured");
-    const nextButton = document.getElementById("next-featured");
-
-    if (prevButton && nextButton) {
-      prevButton.addEventListener("click", () => {
-        // Implement previous slide functionality if needed
-      });
-
-      nextButton.addEventListener("click", () => {
-        // Implement next slide functionality if needed
-      });
-    }
-  });
-</script>
+<!-- Script removed - functionality now handled by BlogSortControls component -->
