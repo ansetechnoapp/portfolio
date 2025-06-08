@@ -16,37 +16,39 @@ const { tabs, defaultTab = tabs[0]?.id } = Astro.props;
 <div class="project-tabs-container">
   <div class="tabs-header">
     <nav class="tabs-nav" role="tablist">
-      {tabs.map((tab, index) => (
-        <button
-          class={`tab-button ${index === 0 ? 'active' : ''}`}
-          role="tab"
-          aria-selected={index === 0 ? 'true' : 'false'}
-          aria-controls={`tab-panel-${tab.id}`}
-          id={`tab-${tab.id}`}
-          data-tab={tab.id}
-        >
-          {tab.icon && (
-            <span class="tab-icon" set:html={tab.icon} />
-          )}
-          <span class="tab-label">{tab.label}</span>
-        </button>
-      ))}
+      {
+        tabs.map((tab, index) => (
+          <button
+            class={`tab-button ${index === 0 ? "active" : ""}`}
+            role="tab"
+            aria-selected={index === 0 ? "true" : "false"}
+            aria-controls={`tab-panel-${tab.id}`}
+            id={`tab-${tab.id}`}
+            data-tab={tab.id}
+          >
+            {tab.icon && <span class="tab-icon" set:html={tab.icon} />}
+            <span class="tab-label">{tab.label}</span>
+          </button>
+        ))
+      }
     </nav>
     <div class="tab-indicator"></div>
   </div>
 
   <div class="tabs-content">
-    {tabs.map((tab, index) => (
-      <div
-        class={`tab-panel ${index === 0 ? 'active' : ''}`}
-        role="tabpanel"
-        id={`tab-panel-${tab.id}`}
-        aria-labelledby={`tab-${tab.id}`}
-        data-tab-content={tab.id}
-      >
-        <slot name={tab.id} />
-      </div>
-    ))}
+    {
+      tabs.map((tab, index) => (
+        <div
+          class={`tab-panel ${index === 0 ? "active" : ""}`}
+          role="tabpanel"
+          id={`tab-panel-${tab.id}`}
+          aria-labelledby={`tab-${tab.id}`}
+          data-tab-content={tab.id}
+        >
+          <slot />
+        </div>
+      ))
+    }
   </div>
 </div>
 
@@ -249,7 +251,7 @@ const { tabs, defaultTab = tabs[0]?.id } = Astro.props;
     }
 
     .tab-button.active .tab-label::after {
-      content: '';
+      content: "";
       position: absolute;
       top: 100%;
       left: 50%;
@@ -295,10 +297,13 @@ const { tabs, defaultTab = tabs[0]?.id } = Astro.props;
 
     constructor(container: HTMLElement) {
       this.container = container;
-      this.tabButtons = container.querySelectorAll('.tab-button');
-      this.tabPanels = container.querySelectorAll('.tab-panel');
-      this.indicator = container.querySelector('.tab-indicator')!;
-      this.activeTab = container.querySelector('.tab-button.active')?.getAttribute('data-tab') || '';
+      this.tabButtons = container.querySelectorAll(".tab-button");
+      this.tabPanels = container.querySelectorAll(".tab-panel");
+      this.indicator = container.querySelector(".tab-indicator")!;
+      this.activeTab =
+        container
+          .querySelector(".tab-button.active")
+          ?.getAttribute("data-tab") || "";
 
       this.init();
     }
@@ -310,9 +315,9 @@ const { tabs, defaultTab = tabs[0]?.id } = Astro.props;
     }
 
     private setupEventListeners(): void {
-      this.tabButtons.forEach(button => {
-        button.addEventListener('click', () => {
-          const tabId = button.getAttribute('data-tab')!;
+      this.tabButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const tabId = button.getAttribute("data-tab")!;
           this.switchTab(tabId);
         });
       });
@@ -320,23 +325,23 @@ const { tabs, defaultTab = tabs[0]?.id } = Astro.props;
 
     private setupKeyboardNavigation(): void {
       this.tabButtons.forEach((button, index) => {
-        button.addEventListener('keydown', (e) => {
+        button.addEventListener("keydown", (e) => {
           let targetIndex = index;
 
           switch (e.key) {
-            case 'ArrowLeft':
+            case "ArrowLeft":
               e.preventDefault();
               targetIndex = index > 0 ? index - 1 : this.tabButtons.length - 1;
               break;
-            case 'ArrowRight':
+            case "ArrowRight":
               e.preventDefault();
               targetIndex = index < this.tabButtons.length - 1 ? index + 1 : 0;
               break;
-            case 'Home':
+            case "Home":
               e.preventDefault();
               targetIndex = 0;
               break;
-            case 'End':
+            case "End":
               e.preventDefault();
               targetIndex = this.tabButtons.length - 1;
               break;
@@ -345,7 +350,7 @@ const { tabs, defaultTab = tabs[0]?.id } = Astro.props;
           }
 
           this.tabButtons[targetIndex].focus();
-          const tabId = this.tabButtons[targetIndex].getAttribute('data-tab')!;
+          const tabId = this.tabButtons[targetIndex].getAttribute("data-tab")!;
           this.switchTab(tabId);
         });
       });
@@ -358,28 +363,28 @@ const { tabs, defaultTab = tabs[0]?.id } = Astro.props;
       this.activeTab = tabId;
 
       // Update button states
-      this.tabButtons.forEach(button => {
-        const isActive = button.getAttribute('data-tab') === tabId;
-        button.classList.toggle('active', isActive);
-        button.setAttribute('aria-selected', isActive.toString());
+      this.tabButtons.forEach((button) => {
+        const isActive = button.getAttribute("data-tab") === tabId;
+        button.classList.toggle("active", isActive);
+        button.setAttribute("aria-selected", isActive.toString());
       });
 
       // Update panel states with animation
-      this.tabPanels.forEach(panel => {
-        const panelId = panel.getAttribute('data-tab-content');
+      this.tabPanels.forEach((panel) => {
+        const panelId = panel.getAttribute("data-tab-content");
         const isActive = panelId === tabId;
         const wasActive = panelId === previousTab;
 
         if (wasActive && !isActive) {
-          panel.classList.add('exiting');
+          panel.classList.add("exiting");
           setTimeout(() => {
-            panel.classList.remove('active', 'exiting');
+            panel.classList.remove("active", "exiting");
           }, 300);
         } else if (isActive && !wasActive) {
-          panel.classList.add('entering');
-          panel.classList.add('active');
+          panel.classList.add("entering");
+          panel.classList.add("active");
           setTimeout(() => {
-            panel.classList.remove('entering');
+            panel.classList.remove("entering");
           }, 300);
         }
       });
@@ -389,31 +394,35 @@ const { tabs, defaultTab = tabs[0]?.id } = Astro.props;
     }
 
     private updateIndicator(): void {
-      const activeButton = this.container.querySelector('.tab-button.active') as HTMLElement;
+      const activeButton = this.container.querySelector(
+        ".tab-button.active"
+      ) as HTMLElement;
       if (!activeButton) return;
 
       const buttonRect = activeButton.getBoundingClientRect();
       const navRect = activeButton.parentElement!.getBoundingClientRect();
-      
+
       const left = buttonRect.left - navRect.left;
       const width = buttonRect.width;
 
       this.indicator.style.left = `${left}px`;
       this.indicator.style.width = `${width}px`;
-      this.indicator.style.opacity = '1';
+      this.indicator.style.opacity = "1";
     }
 
     private announceTabChange(tabId: string): void {
-      const button = this.container.querySelector(`[data-tab="${tabId}"]`) as HTMLElement;
-      const label = button?.querySelector('.tab-label')?.textContent || tabId;
-      
+      const button = this.container.querySelector(
+        `[data-tab="${tabId}"]`
+      ) as HTMLElement;
+      const label = button?.querySelector(".tab-label")?.textContent || tabId;
+
       // Create announcement for screen readers
-      const announcement = document.createElement('div');
-      announcement.setAttribute('aria-live', 'polite');
-      announcement.setAttribute('aria-atomic', 'true');
-      announcement.className = 'sr-only';
+      const announcement = document.createElement("div");
+      announcement.setAttribute("aria-live", "polite");
+      announcement.setAttribute("aria-atomic", "true");
+      announcement.className = "sr-only";
       announcement.textContent = `Onglet ${label} sélectionné`;
-      
+
       document.body.appendChild(announcement);
       setTimeout(() => document.body.removeChild(announcement), 1000);
     }
@@ -428,17 +437,17 @@ const { tabs, defaultTab = tabs[0]?.id } = Astro.props;
   }
 
   // Initialize tabs when DOM is loaded
-  document.addEventListener('DOMContentLoaded', () => {
-    const tabContainers = document.querySelectorAll('.project-tabs-container');
-    tabContainers.forEach(container => {
+  document.addEventListener("DOMContentLoaded", () => {
+    const tabContainers = document.querySelectorAll(".project-tabs-container");
+    tabContainers.forEach((container) => {
       new ProjectTabs(container as HTMLElement);
     });
   });
 
   // Handle window resize for indicator positioning
-  window.addEventListener('resize', () => {
-    const tabContainers = document.querySelectorAll('.project-tabs-container');
-    tabContainers.forEach(container => {
+  window.addEventListener("resize", () => {
+    const tabContainers = document.querySelectorAll(".project-tabs-container");
+    tabContainers.forEach((container) => {
       const tabs = (container as any).projectTabs;
       if (tabs) {
         tabs.updateIndicator();
