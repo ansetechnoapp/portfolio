@@ -2,91 +2,23 @@
 // import Icon from './Icon.astro';
 import type { iconPaths } from "./IconPaths";
 import ThemeToggle from "./ThemeToggle.astro";
-// import { AboutTexteHomeCv } from './aboutTexteHomeCv';
+import MenuLinks from "./reactJS/MenuLinks";
 
 interface Props {
   namepage?: string | undefined;
 }
 
 const { namepage } = Astro.props;
-
-/** Icon links to social media — edit these with links to your profiles! */
-const iconLinks: {
-  label: string;
-  href: string;
-  icon: keyof typeof iconPaths;
-}[] = [{ label: "Home", href: "/", icon: "house-logo" }];
-
-function test() {
-  let iconImgLinks: { label: string; href: string }[] = [];
-
-  if (namepage === "home") {
-    iconImgLinks = [
-      {
-        label: `/assets/icone_optimized/icons8-home-50.png`,
-        href: "#hero_home",
-      },
-      {
-        label: `/assets/icone_optimized/icons8-maintenance-50.png`,
-        href: "#skills",
-      },
-      { label: `/assets/icone_optimized/icons8-about.svg`, href: "#about" },
-      {
-        label: `/assets/icone_optimized/icons8-development-skill-50.png`,
-        href: "#service",
-      },
-      {
-        label: `/assets/icone_optimized/icons8-development-service-50.png`,
-        href: "#work",
-      },
-      {
-        label: `/assets/icone_optimized/icons8-contact-50.png`,
-        href: "#contact",
-      },
-    ];
-  }
-
-  if (namepage === "about") {
-    iconImgLinks = [
-      { label: `/assets/icone_optimized/icons8-home-50.png`, href: "#about" },
-    ];
-  }
-
-  if (namepage === "work") {
-    iconImgLinks = [
-      { label: `/assets/icone_optimized/icons8-home-50.png`, href: "#work" },
-    ];
-  }
-
-  return iconImgLinks;
-}
 ---
 
 <div class="menu-link-nav">
-  {
-    test().map(({ href, label }) => (
-      <a
-        aria-current={Astro.url.pathname === href}
-        href={href}
-        class:list={[
-          "social",
-          {
-            active:
-              Astro.url.pathname === href ||
-              (href !== "/" && Astro.url.pathname.startsWith(href)),
-          },
-        ]}
-      >
-        <span class="sr-only">{label}</span>
-        <img width="15" height="15" src={label} alt={label} />
-      </a>
-    ))
-  }
+  <MenuLinks client:load namepage={namepage} pathname={Astro.url.pathname} />
   <ThemeToggle
     togglelightdarktheme="toggleside"
     toggleiconelightdarktheme="lighty"
   />
 </div>
+
 <style>
   .menu-link-nav {
     background: radial-gradient(#f3f4f7, #090b11 150%);
@@ -119,6 +51,38 @@ function test() {
     background: var(--accent-subtle-overlay);
   }
   .menu-link-nav a.active {
+    background-color: var(--accent-regular);
+    color: var(--accent-text-over);
+  }
+
+  /* Styles pour MenuLinks React component */
+  .menu-link-nav .menu-links-container {
+    display: flex;
+    flex-direction: row; /* Horizontal sur mobile */
+    gap: 0.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .menu-link-nav .menu-link-item {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.5rem;
+    display: inline-flex;
+    border-radius: 0.75rem;
+    backdrop-filter: blur(15px);
+    color: var(--gray-300);
+    transition:
+      color var(--theme-transition),
+      background-color var(--theme-transition);
+    text-decoration: none;
+  }
+
+  .menu-link-nav .menu-link-item:hover {
+    background: var(--accent-subtle-overlay);
+  }
+
+  .menu-link-nav .menu-link-item.active {
     background-color: var(--accent-regular);
     color: var(--accent-text-over);
   }
@@ -156,6 +120,16 @@ function test() {
     }
     .menu-link-nav theme-toggle {
       /* code dans ./styles/style.css */
+    }
+
+    /* Styles pour MenuLinks React component sur desktop */
+    .menu-link-nav .menu-links-container {
+      flex-direction: column; /* Vertical sur desktop */
+      gap: 1rem;
+    }
+
+    .menu-link-nav .menu-link-item {
+      padding: 0.5rem 1rem;
     }
   }
 </style>

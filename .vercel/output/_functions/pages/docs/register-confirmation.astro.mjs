@@ -1,7 +1,7 @@
 /* empty css                                     */
 import { c as createAstro, a as createComponent, d as renderTemplate, g as defineScriptVars, e as renderComponent, m as maybeRenderHead } from '../../chunks/astro/server_ZODBcONi.mjs';
 import 'kleur/colors';
-import { a as $$Layout } from '../../chunks/Layout_D1S7Kv86.mjs';
+import { a as $$Layout } from '../../chunks/Layout_DaFi6nHl.mjs';
 import { s as supabase } from '../../chunks/supabase_B2xMZoNq.mjs';
 import { C as Card, a as CardHeader, b as CardTitle, c as CardDescription, d as CardContent, e as CardFooter } from '../../chunks/card_BYgLF5Uw.mjs';
 import { B as Button } from '../../chunks/button_DWgDRuZ-.mjs';

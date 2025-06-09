@@ -17,8 +17,22 @@ export const collections = {
 			device: z.string().optional(),
 			additionalImages: z.array(z.object({
 				url: z.string(),
-				alt: z.string().optional()
+				alt: z.string().optional(),
+				caption: z.string().optional()
 			})).optional(),
+			features: z.array(z.object({
+				id: z.string(),
+				title: z.string(),
+				description: z.string(),
+				details: z.string(),
+				technologies: z.array(z.string()).optional()
+			})).optional(),
+			demoVideo: z.object({
+				src: z.string(),
+				poster: z.string().optional(),
+				title: z.string().optional(),
+				description: z.string().optional()
+			}).optional(),
 		}),
 	}),
 	widgetCss: defineCollection({

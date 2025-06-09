@@ -126,7 +126,15 @@ const $$Nav = createComponent(($$result, $$props, $$slots) => {
       icon: "youtube-logo"
     }
   ];
-  return renderTemplate`${maybeRenderHead()}<nav data-astro-cid-dmqpwcec> <div class="menu-header" data-astro-cid-dmqpwcec> <a href="/" class="site-title" data-astro-cid-dmqpwcec> <img src="/assets/zoddev_logo/zoddev_logo_light_mode.png" class="site-logo light-logo" data-astro-cid-dmqpwcec> <img src="/assets/zoddev_logo/zoddev_logo_dark_mode.png" class="site-logo dark-logo" data-astro-cid-dmqpwcec> </a> <div class="mobile-only-menu" data-astro-cid-dmqpwcec> ${renderComponent($$result, "menu-button", "menu-button", { "data-astro-cid-dmqpwcec": true }, { "default": () => renderTemplate` <template data-astro-cid-dmqpwcec> <button class="menu-button" aria-expanded="false" data-astro-cid-dmqpwcec> <span class="sr-only" data-astro-cid-dmqpwcec>Menu</span> ${renderComponent($$result, "Icon", Icon, { "icon": "list", "data-astro-cid-dmqpwcec": true })} </button> </template> ` })} </div> </div> <!-- Navigation items for desktop --> <div class="desktop-nav" data-astro-cid-dmqpwcec> <ul class="nav-items" data-astro-cid-dmqpwcec> ${textLinks.map(({ label, href }) => renderTemplate`<li data-astro-cid-dmqpwcec> <a${addAttribute(Astro2.url.pathname === href, "aria-current")}${addAttribute([
+  return renderTemplate`${maybeRenderHead()}<nav data-astro-cid-dmqpwcec> <div class="menu-header" data-astro-cid-dmqpwcec> <a href="/" class="site-title" data-astro-cid-dmqpwcec> <!-- Light mode logo with modern image optimization --> <picture class="site-logo light-logo" data-astro-cid-dmqpwcec> <source srcset="/assets/Anscod_logo/Anscod_logo_light_mode_320w.avif 320w,
+                  /assets/Anscod_logo/Anscod_logo_light_mode_480w.avif 480w,
+                  /assets/Anscod_logo/Anscod_logo_light_mode_optimized.avif 1x" type="image/avif" sizes="(max-width: 768px) 40px, (max-width: 1024px) 44px, 48px" data-astro-cid-dmqpwcec> <source srcset="/assets/Anscod_logo/Anscod_logo_light_mode_320w.webp 320w,
+                  /assets/Anscod_logo/Anscod_logo_light_mode_480w.webp 480w,
+                  /assets/Anscod_logo/Anscod_logo_light_mode_optimized.webp 1x" type="image/webp" sizes="(max-width: 768px) 40px, (max-width: 1024px) 44px, 48px" data-astro-cid-dmqpwcec> <img src="/assets/Anscod_logo/Anscod_logo_light_mode.png" alt="Anscod Logo - Kevin Otty développeur web et mobile freelance" width="48" height="48" loading="eager" decoding="async" data-astro-cid-dmqpwcec> </picture> <!-- Dark mode logo with modern image optimization --> <picture class="site-logo dark-logo" data-astro-cid-dmqpwcec> <source srcset="/assets/Anscod_logo/Anscod_logo_dark_mode_320w.avif 320w,
+                  /assets/Anscod_logo/Anscod_logo_dark_mode_480w.avif 480w,
+                  /assets/Anscod_logo/Anscod_logo_dark_mode_optimized.avif 1x" type="image/avif" sizes="(max-width: 768px) 40px, (max-width: 1024px) 44px, 48px" data-astro-cid-dmqpwcec> <source srcset="/assets/Anscod_logo/Anscod_logo_dark_mode_320w.webp 320w,
+                  /assets/Anscod_logo/Anscod_logo_dark_mode_480w.webp 480w,
+                  /assets/Anscod_logo/Anscod_logo_dark_mode_optimized.webp 1x" type="image/webp" sizes="(max-width: 768px) 40px, (max-width: 1024px) 44px, 48px" data-astro-cid-dmqpwcec> <img src="/assets/Anscod_logo/Anscod_logo_dark_mode.png" alt="Anscod Logo - Kevin Otty développeur web et mobile freelance" width="48" height="48" loading="eager" decoding="async" data-astro-cid-dmqpwcec> </picture> </a> <div class="mobile-only-menu" data-astro-cid-dmqpwcec> ${renderComponent($$result, "menu-button", "menu-button", { "data-astro-cid-dmqpwcec": true }, { "default": () => renderTemplate` <template data-astro-cid-dmqpwcec> <button class="menu-button" aria-expanded="false" data-astro-cid-dmqpwcec> <span class="sr-only" data-astro-cid-dmqpwcec>Menu</span> ${renderComponent($$result, "Icon", Icon, { "icon": "list", "data-astro-cid-dmqpwcec": true })} </button> </template> ` })} </div> </div> <!-- Navigation items for desktop --> <div class="desktop-nav" data-astro-cid-dmqpwcec> <ul class="nav-items" data-astro-cid-dmqpwcec> ${textLinks.map(({ label, href }) => renderTemplate`<li data-astro-cid-dmqpwcec> <a${addAttribute(Astro2.url.pathname === href, "aria-current")}${addAttribute([
     "link",
     {
       active: Astro2.url.pathname === href || href !== "/" && Astro2.url.pathname.startsWith(href)
@@ -216,13 +224,15 @@ const firstName = "KEVIN";
 const lastName = "OTTY";
 const email = "contact@zoddev.site";
 const phone = "+229 97 27 90 01";
-const address = {"city":"Cotonou","rue":"Cotonou, Bénin","indicatif":"+229"};
+const nationality = "Béninoise";
+const address = {"city":"Cotonou","country":"Bénin","rue":"Cotonou, Bénin","indicatif":"+229"};
 const socialMedia = {"linkedin":"linkedin.com/in/zoddev","github":"github.com/ansetechnoapp","pinterest":"pinterest.com/zoddevdesign","instagram":"instagram.com/zoddev.otty"};
 const dataUser = {
   firstName,
   lastName,
   email,
   phone,
+  nationality,
   address,
   socialMedia};
 
@@ -246,16 +256,70 @@ const $$SchemaOrg = createComponent(($$result, $$props, $$slots) => {
   const personSchema = {
     "@context": "https://schema.org",
     "@type": "Person",
+    "@id": `${url}#person`,
     name,
+    givenName: dataUser.firstName,
+    familyName: dataUser.lastName,
     description,
-    image: typeof image === "string" ? new URL(image, Astro2.site).href : image,
+    image: {
+      "@type": "ImageObject",
+      url: typeof image === "string" ? new URL(image, Astro2.site).href : image,
+      width: 1200,
+      height: 630
+    },
     url,
+    mainEntityOfPage: url,
     jobTitle: "D\xE9veloppeur Web & Mobile Freelance",
+    hasOccupation: {
+      "@type": "Occupation",
+      name: "D\xE9veloppeur Web & Mobile",
+      occupationLocation: {
+        "@type": "Place",
+        name: dataUser.address.city,
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: dataUser.address.city,
+          addressCountry: dataUser.address.country
+        }
+      },
+      skills: [
+        "React Development",
+        "React Native Development",
+        "Astro.js Development",
+        "Next.js Development",
+        "TypeScript Programming",
+        "JavaScript Programming",
+        "Mobile App Development",
+        "Web Application Development",
+        "Frontend Development",
+        "Backend Development"
+      ]
+    },
     worksFor: {
       "@type": "Organization",
+      "@id": `${url}#organization`,
       name: "zoddev",
-      url: "https://zoddev.site/"
+      url: "https://zoddev.site/",
+      logo: {
+        "@type": "ImageObject",
+        url: new URL("/assets/zoddev_logo/zoddev_logo_dark_mode.png", Astro2.site).href
+      },
+      contactPoint: {
+        "@type": "ContactPoint",
+        telephone: dataUser.phone,
+        email: dataUser.email,
+        contactType: "customer service",
+        availableLanguage: ["French", "English"]
+      }
     },
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: dataUser.address.city,
+      addressCountry: dataUser.address.country
+    },
+    email: dataUser.email,
+    telephone: dataUser.phone,
+    nationality: dataUser.nationality,
     sameAs: [
       `https://${dataUser.socialMedia.linkedin}`,
       `https://${dataUser.socialMedia.github}`,
@@ -270,8 +334,34 @@ const $$SchemaOrg = createComponent(($$result, $$props, $$slots) => {
       "Astro.js",
       "Next.js",
       "TypeScript",
-      "JavaScript"
-    ]
+      "JavaScript",
+      "Supabase",
+      "Firebase",
+      "Tailwind CSS",
+      "Laravel",
+      "WordPress",
+      "Python",
+      "PostgreSQL",
+      "MySQL"
+    ],
+    knowsLanguage: [
+      {
+        "@type": "Language",
+        name: "French",
+        proficiencyLevel: "Native"
+      },
+      {
+        "@type": "Language",
+        name: "English",
+        proficiencyLevel: "Intermediate"
+      }
+    ],
+    hasCredential: {
+      "@type": "EducationalOccupationalCredential",
+      name: "Licence en Syst\xE8mes Informatiques et Logiciels",
+      credentialCategory: "Bachelor's Degree",
+      educationalLevel: "Bachelor"
+    }
   };
   const articleSchema = {
     "@context": "https://schema.org",
@@ -302,17 +392,129 @@ const $$SchemaOrg = createComponent(($$result, $$props, $$slots) => {
   const projectSchema = {
     "@context": "https://schema.org",
     "@type": "CreativeWork",
+    "@id": `${url}#project`,
     name,
+    headline: name,
     description,
-    image: typeof image === "string" ? new URL(image, Astro2.site).href : image,
+    image: {
+      "@type": "ImageObject",
+      url: typeof image === "string" ? new URL(image, Astro2.site).href : image,
+      width: 1200,
+      height: 630
+    },
     datePublished,
     dateModified,
+    dateCreated: datePublished,
     author: {
       "@type": "Person",
+      "@id": `${Astro2.site}#person`,
       name: `${dataUser.firstName} ${dataUser.lastName}`,
-      url
+      url: Astro2.site,
+      jobTitle: "D\xE9veloppeur Web & Mobile Freelance"
     },
-    url
+    creator: {
+      "@type": "Person",
+      "@id": `${Astro2.site}#person`,
+      name: `${dataUser.firstName} ${dataUser.lastName}`
+    },
+    publisher: {
+      "@type": "Organization",
+      "@id": `${Astro2.site}#organization`,
+      name: "zoddev",
+      url: Astro2.site,
+      logo: {
+        "@type": "ImageObject",
+        url: new URL("/assets/zoddev_logo/zoddev_logo_dark_mode.png", Astro2.site).href
+      }
+    },
+    url,
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": url
+    },
+    genre: ["Web Development", "Mobile Development", "Software Development"],
+    keywords: ["React", "React Native", "Astro.js", "TypeScript", "JavaScript", "Web Development", "Mobile Development"],
+    inLanguage: "fr-FR",
+    isAccessibleForFree: true,
+    isFamilyFriendly: true,
+    copyrightHolder: {
+      "@type": "Person",
+      name: `${dataUser.firstName} ${dataUser.lastName}`
+    },
+    copyrightYear: new Date(datePublished).getFullYear(),
+    license: "All rights reserved"
+  };
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": `${Astro2.site}#organization`,
+    name: "zoddev",
+    alternateName: `${dataUser.firstName} ${dataUser.lastName} - D\xE9veloppeur Freelance`,
+    description: `Agence de d\xE9veloppement web et mobile dirig\xE9e par ${dataUser.firstName} ${dataUser.lastName}, sp\xE9cialis\xE9e dans la cr\xE9ation d'applications web et mobiles modernes et performantes.`,
+    url: Astro2.site,
+    logo: {
+      "@type": "ImageObject",
+      url: new URL("/assets/zoddev_logo/zoddev_logo_dark_mode.png", Astro2.site).href,
+      width: 512,
+      height: 512
+    },
+    image: {
+      "@type": "ImageObject",
+      url: new URL("/assets/social-preview.jpg", Astro2.site).href,
+      width: 1200,
+      height: 630
+    },
+    founder: {
+      "@type": "Person",
+      "@id": `${Astro2.site}#person`,
+      name: `${dataUser.firstName} ${dataUser.lastName}`
+    },
+    employee: {
+      "@type": "Person",
+      "@id": `${Astro2.site}#person`,
+      name: `${dataUser.firstName} ${dataUser.lastName}`
+    },
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: dataUser.address.city,
+      addressCountry: dataUser.address.country
+    },
+    contactPoint: {
+      "@type": "ContactPoint",
+      telephone: dataUser.phone,
+      email: dataUser.email,
+      contactType: "customer service",
+      availableLanguage: ["French", "English"],
+      areaServed: "Worldwide"
+    },
+    sameAs: [
+      `https://${dataUser.socialMedia.linkedin}`,
+      `https://${dataUser.socialMedia.github}`,
+      `https://${dataUser.socialMedia.pinterest}`,
+      `https://${dataUser.socialMedia.instagram}`
+    ],
+    serviceType: [
+      "Web Development",
+      "Mobile App Development",
+      "Frontend Development",
+      "Backend Development",
+      "React Development",
+      "React Native Development"
+    ],
+    areaServed: {
+      "@type": "Place",
+      name: "Worldwide"
+    },
+    knowsAbout: [
+      "React",
+      "React Native",
+      "Astro.js",
+      "Next.js",
+      "TypeScript",
+      "JavaScript",
+      "Web Development",
+      "Mobile Development"
+    ]
   };
   let schema;
   switch (type) {
@@ -322,6 +524,9 @@ const $$SchemaOrg = createComponent(($$result, $$props, $$slots) => {
     case "CreativeWork":
     case "Project":
       schema = projectSchema;
+      break;
+    case "Organization":
+      schema = organizationSchema;
       break;
     case "Person":
     default:
@@ -334,9 +539,11 @@ const $$Astro$1 = createAstro("https://zoddev.site/");
 const $$SEO = createComponent(($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro$1, $$props, $$slots);
   Astro2.self = $$SEO;
+  const defaultTitle = `${dataUser.firstName} ${dataUser.lastName} - Expert D\xE9veloppeur Web & Mobile | React, Astro.js, React Native`;
+  const defaultDescription = `Portfolio professionnel de ${dataUser.firstName} ${dataUser.lastName}, d\xE9veloppeur web et mobile freelance bas\xE9 \xE0 ${dataUser.address.city}. Sp\xE9cialis\xE9 en React, React Native, Astro.js, Next.js et technologies web modernes. Cr\xE9ation d'applications web et mobiles performantes.`;
   const {
-    title = `${dataUser.firstName} ${dataUser.lastName}: Portfolio`,
-    description = `Le site personnel de ${dataUser.firstName} ${dataUser.lastName} - D\xE9veloppeur web et mobile freelance sp\xE9cialis\xE9 en React, React Native, Astro.js et technologies web modernes.`,
+    title = defaultTitle,
+    description = defaultDescription,
     image = "/assets/social-preview.jpg",
     canonicalURL = new URL(Astro2.url.pathname, Astro2.site),
     type = "website",
@@ -363,7 +570,7 @@ const $$SEO = createComponent(($$result, $$props, $$slots) => {
     image: twitter?.image || socialImageURL,
     card: twitter?.card || "summary_large_image"
   };
-  return renderTemplate`<!-- Primary Meta Tags --><title>${title}</title><meta name="title"${addAttribute(title, "content")}><meta name="description"${addAttribute(description, "content")}><meta name="author"${addAttribute(`${dataUser.firstName} ${dataUser.lastName}`, "content")}><meta name="keywords" content="web development, mobile apps, React, React Native, Astro, frontend, backend, developer, portfolio"><link rel="canonical"${addAttribute(canonicalURL, "href")}><!-- Open Graph / Facebook --><meta property="og:type"${addAttribute(ogData.type, "content")}><meta property="og:url"${addAttribute(canonicalURL, "content")}><meta property="og:title"${addAttribute(ogData.title, "content")}><meta property="og:description"${addAttribute(ogData.description, "content")}><meta property="og:image"${addAttribute(ogData.image, "content")}>${article && renderTemplate`${renderComponent($$result, "Fragment", Fragment, {}, { "default": ($$result2) => renderTemplate`${article.publishedTime && renderTemplate`<meta property="article:published_time"${addAttribute(article.publishedTime, "content")}>`}${article.modifiedTime && renderTemplate`<meta property="article:modified_time"${addAttribute(article.modifiedTime, "content")}>`}${article.tags && article.tags.map((tag) => renderTemplate`<meta property="article:tag"${addAttribute(tag, "content")}>`)}${article.authors && article.authors.map((author) => renderTemplate`<meta property="article:author"${addAttribute(author, "content")}>`)}` })}`}<!-- Twitter --><meta property="twitter:card"${addAttribute(twitterData.card, "content")}><meta property="twitter:url"${addAttribute(canonicalURL, "content")}><meta property="twitter:title"${addAttribute(twitterData.title, "content")}><meta property="twitter:description"${addAttribute(twitterData.description, "content")}><meta property="twitter:image"${addAttribute(twitterData.image, "content")}><!-- Schema.org Structured Data -->${renderComponent($$result, "SchemaOrg", $$SchemaOrg, { "type": schemaType, "name": title, "description": description, "image": image, "datePublished": article?.publishedTime || (/* @__PURE__ */ new Date()).toISOString(), "dateModified": article?.modifiedTime || (/* @__PURE__ */ new Date()).toISOString(), "url": canonicalURL })}<!-- Balises meta essentielles --><meta charset="UTF-8"><meta name="generator"${addAttribute(Astro2.generator, "content")}><meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5, minimum-scale=1">`;
+  return renderTemplate`<!-- Primary Meta Tags --><title>${title}</title><meta name="title"${addAttribute(title, "content")}><meta name="description"${addAttribute(description, "content")}><meta name="author"${addAttribute(`${dataUser.firstName} ${dataUser.lastName}`, "content")}><!-- Enhanced keywords with location and specific technologies --><meta name="keywords"${addAttribute(`d\xE9veloppeur web ${dataUser.address.city}, d\xE9veloppeur mobile ${dataUser.address.country}, React developer, React Native, Astro.js, Next.js, TypeScript, JavaScript, freelance developer, portfolio, ${dataUser.firstName} ${dataUser.lastName}, d\xE9veloppement web, application mobile, frontend, backend, Supabase, Firebase, Tailwind CSS`, "content")}><!-- Additional SEO meta tags --><meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"><meta name="googlebot" content="index, follow"><meta name="bingbot" content="index, follow"><meta name="language" content="fr-FR"><meta name="geo.region"${addAttribute(dataUser.address.country, "content")}><meta name="geo.placename"${addAttribute(dataUser.address.city, "content")}><meta name="geo.position" content="6.3703;2.3912"><!-- Coordinates for Cotonou, Benin --><meta name="ICBM" content="6.3703, 2.3912"><!-- Professional and business meta tags --><meta name="classification" content="Business"><meta name="category" content="Technology, Web Development, Mobile Development"><meta name="coverage" content="Worldwide"><meta name="distribution" content="Global"><meta name="rating" content="General"><meta name="revisit-after" content="7 days"><!-- Social media and contact --><meta name="contact"${addAttribute(dataUser.email, "content")}><meta name="reply-to"${addAttribute(dataUser.email, "content")}><!-- Performance and technical --><meta name="theme-color" content="#6366f1"><meta name="msapplication-TileColor" content="#6366f1"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="format-detection" content="telephone=yes"><link rel="canonical"${addAttribute(canonicalURL, "href")}><!-- Open Graph / Facebook --><meta property="og:type"${addAttribute(ogData.type, "content")}><meta property="og:url"${addAttribute(canonicalURL, "content")}><meta property="og:title"${addAttribute(ogData.title, "content")}><meta property="og:description"${addAttribute(ogData.description, "content")}><meta property="og:image"${addAttribute(ogData.image, "content")}>${article && renderTemplate`${renderComponent($$result, "Fragment", Fragment, {}, { "default": ($$result2) => renderTemplate`${article.publishedTime && renderTemplate`<meta property="article:published_time"${addAttribute(article.publishedTime, "content")}>`}${article.modifiedTime && renderTemplate`<meta property="article:modified_time"${addAttribute(article.modifiedTime, "content")}>`}${article.tags && article.tags.map((tag) => renderTemplate`<meta property="article:tag"${addAttribute(tag, "content")}>`)}${article.authors && article.authors.map((author) => renderTemplate`<meta property="article:author"${addAttribute(author, "content")}>`)}` })}`}<!-- Twitter --><meta property="twitter:card"${addAttribute(twitterData.card, "content")}><meta property="twitter:url"${addAttribute(canonicalURL, "content")}><meta property="twitter:title"${addAttribute(twitterData.title, "content")}><meta property="twitter:description"${addAttribute(twitterData.description, "content")}><meta property="twitter:image"${addAttribute(twitterData.image, "content")}><!-- Schema.org Structured Data -->${renderComponent($$result, "SchemaOrg", $$SchemaOrg, { "type": schemaType, "name": title, "description": description, "image": image, "datePublished": article?.publishedTime || (/* @__PURE__ */ new Date()).toISOString(), "dateModified": article?.modifiedTime || (/* @__PURE__ */ new Date()).toISOString(), "url": canonicalURL })}<!-- Balises meta essentielles --><meta charset="UTF-8"><meta name="generator"${addAttribute(Astro2.generator, "content")}><meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5, minimum-scale=1">`;
 }, "C:/Users/kevin/Allproject/portfolio/src/components/SEO.astro", void 0);
 
 const $$Astro = createAstro("https://zoddev.site/");

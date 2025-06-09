@@ -9,6 +9,9 @@ import ContactCTA from "../../components/ContactCTA.astro";
 import Hero from "../../components/Hero.astro";
 import Icon from "../../components/reactJS/Icon";
 import Pill from "../../components/reactJS/Pill";
+import TabbedInterface from "../../components/reactJS/TabbedInterface";
+import ProjectFeatures from "../../components/reactJS/ProjectFeatures";
+import ImageGallery from "../../components/reactJS/ImageGallery";
 
 interface Props {
   entry: CollectionEntry<"work">;
@@ -85,11 +88,15 @@ const projectMetadata = {
             entry.data.liveDemo && (
               <a
                 href={entry.data.liveDemo}
-                class="btn primary"
+                class="btn primary enhanced-btn"
                 target="_blank"
                 rel="noopener"
               >
-                <Icon icon="rocket-launch" /> Live Demo
+                <Icon icon="rocket-launch" />
+                <span>Live Demo</span>
+                <svg class="btn-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                </svg>
               </a>
             )
           }
@@ -97,14 +104,29 @@ const projectMetadata = {
             entry.data.github && (
               <a
                 href={entry.data.github}
-                class="btn secondary"
+                class="btn secondary enhanced-btn"
                 target="_blank"
                 rel="noopener"
               >
-                <Icon icon="github-logo" /> View Code
+                <Icon icon="github-logo" />
+                <span>View Code</span>
+                <svg class="btn-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                </svg>
               </a>
             )
           }
+          <button
+            class="btn tertiary enhanced-btn share-btn"
+            onclick="shareProject()"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+              <polyline points="16,6 12,2 8,6"/>
+              <line x1="12" y1="2" x2="12" y2="15"/>
+            </svg>
+            <span>Share Project</span>
+          </button>
         </div>
       </div>
     </div>
@@ -141,7 +163,70 @@ const projectMetadata = {
 
     <div class="project-content">
       <div class="content-wrapper">
-        <Content />
+        {entry.data.features && entry.data.features.length > 0 ? (
+          <div class="project-tabs">
+            <!-- Tab Navigation -->
+            <div class="tab-nav border-b border-gray-200 dark:border-gray-700 mb-6">
+              <nav class="flex space-x-8 overflow-x-auto">
+                <button class="tab-btn active py-3 px-1 border-b-2 border-indigo-500 text-indigo-600 dark:text-indigo-400 font-medium text-sm transition-colors duration-200" data-tab="overview">
+                  <svg class="w-4 h-4 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  Project Overview
+                </button>
+                <button class="tab-btn py-3 px-1 border-b-2 border-transparent text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 font-medium text-sm transition-colors duration-200" data-tab="features">
+                  <svg class="w-4 h-4 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  Key Features
+                </button>
+                <button class="tab-btn py-3 px-1 border-b-2 border-transparent text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 font-medium text-sm transition-colors duration-200" data-tab="technologies">
+                  <svg class="w-4 h-4 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                  </svg>
+                  Technologies Used
+                </button>
+              </nav>
+            </div>
+
+            <!-- Tab Content -->
+            <div class="tab-content">
+              <div id="overview-tab" class="tab-panel active">
+                <Content />
+              </div>
+
+              <div id="features-tab" class="tab-panel hidden">
+                <ProjectFeatures
+                  client:load
+                  features={entry.data.features}
+                />
+              </div>
+
+              <div id="technologies-tab" class="tab-panel hidden space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {entry.data.tech?.map((tech, index) => (
+                    <div key={index} class="tech-card bg-white dark:bg-gray-800 rounded-lg p-4 border border-gray-200 dark:border-gray-700">
+                      <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-indigo-100 dark:bg-indigo-900/30 rounded-lg flex items-center justify-center">
+                          <svg class="w-5 h-5 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                          </svg>
+                        </div>
+                        <span class="font-medium text-gray-900 dark:text-white">{tech}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div class="prose dark:prose-invert max-w-none">
+                  <h3>Technology Stack Details</h3>
+                  <p>This project leverages modern web technologies to deliver a robust and scalable solution. Each technology was carefully chosen to optimize performance, maintainability, and user experience.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <Content />
+        )}
       </div>
 
       {
@@ -149,33 +234,16 @@ const projectMetadata = {
           entry.data.additionalImages.length > 0 && (
             <div class="additional-images">
               <h2>Project Gallery</h2>
-              <div class="image-grid">
-                {entry.data.additionalImages.map((img) => (
-                  <div class="gallery-image">
-                    <picture>
-                      {/* AVIF format */}
-                      <source
-                        type="image/avif"
-                        srcset={`${img.url.replace(/\.(jpg|jpeg|png|gif)$/i, "_optimized.avif")} 1x, ${img.url.replace(/\.(jpg|jpeg|png|gif)$/i, "_640w.avif")} 640w, ${img.url.replace(/\.(jpg|jpeg|png|gif)$/i, "_1024w.avif")} 1024w`}
-                        sizes="(max-width: 768px) 100vw, 400px"
-                      />
-                      {/* WebP format */}
-                      <source
-                        type="image/webp"
-                        srcset={`${img.url.replace(/\.(jpg|jpeg|png|gif)$/i, "_optimized.webp")} 1x, ${img.url.replace(/\.(jpg|jpeg|png|gif)$/i, "_640w.webp")} 640w, ${img.url.replace(/\.(jpg|jpeg|png|gif)$/i, "_1024w.webp")} 1024w`}
-                        sizes="(max-width: 768px) 100vw, 400px"
-                      />
-                      {/* Fallback format */}
-                      <img
-                        src={img.url}
-                        alt={img.alt || ""}
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </picture>
-                  </div>
-                ))}
-              </div>
+              <ImageGallery
+                client:load
+                images={entry.data.additionalImages.map(img => ({
+                  url: img.url,
+                  alt: img.alt || "",
+                  caption: img.caption
+                }))}
+                columns={3}
+                class="mt-6"
+              />
             </div>
           )
       }
@@ -299,6 +367,75 @@ const projectMetadata = {
 
   .btn.secondary:hover {
     background: var(--gray-700);
+  }
+
+  .btn.tertiary {
+    background: transparent;
+    color: var(--gray-200);
+    border: 2px solid var(--gray-700);
+  }
+
+  .btn.tertiary:hover {
+    background: var(--gray-800);
+    border-color: var(--gray-600);
+  }
+
+  /* Enhanced button styles */
+  .enhanced-btn {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-width: 140px;
+  }
+
+  .enhanced-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s ease;
+  }
+
+  .enhanced-btn:hover::before {
+    left: 100%;
+  }
+
+  .btn-arrow {
+    transition: transform 0.2s ease;
+  }
+
+  .enhanced-btn:hover .btn-arrow {
+    transform: translate(2px, -2px);
+  }
+
+  .share-btn {
+    position: relative;
+  }
+
+  .share-btn.copied::after {
+    content: 'Copied!';
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent-regular);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    white-space: nowrap;
+    animation: fadeInOut 2s ease;
+  }
+
+  @keyframes fadeInOut {
+    0%, 100% { opacity: 0; transform: translateX(-50%) translateY(10px); }
+    20%, 80% { opacity: 1; transform: translateX(-50%) translateY(0); }
   }
 
   .project-showcase {
@@ -465,4 +602,198 @@ const projectMetadata = {
       padding: 1rem 0 2rem;
     }
   }
+
+  /* Modal and component animations */
+  @keyframes modal-enter {
+    from {
+      opacity: 0;
+      transform: scale(0.95) translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  :global(.animate-modal-enter) {
+    animation: modal-enter 0.2s ease-out;
+  }
+
+  :global(.animate-fade-in) {
+    animation: fade-in 0.3s ease-out;
+  }
+
+  /* Tech card styles */
+  :global(.tech-card) {
+    transition: all 0.2s ease;
+  }
+
+  :global(.tech-card:hover) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Line clamp utility */
+  :global(.line-clamp-3) {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Enhanced project showcase */
+  .project-showcase {
+    position: relative;
+  }
+
+  .project-showcase::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    right: -20px;
+    bottom: -20px;
+    background: linear-gradient(45deg, var(--accent-light), var(--accent-secondary-light));
+    border-radius: 1.5rem;
+    opacity: 0.1;
+    z-index: -1;
+  }
+
+  /* Improved content sections */
+  .content-wrapper :global(.tabbed-interface) {
+    margin-top: 2rem;
+  }
+
+  .content-wrapper :global(.tab-nav) {
+    border-bottom: 2px solid var(--gray-800);
+    margin-bottom: 2rem;
+  }
+
+  .content-wrapper :global(.feature-card) {
+    border: 1px solid var(--gray-800);
+    background: var(--gray-950);
+  }
+
+  .content-wrapper :global(.feature-card:hover) {
+    border-color: var(--accent-regular);
+    box-shadow: 0 8px 25px rgba(118, 17, 166, 0.15);
+  }
+
+  /* Tab styles */
+  .project-tabs {
+    margin-top: 2rem;
+  }
+
+  .tab-nav {
+    border-bottom: 2px solid var(--gray-800);
+    margin-bottom: 2rem;
+  }
+
+  .tab-btn {
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+  }
+
+  .tab-btn:hover:not(.active) {
+    border-color: var(--gray-600);
+  }
+
+  .tab-panel {
+    animation: fadeIn 0.3s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+
+<script>
+  // Share project functionality
+  function shareProject() {
+    const shareBtn = document.querySelector('.share-btn');
+    const projectTitle = document.querySelector('.project-title')?.textContent || 'Project';
+    const projectUrl = window.location.href;
+
+    if (navigator.share) {
+      // Use native sharing if available
+      navigator.share({
+        title: projectTitle,
+        url: projectUrl,
+        text: `Check out this project: ${projectTitle}`
+      }).catch(console.error);
+    } else {
+      // Fallback to clipboard
+      navigator.clipboard.writeText(projectUrl).then(() => {
+        shareBtn?.classList.add('copied');
+        setTimeout(() => {
+          shareBtn?.classList.remove('copied');
+        }, 2000);
+      }).catch(() => {
+        // Fallback for older browsers
+        const textArea = document.createElement('textarea');
+        textArea.value = projectUrl;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+
+        shareBtn?.classList.add('copied');
+        setTimeout(() => {
+          shareBtn?.classList.remove('copied');
+        }, 2000);
+      });
+    }
+  }
+
+  // Make function globally available
+  window.shareProject = shareProject;
+
+  // Tab functionality
+  document.addEventListener('DOMContentLoaded', () => {
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const tabPanels = document.querySelectorAll('.tab-panel');
+
+    tabButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const targetTab = button.getAttribute('data-tab');
+
+        // Remove active class from all buttons
+        tabButtons.forEach(btn => {
+          btn.classList.remove('active', 'border-indigo-500', 'text-indigo-600', 'dark:text-indigo-400');
+          btn.classList.add('border-transparent', 'text-gray-500', 'hover:text-gray-700', 'dark:text-gray-400', 'dark:hover:text-gray-200');
+        });
+
+        // Add active class to clicked button
+        button.classList.add('active', 'border-indigo-500', 'text-indigo-600', 'dark:text-indigo-400');
+        button.classList.remove('border-transparent', 'text-gray-500', 'hover:text-gray-700', 'dark:text-gray-400', 'dark:hover:text-gray-200');
+
+        // Hide all tab panels
+        tabPanels.forEach(panel => {
+          panel.classList.add('hidden');
+          panel.classList.remove('active');
+        });
+
+        // Show target tab panel
+        const targetPanel = document.getElementById(`${targetTab}-tab`);
+        if (targetPanel) {
+          targetPanel.classList.remove('hidden');
+          targetPanel.classList.add('active');
+        }
+      });
+    });
+  });
+</script>
 </style>

@@ -8,7 +8,7 @@ import 'kleur/colors';
 import * as devalue from 'devalue';
 import 'clsx';
 /* empty css                         */
-import { I as Icon } from './Layout_D1S7Kv86.mjs';
+import { I as Icon } from './Layout_DaFi6nHl.mjs';
 
 const CONTENT_IMAGE_FLAG = "astroContentImageFlag";
 const IMAGE_IMPORT_PREFIX = "__ASTRO_IMAGE_";
@@ -68,7 +68,7 @@ class ImmutableDataStore {
    */
   static async fromModule() {
     try {
-      const data = await import('./_astro_data-layer-content_CkXNkNF6.mjs');
+      const data = await import('./_astro_data-layer-content_n0LAB89q.mjs');
       if (data.default instanceof Map) {
         return ImmutableDataStore.fromMap(data.default);
       }

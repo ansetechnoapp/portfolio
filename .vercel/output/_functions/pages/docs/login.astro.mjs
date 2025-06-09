@@ -1,7 +1,7 @@
 /* empty css                                     */
 import { c as createAstro, a as createComponent, e as renderComponent, d as renderTemplate, m as maybeRenderHead } from '../../chunks/astro/server_ZODBcONi.mjs';
 import 'kleur/colors';
-import { a as $$Layout } from '../../chunks/Layout_D1S7Kv86.mjs';
+import { a as $$Layout } from '../../chunks/Layout_DaFi6nHl.mjs';
 import { S as SignIn } from '../../chunks/AuthUI_j6EegU-f.mjs';
 import { s as supabase } from '../../chunks/supabase_B2xMZoNq.mjs';
 export { renderers } from '../../renderers.mjs';

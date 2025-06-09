@@ -1,6 +1,6 @@
 import { c as createAstro, a as createComponent, m as maybeRenderHead, e as renderComponent, b as addAttribute, d as renderTemplate } from './astro/server_ZODBcONi.mjs';
 import 'kleur/colors';
-import { $ as $$ThemeToggle } from './Layout_D1S7Kv86.mjs';
+import { $ as $$ThemeToggle } from './Layout_DaFi6nHl.mjs';
 /* empty css                         */
 
 const $$Astro = createAstro("https://zoddev.site/");

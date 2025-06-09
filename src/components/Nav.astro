@@ -10,7 +10,7 @@ const textLinks: { label: string; href: string }[] = [
   // { label: 'My components', href: '/components/' },
   { label: "Blog", href: "/blog/" },
   { label: "Tools", href: "/widgetCss/" },
-  { label: "Documentation", href: "/docs/" },
+  // { label: "Documentation", href: "/docs/" },
   // { label: 'Cv', href: '/portfolio/Cv/' },
 ];
 
@@ -40,16 +40,57 @@ const iconLinks: {
 <nav>
   <div class="menu-header">
     <a href="/" class="site-title">
-      <img
-        src="/assets/zoddev_logo/zoddev_logo_light_mode.png"
-        alt="Logo zoddev - Kevin Otty développeur web et mobile freelance"
-        class="site-logo light-logo"
-      />
-      <img
-        src="/assets/zoddev_logo/zoddev_logo_dark_mode.png"
-        alt="Logo zoddev - Kevin Otty développeur web et mobile freelance"
-        class="site-logo dark-logo"
-      />
+      <!-- Light mode logo with modern image optimization -->
+      <picture class="site-logo light-logo">
+        <source
+          srcset="/assets/Anscod_logo/Anscod_logo_light_mode_320w.avif 320w,
+                  /assets/Anscod_logo/Anscod_logo_light_mode_480w.avif 480w,
+                  /assets/Anscod_logo/Anscod_logo_light_mode_optimized.avif 1x"
+          type="image/avif"
+          sizes="(max-width: 768px) 40px, (max-width: 1024px) 44px, 48px"
+        />
+        <source
+          srcset="/assets/Anscod_logo/Anscod_logo_light_mode_320w.webp 320w,
+                  /assets/Anscod_logo/Anscod_logo_light_mode_480w.webp 480w,
+                  /assets/Anscod_logo/Anscod_logo_light_mode_optimized.webp 1x"
+          type="image/webp"
+          sizes="(max-width: 768px) 40px, (max-width: 1024px) 44px, 48px"
+        />
+        <img
+          src="/assets/Anscod_logo/Anscod_logo_light_mode.png"
+          alt="Anscod Logo - Kevin Otty développeur web et mobile freelance"
+          width="48"
+          height="48"
+          loading="eager"
+          decoding="async"
+        />
+      </picture>
+
+      <!-- Dark mode logo with modern image optimization -->
+      <picture class="site-logo dark-logo">
+        <source
+          srcset="/assets/Anscod_logo/Anscod_logo_dark_mode_320w.avif 320w,
+                  /assets/Anscod_logo/Anscod_logo_dark_mode_480w.avif 480w,
+                  /assets/Anscod_logo/Anscod_logo_dark_mode_optimized.avif 1x"
+          type="image/avif"
+          sizes="(max-width: 768px) 40px, (max-width: 1024px) 44px, 48px"
+        />
+        <source
+          srcset="/assets/Anscod_logo/Anscod_logo_dark_mode_320w.webp 320w,
+                  /assets/Anscod_logo/Anscod_logo_dark_mode_480w.webp 480w,
+                  /assets/Anscod_logo/Anscod_logo_dark_mode_optimized.webp 1x"
+          type="image/webp"
+          sizes="(max-width: 768px) 40px, (max-width: 1024px) 44px, 48px"
+        />
+        <img
+          src="/assets/Anscod_logo/Anscod_logo_dark_mode.png"
+          alt="Anscod Logo - Kevin Otty développeur web et mobile freelance"
+          width="48"
+          height="48"
+          loading="eager"
+          decoding="async"
+        />
+      </picture>
     </a>
     <div class="mobile-only-menu">
       <menu-button>
@@ -333,6 +374,67 @@ const iconLinks: {
     height: 4rem;
     transition: transform 0.2s ease-in-out;
     will-change: transform;
+    display: block;
+  }
+
+  .site-logo img {
+    width: auto;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.2s ease-in-out;
+    border-radius: 4px;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+  }
+
+  /* Enhanced logo hover effects */
+  .site-title:hover .site-logo img {
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
+  }
+
+  /* Logo performance optimizations */
+  .site-logo {
+    contain: layout style paint;
+    will-change: transform;
+  }
+
+  .site-logo img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+  }
+
+  /* Logo loading state for better UX */
+  .site-logo img:not([src]) {
+    background: linear-gradient(90deg,
+      rgba(var(--gray-200-basis), 0.3) 25%,
+      rgba(var(--gray-100-basis), 0.5) 50%,
+      rgba(var(--gray-200-basis), 0.3) 75%);
+    background-size: 200% 100%;
+    animation: logoLoading 1.5s infinite;
+    border-radius: 4px;
+  }
+
+  @keyframes logoLoading {
+    0% {
+      background-position: 200% 0;
+    }
+    100% {
+      background-position: -200% 0;
+    }
+  }
+
+  /* Preload critical logo images */
+  .site-logo::before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    background-image:
+      url('/assets/Anscod_logo/Anscod_logo_light_mode_optimized.avif'),
+      url('/assets/Anscod_logo/Anscod_logo_dark_mode_optimized.avif');
+    opacity: 0;
+    pointer-events: none;
   }
 
   .theme-dark .light-logo {
@@ -565,6 +667,11 @@ const iconLinks: {
       height: 40px; /* Taille optimisée pour mobile */
     }
 
+    .site-logo img {
+      width: auto;
+      height: 40px;
+    }
+
     /* Hide desktop nav on mobile */
     .desktop-nav {
       display: none;
@@ -651,11 +758,19 @@ const iconLinks: {
     .site-logo {
       height: 42px; /* Taille intermédiaire pour les écrans moyens */
     }
+
+    .site-logo img {
+      height: 42px;
+    }
   }
 
   @media (max-width: 30em) {
     .site-logo {
       height: 36px; /* Réduit la taille du logo sur les petits écrans */
+    }
+
+    .site-logo img {
+      height: 36px;
     }
     .site-title {
       max-width: 65%; /* Réduit davantage la largeur sur les petits écrans */
@@ -684,6 +799,10 @@ const iconLinks: {
     /* 375px */
     .site-logo {
       height: 30px; /* Réduit encore plus la taille du logo */
+    }
+
+    .site-logo img {
+      height: 30px;
     }
     .site-title {
       max-width: 60%;
@@ -732,6 +851,10 @@ const iconLinks: {
     }
 
     .site-logo {
+      height: 2.5rem;
+    }
+
+    .site-logo img {
       height: 2.5rem;
     }
 
@@ -869,6 +992,10 @@ const iconLinks: {
       height: 2.75rem;
     }
 
+    .site-logo img {
+      height: 2.75rem;
+    }
+
     nav {
       padding: 0.5rem 2.5rem;
     }
@@ -876,6 +1003,10 @@ const iconLinks: {
 
   @media (min-width: 1280px) {
     .site-logo {
+      height: 3rem;
+    }
+
+    .site-logo img {
       height: 3rem;
     }
 

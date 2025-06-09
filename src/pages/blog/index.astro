@@ -204,27 +204,54 @@ const allTags = getAllTags();
         </p>
       </div>
 
-      <div class="flex flex-wrap gap-3 mb-12">
-        <button
-          class="filter-btn active px-4 py-2 rounded-full text-white font-medium transition-all duration-300 shadow-sm"
-          style="background: var(--accent-regular); box-shadow: var(--accent-soft-glow);"
-          data-tag="all"
-        >
-          All Topics
-        </button>
-        {
-          allTags.map((tag) => (
-            <button
-              class="filter-btn px-4 py-2 rounded-full bg-white/80 backdrop-blur-sm text-gray-800 dark:text-gray-200 font-medium border border-white/40 hover:border-accent-light/30 transition-all duration-300"
-              data-tag={tag}
-            >
-              {tag}
+      <div class="filter-controls mb-12">
+        <div class="flex flex-wrap gap-3 mb-6">
+          <button
+            class="filter-btn active px-4 py-2 rounded-full text-white font-medium transition-all duration-300 shadow-sm"
+            style="background: var(--accent-regular); box-shadow: var(--accent-soft-glow);"
+            data-tag="all"
+          >
+            All Topics
+          </button>
+          {
+            allTags.map((tag) => (
+              <button
+                class="filter-btn px-4 py-2 rounded-full bg-white/80 backdrop-blur-sm text-gray-800 dark:text-gray-200 font-medium border border-white/40 hover:border-accent-light/30 transition-all duration-300"
+                data-tag={tag}
+              >
+                {tag}
+              </button>
+            ))
+          }
+        </div>
+
+        <div class="flex items-center justify-between">
+          <div class="sort-controls flex gap-2">
+            <label class="text-sm font-medium text-gray-600 dark:text-gray-400">Sort by:</label>
+            <select id="sort-select" class="sort-select bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md px-3 py-1 text-sm">
+              <option value="date-desc">Newest First</option>
+              <option value="date-asc">Oldest First</option>
+              <option value="title-asc">Title A-Z</option>
+              <option value="title-desc">Title Z-A</option>
+            </select>
+          </div>
+
+          <div class="view-toggle flex gap-1 bg-gray-100 dark:bg-gray-800 rounded-lg p-1">
+            <button id="grid-view" class="view-btn active px-3 py-1 rounded-md text-sm font-medium transition-all">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/>
+              </svg>
             </button>
-          ))
-        }
+            <button id="masonry-view" class="view-btn px-3 py-1 rounded-md text-sm font-medium transition-all">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
+              </svg>
+            </button>
+          </div>
+        </div>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div id="posts-container" class="posts-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {
           remainingPosts.map((post) => (
             <article
@@ -532,17 +559,210 @@ const allTags = getAllTags();
   .btn-outline:hover {
     background: rgba(255, 255, 255, 0.1);
   }
+
+  /* Enhanced blog controls */
+  .filter-controls {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .sort-select {
+    transition: all 0.2s ease;
+  }
+
+  .sort-select:focus {
+    outline: none;
+    border-color: var(--accent-regular);
+    box-shadow: 0 0 0 3px rgba(118, 17, 166, 0.1);
+  }
+
+  .view-toggle {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .view-btn {
+    transition: all 0.2s ease;
+  }
+
+  .view-btn.active {
+    background: var(--accent-regular);
+    color: white;
+    box-shadow: 0 2px 4px rgba(118, 17, 166, 0.2);
+  }
+
+  .view-btn:hover:not(.active) {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  /* Masonry layout styles */
+  .posts-masonry .post-card {
+    break-inside: avoid;
+    margin-bottom: 2rem;
+    display: inline-block;
+    width: 100%;
+  }
+
+  /* Animation for filtered posts */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Enhanced card hover effects */
+  .post-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .post-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, var(--accent-regular), var(--accent-light));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+  }
+
+  .post-card:hover::before {
+    opacity: 0.05;
+  }
+
+  .post-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  }
+
+  .post-card:hover img {
+    transform: scale(1.05);
+  }
+
+  /* Responsive improvements */
+  @media (max-width: 768px) {
+    .filter-controls {
+      padding: 1rem;
+    }
+
+    .filter-controls .flex {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .view-toggle {
+      align-self: flex-start;
+    }
+
+    .posts-masonry {
+      columns: 1 !important;
+    }
+  }
 </style>
 
 <script>
-  // Filter functionality for post categories
+  // Enhanced blog functionality with filtering, sorting, and view modes
   document.addEventListener("DOMContentLoaded", () => {
     const filterButtons = document.querySelectorAll<HTMLElement>(".filter-btn");
     const postCards = document.querySelectorAll<HTMLElement>(".post-card");
+    const sortSelect = document.getElementById("sort-select") as HTMLSelectElement;
+    const postsContainer = document.getElementById("posts-container") as HTMLElement;
+    const gridViewBtn = document.getElementById("grid-view") as HTMLButtonElement;
+    const masonryViewBtn = document.getElementById("masonry-view") as HTMLButtonElement;
 
+    let currentFilter = "all";
+    let currentSort = "date-desc";
+    let currentView = "grid";
+
+    // Initialize posts array for sorting
+    const postsData = Array.from(postCards).map((card) => {
+      const titleElement = card.querySelector("h3 a");
+      const dateElement = card.querySelector("time");
+      return {
+        element: card,
+        title: titleElement?.textContent || "",
+        date: dateElement?.getAttribute("datetime") || "",
+        tags: card.getAttribute("data-tags") || ""
+      };
+    });
+
+    // Filter functionality
+    function filterPosts(tag: string) {
+      currentFilter = tag;
+      postsData.forEach(({ element, tags }) => {
+        const shouldShow = tag === "all" || tags.includes(tag);
+        element.style.display = shouldShow ? "block" : "none";
+
+        if (shouldShow) {
+          element.style.animation = "fadeInUp 0.3s ease-out";
+        }
+      });
+    }
+
+    // Sort functionality
+    function sortPosts(sortBy: string) {
+      currentSort = sortBy;
+      const sortedPosts = [...postsData].sort((a, b) => {
+        switch (sortBy) {
+          case "date-desc":
+            return new Date(b.date).getTime() - new Date(a.date).getTime();
+          case "date-asc":
+            return new Date(a.date).getTime() - new Date(b.date).getTime();
+          case "title-asc":
+            return a.title.localeCompare(b.title);
+          case "title-desc":
+            return b.title.localeCompare(a.title);
+          default:
+            return 0;
+        }
+      });
+
+      // Reorder DOM elements
+      sortedPosts.forEach(({ element }) => {
+        postsContainer.appendChild(element);
+      });
+
+      // Reapply current filter
+      filterPosts(currentFilter);
+    }
+
+    // View mode functionality
+    function setViewMode(mode: string) {
+      currentView = mode;
+
+      if (mode === "masonry") {
+        postsContainer.className = "posts-masonry columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8";
+        postsContainer.style.columnGap = "2rem";
+      } else {
+        postsContainer.className = "posts-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8";
+      }
+
+      // Update view toggle buttons
+      document.querySelectorAll(".view-btn").forEach(btn => {
+        btn.classList.remove("active", "bg-white", "dark:bg-gray-700", "text-gray-900", "dark:text-white");
+        btn.classList.add("text-gray-500", "dark:text-gray-400");
+      });
+
+      const activeBtn = mode === "grid" ? gridViewBtn : masonryViewBtn;
+      activeBtn.classList.add("active", "bg-white", "dark:bg-gray-700", "text-gray-900", "dark:text-white");
+      activeBtn.classList.remove("text-gray-500", "dark:text-gray-400");
+    }
+
+    // Event listeners
     filterButtons.forEach((button) => {
       button.addEventListener("click", () => {
-        // Remove active class from all buttons
+        // Update filter button states
         filterButtons.forEach((btn) => {
           btn.classList.remove("active");
           btn.style.background = "";
@@ -556,7 +776,6 @@ const allTags = getAllTags();
           );
         });
 
-        // Add active class to clicked button
         button.classList.add("active", "text-white");
         button.classList.remove(
           "bg-white/80",
@@ -569,37 +788,33 @@ const allTags = getAllTags();
         button.style.boxShadow = "var(--accent-soft-glow)";
 
         const tag = button.getAttribute("data-tag") || "";
-
-        // Show all posts if "All" is selected, otherwise filter
-        if (tag === "all") {
-          postCards.forEach((card) => {
-            card.style.display = "block";
-          });
-        } else {
-          postCards.forEach((card) => {
-            const cardTags = card.getAttribute("data-tags") || "";
-            if (cardTags && cardTags.indexOf(tag) !== -1) {
-              card.style.display = "block";
-            } else {
-              card.style.display = "none";
-            }
-          });
-        }
+        filterPosts(tag);
       });
     });
 
-    // Featured posts navigation (could be expanded with a carousel)
+    sortSelect.addEventListener("change", (e) => {
+      const target = e.target as HTMLSelectElement;
+      sortPosts(target.value);
+    });
+
+    gridViewBtn.addEventListener("click", () => setViewMode("grid"));
+    masonryViewBtn.addEventListener("click", () => setViewMode("masonry"));
+
+    // Featured posts navigation
     const prevButton = document.getElementById("prev-featured");
     const nextButton = document.getElementById("next-featured");
 
     if (prevButton && nextButton) {
       prevButton.addEventListener("click", () => {
-        // Implement previous slide functionality if needed
+        // Implement carousel functionality if needed
       });
 
       nextButton.addEventListener("click", () => {
-        // Implement next slide functionality if needed
+        // Implement carousel functionality if needed
       });
     }
+
+    // Initialize default view
+    setViewMode("grid");
   });
 </script>

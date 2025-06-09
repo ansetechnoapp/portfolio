@@ -52,10 +52,64 @@ export function getPostsByTag(tag) {
  */
 export function parsePostDates(post) {
   if (!post) return null;
-  
+
   return {
     ...post,
     pubDate: new Date(post.pubDate),
     updatedDate: post.updatedDate ? new Date(post.updatedDate) : undefined
   };
+}
+
+/**
+ * Get all unique categories from blog posts
+ * @returns {Array} Array of unique category strings
+ */
+export function getAllCategories() {
+  const categories = allPosts.flatMap(post => post.tags || []);
+  return [...new Set(categories)].sort();
+}
+
+/**
+ * Get related posts based on shared tags
+ * @param {Object} currentPost - The current post object
+ * @param {number} limit - Maximum number of related posts to return
+ * @returns {Array} Array of related post objects
+ */
+export function getRelatedPosts(currentPost, limit = 3) {
+  if (!currentPost || !currentPost.tags) return [];
+
+  const currentTags = currentPost.tags;
+  const otherPosts = allPosts.filter(post => post.slug !== currentPost.slug);
+
+  // Calculate relevance score based on shared tags
+  const postsWithScore = otherPosts.map(post => {
+    const postTags = post.tags || [];
+    const sharedTags = currentTags.filter(tag => postTags.includes(tag));
+    return {
+      ...post,
+      relevanceScore: sharedTags.length
+    };
+  });
+
+  // Sort by relevance score (descending) and then by date (newest first)
+  const sortedPosts = postsWithScore
+    .filter(post => post.relevanceScore > 0)
+    .sort((a, b) => {
+      if (a.relevanceScore !== b.relevanceScore) {
+        return b.relevanceScore - a.relevanceScore;
+      }
+      return new Date(b.pubDate).valueOf() - new Date(a.pubDate).valueOf();
+    });
+
+  // If we don't have enough related posts, fill with recent posts
+  if (sortedPosts.length < limit) {
+    const recentPosts = otherPosts
+      .filter(post => !sortedPosts.find(sp => sp.slug === post.slug))
+      .sort((a, b) => new Date(b.pubDate).valueOf() - new Date(a.pubDate).valueOf())
+      .slice(0, limit - sortedPosts.length);
+
+    sortedPosts.push(...recentPosts);
+  }
+
+  return sortedPosts.slice(0, limit).map(parsePostDates);
 }
