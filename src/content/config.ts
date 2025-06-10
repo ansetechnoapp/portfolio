@@ -15,6 +15,13 @@ export const collections = {
 			github: z.string().optional(),
 			liveDemo: z.string().optional(),
 			device: z.string().optional(),
+			// New case study fields
+			client: z.string().optional(),
+			services: z.array(z.string()).optional(),
+			projectType: z.string().optional(),
+			duration: z.string().optional(),
+			challenge: z.string().optional(),
+			solution: z.string().optional(),
 			additionalImages: z.array(z.object({
 				url: z.string(),
 				alt: z.string().optional(),

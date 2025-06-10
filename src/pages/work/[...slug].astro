@@ -61,6 +61,98 @@ const projectMetadata = {
         <h1 class="project-title">{entry.data.title}</h1>
         <p class="project-description">{entry.data.description}</p>
 
+         <!-- Enhanced Hero Image with Professional Mockup Context -->
+    <div class="project-showcase">
+      {
+        entry.data.img && (
+          <div class="main-image-container">
+            <div class="mockup-frame">
+              <div class="main-image">
+                <picture>
+                  {/* AVIF format */}
+                  <source
+                    type="image/avif"
+                    srcset={`${entry.data.img.replace(/\.(jpg|jpeg|png|gif)$/i, "_optimized.avif")} 1x, ${entry.data.img.replace(/\.(jpg|jpeg|png|gif)$/i, "_640w.avif")} 640w, ${entry.data.img.replace(/\.(jpg|jpeg|png|gif)$/i, "_1024w.avif")} 1024w`}
+                    sizes="(max-width: 768px) 100vw, 1200px"
+                  />
+                  {/* WebP format */}
+                  <source
+                    type="image/webp"
+                    srcset={`${entry.data.img.replace(/\.(jpg|jpeg|png|gif)$/i, "_optimized.webp")} 1x, ${entry.data.img.replace(/\.(jpg|jpeg|png|gif)$/i, "_640w.webp")} 640w, ${entry.data.img.replace(/\.(jpg|jpeg|png|gif)$/i, "_1024w.webp")} 1024w`}
+                    sizes="(max-width: 768px) 100vw, 1200px"
+                  />
+                  {/* Fallback format */}
+                  <img
+                    src={entry.data.img}
+                    alt={entry.data.img_alt || ""}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
+              </div>
+            </div>
+          </div>
+        )
+      }
+    </div>
+
+        <!-- Project Introduction & Details Section -->
+        <div class="project-intro-section">
+          <div class="intro-content">
+            <div class="project-overview">
+              <h2>Project Overview</h2>
+              <p class="overview-text">
+                {entry.data.description}
+              </p>
+            </div>
+
+            <div class="project-details-box">
+              <h3>Project Details</h3>
+              <div class="details-grid">
+                {entry.data.client && (
+                  <div class="detail-item">
+                    <span class="detail-label">Client:</span>
+                    <span class="detail-value">{entry.data.client}</span>
+                  </div>
+                )}
+                {entry.data.services && (
+                  <div class="detail-item">
+                    <span class="detail-label">Services:</span>
+                    <span class="detail-value">{entry.data.services.join(', ')}</span>
+                  </div>
+                )}
+                {entry.data.publishDate && (
+                  <div class="detail-item">
+                    <span class="detail-label">Date:</span>
+                    <span class="detail-value">{new Date(entry.data.publishDate).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}</span>
+                  </div>
+                )}
+                {entry.data.duration && (
+                  <div class="detail-item">
+                    <span class="detail-label">Duration:</span>
+                    <span class="detail-value">{entry.data.duration}</span>
+                  </div>
+                )}
+                {entry.data.projectType && (
+                  <div class="detail-item">
+                    <span class="detail-label">Type:</span>
+                    <span class="detail-value">{entry.data.projectType}</span>
+                  </div>
+                )}
+              </div>
+
+              <div class="tech-showcase">
+                <h4>Technologies Used</h4>
+                <div class="tech-pills">
+                  {entry.data.tech?.map((tech) => (
+                    <Pill>{tech}</Pill>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div class="meta-container">
           <div class="tags-container">
             <h3>Category</h3>
@@ -68,19 +160,6 @@ const projectMetadata = {
               {entry.data.tags.map((t) => <Pill>{t}</Pill>)}
             </div>
           </div>
-
-          {
-            entry.data.tech && (
-              <div class="tech-container">
-                <h3>Technologies</h3>
-                <div class="tech-list">
-                  {entry.data.tech.map((tech) => (
-                    <Pill>{tech}</Pill>
-                  ))}
-                </div>
-              </div>
-            )
-          }
         </div>
 
         <div class="cta-buttons">
@@ -131,35 +210,40 @@ const projectMetadata = {
       </div>
     </div>
 
-    <div class="project-showcase">
-      {
-        entry.data.img && (
-          <div class="main-image">
-            <picture>
-              {/* AVIF format */}
-              <source
-                type="image/avif"
-                srcset={`${entry.data.img.replace(/\.(jpg|jpeg|png|gif)$/i, "_optimized.avif")} 1x, ${entry.data.img.replace(/\.(jpg|jpeg|png|gif)$/i, "_640w.avif")} 640w, ${entry.data.img.replace(/\.(jpg|jpeg|png|gif)$/i, "_1024w.avif")} 1024w`}
-                sizes="(max-width: 768px) 100vw, 1200px"
-              />
-              {/* WebP format */}
-              <source
-                type="image/webp"
-                srcset={`${entry.data.img.replace(/\.(jpg|jpeg|png|gif)$/i, "_optimized.webp")} 1x, ${entry.data.img.replace(/\.(jpg|jpeg|png|gif)$/i, "_640w.webp")} 640w, ${entry.data.img.replace(/\.(jpg|jpeg|png|gif)$/i, "_1024w.webp")} 1024w`}
-                sizes="(max-width: 768px) 100vw, 1200px"
-              />
-              {/* Fallback format */}
-              <img
-                src={entry.data.img}
-                alt={entry.data.img_alt || ""}
-                loading="lazy"
-                decoding="async"
-              />
-            </picture>
-          </div>
-        )
-      }
-    </div>
+    <!-- Challenge & Solution Narrative Section -->
+    {(entry.data.challenge || entry.data.solution) && (
+      <div class="narrative-section">
+        <div class="narrative-container">
+          {entry.data.challenge && (
+            <div class="challenge-section">
+              <h2>
+                <svg class="section-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/>
+                </svg>
+                The Challenge
+              </h2>
+              <div class="narrative-content">
+                <p>{entry.data.challenge}</p>
+              </div>
+            </div>
+          )}
+
+          {entry.data.solution && (
+            <div class="solution-section">
+              <h2>
+                <svg class="section-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                The Solution
+              </h2>
+              <div class="narrative-content">
+                <p>{entry.data.solution}</p>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    )}
 
     <div class="project-content">
       <div class="content-wrapper">
@@ -167,24 +251,30 @@ const projectMetadata = {
           <div class="project-tabs">
             <!-- Tab Navigation -->
             <div class="tab-nav border-b border-gray-200 dark:border-gray-700 mb-6">
-              <nav class="flex space-x-8 overflow-x-auto">
-                <button class="tab-btn active py-3 px-1 border-b-2 border-indigo-500 text-indigo-600 dark:text-indigo-400 font-medium text-sm transition-colors duration-200" data-tab="overview">
-                  <svg class="w-4 h-4 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                  </svg>
-                  Project Overview
+              <nav class="tab-nav-container">
+                <button class="tab-btn active" data-tab="overview">
+                  <span class="tab-icon">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                  </span>
+                  <span class="tab-label">Project Overview</span>
                 </button>
-                <button class="tab-btn py-3 px-1 border-b-2 border-transparent text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 font-medium text-sm transition-colors duration-200" data-tab="features">
-                  <svg class="w-4 h-4 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  Key Features
+                <button class="tab-btn" data-tab="features">
+                  <span class="tab-icon">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </span>
+                  <span class="tab-label">Key Features</span>
                 </button>
-                <button class="tab-btn py-3 px-1 border-b-2 border-transparent text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 font-medium text-sm transition-colors duration-200" data-tab="technologies">
-                  <svg class="w-4 h-4 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                  </svg>
-                  Technologies Used
+                <button class="tab-btn" data-tab="technologies">
+                  <span class="tab-icon">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                    </svg>
+                  </span>
+                  <span class="tab-label">Technologies Used</span>
                 </button>
               </nav>
             </div>
@@ -249,10 +339,58 @@ const projectMetadata = {
       }
     </div>
 
-    <div class="next-section">
-      <h2>Interested in working together?</h2>
-      <ContactCTA />
+    <!-- Project Navigation -->
+    <div class="project-navigation">
+      <div class="nav-container">
+        <a href="/work/" class="nav-link all-projects">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 3h18v18H3zM9 9h6v6H9z"/>
+          </svg>
+          All Projects
+        </a>
+
+        <div class="nav-arrows">
+          <button class="nav-link prev-project" onclick="navigateToProject('prev')">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M15 18l-6-6 6-6"/>
+            </svg>
+            Previous Project
+          </button>
+
+          <button class="nav-link next-project" onclick="navigateToProject('next')">
+            Next Project
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 18l6-6-6-6"/>
+            </svg>
+          </button>
+        </div>
+      </div>
     </div>
+
+    <!-- Enhanced Call-to-Action Section -->
+    <div class="enhanced-cta-section">
+      <div class="cta-content">
+        <div class="cta-text">
+          <h2>Ready to Start Your Project?</h2>
+          <p>Let's discuss how I can help bring your ideas to life with modern web development solutions.</p>
+        </div>
+        <div class="cta-actions">
+          <a href="/portfolio/contact" class="cta-primary-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+            Get In Touch
+          </a>
+          <a href="/work/" class="cta-secondary-btn">
+            View More Projects
+          </a>
+        </div>
+      </div>
+    </div>
+
+
+    
   </div>
 </Layout>
 
@@ -285,7 +423,7 @@ const projectMetadata = {
   }
 
   .back-link:hover {
-    color: var(--accent);
+    color: var(--accent-regular);
   }
 
   .project-title {
@@ -352,7 +490,7 @@ const projectMetadata = {
   }
 
   .btn.primary {
-    background: var(--accent);
+    background: var(--accent-regular);
     color: var(--gray-999);
   }
 
@@ -504,7 +642,7 @@ const projectMetadata = {
   .content-wrapper :global(blockquote) {
     margin: 2rem 0;
     padding: 1.5rem 2rem;
-    border-left: 4px solid var(--accent);
+    border-left: 4px solid var(--accent-regular);
     background: var(--gray-900);
     border-radius: 0 0.5rem 0.5rem 0;
   }
@@ -563,27 +701,341 @@ const projectMetadata = {
     object-fit: cover;
   }
 
-  .next-section {
-    text-align: center;
-    padding: 5rem 0;
-    background: var(--gray-950);
-    border-radius: 1rem;
+  /* Project Introduction & Details Section */
+  .project-intro-section {
     margin: 3rem 0;
+    padding: 3rem 0;
+    border-top: 1px solid var(--gray-800);
+    /* border-bottom: 1px solid var(--gray-800); */
   }
 
-  .next-section h2 {
+  .intro-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .project-overview h2 {
     font-size: var(--text-xl);
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     color: var(--gray-100);
+  }
+
+  .overview-text {
+    font-size: var(--text-lg);
+    line-height: 1.7;
+    color: var(--gray-300);
+  }
+
+  .project-details-box {
+    background: var(--gray-950);
+    border: 1px solid var(--gray-800);
+    border-radius: 1rem;
+    padding: 2rem;
+    height: fit-content;
+  }
+
+  .project-details-box h3 {
+    font-size: var(--text-lg);
+    margin-bottom: 1.5rem;
+    color: var(--gray-100);
+    border-bottom: 2px solid var(--accent-regular);
+    padding-bottom: 0.5rem;
+  }
+
+  .details-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .detail-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--gray-800);
+  }
+
+  .detail-item:last-child {
+    border-bottom: none;
+  }
+
+  .detail-label {
+    font-weight: 600;
+    color: var(--gray-200);
+    font-size: var(--text-sm);
+  }
+
+  .detail-value {
+    color: var(--gray-300);
+    font-size: var(--text-sm);
+    text-align: right;
+    max-width: 60%;
+  }
+
+  .tech-showcase h4 {
+    font-size: var(--text-md);
+    margin-bottom: 1rem;
+    color: var(--gray-200);
+  }
+
+  .tech-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  /* Enhanced Hero Image with Mockup */
+  .main-image-container {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .mockup-frame {
+    position: relative;
+    padding: 2rem;
+    background: linear-gradient(135deg, var(--gray-900) 0%, var(--gray-950) 100%);
+    border-radius: 1.5rem;
+    box-shadow:
+      0 20px 40px -15px rgba(0, 0, 0, 0.4),
+      0 0 0 1px var(--gray-800);
+  }
+
+  .mockup-frame::before {
+    content: '';
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    right: 1rem;
+    height: 2rem;
+    background: var(--gray-800);
+    border-radius: 0.5rem 0.5rem 0 0;
+    border-bottom: 1px solid var(--gray-700);
+  }
+
+  .mockup-frame::after {
+    content: '';
+    position: absolute;
+    top: 1.5rem;
+    left: 1.5rem;
+    width: 0.75rem;
+    height: 0.75rem;
+    background: #ff5f57;
+    border-radius: 50%;
+    box-shadow:
+      1rem 0 0 #ffbd2e,
+      2rem 0 0 #28ca42;
+  }
+
+  /* Challenge & Solution Narrative */
+  .narrative-section {
+    margin: 4rem 0;
+    background: var(--gray-950);
+    border-radius: 1.5rem;
+    padding: 3rem;
+    border: 1px solid var(--gray-800);
+  }
+
+  .narrative-container {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    gap: 3rem;
+  }
+
+  .challenge-section,
+  .solution-section {
+    position: relative;
+  }
+
+  .challenge-section h2,
+  .solution-section h2 {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: var(--text-xl);
+    margin-bottom: 1.5rem;
+    color: var(--gray-100);
+  }
+
+  .section-icon {
+    color: var(--accent-regular);
+    flex-shrink: 0;
+  }
+
+  .narrative-content {
+    font-size: var(--text-lg);
+    line-height: 1.7;
+    color: var(--gray-300);
+  }
+
+  .challenge-section {
+    padding-left: 2rem;
+    border-left: 3px solid #ff6b6b;
+  }
+
+  .solution-section {
+    padding-left: 2rem;
+    border-left: 3px solid #51cf66;
+  }
+
+  /* Project Navigation */
+  .project-navigation {
+    margin: 4rem 0 2rem;
+    padding: 2rem 0;
+    border-top: 1px solid var(--gray-800);
+  }
+
+  .nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .nav-arrows {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border: 1px solid var(--gray-700);
+    border-radius: 0.5rem;
+    color: var(--gray-300);
+    text-decoration: none;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: var(--text-sm);
+  }
+
+  .nav-link:hover {
+    border-color: var(--accent-regular);
+    color: var(--accent-regular);
+    background: var(--gray-900);
+  }
+
+  /* Enhanced CTA Section */
+  .enhanced-cta-section {
+    margin: 3rem 0;
+    background: linear-gradient(135deg, var(--accent-dark) 0%, var(--accent-regular) 100%);
+    border-radius: 1.5rem;
+    padding: 4rem 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .enhanced-cta-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    opacity: 0.1;
+  }
+
+  .cta-content {
+    position: relative;
+    z-index: 1;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .cta-text h2 {
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    margin-bottom: 1rem;
+    color: white;
+    font-weight: 700;
+  }
+
+  .cta-text p {
+    font-size: var(--text-lg);
+    margin-bottom: 2rem;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
+  }
+
+  .cta-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .cta-primary-btn,
+  .cta-secondary-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    font-size: var(--text-md);
+  }
+
+  .cta-primary-btn {
+    background: white;
+    color: var(--accent-dark);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  .cta-primary-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  .cta-secondary-btn {
+    background: transparent;
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .cta-secondary-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: white;
   }
 
   @media (min-width: 768px) {
     .meta-container {
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
     }
 
     .project-header {
       padding: 4rem 0 3rem;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .intro-content {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .project-details-box {
+      order: -1;
+    }
+
+    .narrative-section {
+      padding: 2rem;
+    }
+
+    .enhanced-cta-section {
+      padding: 3rem 2rem;
     }
   }
 
@@ -600,6 +1052,49 @@ const projectMetadata = {
 
     .project-header {
       padding: 1rem 0 2rem;
+    }
+
+    .project-intro-section {
+      padding: 2rem 0;
+    }
+
+    .mockup-frame {
+      padding: 1rem;
+    }
+
+    .mockup-frame::before {
+      height: 1.5rem;
+    }
+
+    .narrative-container {
+      gap: 2rem;
+    }
+
+    .challenge-section,
+    .solution-section {
+      padding-left: 1rem;
+    }
+
+    .nav-container {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .nav-arrows {
+      width: 100%;
+      justify-content: space-between;
+    }
+
+    .cta-actions {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .cta-primary-btn,
+    .cta-secondary-btn {
+      width: 100%;
+      max-width: 300px;
+      justify-content: center;
     }
   }
 
@@ -698,16 +1193,61 @@ const projectMetadata = {
   .tab-nav {
     border-bottom: 2px solid var(--gray-800);
     margin-bottom: 2rem;
+    position: relative;
+  }
+
+  .tab-nav-container {
+    display: flex;
+    gap: 2.5rem; /* Increased from 2rem for better visual separation */
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding-bottom: 1px; /* Prevent border cutoff */
+  }
+
+  .tab-nav-container::-webkit-scrollbar {
+    display: none;
   }
 
   .tab-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 0.25rem;
+    border: none;
+    background: none;
+    border-bottom: 2px solid transparent;
     cursor: pointer;
     white-space: nowrap;
     transition: all 0.2s ease;
+    font-medium: 500;
+    font-size: 0.875rem;
+    color: var(--gray-500);
+    min-height: 44px; /* Touch target */
+    position: relative;
+  }
+
+  .tab-btn.active {
+    border-bottom-color: var(--accent-regular);
+    color: var(--accent-regular);
   }
 
   .tab-btn:hover:not(.active) {
-    border-color: var(--gray-600);
+    color: var(--gray-300);
+    border-bottom-color: var(--gray-600);
+  }
+
+  .tab-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .tab-label {
+    flex-shrink: 0;
   }
 
   .tab-panel {
@@ -717,6 +1257,82 @@ const projectMetadata = {
   @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Mobile-specific tab styles */
+  @media (max-width: 768px) {
+    .tab-nav-container {
+      padding: 0 1rem;
+      margin: 0 -1rem;
+    }
+
+    .tab-btn {
+      padding: 1rem 0.5rem;
+      font-size: 0.8rem;
+      min-width: auto;
+      flex-direction: column;
+      gap: 0.25rem;
+      text-align: center;
+    }
+
+    .tab-icon {
+      margin-bottom: 0.125rem;
+    }
+
+    .tab-label {
+      line-height: 1.2;
+      max-width: 80px;
+      word-wrap: break-word;
+      hyphens: auto;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .tab-nav-container {
+      /* gap: 0.75rem;  */
+      padding: 0 0.75rem;
+      margin: 0 -0.75rem;
+    }
+
+    .tab-btn {
+      padding: 0.875rem 0.375rem;
+      font-size: 0.75rem;
+      min-width: 70px;
+    }
+
+    .tab-label {
+      max-width: 60px;
+      font-size: 0.7rem;
+    }
+
+    .tab-icon svg {
+      width: 14px;
+      height: 14px;
+    }
+  }
+
+  /* Scroll indicators for mobile */
+  @media (max-width: 768px) {
+    .tab-nav::before,
+    .tab-nav::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 20px;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .tab-nav::before {
+      left: 0;
+      background: linear-gradient(to right, var(--gray-999), transparent);
+    }
+
+    .tab-nav::after {
+      right: 0;
+      background: linear-gradient(to left, var(--gray-999), transparent);
+    }
   }
 </style>
 
@@ -761,6 +1377,40 @@ const projectMetadata = {
   // Make function globally available
   window.shareProject = shareProject;
 
+  // Project navigation functionality
+  async function navigateToProject(direction) {
+    try {
+      // Get all projects
+      const response = await fetch('/api/projects');
+      const projects = await response.json();
+
+      // Find current project index
+      const currentSlug = window.location.pathname.split('/').pop();
+      const currentIndex = projects.findIndex(p => p.slug === currentSlug);
+
+      if (currentIndex === -1) return;
+
+      let targetIndex;
+      if (direction === 'next') {
+        targetIndex = currentIndex + 1 >= projects.length ? 0 : currentIndex + 1;
+      } else {
+        targetIndex = currentIndex - 1 < 0 ? projects.length - 1 : currentIndex - 1;
+      }
+
+      const targetProject = projects[targetIndex];
+      if (targetProject) {
+        window.location.href = `/work/${targetProject.slug}`;
+      }
+    } catch (error) {
+      console.error('Navigation error:', error);
+      // Fallback to projects page
+      window.location.href = '/work/';
+    }
+  }
+
+  // Make navigation function globally available
+  window.navigateToProject = navigateToProject;
+
   // Tab functionality
   document.addEventListener('DOMContentLoaded', () => {
     const tabButtons = document.querySelectorAll('.tab-btn');
@@ -772,13 +1422,11 @@ const projectMetadata = {
 
         // Remove active class from all buttons
         tabButtons.forEach(btn => {
-          btn.classList.remove('active', 'border-indigo-500', 'text-indigo-600', 'dark:text-indigo-400');
-          btn.classList.add('border-transparent', 'text-gray-500', 'hover:text-gray-700', 'dark:text-gray-400', 'dark:hover:text-gray-200');
+          btn.classList.remove('active');
         });
 
         // Add active class to clicked button
-        button.classList.add('active', 'border-indigo-500', 'text-indigo-600', 'dark:text-indigo-400');
-        button.classList.remove('border-transparent', 'text-gray-500', 'hover:text-gray-700', 'dark:text-gray-400', 'dark:hover:text-gray-200');
+        button.classList.add('active');
 
         // Hide all tab panels
         tabPanels.forEach(panel => {
@@ -792,8 +1440,33 @@ const projectMetadata = {
           targetPanel.classList.remove('hidden');
           targetPanel.classList.add('active');
         }
+
+        // Scroll the active tab into view on mobile
+        if (window.innerWidth <= 768) {
+          button.scrollIntoView({
+            behavior: 'smooth',
+            block: 'nearest',
+            inline: 'center'
+          });
+        }
       });
     });
+
+    // Add touch-friendly scroll behavior for mobile
+    const tabNavContainer = document.querySelector('.tab-nav-container');
+    if (tabNavContainer && window.innerWidth <= 768) {
+      let isScrolling = false;
+
+      tabNavContainer.addEventListener('scroll', () => {
+        if (!isScrolling) {
+          window.requestAnimationFrame(() => {
+            // Update scroll indicators if needed
+            isScrolling = false;
+          });
+          isScrolling = true;
+        }
+      });
+    }
   });
 </script>
 </style>

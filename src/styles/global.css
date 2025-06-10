@@ -738,6 +738,16 @@ section {
   }
 }
 
+/* Utility classes for scrollbar hiding */
+.scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
 /* Utilitaires pour améliorer l'ergonomie sur appareils tactiles */
 @media (max-width: 1024px) {
   .touch-target {
