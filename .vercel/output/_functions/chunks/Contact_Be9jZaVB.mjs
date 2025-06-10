@@ -1,7 +1,22 @@
-import { a as createComponent, m as maybeRenderHead, e as renderScript, d as renderTemplate } from './astro/server_De9sfnmM.mjs';
+import { c as createAstro, a as createComponent, m as maybeRenderHead, b as addAttribute, r as renderSlot, d as renderTemplate, e as renderComponent, f as renderScript } from './astro/server_ZODBcONi.mjs';
 import 'kleur/colors';
 import 'clsx';
 /* empty css                         */
+import { I as Icon } from './Layout_B_Ak2Euc.mjs';
+
+const $$Astro = createAstro("https://zoddev.site/");
+const $$CallToAction = createComponent(($$result, $$props, $$slots) => {
+  const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
+  Astro2.self = $$CallToAction;
+  const { href } = Astro2.props;
+  return renderTemplate`${maybeRenderHead()}<a${addAttribute(href, "href")} data-astro-cid-balv45lp>${renderSlot($$result, $$slots["default"])}</a> `;
+}, "C:/Users/kevin/Allproject/portfolio/src/components/CallToAction.astro", void 0);
+
+const $$ContactCTA = createComponent(($$result, $$props, $$slots) => {
+  return renderTemplate`${maybeRenderHead()}<aside class="contact-container" data-astro-cid-rcdzuq3a> <div class="content-wrapper" data-astro-cid-rcdzuq3a> <div class="text-section" data-astro-cid-rcdzuq3a> <h2 data-astro-cid-rcdzuq3a>Let's create something amazing together</h2> <p data-astro-cid-rcdzuq3a>Ready to discuss your next project? I'm just a message away.</p> </div> <div class="cta-section" data-astro-cid-rcdzuq3a> <div class="primary-cta" data-astro-cid-rcdzuq3a> ${renderComponent($$result, "CallToAction", $$CallToAction, { "href": "mailto:me@example.com", "data-astro-cid-rcdzuq3a": true }, { "default": ($$result2) => renderTemplate`
+Send Me a Message
+${renderComponent($$result2, "Icon", Icon, { "icon": "paper-plane-tilt", "size": "1.2em", "data-astro-cid-rcdzuq3a": true })} ` })} </div> <div class="social-links" data-astro-cid-rcdzuq3a> <a href="#" aria-label="LinkedIn" data-astro-cid-rcdzuq3a> ${renderComponent($$result, "Icon", Icon, { "icon": "linkedin-logo", "size": "1.5em", "data-astro-cid-rcdzuq3a": true })} </a> <a href="#" aria-label="GitHub" data-astro-cid-rcdzuq3a> ${renderComponent($$result, "Icon", Icon, { "icon": "github-logo", "size": "1.5em", "data-astro-cid-rcdzuq3a": true })} </a> <a href="#" aria-label="Twitter" data-astro-cid-rcdzuq3a> ${renderComponent($$result, "Icon", Icon, { "icon": "twitter-logo", "size": "1.5em", "data-astro-cid-rcdzuq3a": true })} </a> </div> </div> </div> </aside> `;
+}, "C:/Users/kevin/Allproject/portfolio/src/components/ContactCTA.astro", void 0);
 
 const $$Contact = createComponent(($$result, $$props, $$slots) => {
   return renderTemplate`${maybeRenderHead()}<section id="contact" class="py-16 md:py-24 c1" data-astro-cid-xmivup5a> <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8" data-astro-cid-xmivup5a> <div class="text-center mb-16" data-astro-cid-xmivup5a> <h2 class="text-3xl md:text-4xl font-bold mb-4" data-astro-cid-xmivup5a>
@@ -25,4 +40,4 @@ Your message has been sent successfully! We'll get back to you soon.
 </div> </form> </div> </div> </div> </section>  ${renderScript($$result, "C:/Users/kevin/Allproject/portfolio/src/components/Contact.astro?astro&type=script&index=0&lang.ts")}`;
 }, "C:/Users/kevin/Allproject/portfolio/src/components/Contact.astro", void 0);
 
-export { $$Contact as $ };
+export { $$ContactCTA as $, $$Contact as a, $$CallToAction as b };

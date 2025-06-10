@@ -3,12 +3,9 @@ import { Traverse } from 'neotraverse/modern';
 import pLimit from 'p-limit';
 import { r as removeBase, i as isRemotePath, p as prependForwardSlash } from './path_Cvt6sEOY.mjs';
 import { V as VALID_INPUT_FORMATS } from './consts_BmVDRGlB.mjs';
-import { A as AstroError, U as UnknownContentCollectionError, a as createComponent, k as RenderUndefinedEntryError, u as unescapeHTML, d as renderTemplate, l as renderUniqueStylesheet, n as renderScriptElement, o as createHeadAndContent, f as renderComponent, c as createAstro, m as maybeRenderHead, b as addAttribute, r as renderSlot } from './astro/server_De9sfnmM.mjs';
+import { A as AstroError, U as UnknownContentCollectionError, a as createComponent, k as RenderUndefinedEntryError, u as unescapeHTML, d as renderTemplate, l as renderUniqueStylesheet, n as renderScriptElement, o as createHeadAndContent, e as renderComponent } from './astro/server_ZODBcONi.mjs';
 import 'kleur/colors';
 import * as devalue from 'devalue';
-import 'clsx';
-/* empty css                         */
-import { I as Icon } from './Layout_DmUFuqmQ.mjs';
 
 const CONTENT_IMAGE_FLAG = "astroContentImageFlag";
 const IMAGE_IMPORT_PREFIX = "__ASTRO_IMAGE_";
@@ -68,7 +65,7 @@ class ImmutableDataStore {
    */
   static async fromModule() {
     try {
-      const data = await import('./_astro_data-layer-content_n0LAB89q.mjs');
+      const data = await import('./_astro_data-layer-content_J3TMVwyA.mjs');
       if (data.default instanceof Map) {
         return ImmutableDataStore.fromMap(data.default);
       }
@@ -215,7 +212,7 @@ const CONTENT_LAYER_IMAGE_REGEX = /__ASTRO_IMAGE_="([^"]+)"/g;
 async function updateImageReferencesInBody(html, fileName) {
   const { default: imageAssetMap } = await import('./content-assets_DleWbedO.mjs');
   const imageObjects = /* @__PURE__ */ new Map();
-  const { getImage } = await import('./_astro_assets_Mp44EC_v.mjs').then(n => n._);
+  const { getImage } = await import('./_astro_assets_DNQXPoTA.mjs').then(n => n._);
   for (const [_full, imagePath] of html.matchAll(CONTENT_LAYER_IMAGE_REGEX)) {
     try {
       const decodedImagePath = JSON.parse(imagePath.replaceAll("&#x22;", '"'));
@@ -421,18 +418,4 @@ const getCollection = createGetCollection({
 	cacheEntriesByCollection,
 });
 
-const $$Astro = createAstro("https://zoddev.site/");
-const $$CallToAction = createComponent(($$result, $$props, $$slots) => {
-  const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
-  Astro2.self = $$CallToAction;
-  const { href } = Astro2.props;
-  return renderTemplate`${maybeRenderHead()}<a${addAttribute(href, "href")} data-astro-cid-balv45lp>${renderSlot($$result, $$slots["default"])}</a> `;
-}, "C:/Users/kevin/Allproject/portfolio/src/components/CallToAction.astro", void 0);
-
-const $$ContactCTA = createComponent(($$result, $$props, $$slots) => {
-  return renderTemplate`${maybeRenderHead()}<aside class="contact-container" data-astro-cid-rcdzuq3a> <div class="content-wrapper" data-astro-cid-rcdzuq3a> <div class="text-section" data-astro-cid-rcdzuq3a> <h2 data-astro-cid-rcdzuq3a>Let's create something amazing together</h2> <p data-astro-cid-rcdzuq3a>Ready to discuss your next project? I'm just a message away.</p> </div> <div class="cta-section" data-astro-cid-rcdzuq3a> <div class="primary-cta" data-astro-cid-rcdzuq3a> ${renderComponent($$result, "CallToAction", $$CallToAction, { "href": "mailto:me@example.com", "data-astro-cid-rcdzuq3a": true }, { "default": ($$result2) => renderTemplate`
-Send Me a Message
-${renderComponent($$result2, "Icon", Icon, { "icon": "paper-plane-tilt", "size": "1.2em", "data-astro-cid-rcdzuq3a": true })} ` })} </div> <div class="social-links" data-astro-cid-rcdzuq3a> <a href="#" aria-label="LinkedIn" data-astro-cid-rcdzuq3a> ${renderComponent($$result, "Icon", Icon, { "icon": "linkedin-logo", "size": "1.5em", "data-astro-cid-rcdzuq3a": true })} </a> <a href="#" aria-label="GitHub" data-astro-cid-rcdzuq3a> ${renderComponent($$result, "Icon", Icon, { "icon": "github-logo", "size": "1.5em", "data-astro-cid-rcdzuq3a": true })} </a> <a href="#" aria-label="Twitter" data-astro-cid-rcdzuq3a> ${renderComponent($$result, "Icon", Icon, { "icon": "twitter-logo", "size": "1.5em", "data-astro-cid-rcdzuq3a": true })} </a> </div> </div> </div> </aside> `;
-}, "C:/Users/kevin/Allproject/portfolio/src/components/ContactCTA.astro", void 0);
-
-export { $$ContactCTA as $, $$CallToAction as a, getCollection as g };
+export { getCollection as g };
