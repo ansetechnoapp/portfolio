@@ -54,15 +54,19 @@ const { namepage } = Astro.props;
     background-color: var(--accent-regular);
     color: var(--accent-text-over);
   }
-
-  /* Styles pour MenuLinks React component */
-  .menu-link-nav .menu-links-container {
-    display: flex;
-    flex-direction: row; /* Horizontal sur mobile */
+  /* Styles pour MenuLinks React component - Base styles */
+  :global(.menu-links-container) {
+    display: flex !important;
+    flex-direction: row;
     gap: 0.5rem;
     list-style: none;
     margin: 0;
     padding: 0;
+    transition:
+      flex-direction var(--theme-transition),
+      gap var(--theme-transition),
+      justify-content var(--theme-transition),
+      align-items var(--theme-transition);
   }
 
   .menu-link-nav .menu-link-item {
@@ -72,10 +76,15 @@ const { namepage } = Astro.props;
     border-radius: 0.75rem;
     backdrop-filter: blur(15px);
     color: var(--gray-300);
+    text-decoration: none;
+    /* Enhanced transitions for smooth responsive behavior */
     transition:
       color var(--theme-transition),
-      background-color var(--theme-transition);
-    text-decoration: none;
+      background-color var(--theme-transition),
+      padding var(--theme-transition),
+      min-width var(--theme-transition),
+      min-height var(--theme-transition),
+      width var(--theme-transition);
   }
 
   .menu-link-nav .menu-link-item:hover {
@@ -86,7 +95,28 @@ const { namepage } = Astro.props;
     background-color: var(--accent-regular);
     color: var(--accent-text-over);
   }
-  @media (min-width: 48em) {
+
+  /* Mobile styles (screens < 768px) - Explicit mobile rules for clarity */
+  @media (max-width: 767px) {
+    :global(.menu-links-container) {
+      flex-direction: row;
+      gap: 0.5rem;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .menu-link-nav .menu-link-item {
+      padding: 0.5rem;
+      min-width: 44px; /* Ensure touch-friendly minimum size */
+      min-height: 44px; /* Ensure touch-friendly minimum size */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  /* Desktop styles (screens ≥ 768px) */
+  @media (min-width: 768px) {
     .menu-link-nav {
       background: #ead5f285;
       padding: 1.7rem 0rem 1.7rem 0rem;
@@ -122,14 +152,15 @@ const { namepage } = Astro.props;
       /* code dans ./styles/style.css */
     }
 
-    /* Styles pour MenuLinks React component sur desktop */
-    .menu-link-nav .menu-links-container {
-      flex-direction: column; /* Vertical sur desktop */
-      gap: 1rem;
-    }
-
-    .menu-link-nav .menu-link-item {
-      padding: 0.5rem 1rem;
+    /* Styles for MenuLinks React component on desktop (screens ≥ 768px) */
+    @media (min-width: 768px) {
+      :global(.menu-links-container) {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: center;
+        justify-content: flex-start;
+        width: 100%;
+      }
     }
   }
 </style>
