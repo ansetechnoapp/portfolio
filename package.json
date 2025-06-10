@@ -4,7 +4,8 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "build": "node scripts/auto-optimize-images.js && astro build",
+    "build": "astro build",
+    "build:with-images": "node scripts/auto-optimize-images.js && astro build",
     "build:only": "astro build",
     "preview": "astro preview",
     "astro": "astro",
@@ -15,7 +16,8 @@
     "generate-sitemap": "node scripts/enhanced-sitemap-generator.js",
     "optimize-links": "node scripts/internal-linking-optimizer.js",
     "seo-full": "node scripts/comprehensive-seo-audit.js && node scripts/enhanced-sitemap-generator.js && node scripts/internal-linking-optimizer.js",
-    "pre-deploy": "npm run optimize-images && npm run generate-sitemap && npm run seo-audit"
+    "pre-deploy": "npm run optimize-images && npm run generate-sitemap && npm run seo-audit",
+    "deploy-check": "node scripts/vercel-deploy.js"
   },
   "dependencies": {
     "@astrojs/react": "^4.3.0",

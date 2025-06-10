@@ -1,10 +1,10 @@
 /* empty css                                     */
-import { c as createAstro, a as createComponent, e as renderComponent, f as renderScript, d as renderTemplate, m as maybeRenderHead } from '../../chunks/astro/server_ZODBcONi.mjs';
+import { c as createAstro, a as createComponent, f as renderComponent, e as renderScript, d as renderTemplate, m as maybeRenderHead } from '../../chunks/astro/server_De9sfnmM.mjs';
 import 'kleur/colors';
-import { a as $$Layout } from '../../chunks/Layout_DaFi6nHl.mjs';
+import { $ as $$Layout } from '../../chunks/Layout_DmUFuqmQ.mjs';
 import { jsxs, jsx, Fragment } from 'react/jsx-runtime';
 import { useState, useEffect } from 'react';
-import { s as supabase } from '../../chunks/supabase_B2xMZoNq.mjs';
+import { s as supabase } from '../../chunks/supabase_tVI8Tn2x.mjs';
 export { renderers } from '../../renderers.mjs';
 
 function WorkspaceManager() {

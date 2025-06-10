@@ -145,7 +145,7 @@ const {
     <style>
       :root {
         --_placeholder-bg: linear-gradient(transparent, transparent);
-        --bg-image-main: url("/assets/backgrounds/bg-main-light-800w.jpg");
+        --bg-image-main: url("/assets/backgrounds/bg-main-light-800w_optimized.webp");
         --bg-image-main-curves: url("/assets/backgrounds/bg-main-light.svg");
         --bg-image-subtle-1: var(--_placeholder-bg);
         --bg-image-subtle-2: var(--_placeholder-bg);
@@ -159,7 +159,7 @@ const {
       }
 
       :root.theme-dark {
-        --bg-image-main: url("/assets/backgrounds/bg-main-dark-800w.jpg");
+        --bg-image-main: url("/assets/backgrounds/bg-main-dark-800w_optimized.webp");
         --bg-image-main-curves: url("/assets/backgrounds/bg-main-dark.svg");
         --bg-svg-blend-mode: darken;
         --bg-blend-mode: lighten;
@@ -168,23 +168,23 @@ const {
       /* These backgrounds are displayed below the fold, so we lazy load them
          once the `.loaded` class has been set.  */
       :root.loaded {
-        --bg-image-subtle-1: url("/assets/backgrounds/bg-subtle-1-light-800w.jpg");
-        --bg-image-subtle-2: url("/assets/backgrounds/bg-subtle-2-light-800w.jpg");
-        --bg-image-footer: url("/assets/backgrounds/bg-footer-light-800w.jpg");
+        --bg-image-subtle-1: url("/assets/backgrounds/bg-subtle-1-light-800w_optimized.webp");
+        --bg-image-subtle-2: url("/assets/backgrounds/bg-subtle-2-light-800w_optimized.webp");
+        --bg-image-footer: url("/assets/backgrounds/bg-footer-light-800w_optimized.webp");
       }
       :root.loaded.theme-dark {
-        --bg-image-subtle-1: url("/assets/backgrounds/bg-subtle-1-dark-800w.jpg");
-        --bg-image-subtle-2: url("/assets/backgrounds/bg-subtle-2-dark-800w.jpg");
-        --bg-image-footer: url("/assets/backgrounds/bg-footer-dark-800w.jpg");
+        --bg-image-subtle-1: url("/assets/backgrounds/bg-subtle-1-dark-800w_optimized.webp");
+        --bg-image-subtle-2: url("/assets/backgrounds/bg-subtle-2-dark-800w_optimized.webp");
+        --bg-image-footer: url("/assets/backgrounds/bg-footer-dark-800w_optimized.webp");
       }
 
       @media (min-width: 48em) {
         :root {
           --bg-scale: 1;
-          --bg-image-main: url("/assets/backgrounds/bg-main-light-1440w.jpg");
+          --bg-image-main: url("/assets/backgrounds/bg-main-light-1440w_optimized.webp");
         }
         :root.theme-dark {
-          --bg-image-main: url("/assets/backgrounds/bg-main-dark-1440w.jpg");
+          --bg-image-main: url("/assets/backgrounds/bg-main-dark-1440w_optimized.webp");
         }
 
         :root.loaded {

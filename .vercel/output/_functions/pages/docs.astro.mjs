@@ -1,8 +1,8 @@
 /* empty css                                  */
-import { a as createComponent, e as renderComponent, d as renderTemplate, m as maybeRenderHead, F as Fragment, b as addAttribute } from '../chunks/astro/server_ZODBcONi.mjs';
+import { a as createComponent, f as renderComponent, d as renderTemplate, m as maybeRenderHead, F as Fragment, b as addAttribute } from '../chunks/astro/server_De9sfnmM.mjs';
 import 'kleur/colors';
-import { a as $$Layout } from '../chunks/Layout_DaFi6nHl.mjs';
-import { s as supabase } from '../chunks/supabase_B2xMZoNq.mjs';
+import { $ as $$Layout } from '../chunks/Layout_DmUFuqmQ.mjs';
+import { s as supabase } from '../chunks/supabase_tVI8Tn2x.mjs';
 export { renderers } from '../renderers.mjs';
 
 const $$Index = createComponent(async ($$result, $$props, $$slots) => {
@@ -20,7 +20,7 @@ const $$Index = createComponent(async ($$result, $$props, $$slots) => {
   return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": "Documentation Platform", "description": "Create, collaborate, and share documentation for your projects" }, { "default": async ($$result2) => renderTemplate` ${maybeRenderHead()}<main class="container mx-auto px-4 py-8"> <section class="text-center py-16 bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-lg mb-12"> <h1 class="text-4xl md:text-5xl font-bold mb-4">
 Documentation Platform
 </h1> <p class="text-xl md:text-2xl max-w-3xl mx-auto mb-8">
-Create, collaborate, and share documentation for your projects
+Create, collaborate, and share documentation for your projectss
 </p> <div class="flex flex-col sm:flex-row gap-4 justify-center"> ${isLoggedIn ? renderTemplate`<a href="/docs/dashboard" class="bg-white text-indigo-600 hover:bg-gray-100 px-6 py-3 rounded-md font-medium text-lg">
 Go to Dashboard
 </a>` : renderTemplate`${renderComponent($$result2, "Fragment", Fragment, {}, { "default": async ($$result3) => renderTemplate` <a href="/docs/login" class="bg-white text-indigo-600 hover:bg-gray-100 px-6 py-3 rounded-md font-medium text-lg">

@@ -6,7 +6,11 @@ import vercel from '@astrojs/vercel';
 
 export default defineConfig({
   output: 'server',
-  adapter: vercel(),
+  adapter: vercel({
+    webAnalytics: {
+      enabled: true
+    }
+  }),
   site: 'https://zoddev.site/',
   vite: {
     build: {
@@ -14,6 +18,9 @@ export default defineConfig({
         external: ['airtable'],
       },
     },
+    ssr: {
+      noExternal: ['@supabase/supabase-js']
+    }
   },
   image: {
     service: {

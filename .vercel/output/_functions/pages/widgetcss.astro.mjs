@@ -1,16 +1,16 @@
 /* empty css                                  */
-import { c as createAstro, a as createComponent, e as renderComponent, d as renderTemplate, m as maybeRenderHead } from '../chunks/astro/server_ZODBcONi.mjs';
+import { c as createAstro, a as createComponent, f as renderComponent, d as renderTemplate, m as maybeRenderHead } from '../chunks/astro/server_De9sfnmM.mjs';
 import 'kleur/colors';
-import { g as getCollection, $ as $$ContactCTA } from '../chunks/ContactCTA_CSqqytd2.mjs';
-import { d as dataUser, a as $$Layout } from '../chunks/Layout_DaFi6nHl.mjs';
+import { g as getCollection, $ as $$ContactCTA } from '../chunks/ContactCTA_C5FgXEm4.mjs';
+import { d as dataUser, $ as $$Layout } from '../chunks/Layout_DmUFuqmQ.mjs';
 import { jsxs, jsx } from 'react/jsx-runtime';
 import 'react';
 import { C as Card, a as CardHeader, b as CardTitle, d as CardContent, e as CardFooter } from '../chunks/card_BYgLF5Uw.mjs';
 import { B as Button } from '../chunks/button_DWgDRuZ-.mjs';
-import { $ as $$Hero } from '../chunks/Hero_BCIddlms.mjs';
-import { $ as $$Grid } from '../chunks/Grid_CbTgabAQ.mjs';
-import { $ as $$Contact } from '../chunks/Contact_BClgRuV2.mjs';
-import { $ as $$MenuLinkNav } from '../chunks/menuLinkNav_EAr8YSfk.mjs';
+import { $ as $$Hero } from '../chunks/Hero_B86cF9wg.mjs';
+import { $ as $$Grid } from '../chunks/Grid_Ddw0QHNF.mjs';
+import { $ as $$Contact } from '../chunks/Contact_druglWye.mjs';
+import { $ as $$MenuLinkNav } from '../chunks/menuLinkNav_0kR2n5qk.mjs';
 /* empty css                                     */
 export { renderers } from '../renderers.mjs';
 
@@ -37,7 +37,7 @@ const $$WidgetCss = createComponent(async ($$result, $$props, $$slots) => {
     LayoutTitle = `My Work | ${dataUser.firstName} ${dataUser.lastName}`,
     descriptionLayout = `Learn about ${dataUser.firstName} ${dataUser.lastName}'s most recent projects`
   } = Astro2.props;
-  return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": LayoutTitle, "description": descriptionLayout, "image": "/assets/social-preview.jpg", "type": "website", "data-astro-cid-t3heoqpw": true }, { "default": async ($$result2) => renderTemplate` ${renderComponent($$result2, "MenuLinkNav", $$MenuLinkNav, { "namepage": "work", "data-astro-cid-t3heoqpw": true })} ${maybeRenderHead()}<section class="presentation-section mt-16" data-astro-cid-t3heoqpw> <div class="wrapper" data-astro-cid-t3heoqpw> <div class="presentation-content" data-astro-cid-t3heoqpw> <h1 data-astro-cid-t3heoqpw>CSS Widgets & Tools</h1> <p data-astro-cid-t3heoqpw>
+  return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": LayoutTitle, "description": descriptionLayout, "image": "/assets/social-preview.jpg", "type": "website", "data-astro-cid-t3heoqpw": true }, { "default": async ($$result2) => renderTemplate` ${renderComponent($$result2, "MenuLinkNav", $$MenuLinkNav, { "namepage": "widgets", "data-astro-cid-t3heoqpw": true })} ${maybeRenderHead()}<section class="presentation-section mt-16" data-astro-cid-t3heoqpw> <div class="wrapper" data-astro-cid-t3heoqpw> <div class="presentation-content" data-astro-cid-t3heoqpw> <h1 data-astro-cid-t3heoqpw>CSS Widgets & Tools</h1> <p data-astro-cid-t3heoqpw>
 Explore my collection of CSS widgets, tools, and resources designed to
           enhance web experiences.
 </p> <p data-astro-cid-t3heoqpw>

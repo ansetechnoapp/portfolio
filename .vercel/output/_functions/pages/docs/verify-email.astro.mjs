@@ -1,8 +1,8 @@
 /* empty css                                     */
-import { a as createComponent, e as renderComponent, d as renderTemplate, m as maybeRenderHead } from '../../chunks/astro/server_ZODBcONi.mjs';
+import { a as createComponent, f as renderComponent, d as renderTemplate, m as maybeRenderHead } from '../../chunks/astro/server_De9sfnmM.mjs';
 import 'kleur/colors';
-import { a as $$Layout } from '../../chunks/Layout_DaFi6nHl.mjs';
-import { E as EmailVerificationStatus } from '../../chunks/EmailVerification_C_wgKRQc.mjs';
+import { $ as $$Layout } from '../../chunks/Layout_DmUFuqmQ.mjs';
+import { E as EmailVerificationStatus } from '../../chunks/EmailVerification_CASU3gbZ.mjs';
 export { renderers } from '../../renderers.mjs';
 
 const $$VerifyEmail = createComponent(($$result, $$props, $$slots) => {
