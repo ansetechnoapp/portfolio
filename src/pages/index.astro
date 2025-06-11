@@ -78,28 +78,30 @@ const { heroTitle = `I am ${dataUser.firstName} ${dataUser.lastName}` } =
       tagline1="Je combine une expertise technique avec un design soigné pour créer des applications web et mobiles intuitives, rapides et efficaces. Mon objectif : apporter de la valeur à vos utilisateurs."
       align="start"
     >
-      <!-- Hero Image in the new structure -->
-      <div class="hero-image-modern">
-        <picture>
-          <source
-            srcset={Img1.srcsetAvif}
-            type="image/avif"
-            sizes="(max-width: 768px) 100vw, 480px"
-          />
-          <source
-            srcset={Img1.srcsetWebp}
-            type="image/webp"
-            sizes="(max-width: 768px) 100vw, 480px"
-          />
-          <img
-            alt={`${dataUser.firstName} ${dataUser.lastName}, développeur web et mobile freelance basé à ${dataUser.address.city}, ${dataUser.address.country}. Expert en React, React Native et Astro.js`}
-            width="480"
-            height="620"
-            src={Img1.fallback}
-            loading="eager"
-            decoding="async"
-          />
-        </picture>
+      <!-- Hero Image in the new structure with morphing animation -->
+      <div class="hero-image-modern animate-fade-in-up">
+        <div class="image-wrapper">
+          <picture>
+            <source
+              srcset={Img1.srcsetAvif}
+              type="image/avif"
+              sizes="(max-width: 768px) 100vw, 480px"
+            />
+            <source
+              srcset={Img1.srcsetWebp}
+              type="image/webp"
+              sizes="(max-width: 768px) 100vw, 480px"
+            />
+            <img
+              alt={`${dataUser.firstName} ${dataUser.lastName}, développeur web et mobile freelance basé à ${dataUser.address.city}, ${dataUser.address.country}. Expert en React, React Native et Astro.js`}
+              width="480"
+              height="620"
+              src={Img1.fallback}
+              loading="eager"
+              decoding="async"
+            />
+          </picture>
+        </div>
       </div>
 
       <!-- Social Media Navigation -->
@@ -184,7 +186,7 @@ const { heroTitle = `I am ${dataUser.firstName} ${dataUser.lastName}` } =
 </Layout>
 
 <style>
-  /* Modern Hero Image Styling */
+  /* Modern Hero Image Styling with Morphing Animation */
   .hero-image-modern {
     position: relative;
     width: 100%;
@@ -192,22 +194,28 @@ const { heroTitle = `I am ${dataUser.firstName} ${dataUser.lastName}` } =
     margin: 0 auto;
   }
 
-  .hero-image-modern img {
+  .image-wrapper {
+    position: relative;
+    width: 100%;
+  }
+
+  .image-wrapper :global(img) {
     width: 100%;
     height: auto;
-    aspect-ratio: 4 / 5;
+    aspect-ratio: 1 / 1.2;
     object-fit: cover;
     object-position: top;
-    border-radius: 2rem;
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    animation: morph 10s ease-in-out infinite alternate;
+    transition: border-radius 1s ease-in-out;
     box-shadow:
       0 20px 40px rgba(0, 0, 0, 0.3),
       0 0 0 1px rgba(255, 255, 255, 0.1);
-    transition: all 0.5s ease;
     position: relative;
     z-index: 2;
   }
 
-  .hero-image-modern:hover img {
+  .hero-image-modern:hover .image-wrapper :global(img) {
     transform: translateY(-10px) scale(1.02);
     box-shadow:
       0 30px 60px rgba(0, 0, 0, 0.4),
@@ -300,6 +308,39 @@ const { heroTitle = `I am ${dataUser.firstName} ${dataUser.lastName}` } =
       width: 2rem;
       height: 2rem;
     }
+  }
+
+  /* Morphing and Animation Keyframes */
+  @keyframes float {
+    0% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-30px) rotate(90deg); }
+    100% { transform: translateY(0px) rotate(0deg); }
+  }
+
+  @keyframes morph {
+    0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+    50% { border-radius: 60% 40% 30% 70% / 70% 50% 50% 30%; }
+    100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 1s ease-out forwards;
+    opacity: 0;
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
   /* ====================================================== */
