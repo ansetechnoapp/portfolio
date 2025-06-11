@@ -105,16 +105,19 @@
   transform: translateY(-5px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(118, 17, 166, 0.2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .portfolio_item:hover .layer {
   height: 100%;
+  transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .portfolio_item:hover .layer p,
 .portfolio_item:hover .layer a {
   opacity: 1;
   transform: translateY(0);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .portfolio_item-image {
@@ -133,6 +136,27 @@
 
 .portfolio_item:hover .portfolio_item-image img {
   transform: scale(1.1);
+}
+
+/* Prevent hover effects when modal is open */
+body:has(.project-modal-backdrop) .portfolio_item:hover {
+  transform: none;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(var(--gray-999-basis), 0.1);
+}
+
+body:has(.project-modal-backdrop) .portfolio_item:hover .layer {
+  height: 0;
+}
+
+body:has(.project-modal-backdrop) .portfolio_item:hover .layer p,
+body:has(.project-modal-backdrop) .portfolio_item:hover .layer a {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+body:has(.project-modal-backdrop) .portfolio_item:hover .portfolio_item-image img {
+  transform: none;
 }
 
 .portfolio_item-cta {
