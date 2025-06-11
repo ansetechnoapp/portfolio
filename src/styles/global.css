@@ -49,6 +49,11 @@
 	--accent-tertiary: #ff9800;
 	--accent-tertiary-dark: #f57c00;
 
+	/* Modern Hero Colors */
+	--accent-teal: #14b8a6;
+	--accent-electric: #6366f1;
+	--accent-amber: #f59e0b;
+
 	/* Overlays and Effects */
 	--accent-overlay: hsla(265, 100%, 65%, 0.33);
 	--accent-subtle-overlay: hsla(265, 100%, 65%, 0.15);
