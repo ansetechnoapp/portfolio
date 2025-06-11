@@ -204,11 +204,11 @@ const allTags = getAllTags();
         </p>
       </div>
 
-      <div class="filter-controls mb-12">
-        <div class="flex flex-wrap gap-3 mb-6">
-          <button
-            class="filter-btn active px-4 py-2 rounded-full text-white font-medium transition-all duration-300 shadow-sm"
-            style="background: var(--accent-regular); box-shadow: var(--accent-soft-glow);"
+      <div class="filter-controls sticky top-20 z-30 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700 px-4 py-6 -mx-4 sm:mx-0 sm:rounded-2xl sm:border sm:shadow-lg mb-12">
+        <div class="max-w-7xl mx-auto">
+          {/* Tags Filter */}
+          <div class="flex items-center gap-2 pb-6 overflow-x-auto scrollbar-hide">
+            <button
             data-tag="all"
           >
             All Topics
@@ -249,7 +249,7 @@ const allTags = getAllTags();
             </button>
           </div>
         </div>
-      </div>
+      </div> 
 
       <div id="posts-container" class="posts-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {

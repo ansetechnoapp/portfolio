@@ -99,7 +99,7 @@ export default function PortfolioPreview({ project, activeFilter = 'all' }: Port
 
         <div className="flex flex-col space-y-1.5 p-6">
           <div className="flex items-center justify-between mb-2">
-            <h3 className="text-xl font-semibold leading-none tracking-tight">{data.title}</h3>
+            <h3 className="text-xl font-semibold leading-none tracking-tight">{data.title} </h3>
             <span id="project_device_info" className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">{data.device}</span>
           </div>
           <p className="text-sm projetdesc">{data.description}</p>

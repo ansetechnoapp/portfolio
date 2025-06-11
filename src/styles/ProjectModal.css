@@ -74,15 +74,20 @@
 @media (max-width: 1024px) {
   .project-modal-grid {
     grid-template-columns: 1fr;
+    height: auto;
+    max-height: calc(100vh - 2rem);
   }
-  
+
   .project-modal-image {
     min-height: 300px;
     max-height: 400px;
   }
-  
+
   .project-modal-content {
     padding: 2rem 1.5rem;
+    max-height: calc(100vh - 400px - 4rem);
+    overflow-y: auto;
+    flex: 1;
   }
 }
 
@@ -90,24 +95,69 @@
   .project-modal-container {
     margin: 1rem;
     max-height: calc(100vh - 2rem);
+    height: auto;
   }
-  
+
+  .project-modal-grid {
+    height: auto;
+    max-height: calc(100vh - 2rem);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .project-modal-image {
+    min-height: 250px;
+    max-height: 300px;
+    flex-shrink: 0;
+  }
+
   .project-modal-content {
     padding: 1.5rem 1rem;
+    max-height: calc(100vh - 300px - 3rem);
+    overflow-y: auto;
+    flex: 1;
+    min-height: 0;
   }
-  
+
   .project-modal-title {
     font-size: 2rem;
   }
-  
+
   .project-modal-buttons {
     flex-direction: column;
     gap: 0.75rem;
   }
-  
+
   .project-modal-button {
     width: 100%;
     justify-content: center;
+  }
+}
+
+/* Extra small mobile devices */
+@media (max-width: 480px) {
+  .project-modal-container {
+    margin: 0.5rem;
+    max-height: calc(100vh - 1rem);
+  }
+
+  .project-modal-grid {
+    max-height: calc(100vh - 1rem);
+  }
+
+  .project-modal-image {
+    min-height: 200px;
+    max-height: 250px;
+  }
+
+  .project-modal-content {
+    padding: 1rem 0.75rem;
+    max-height: calc(100vh - 250px - 2rem);
+  }
+
+  .project-modal-title {
+    font-size: 1.75rem;
+    line-height: 1.2;
   }
 }
 
@@ -121,6 +171,7 @@
 /* Smooth scrolling for modal content */
 .project-modal-content {
   scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch; /* Enable momentum scrolling on iOS */
 }
 
 /* Custom scrollbar for modal content */
@@ -134,22 +185,41 @@
 }
 
 .project-modal-content::-webkit-scrollbar-thumb {
-  background: var(--accent-secondary, #33a6a0);
+  background: #14b8a6;
   border-radius: 3px;
 }
 
 .project-modal-content::-webkit-scrollbar-thumb:hover {
-  background: var(--accent-secondary-light, #4ecdc4);
+  background: #0d9488;
+}
+
+/* Mobile scrollbar adjustments */
+@media (max-width: 768px) {
+  .project-modal-content::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .project-modal-content::-webkit-scrollbar-thumb {
+    background: rgba(20, 184, 166, 0.8);
+    border-radius: 4px;
+  }
+
+  .project-modal-content::-webkit-scrollbar-thumb:active {
+    background: #14b8a6;
+  }
 }
 
 /* Technology tags animation */
 .tech-tag {
-  transition: all 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: default;
 }
 
 .tech-tag:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 8px 20px rgba(20, 184, 166, 0.3);
+  background: rgba(20, 184, 166, 0.15) !important;
+  border-color: rgba(20, 184, 166, 0.4) !important;
 }
 
 /* Image overlay effects */
@@ -166,7 +236,7 @@
   background: linear-gradient(
     135deg,
     var(--gray-0, #ffffff),
-    var(--accent-secondary-light, #4ecdc4)
+    #14b8a6
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

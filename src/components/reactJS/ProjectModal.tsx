@@ -175,7 +175,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
           </div>
 
           {/* Right Column: Project Details */}
-          <div className="flex flex-col justify-center p-8 lg:p-12 space-y-6 project-modal-content">
+          <div className="flex flex-col justify-start p-8 lg:p-12 space-y-6 project-modal-content overflow-y-auto">
             {/* Category Tag */}
             <div className="flex items-center space-x-2">
               <span
@@ -203,7 +203,6 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
             <h2
               id="modal-title"
               className="text-4xl lg:text-5xl font-bold leading-tight project-modal-title gradient-text"
-              style={{ color: 'var(--gray-0, #ffffff)' }}
             >
               {projectData.title}
             </h2>
@@ -257,10 +256,12 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
                     boxShadow: `0 10px 25px ${themeColors.primary}50`,
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.boxShadow = `0 15px 35px ${themeColors.primary}70`;
+                    e.currentTarget.style.boxShadow = `0 20px 40px ${themeColors.primary}70`;
+                    e.currentTarget.style.transform = 'scale(1.05) translateY(-2px)';
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.boxShadow = `0 10px 25px ${themeColors.primary}50`;
+                    e.currentTarget.style.transform = 'scale(1) translateY(0)';
                   }}
                 >
                   <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -282,12 +283,16 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
                     border: '2px solid rgba(255, 255, 255, 0.2)',
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.background = 'rgba(255, 255, 255, 0.15)';
-                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.3)';
+                    e.currentTarget.style.background = 'rgba(20, 184, 166, 0.15)';
+                    e.currentTarget.style.borderColor = 'rgba(20, 184, 166, 0.4)';
+                    e.currentTarget.style.transform = 'scale(1.05) translateY(-2px)';
+                    e.currentTarget.style.boxShadow = '0 10px 25px rgba(20, 184, 166, 0.2)';
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)';
                     e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                    e.currentTarget.style.transform = 'scale(1) translateY(0)';
+                    e.currentTarget.style.boxShadow = 'none';
                   }}
                 >
                   <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
