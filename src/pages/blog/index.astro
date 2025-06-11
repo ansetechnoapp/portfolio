@@ -20,7 +20,7 @@ const posts = getAllPosts().map((post) => ({
   },
 }));
 
-// Get featured posts (top 3)
+// Get featured posts (top 3) 
 const featuredPosts = posts.slice(0, 3);
 // Get remaining posts
 const remainingPosts = posts.slice(3);
@@ -204,52 +204,100 @@ const allTags = getAllTags();
         </p>
       </div>
 
-      <div class="filter-controls sticky top-20 z-30 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700 px-4 py-6 -mx-4 sm:mx-0 sm:rounded-2xl sm:border sm:shadow-lg mb-12">
-        <div class="max-w-7xl mx-auto">
-          {/* Tags Filter */}
-          <div class="flex items-center gap-2 pb-6 overflow-x-auto scrollbar-hide">
-            <button
-            data-tag="all"
-          >
-            All Topics
-          </button>
-          {
-            allTags.map((tag) => (
-              <button
-                class="filter-btn px-4 py-2 rounded-full bg-white/80 backdrop-blur-sm text-gray-800 dark:text-gray-200 font-medium border border-white/40 hover:border-accent-light/30 transition-all duration-300"
-                data-tag={tag}
-              >
-                {tag}
-              </button>
-            ))
-          }
-        </div>
-
-        <div class="flex items-center justify-between">
-          <div class="sort-controls flex gap-2">
-            <label class="text-sm font-medium text-gray-600 dark:text-gray-400">Sort by:</label>
-            <select id="sort-select" class="sort-select bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md px-3 py-1 text-sm">
-              <option value="date-desc">Newest First</option>
-              <option value="date-asc">Oldest First</option>
-              <option value="title-asc">Title A-Z</option>
-              <option value="title-desc">Title Z-A</option>
-            </select>
-          </div>
-
-          <div class="view-toggle flex gap-1 bg-gray-100 dark:bg-gray-800 rounded-lg p-1">
-            <button id="grid-view" class="view-btn active px-3 py-1 rounded-md text-sm font-medium transition-all">
-              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/>
-              </svg>
-            </button>
-            <button id="masonry-view" class="view-btn px-3 py-1 rounded-md text-sm font-medium transition-all">
-              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
-              </svg>
-            </button>
+      <!-- Mobile-First Responsive Filter Controls -->
+      <div class="filter-controls mb-12">
+        <!-- Filter Tags Section -->
+        <div class="filter-tags-section mb-6">
+          <h3 class="filter-section-title text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3 uppercase tracking-wide">
+            Filter by Topic
+          </h3>
+          <div class="filter-tags-container">
+            <div class="filter-tags-scroll">
+              <div class="filter-tags-grid">
+                <button
+                  class="filter-btn active"
+                  style="background: var(--accent-regular); box-shadow: var(--accent-soft-glow);"
+                  data-tag="all"
+                  aria-label="Show all topics"
+                >
+                  <span class="filter-btn-text">All Topics</span>
+                  <span class="filter-btn-count" id="all-count"></span>
+                </button>
+                {
+                  allTags.map((tag) => (
+                    <button
+                      class="filter-btn"
+                      data-tag={tag}
+                      aria-label={`Filter by ${tag}`}
+                    >
+                      <span class="filter-btn-text">{tag}</span>
+                      <span class="filter-btn-count" id={`${tag}-count`}></span>
+                    </button>
+                  ))
+                }
+              </div>
+            </div>
           </div>
         </div>
-      </div> 
+
+        <!-- Controls Section -->
+        <div class="controls-section">
+          <div class="controls-grid">
+            <!-- Sort Controls -->
+            <div class="sort-controls-container">
+              <label for="sort-select" class="control-label">
+                <svg class="control-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12"/>
+                </svg>
+                Sort by
+              </label>
+              <select id="sort-select" class="sort-select">
+                <option value="date-desc">Newest First</option>
+                <option value="date-asc">Oldest First</option>
+                <option value="title-asc">Title A-Z</option>
+                <option value="title-desc">Title Z-A</option>
+              </select>
+            </div>
+
+            <!-- View Toggle -->
+            <div class="view-toggle-container">
+              <span class="control-label">
+                <svg class="control-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/>
+                </svg>
+                View
+              </span>
+              <div class="view-toggle">
+                <button id="grid-view" class="view-btn active" aria-label="Grid view">
+                  <svg class="view-icon" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/>
+                  </svg>
+                  <span class="view-btn-text">Grid</span>
+                </button>
+                <button id="masonry-view" class="view-btn" aria-label="Masonry view">
+                  <svg class="view-icon" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
+                  </svg>
+                  <span class="view-btn-text">Masonry</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Results Info -->
+            <div class="results-info-container">
+              <div class="results-info">
+                <span class="results-count" id="results-count">0 articles</span>
+                <button class="clear-filters" id="clear-filters" style="display: none;" aria-label="Clear all filters">
+                  <svg class="clear-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                  </svg>
+                  Clear
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <div id="posts-container" class="posts-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {
@@ -560,41 +608,275 @@ const allTags = getAllTags();
     background: rgba(255, 255, 255, 0.1);
   }
 
-  /* Enhanced blog controls */
+  /* Mobile-First Responsive Filter Controls */
   .filter-controls {
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(10px);
     border-radius: 1rem;
-    padding: 1.5rem;
+    padding: 1rem;
     border: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 3rem;
+  }
+
+  /* Filter Tags Section */
+  .filter-tags-section {
+    margin-bottom: 1.5rem;
+  }
+
+  .filter-section-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--gray-600);
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .filter-tags-container {
+    position: relative;
+  }
+
+  .filter-tags-scroll {
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding-bottom: 0.5rem;
+  }
+
+  .filter-tags-scroll::-webkit-scrollbar {
+    display: none;
+  }
+
+  .filter-tags-grid {
+    display: flex;
+    gap: 0.75rem;
+    min-width: max-content;
+    padding: 0.25rem 0;
+  }
+
+  .filter-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    border-radius: 2rem;
+    font-weight: 500;
+    font-size: 0.875rem;
+    white-space: nowrap;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--gray-700);
+    backdrop-filter: blur(8px);
+    min-height: 44px; /* Touch-friendly minimum */
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .filter-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+  }
+
+  .filter-btn:hover::before {
+    left: 100%;
+  }
+
+  .filter-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .filter-btn.active {
+    background: var(--accent-regular);
+    color: white;
+    border-color: var(--accent-regular);
+    box-shadow: var(--accent-soft-glow);
+  }
+
+  .filter-btn-text {
+    position: relative;
+    z-index: 1;
+  }
+
+  .filter-btn-count {
+    background: rgba(255, 255, 255, 0.2);
+    color: currentColor;
+    padding: 0.125rem 0.5rem;
+    border-radius: 1rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    min-width: 1.5rem;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .filter-btn.active .filter-btn-count {
+    background: rgba(255, 255, 255, 0.25);
+  }
+
+  /* Controls Section */
+  .controls-section {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 1.5rem;
+  }
+
+  .controls-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  /* Sort Controls */
+  .sort-controls-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .control-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--gray-600);
+  }
+
+  .control-icon {
+    width: 1rem;
+    height: 1rem;
+    opacity: 0.7;
   }
 
   .sort-select {
-    transition: all 0.2s ease;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    color: var(--gray-700);
+    font-size: 0.875rem;
+    transition: all 0.3s ease;
+    min-height: 44px;
+    cursor: pointer;
   }
 
   .sort-select:focus {
     outline: none;
     border-color: var(--accent-regular);
     box-shadow: 0 0 0 3px rgba(118, 17, 166, 0.1);
+    background: rgba(255, 255, 255, 0.15);
+  }
+
+  /* View Toggle */
+  .view-toggle-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
   }
 
   .view-toggle {
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 0.75rem;
+    padding: 0.25rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(8px);
   }
 
   .view-btn {
-    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: none;
+    background: transparent;
+    color: var(--gray-600);
+    cursor: pointer;
+    flex: 1;
+    justify-content: center;
+    min-height: 44px;
+  }
+
+  .view-btn:hover:not(.active) {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--gray-700);
   }
 
   .view-btn.active {
     background: var(--accent-regular);
     color: white;
-    box-shadow: 0 2px 4px rgba(118, 17, 166, 0.2);
+    box-shadow: 0 2px 8px rgba(118, 17, 166, 0.3);
   }
 
-  .view-btn:hover:not(.active) {
-    background: rgba(255, 255, 255, 0.1);
+  .view-icon {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .view-btn-text {
+    display: none;
+  }
+
+  /* Results Info */
+  .results-info-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .results-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .results-count {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--gray-600);
+  }
+
+  .clear-filters {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.5rem 0.75rem;
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    border-radius: 0.375rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .clear-filters:hover {
+    background: rgba(239, 68, 68, 0.2);
+    border-color: rgba(239, 68, 68, 0.3);
+  }
+
+  .clear-icon {
+    width: 0.875rem;
+    height: 0.875rem;
   }
 
   /* Masonry layout styles */
@@ -650,23 +932,233 @@ const allTags = getAllTags();
     transform: scale(1.05);
   }
 
-  /* Responsive improvements */
-  @media (max-width: 768px) {
+  /* Responsive Design - Mobile First */
+
+  /* Small screens (sm: 640px+) */
+  @media (min-width: 640px) {
     .filter-controls {
-      padding: 1rem;
+      padding: 1.25rem;
     }
 
-    .filter-controls .flex {
-      flex-direction: column;
+    .filter-tags-grid {
       gap: 1rem;
     }
 
-    .view-toggle {
-      align-self: flex-start;
+    .filter-btn {
+      padding: 0.75rem 1.25rem;
     }
 
+    .controls-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .view-btn-text {
+      display: inline;
+    }
+
+    .results-info-container {
+      grid-column: 1 / -1;
+      justify-content: flex-end;
+    }
+  }
+
+  /* Medium screens (md: 768px+) */
+  @media (min-width: 768px) {
+    .filter-controls {
+      padding: 1.5rem;
+    }
+
+    .filter-tags-scroll {
+      overflow-x: visible;
+    }
+
+    .filter-tags-grid {
+      flex-wrap: wrap;
+      min-width: auto;
+    }
+
+    .controls-grid {
+      grid-template-columns: 1fr auto auto;
+      align-items: end;
+      gap: 2rem;
+    }
+
+    .sort-controls-container,
+    .view-toggle-container {
+      flex-direction: row;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .sort-select {
+      min-width: 160px;
+    }
+
+    .view-toggle {
+      min-width: auto;
+    }
+
+    .results-info-container {
+      grid-column: auto;
+      justify-content: flex-start;
+    }
+  }
+
+  /* Large screens (lg: 1024px+) */
+  @media (min-width: 1024px) {
+    .filter-controls {
+      padding: 2rem;
+    }
+
+    .filter-tags-grid {
+      gap: 1.25rem;
+    }
+
+    .filter-btn {
+      padding: 0.875rem 1.5rem;
+      font-size: 0.9375rem;
+    }
+
+    .controls-grid {
+      gap: 3rem;
+    }
+
+    .control-label {
+      font-size: 0.9375rem;
+    }
+
+    .sort-select {
+      padding: 0.875rem 1.25rem;
+      font-size: 0.9375rem;
+      min-width: 180px;
+    }
+
+    .view-btn {
+      padding: 0.875rem 1.25rem;
+      font-size: 0.9375rem;
+    }
+  }
+
+  /* Extra large screens (xl: 1280px+) */
+  @media (min-width: 1280px) {
+    .filter-controls {
+      padding: 2.5rem;
+    }
+
+    .controls-section {
+      padding-top: 2rem;
+    }
+
+    .controls-grid {
+      gap: 4rem;
+    }
+  }
+
+  /* Dark mode adjustments */
+  @media (prefers-color-scheme: dark) {
+    .filter-section-title {
+      color: var(--gray-300);
+    }
+
+    .filter-btn {
+      color: var(--gray-200);
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .filter-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .control-label {
+      color: var(--gray-300);
+    }
+
+    .sort-select {
+      color: var(--gray-200);
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .sort-select:focus {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .view-btn {
+      color: var(--gray-300);
+    }
+
+    .view-btn:hover:not(.active) {
+      color: var(--gray-200);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .results-count {
+      color: var(--gray-300);
+    }
+
+    .results-info {
+      background: rgba(255, 255, 255, 0.02);
+      border-color: rgba(255, 255, 255, 0.05);
+    }
+  }
+
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+    .filter-btn {
+      border-width: 2px;
+    }
+
+    .filter-btn.active {
+      border-color: var(--accent-regular);
+    }
+
+    .sort-select {
+      border-width: 2px;
+    }
+
+    .view-toggle {
+      border-width: 2px;
+    }
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    .filter-btn,
+    .sort-select,
+    .view-btn,
+    .clear-filters {
+      transition: none;
+    }
+
+    .filter-btn::before {
+      display: none;
+    }
+
+    .filter-btn:hover {
+      transform: none;
+    }
+  }
+
+  /* Legacy mobile support */
+  @media (max-width: 639px) {
     .posts-masonry {
       columns: 1 !important;
+    }
+
+    .filter-btn {
+      min-width: 120px;
+      justify-content: center;
+    }
+
+    .view-toggle {
+      width: 100%;
+    }
+
+    .view-btn {
+      flex: 1;
     }
   }
 </style>
@@ -680,6 +1172,8 @@ const allTags = getAllTags();
     const postsContainer = document.getElementById("posts-container") as HTMLElement;
     const gridViewBtn = document.getElementById("grid-view") as HTMLButtonElement;
     const masonryViewBtn = document.getElementById("masonry-view") as HTMLButtonElement;
+    const resultsCount = document.getElementById("results-count") as HTMLElement;
+    const clearFiltersBtn = document.getElementById("clear-filters") as HTMLButtonElement;
 
     let currentFilter = "all";
     let currentSort = "date-desc";
@@ -697,6 +1191,42 @@ const allTags = getAllTags();
       };
     });
 
+    // Initialize post counts
+    function updatePostCounts() {
+      const allCount = postsData.length;
+      const allCountElement = document.getElementById("all-count");
+      if (allCountElement) {
+        allCountElement.textContent = allCount.toString();
+      }
+
+      // Count posts for each tag
+      filterButtons.forEach((button) => {
+        const tag = button.getAttribute("data-tag");
+        if (tag && tag !== "all") {
+          const count = postsData.filter(({ tags }) => tags.includes(tag)).length;
+          const countElement = document.getElementById(`${tag}-count`);
+          if (countElement) {
+            countElement.textContent = count.toString();
+          }
+        }
+      });
+    }
+
+    // Update results count and clear button visibility
+    function updateResultsInfo() {
+      const visiblePosts = postsData.filter(({ element }) =>
+        element.style.display !== "none"
+      ).length;
+
+      if (resultsCount) {
+        resultsCount.textContent = `${visiblePosts} article${visiblePosts !== 1 ? 's' : ''}`;
+      }
+
+      if (clearFiltersBtn) {
+        clearFiltersBtn.style.display = currentFilter !== "all" ? "flex" : "none";
+      }
+    }
+
     // Filter functionality
     function filterPosts(tag: string) {
       currentFilter = tag;
@@ -708,6 +1238,8 @@ const allTags = getAllTags();
           element.style.animation = "fadeInUp 0.3s ease-out";
         }
       });
+
+      updateResultsInfo();
     }
 
     // Sort functionality
@@ -735,6 +1267,33 @@ const allTags = getAllTags();
 
       // Reapply current filter
       filterPosts(currentFilter);
+    }
+
+    // Clear all filters
+    function clearAllFilters() {
+      currentFilter = "all";
+
+      // Reset filter buttons
+      filterButtons.forEach((btn) => {
+        btn.classList.remove("active");
+        btn.style.background = "";
+        btn.style.boxShadow = "";
+        btn.style.color = "";
+        btn.style.borderColor = "";
+      });
+
+      // Activate "All Topics" button
+      const allTopicsBtn = document.querySelector('[data-tag="all"]') as HTMLElement;
+      if (allTopicsBtn) {
+        allTopicsBtn.classList.add("active");
+        allTopicsBtn.style.background = "var(--accent-regular)";
+        allTopicsBtn.style.boxShadow = "var(--accent-soft-glow)";
+        allTopicsBtn.style.color = "white";
+        allTopicsBtn.style.borderColor = "var(--accent-regular)";
+      }
+
+      // Show all posts
+      filterPosts("all");
     }
 
     // View mode functionality
@@ -767,25 +1326,15 @@ const allTags = getAllTags();
           btn.classList.remove("active");
           btn.style.background = "";
           btn.style.boxShadow = "";
-          btn.classList.add(
-            "bg-white/80",
-            "text-gray-800",
-            "dark:text-gray-200",
-            "border",
-            "border-white/40"
-          );
+          btn.style.color = "";
+          btn.style.borderColor = "";
         });
 
-        button.classList.add("active", "text-white");
-        button.classList.remove(
-          "bg-white/80",
-          "text-gray-800",
-          "dark:text-gray-200",
-          "border",
-          "border-white/40"
-        );
+        button.classList.add("active");
         button.style.background = "var(--accent-regular)";
         button.style.boxShadow = "var(--accent-soft-glow)";
+        button.style.color = "white";
+        button.style.borderColor = "var(--accent-regular)";
 
         const tag = button.getAttribute("data-tag") || "";
         filterPosts(tag);
@@ -799,6 +1348,11 @@ const allTags = getAllTags();
 
     gridViewBtn.addEventListener("click", () => setViewMode("grid"));
     masonryViewBtn.addEventListener("click", () => setViewMode("masonry"));
+
+    // Clear filters button
+    if (clearFiltersBtn) {
+      clearFiltersBtn.addEventListener("click", clearAllFilters);
+    }
 
     // Featured posts navigation
     const prevButton = document.getElementById("prev-featured");
@@ -814,7 +1368,9 @@ const allTags = getAllTags();
       });
     }
 
-    // Initialize default view
+    // Initialize
+    updatePostCounts();
     setViewMode("grid");
+    updateResultsInfo();
   });
 </script>
