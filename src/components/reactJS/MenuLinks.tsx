@@ -88,8 +88,8 @@ const MenuLinks: React.FC<MenuLinksProps> = ({ namepage, pathname }) => {
                             className={`menu-link-item ${pathname === href ? 'active' : ''}`}
                             title={label}
                         >
-                            <span className="sr-only">{label}</span>
                             {icon}
+                            <span className="sr-only desktop-only">{label}</span>
                         </a>
                     </li>
                 ))}

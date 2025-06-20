@@ -8,8 +8,10 @@ import Footer from "../components/Footer.astro";
 import AccessibilityFeatures from "../components/AccessibilityFeatures.astro";
 import FontAwesomeFallback from "../components/FontAwesomeFallback.astro";
 import SEO from "../components/SEO.astro";
+import MobileBottomNav from "../components/MobileBottomNav.astro";
 import "../styles/global.css";
 import "../styles/mobile.css";
+import "../styles/mobile-bottom-nav.css";
 
 interface Props {
   title?: string | undefined;
@@ -69,6 +71,9 @@ const {
       </main>
 
       <Footer />
+      
+      <!-- Barre de navigation mobile en bas de l'écran -->
+      <MobileBottomNav namepage={Astro.url.pathname.split('/')[1] || 'home'} />
     </div>
 
     <script>
