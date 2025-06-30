@@ -187,49 +187,48 @@ const {
   </div>
   <div class="section2-about">
     <h3 class="title-about">{title}</h3>
-    <p class="describe-about">
-      {description}
-    </p>
-    <p class="describe-about-secondary">
-      Basé à <strong>Cotonou, Bénin</strong>, je travaille avec des clients du monde entier pour créer des
-      <a href="/work/?filter=web" class="internal-link">applications web modernes</a> et des
-      <a href="/work/?filter=mobile" class="internal-link">applications mobiles performantes</a>.
-      Mon expertise couvre l'ensemble du stack technologique, de la conception d'interfaces utilisateur
-      intuitives au développement d'architectures backend robustes.
-      <a href="/work/" class="internal-link">Découvrez mes projets récents</a> pour voir comment je transforme
-      les idées en solutions numériques concrètes.
-    </p>
+    <div class="description-container">
+      <p class="describe-about truncated" id="description-text">
+        {description}
+      </p>
+      <button class="see-more-btn" id="seeMoreBtn">
+        <span>Voir plus</span>
+        <i class="fas fa-chevron-down"></i>
+      </button>
+    </div>
     <br /><br />
     <div class="grid grid-cols-1 gap-10">
       <!-- Section Tabs -->
-      <div class="flex justify-center gap-4 mb-6">
-        <button
-          class="tab-button active"
-          data-tab="skills"
-          aria-selected="true"
-          role="tab"
-        >
-          <i class="fas fa-tools mr-2"></i>
-          Tools & Skills
-        </button>
-        <button
-          class="tab-button"
-          data-tab="languages"
-          aria-selected="false"
-          role="tab"
-        >
-          <i class="fas fa-language mr-2"></i>
-          Languages
-        </button>
-        <button
-          class="tab-button"
-          data-tab="contact"
-          aria-selected="false"
-          role="tab"
-        >
-          <i class="fas fa-address-card mr-2"></i>
-          Contact Info
-        </button>
+      <div class="tab-navigation-container">
+        <div class="flex gap-4 mb-6 tab-scroll-container">
+          <button
+            class="tab-button active"
+            data-tab="skills"
+            aria-selected="true"
+            role="tab"
+          >
+            <i class="fas fa-tools mr-2"></i>
+            <span class="tab-text">Tools & Skills</span>
+          </button>
+          <button
+            class="tab-button"
+            data-tab="languages"
+            aria-selected="false"
+            role="tab"
+          >
+            <i class="fas fa-language mr-2"></i>
+            <span class="tab-text">Languages</span>
+          </button>
+          <button
+            class="tab-button"
+            data-tab="contact"
+            aria-selected="false"
+            role="tab"
+          >
+            <i class="fas fa-address-card mr-2"></i>
+            <span class="tab-text">Contact Info</span>
+          </button>
+        </div>
       </div>
 
       <!-- Tools & Skills Section -->
@@ -410,6 +409,63 @@ const {
   </div>
 </section>
 
+<!-- Modal pour la description complète -->
+<div id="descriptionModal" class="modal-overlay">
+  <div class="modal-container">
+    <div class="modal-header">
+      <h3>À propos de moi</h3>
+      <button class="modal-close" id="closeModal">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div class="modal-content">
+      <div class="modal-description">
+        <p>
+          {description}
+        </p>
+        <br/>
+        <p>
+          Basé à <strong>Cotonou, Bénin</strong>, je travaille avec des clients du monde entier pour créer des
+          <a href="/work/?filter=web" class="internal-link">applications web modernes</a> et des
+          <a href="/work/?filter=mobile" class="internal-link">applications mobiles performantes</a>.
+          Mon expertise couvre l'ensemble du stack technologique, de la conception d'interfaces utilisateur
+          intuitives au développement d'architectures backend robustes.
+          <a href="/work/" class="internal-link">Découvrez mes projets récents</a> pour voir comment je transforme
+          les idées en solutions numériques concrètes.
+        </p>
+      </div>
+      <div class="modal-highlights">
+        <div class="highlight-item">
+          <i class="fas fa-code"></i>
+          <span>Développement Full-Stack</span>
+        </div>
+        <div class="highlight-item">
+          <i class="fas fa-mobile-alt"></i>
+          <span>Applications Mobiles</span>
+        </div>
+        <div class="highlight-item">
+          <i class="fas fa-palette"></i>
+          <span>Design UX/UI</span>
+        </div>
+        <div class="highlight-item">
+          <i class="fas fa-rocket"></i>
+          <span>Solutions Innovantes</span>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a href="/work" class="modal-cta-btn">
+        <i class="fas fa-eye"></i>
+        Voir mes projets
+      </a>
+      <a href="#contact" class="modal-contact-btn">
+        <i class="fas fa-envelope"></i>
+        Me contacter
+      </a>
+    </div>
+  </div>
+</div>
+
 <style>
   /* Section About Styles */
   .tab-button {
@@ -506,19 +562,87 @@ const {
     font-size: var(--text-base);
   }
 
-  @media (max-width: 640px) {
-    .tab-button {
-      padding: 0.5rem 1rem;
-      font-size: 0.875rem;
+  /* Navigation container styles */
+  .tab-navigation-container {
+    position: relative;
+    width: 100%;
+  }
+
+  .tab-scroll-container {
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    scroll-behavior: smooth;
+    padding-bottom: 0.5rem;
+  }
+
+  .tab-scroll-container::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Mobile optimizations */
+  @media (max-width: 768px) {
+    .tab-navigation-container {
+      margin: 0 -1rem;
+      padding: 0 1rem;
     }
 
-    .flex.justify-center.gap-4.mb-6 {
-      gap: 0.5rem;
-      flex-wrap: wrap;
+    .tab-scroll-container {
+      gap: 0.75rem !important;
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+    }
+
+    .tab-button {
+      flex-shrink: 0;
+      min-width: fit-content;
+      padding: 0.625rem 1rem;
+      font-size: 0.875rem;
+      white-space: nowrap;
     }
 
     .tab-button i {
-      font-size: 1rem;
+      font-size: 0.875rem;
+    }
+
+    .tab-text {
+      display: inline;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .tab-button {
+      padding: 0.5rem 0.875rem;
+      font-size: 0.8rem;
+    }
+
+    .tab-button i {
+      font-size: 0.8rem;
+      margin-right: 0.25rem;
+    }
+
+    .tab-text {
+      font-size: 0.8rem;
+    }
+  }
+
+  /* Scroll indicators for mobile */
+  @media (max-width: 768px) {
+    .tab-navigation-container::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 20px;
+      height: 100%;
+      background: linear-gradient(to left, rgba(255, 255, 255, 0.8), transparent);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    :root.theme-dark .tab-navigation-container::after {
+      background: linear-gradient(to left, rgba(17, 24, 39, 0.8), transparent);
     }
   }
   .section-about-img {
@@ -955,10 +1079,81 @@ const {
     font-size: 1.05rem;
     text-align: justify;
     max-width: 95%;
+    transition: all 0.3s ease;
   }
 
   :root.theme-dark .section2-about .describe-about {
     color: var(--text-muted-color); /* Utilise la variable personnalisée */
+  }
+
+  /* Description container and truncation */
+  .description-container {
+    position: relative;
+  }
+
+  .describe-about.truncated {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: 1rem;
+  }
+
+  /* See more button */
+  .see-more-btn {
+    background: linear-gradient(135deg, var(--accent-regular), var(--accent-dark));
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .see-more-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+  }
+
+  .see-more-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+    background: linear-gradient(135deg, var(--accent-dark), var(--accent-regular));
+  }
+
+  .see-more-btn:hover::before {
+    left: 100%;
+  }
+
+  .see-more-btn:hover i {
+    transform: translateY(2px);
+  }
+
+  .see-more-btn i {
+    transition: transform 0.3s ease;
+    font-size: 0.8rem;
+  }
+
+  :root.theme-dark .see-more-btn {
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.2);
+  }
+
+  :root.theme-dark .see-more-btn:hover {
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
   }
 
   .section2-about .btn-about {
@@ -1475,14 +1670,314 @@ const {
       gap: 0.5rem;
     }
   }
+
+  /* Modal Styles */
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 1rem;
+  }
+
+  .modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .modal-container {
+    background: white;
+    border-radius: 20px;
+    max-width: 600px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+    transform: scale(0.9) translateY(20px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+  }
+
+  :root.theme-dark .modal-container {
+    background: var(--gray-800);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+  }
+
+  .modal-overlay.active .modal-container {
+    transform: scale(1) translateY(0);
+  }
+
+  .modal-header {
+    padding: 2rem 2rem 1rem;
+    border-bottom: 1px solid var(--gray-100);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    background: white;
+    border-radius: 20px 20px 0 0;
+    z-index: 10;
+  }
+
+  :root.theme-dark .modal-header {
+    background: var(--gray-800);
+    border-bottom-color: var(--gray-700);
+  }
+
+  .modal-header h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--gray-0);
+    background: linear-gradient(135deg, var(--accent-regular), var(--accent-dark));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  :root.theme-dark .modal-header h3 {
+    background: linear-gradient(135deg, var(--accent-light), var(--accent-regular));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .modal-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--gray-400);
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+  }
+
+  .modal-close:hover {
+    background: var(--gray-100);
+    color: var(--gray-600);
+    transform: rotate(90deg);
+  }
+
+  :root.theme-dark .modal-close {
+    color: var(--gray-300);
+  }
+
+  :root.theme-dark .modal-close:hover {
+    background: var(--gray-700);
+    color: var(--gray-100);
+  }
+
+  .modal-content {
+    padding: 1.5rem 2rem;
+  }
+
+  .modal-description {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--gray-300);
+    margin-bottom: 2rem;
+    text-align: justify;
+  }
+
+  :root.theme-dark .modal-description {
+    color: var(--gray-200);
+  }
+
+  .modal-highlights {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .highlight-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--gray-50);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    border-left: 4px solid var(--accent-regular);
+  }
+
+  :root.theme-dark .highlight-item {
+    background: var(--gray-700);
+    border-left-color: var(--accent-dark);
+  }
+
+  .highlight-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  :root.theme-dark .highlight-item:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  .highlight-item i {
+    font-size: 1.5rem;
+    color: var(--accent-regular);
+    min-width: 24px;
+  }
+
+  :root.theme-dark .highlight-item i {
+    color: var(--accent-dark);
+  }
+
+  .highlight-item span {
+    font-weight: 500;
+    color: var(--gray-600);
+  }
+
+  :root.theme-dark .highlight-item span {
+    color: var(--gray-200);
+  }
+
+  .modal-footer {
+    padding: 1rem 2rem 2rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .modal-cta-btn,
+  .modal-contact-btn {
+    padding: 0.875rem 1.5rem;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+  }
+
+  .modal-cta-btn {
+    background: linear-gradient(135deg, var(--accent-regular), var(--accent-dark));
+    color: white;
+  }
+
+  .modal-cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+  }
+
+  .modal-contact-btn {
+    background: transparent;
+    color: var(--accent-regular);
+    border-color: var(--accent-regular);
+  }
+
+  .modal-contact-btn:hover {
+    background: var(--accent-regular);
+    color: white;
+    transform: translateY(-2px);
+  }
+
+  :root.theme-dark .modal-contact-btn {
+    color: var(--accent-dark);
+    border-color: var(--accent-dark);
+  }
+
+  :root.theme-dark .modal-contact-btn:hover {
+    background: var(--accent-dark);
+  }
+
+  /* Responsive modal */
+  @media (max-width: 640px) {
+    .modal-container {
+      margin: 1rem;
+      border-radius: 16px;
+    }
+
+    .modal-header {
+      padding: 1.5rem 1.5rem 1rem;
+      border-radius: 16px 16px 0 0;
+    }
+
+    .modal-header h3 {
+      font-size: 1.25rem;
+    }
+
+    .modal-content {
+      padding: 1rem 1.5rem;
+    }
+
+    .modal-description {
+      font-size: 1rem;
+    }
+
+    .modal-highlights {
+      grid-template-columns: 1fr;
+    }
+
+    .modal-footer {
+      padding: 1rem 1.5rem 1.5rem;
+      flex-direction: column;
+    }
+
+    .modal-cta-btn,
+    .modal-contact-btn {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .see-more-btn {
+      padding: 0.625rem 1.25rem;
+      font-size: 0.85rem;
+    }
+  }
 </style>
 
 <script is:inline>
+  // Function to scroll active tab into view on mobile
+  function scrollTabIntoView(activeButton) {
+    const container = document.querySelector('.tab-scroll-container');
+    if (!container || window.innerWidth > 768) return;
+
+    const containerRect = container.getBoundingClientRect();
+    const buttonRect = activeButton.getBoundingClientRect();
+    
+    const scrollLeft = container.scrollLeft;
+    const containerWidth = containerRect.width;
+    const buttonLeft = buttonRect.left - containerRect.left + scrollLeft;
+    const buttonWidth = buttonRect.width;
+    
+    // Calculate the position to center the button
+    const targetScrollLeft = buttonLeft - (containerWidth / 2) + (buttonWidth / 2);
+    
+    container.scrollTo({
+      left: Math.max(0, targetScrollLeft),
+      behavior: 'smooth'
+    });
+  }
+
   // Function to handle tab switching
   function switchTab(tabId) {
     // Get all tab buttons and content sections
     const tabButtons = document.querySelectorAll('.tab-button');
     const tabContents = document.querySelectorAll('.tab-content');
+    let activeButton = null;
 
     // Update button states
     tabButtons.forEach(button => {
@@ -1490,6 +1985,7 @@ const {
       if (buttonId === tabId) {
         button.classList.add('active');
         button.setAttribute('aria-selected', 'true');
+        activeButton = button;
       } else {
         button.classList.remove('active');
         button.setAttribute('aria-selected', 'false');
@@ -1505,6 +2001,11 @@ const {
         content.classList.remove('active');
       }
     });
+
+    // Scroll active tab into view on mobile
+    if (activeButton) {
+      setTimeout(() => scrollTabIntoView(activeButton), 100);
+    }
   }
 
   // Initialize tab functionality
@@ -1520,14 +2021,103 @@ const {
         }
       });
     });
+
+    // Add touch-friendly interactions for mobile
+    if (window.innerWidth <= 768) {
+      const container = document.querySelector('.tab-scroll-container');
+      if (container) {
+        // Add momentum scrolling for iOS
+        container.style.webkitOverflowScrolling = 'touch';
+        
+        // Scroll active tab into view on page load
+        const activeButton = document.querySelector('.tab-button.active');
+        if (activeButton) {
+          setTimeout(() => scrollTabIntoView(activeButton), 300);
+        }
+      }
+    }
+  }
+
+  // Handle window resize to adjust scroll behavior
+  function handleResize() {
+    if (window.innerWidth <= 768) {
+      const activeButton = document.querySelector('.tab-button.active');
+      if (activeButton) {
+        setTimeout(() => scrollTabIntoView(activeButton), 100);
+      }
+    }
   }
 
   // Run initialization on page load
   document.addEventListener('astro:page-load', initTabs);
   document.addEventListener('DOMContentLoaded', initTabs);
+  window.addEventListener('resize', handleResize);
 
   // Also run immediately if the page is already loaded
   if (document.readyState === 'complete' || document.readyState === 'interactive') {
     initTabs();
+  }
+
+  // Modal functionality
+  function initModal() {
+    const seeMoreBtn = document.getElementById('seeMoreBtn');
+    const modal = document.getElementById('descriptionModal');
+    const closeBtn = document.getElementById('closeModal');
+    const modalOverlay = document.querySelector('.modal-overlay');
+
+    if (seeMoreBtn && modal && closeBtn) {
+      // Open modal
+      seeMoreBtn.addEventListener('click', function() {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        
+        // Add entrance animation
+        setTimeout(() => {
+          const highlights = document.querySelectorAll('.highlight-item');
+          highlights.forEach((item, index) => {
+            setTimeout(() => {
+              item.style.opacity = '0';
+              item.style.transform = 'translateY(20px)';
+              item.style.transition = 'all 0.3s ease';
+              setTimeout(() => {
+                item.style.opacity = '1';
+                item.style.transform = 'translateY(0)';
+              }, 50);
+            }, index * 100);
+          });
+        }, 200);
+      });
+
+      // Close modal
+      function closeModal() {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+
+      closeBtn.addEventListener('click', closeModal);
+      
+      // Close on overlay click
+      modalOverlay.addEventListener('click', function(e) {
+        if (e.target === modalOverlay) {
+          closeModal();
+        }
+      });
+
+      // Close on Escape key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+          closeModal();
+        }
+      });
+    }
+  }
+
+  // Initialize modal functionality
+  document.addEventListener('astro:page-load', initModal);
+  document.addEventListener('DOMContentLoaded', initModal);
+
+  // Also run immediately if the page is already loaded
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    initModal();
   }
 </script>
