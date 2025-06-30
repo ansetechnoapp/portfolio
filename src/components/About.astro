@@ -237,61 +237,101 @@ const {
           class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm card-hover-effect"
           style="--animation-order: 1;"
         >
-          {
-            skills.webDev && skills.webDev.length > 0 && (
-              <div class="mb-8">
-                <h3 class="text-xl font-semibold pb-4 dark:text-white">
-                  Web Development
-                </h3>
-                <div class="flex flex-wrap gap-4">
-                  {skills.webDev.map((skill) => (
-                    <span class="px-4 py-2 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-100 rounded-full text-sm font-medium transform transition-transform hover:scale-105">
-                      {skill}
-                    </span>
-                  ))}
+          <!-- Skills Accordion -->
+          <div class="skills-accordion">
+            {
+              skills.webDev && skills.webDev.length > 0 && (
+                <div class="accordion-item mb-4">
+                  <button 
+                    class="accordion-header w-full flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors duration-200"
+                    data-accordion="webdev"
+                    aria-expanded="true"
+                  >
+                    <div class="flex items-center gap-3">
+                      <i class="fas fa-chevron-right accordion-arrow text-blue-500 transition-transform duration-200" style="transform: rotate(90deg);"></i>
+                      <h3 class="text-xl font-semibold dark:text-white">
+                        Web Development
+                      </h3>
+                    </div>
+                    {/* <i class="fas fa-chevron-down text-gray-400"></i> */}
+                  </button>
+                  <div class="accordion-content active" data-content="webdev">
+                    <div class="flex flex-wrap gap-4 p-4">
+                      {skills.webDev.map((skill) => (
+                        <span class="px-4 py-2 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-100 rounded-full text-sm font-medium transform transition-transform hover:scale-105">
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-              </div>
-            )
-          }
+              )
+            }
 
-          {
-            skills.mobileDev && skills.mobileDev.length > 0 && (
-              <div class="mb-8">
-                <h3 class="text-xl font-semibold pb-4 dark:text-white">
-                  Mobile Development
-                </h3>
-                <div class="flex flex-wrap gap-4">
-                  {skills.mobileDev.map((skill) => (
-                    <span class="px-4 py-2 bg-pink-100 dark:bg-pink-900 text-pink-800 dark:text-pink-100 rounded-full text-sm font-medium transform transition-transform hover:scale-105">
-                      {skill}
-                    </span>
-                  ))}
+            {
+              skills.mobileDev && skills.mobileDev.length > 0 && (
+                <div class="accordion-item mb-4">
+                  <button 
+                    class="accordion-header w-full flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors duration-200"
+                    data-accordion="mobiledev"
+                    aria-expanded="false"
+                  >
+                    <div class="flex items-center gap-3">
+                      <i class="fas fa-chevron-right accordion-arrow text-pink-500 transition-transform duration-200"></i>
+                      <h3 class="text-xl font-semibold dark:text-white">
+                        Mobile Development
+                      </h3>
+                    </div>
+                    {/* <i class="fas fa-chevron-down text-gray-400"></i> */}
+                  </button>
+                  <div class="accordion-content" data-content="mobiledev">
+                    <div class="flex flex-wrap gap-4 p-4">
+                      {skills.mobileDev.map((skill) => (
+                        <span class="px-4 py-2 bg-pink-100 dark:bg-pink-900 text-pink-800 dark:text-pink-100 rounded-full text-sm font-medium transform transition-transform hover:scale-105">
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-              </div>
-            )
-          }
+              )
+            }
 
-          {
-            skills.other && skills.other.length > 0 && (
-              <div>
-                <h3 class="text-xl font-semibold pb-4 dark:text-white">
-                  Other Technologies
-                </h3>
-                <div class="flex flex-wrap gap-4">
-                  {skills.other.map((skill) => (
-                    <span class="px-4 py-2 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-100 rounded-full text-sm font-medium transform transition-transform hover:scale-105">
-                      {skill}
-                    </span>
-                  ))}
+            {
+              skills.other && skills.other.length > 0 && (
+                <div class="accordion-item mb-4">
+                  <button 
+                    class="accordion-header w-full flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors duration-200"
+                    data-accordion="other"
+                    aria-expanded="false"
+                  >
+                    <div class="flex items-center gap-3">
+                      <i class="fas fa-chevron-right accordion-arrow text-green-500 transition-transform duration-200"></i>
+                      <h3 class="text-xl font-semibold dark:text-white">
+                        Other Technologies
+                      </h3>
+                    </div>
+                    {/* <i class="fas fa-chevron-down text-gray-400"></i> */}
+                  </button>
+                  <div class="accordion-content" data-content="other">
+                    <div class="flex flex-wrap gap-4 p-4">
+                      {skills.other.map((skill) => (
+                        <span class="px-4 py-2 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-100 rounded-full text-sm font-medium transform transition-transform hover:scale-105">
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-                <div class="btn-about gap-10 action-buttons">
+              )
+            }
+          </div>
+          
+          <div class="btn-about gap-10 action-buttons mt-6">
             <a href="/work" class="portfolio-button">
               <Pill><Icon icon="pencil-line" size="1.33em" /> View Portfolio</Pill>
             </a>
           </div>
-              </div>
-            )
-          }
         </div>
       </div>
 
@@ -1903,6 +1943,48 @@ const {
     background: var(--accent-dark);
   }
 
+  /* Skills Accordion Styles */
+  .skills-accordion {
+    width: 100%;
+  }
+
+  .accordion-item {
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  :root.theme-dark .accordion-item {
+    border-color: #374151;
+  }
+
+  .accordion-header {
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    outline: none;
+  }
+
+  .accordion-header:focus {
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+  }
+
+  .accordion-arrow {
+    font-size: 0.875rem;
+    transition: transform 0.2s ease;
+  }
+
+  .accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .accordion-content.active {
+    max-height: 500px;
+  }
+
   /* Responsive modal */
   @media (max-width: 640px) {
     .modal-container {
@@ -2119,5 +2201,52 @@ const {
   // Also run immediately if the page is already loaded
   if (document.readyState === 'complete' || document.readyState === 'interactive') {
     initModal();
+  }
+
+  // Skills Accordion functionality
+  function initSkillsAccordion() {
+    const accordionHeaders = document.querySelectorAll('.accordion-header');
+    
+    accordionHeaders.forEach(header => {
+      header.addEventListener('click', function() {
+        const accordionId = this.getAttribute('data-accordion');
+        const content = document.querySelector(`[data-content="${accordionId}"]`);
+        const arrow = this.querySelector('.accordion-arrow');
+        const isExpanded = this.getAttribute('aria-expanded') === 'true';
+        
+        // Close all other accordion items
+        accordionHeaders.forEach(otherHeader => {
+          if (otherHeader !== this) {
+            const otherId = otherHeader.getAttribute('data-accordion');
+            const otherContent = document.querySelector(`[data-content="${otherId}"]`);
+            const otherArrow = otherHeader.querySelector('.accordion-arrow');
+            
+            otherHeader.setAttribute('aria-expanded', 'false');
+            otherContent.classList.remove('active');
+            otherArrow.style.transform = 'rotate(0deg)';
+          }
+        });
+        
+        // Toggle current accordion item
+        if (isExpanded) {
+          this.setAttribute('aria-expanded', 'false');
+          content.classList.remove('active');
+          arrow.style.transform = 'rotate(0deg)';
+        } else {
+          this.setAttribute('aria-expanded', 'true');
+          content.classList.add('active');
+          arrow.style.transform = 'rotate(90deg)';
+        }
+      });
+    });
+  }
+
+  // Initialize accordion functionality
+  document.addEventListener('astro:page-load', initSkillsAccordion);
+  document.addEventListener('DOMContentLoaded', initSkillsAccordion);
+
+  // Also run immediately if the page is already loaded
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    initSkillsAccordion();
   }
 </script>
