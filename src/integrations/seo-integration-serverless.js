@@ -112,8 +112,8 @@ export function generateJSONLD(pageData = {}, config = defaultSeoConfig) {
     },
     "sameAs": [
       "https://github.com/ansetechnoapp",
-      "https://linkedin.com/in/zoddev",
-      "https://instagram.com/zoddev.otty"
+      "https://www.linkedin.com/in/anscod/",
+      "https://instagram.com/anscod.otty"
     ],
     "knowsAbout": [
       "React",
