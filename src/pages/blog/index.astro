@@ -51,7 +51,7 @@ const allTags = getAllTags();
         </p>
         <div class="presentation-cta">
           <a href="#featured" class="btn">Read Latest</a>
-          <a href="#categories" class="btn btn-outline">Browse Topics</a>
+          <a href="#categories" class="btn">Browse Topics</a> 
         </div>
       </div>
     </div>
@@ -209,7 +209,7 @@ const allTags = getAllTags();
         <!-- Filter Tags Section -->
         <div class="filter-tags-section mb-6">
           <h3 class="filter-section-title text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3 uppercase tracking-wide">
-            Filter by Topic
+            Filter by Topic 
           </h3>
           <div class="filter-tags-container">
             <div class="filter-tags-scroll">
@@ -224,9 +224,9 @@ const allTags = getAllTags();
                   <span class="filter-btn-count" id="all-count"></span>
                 </button>
                 {
-                  allTags.map((tag) => (
+                  allTags.slice(0, 6).map((tag) => (
                     <button
-                      class="filter-btn"
+                      class="filter-btn tag-visible"
                       data-tag={tag}
                       aria-label={`Filter by ${tag}`}
                     >
@@ -234,6 +234,33 @@ const allTags = getAllTags();
                       <span class="filter-btn-count" id={`${tag}-count`}></span>
                     </button>
                   ))
+                }
+                {
+                  allTags.slice(5).map((tag) => (
+                    <button
+                      class="filter-btn tag-hidden"
+                      data-tag={tag}
+                      aria-label={`Filter by ${tag}`}
+                      style="display: none;"
+                    >
+                      <span class="filter-btn-text">{tag}</span>
+                      <span class="filter-btn-count" id={`${tag}-count`}></span>
+                    </button>
+                  ))
+                }
+                {
+                  allTags.length > 5 && (
+                    <button
+                      id="show-more-tags"
+                      class="filter-btn show-more-btn"
+                      aria-label="Show more tags"
+                    >
+                      <span class="filter-btn-text">See More</span>
+                      <svg class="show-more-icon" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                      </svg>
+                    </button>
+                  )
                 }
               </div>
             </div>
@@ -722,6 +749,35 @@ const allTags = getAllTags();
 
   .filter-btn.active .filter-btn-count {
     background: rgba(255, 255, 255, 0.25);
+  }
+
+  /* Show More Button */
+  .show-more-btn {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px dashed rgba(255, 255, 255, 0.3) !important;
+    color: var(--gray-600) !important;
+  }
+
+  .show-more-btn:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-color: rgba(255, 255, 255, 0.4) !important;
+    color: var(--gray-700) !important;
+  }
+
+  .show-more-icon {
+    transition: transform 0.3s ease;
+  }
+
+  .show-more-btn.expanded .show-more-icon {
+    transform: rotate(180deg);
+  }
+
+  .tag-hidden {
+    display: none !important;
+  }
+
+  .tag-visible {
+    display: flex !important;
   }
 
   /* Controls Section */
@@ -1352,6 +1408,44 @@ const allTags = getAllTags();
     // Clear filters button
     if (clearFiltersBtn) {
       clearFiltersBtn.addEventListener("click", clearAllFilters);
+    }
+
+    // Show More/Less functionality for tags
+    const showMoreBtn = document.getElementById("show-more-tags");
+    if (showMoreBtn) {
+      let isExpanded = false;
+      
+      showMoreBtn.addEventListener("click", () => {
+        const btnText = showMoreBtn.querySelector(".filter-btn-text");
+        
+        if (!isExpanded) {
+          // Show hidden tags
+          const hiddenTags = document.querySelectorAll(".tag-hidden");
+          hiddenTags.forEach(tag => {
+            tag.style.display = "flex";
+            tag.classList.remove("tag-hidden");
+            tag.classList.add("tag-visible");
+          });
+          
+          showMoreBtn.classList.add("expanded");
+          if (btnText) btnText.textContent = "See Less";
+          isExpanded = true;
+        } else {
+          // Hide tags again - get all filter buttons except first 5 and the show more button
+          const allFilterBtns = document.querySelectorAll('.filter-btn[data-tag]:not(#show-more-tags)');
+          const tagsToHide = Array.from(allFilterBtns).slice(7); // Skip first 6 tags
+          
+          tagsToHide.forEach(tag => {
+            tag.style.display = "none";
+            tag.classList.remove("tag-visible");
+            tag.classList.add("tag-hidden");
+          });
+          
+          showMoreBtn.classList.remove("expanded");
+          if (btnText) btnText.textContent = "See More";
+          isExpanded = false;
+        }
+      });
     }
 
     // Featured posts navigation

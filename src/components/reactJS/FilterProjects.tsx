@@ -28,7 +28,7 @@ export default function FilterProjects({
     return (
         <div
             className={`flex flex-wrap items-center justify-center gap-4 mb-8 ${className}`.trim()}
-            role="group"
+            role="group" 
             aria-label="Project filters"
         >
             {(['all', 'web', 'mobile'] as const).map((filter) => (
@@ -38,7 +38,7 @@ export default function FilterProjects({
                     className={`
                         px-4 py-2 text-sm font-medium rounded-full transition-all duration-300
                         ${activeFilter === filter
-                            ? 'bg-primary text-white shadow-lg transform scale-105'
+                            ? 'bg-primary text-primary-foreground shadow-lg transform scale-105'
                             : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
                         }
                     `}
