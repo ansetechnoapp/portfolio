@@ -44,9 +44,26 @@
 <script>
   // Option 1: Floating Geometric Particles
   class GeometricParticles {
-    constructor(canvas) {
+    canvas: HTMLCanvasElement;
+    ctx: CanvasRenderingContext2D;
+    particles: Array<{
+      x: number;
+      y: number;
+      size: number;
+      speedX: number;
+      speedY: number;
+      rotation: number;
+      rotationSpeed: number;
+      shape: number;
+      opacity: number;
+    }>;
+    mouse: { x: number; y: number };
+
+    constructor(canvas: HTMLCanvasElement) {
       this.canvas = canvas;
-      this.ctx = canvas.getContext('2d');
+      const ctx = canvas.getContext('2d');
+      if (!ctx) throw new Error('Canvas 2D context not supported');
+      this.ctx = ctx;
       this.particles = [];
       this.mouse = { x: 0, y: 0 };
       
@@ -84,7 +101,17 @@
       }
     }
     
-    drawParticle(particle) {
+    drawParticle(particle: {
+      x: number;
+      y: number;
+      size: number;
+      speedX: number;
+      speedY: number;
+      rotation: number;
+      rotationSpeed: number;
+      shape: number;
+      opacity: number;
+    }) {
       this.ctx.save();
       this.ctx.translate(particle.x, particle.y);
       this.ctx.rotate(particle.rotation);
@@ -153,9 +180,22 @@
   
   // Option 2: Interactive Network Connections
   class NetworkConnections {
-    constructor(canvas) {
+    canvas: HTMLCanvasElement;
+    ctx: CanvasRenderingContext2D;
+    nodes: Array<{
+      x: number;
+      y: number;
+      vx: number;
+      vy: number;
+      radius: number;
+    }>;
+    mouse: { x: number; y: number };
+
+    constructor(canvas: HTMLCanvasElement) {
       this.canvas = canvas;
-      this.ctx = canvas.getContext('2d');
+      const ctx = canvas.getContext('2d');
+      if (!ctx) throw new Error('Canvas 2D context not supported');
+      this.ctx = ctx;
       this.nodes = [];
       this.mouse = { x: 0, y: 0 };
       
@@ -248,9 +288,25 @@
   
   // Option 3: Floating Orbs with Glow
   class FloatingOrbs {
-    constructor(canvas) {
+    canvas: HTMLCanvasElement;
+    ctx: CanvasRenderingContext2D;
+    orbs: Array<{
+      x: number;
+      y: number;
+      baseX: number;
+      baseY: number;
+      radius: number;
+      speed: number;
+      phase: number;
+      color: string;
+    }>;
+    time: number;
+
+    constructor(canvas: HTMLCanvasElement) {
       this.canvas = canvas;
-      this.ctx = canvas.getContext('2d');
+      const ctx = canvas.getContext('2d');
+      if (!ctx) throw new Error('Canvas 2D context not supported');
+      this.ctx = ctx;
       this.orbs = [];
       this.time = 0;
       
@@ -319,9 +375,25 @@
   
   // Option 4: Morphing Shapes
   class MorphingShapes {
-    constructor(canvas) {
+    canvas: HTMLCanvasElement;
+    ctx: CanvasRenderingContext2D;
+    shapes: Array<{
+      x: number;
+      y: number;
+      size: number;
+      rotation: number;
+      rotationSpeed: number;
+      morphSpeed: number;
+      phase: number;
+      color: string;
+    }>;
+    time: number;
+
+    constructor(canvas: HTMLCanvasElement) {
       this.canvas = canvas;
-      this.ctx = canvas.getContext('2d');
+      const ctx = canvas.getContext('2d');
+      if (!ctx) throw new Error('Canvas 2D context not supported');
+      this.ctx = ctx;
       this.shapes = [];
       this.time = 0;
       
@@ -354,7 +426,16 @@
       }
     }
     
-    drawMorphingShape(shape) {
+    drawMorphingShape(shape: {
+      x: number;
+      y: number;
+      size: number;
+      rotation: number;
+      rotationSpeed: number;
+      morphSpeed: number;
+      phase: number;
+      color: string;
+    }) {
       this.ctx.save();
       this.ctx.translate(shape.x, shape.y);
       this.ctx.rotate(shape.rotation);
@@ -409,24 +490,24 @@
   // Initialize based on user preference
   document.addEventListener('DOMContentLoaded', () => {
     // Change this to switch between different canvas backgrounds
-    const canvasType = 'geometric-particles'; // Options: 'geometric-particles', 'network-connections', 'floating-orbs', 'morphing-shapes'
+    const canvasType = 'geometric-particles' as 'geometric-particles' | 'network-connections' | 'floating-orbs' | 'morphing-shapes';
     
-    let canvas;
+    let canvas: HTMLCanvasElement | null;
     switch (canvasType) {
       case 'geometric-particles':
-        canvas = document.getElementById('geometricCanvas');
+        canvas = document.getElementById('geometricCanvas') as HTMLCanvasElement;
         if (canvas) new GeometricParticles(canvas);
         break;
       case 'network-connections':
-        canvas = document.getElementById('networkCanvas');
+        canvas = document.getElementById('networkCanvas') as HTMLCanvasElement;
         if (canvas) new NetworkConnections(canvas);
         break;
       case 'floating-orbs':
-        canvas = document.getElementById('orbsCanvas');
+        canvas = document.getElementById('orbsCanvas') as HTMLCanvasElement;
         if (canvas) new FloatingOrbs(canvas);
         break;
       case 'morphing-shapes':
-        canvas = document.getElementById('morphingCanvas');
+        canvas = document.getElementById('morphingCanvas') as HTMLCanvasElement;
         if (canvas) new MorphingShapes(canvas);
         break;
     }

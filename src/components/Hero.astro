@@ -632,9 +632,32 @@ const { align = "center", tagline, tagline1, title } = Astro.props;
 <script>
   // Modern Interactive Geometric Particles Canvas
   class HeroCanvasAnimation {
-    constructor(canvas) {
+    canvas: HTMLCanvasElement;
+    ctx: CanvasRenderingContext2D;
+    particles: Array<{
+      x: number;
+      y: number;
+      baseX: number;
+      baseY: number;
+      size: number;
+      speedX: number;
+      speedY: number;
+      rotation: number;
+      rotationSpeed: number;
+      shape: number;
+      opacity: number;
+      phase: number;
+      floatSpeed: number;
+      color: string;
+    }>;
+    mouse: { x: number; y: number };
+    time: number;
+
+    constructor(canvas: HTMLCanvasElement) {
       this.canvas = canvas;
-      this.ctx = canvas.getContext('2d');
+      const ctx = canvas.getContext('2d');
+      if (!ctx) throw new Error('Canvas 2D context not supported');
+      this.ctx = ctx;
       this.particles = [];
       this.mouse = { x: 0, y: 0 };
       this.time = 0;
@@ -680,7 +703,15 @@ const { align = "center", tagline, tagline1, title } = Astro.props;
       }
     }
     
-    drawParticle(particle) {
+    drawParticle(particle: {
+      x: number;
+      y: number;
+      size: number;
+      rotation: number;
+      opacity: number;
+      color: string;
+      shape: number;
+    }) {
       this.ctx.save();
       this.ctx.translate(particle.x, particle.y);
       this.ctx.rotate(particle.rotation);
@@ -830,7 +861,7 @@ const { align = "center", tagline, tagline1, title } = Astro.props;
   
   // Initialize canvas animation when DOM is loaded
   document.addEventListener('DOMContentLoaded', () => {
-    const canvas = document.getElementById('heroCanvas');
+    const canvas = document.getElementById('heroCanvas') as HTMLCanvasElement;
     if (canvas) {
       new HeroCanvasAnimation(canvas);
     }
