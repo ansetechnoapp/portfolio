@@ -12,7 +12,7 @@ interface IconLink {
     label: string;
 }
 
-const MenuLinks: React.FC<MenuLinksProps> = ({ namepage, pathname }) => {
+const MenuLinks: React.FC<MenuLinksProps> = ({ namepage, pathname }) => { 
     const getIconLinks = (): IconLink[] => {
         let iconLinks: IconLink[] = [];
 
@@ -60,9 +60,35 @@ const MenuLinks: React.FC<MenuLinksProps> = ({ namepage, pathname }) => {
         } else if (namepage === "work") {
             iconLinks = [
                 {
+                    icon: <RiHome5Line size={20} />,
+                    href: "/#hero_home",
+                    label: "Accueil"
+                },
+                {
+                    icon: <RiToolsFill size={20} />,
+                    href: "/#skills",
+                    label: "Compétences"
+                },
+                {
+                    icon: <RiUser3Line size={20} />,
+                    href: "/#about",
+                    label: "À propos"
+                },
+                {
+                    icon: <RiCodeSSlashLine size={20} />,
+                    href: "/#service",
+                    label: "Services"
+                },
+                {
                     icon: <RiBriefcase2Line size={20} />,
                     href: "#work",
                     label: "Travaux"
+                },
+                {
+                    icon: <RiMailLine size={20} />,
+                    href: "#contact",
+
+                    label: "Contact"
                 }
             ];
         } else if (namepage === "widgets") {
