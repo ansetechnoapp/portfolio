@@ -8,7 +8,7 @@ export default defineConfig({
   output: 'server',
   adapter: vercel({
     webAnalytics: {
-      enabled: true
+      enabled: process.env.NODE_ENV === 'production'
     }
   }),
   site: 'https://zoddev.site/',

@@ -129,6 +129,8 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({
                 src={selectedImage.url}
                 alt={selectedImage.alt}
                 className="w-full h-auto max-h-[70vh] object-contain rounded-lg"
+                loading="lazy"
+                decoding="async"
               />
               
               {/* Navigation buttons */}
