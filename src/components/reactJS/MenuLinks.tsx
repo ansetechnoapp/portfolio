@@ -12,7 +12,7 @@ interface IconLink {
     label: string;
 }
 
-const MenuLinks: React.FC<MenuLinksProps> = ({ namepage, pathname }) => { 
+const MenuLinks: React.FC<MenuLinksProps> = ({ namepage, pathname }) => {
     const getIconLinks = (): IconLink[] => {
         let iconLinks: IconLink[] = [];
 
@@ -49,12 +49,37 @@ const MenuLinks: React.FC<MenuLinksProps> = ({ namepage, pathname }) => {
                     label: "Contact"
                 }
             ];
-        } else if (namepage === "about") {
+        } else if (namepage === "blog") {
             iconLinks = [
+                {
+                    icon: <RiHome5Line size={20} />,
+                    href: "#hero_home",
+                    label: "Accueil"
+                },
+                {
+                    icon: <RiToolsFill size={20} />,
+                    href: "#skills",
+                    label: "Compétences"
+                },
                 {
                     icon: <RiUser3Line size={20} />,
                     href: "#about",
                     label: "À propos"
+                },
+                {
+                    icon: <RiCodeSSlashLine size={20} />,
+                    href: "#service",
+                    label: "Services"
+                },
+                {
+                    icon: <RiBriefcase2Line size={20} />,
+                    href: "#work",
+                    label: "Travaux"
+                },
+                {
+                    icon: <RiMailLine size={20} />,
+                    href: "#contact",
+                    label: "Contact"
                 }
             ];
         } else if (namepage === "work") {
@@ -91,12 +116,42 @@ const MenuLinks: React.FC<MenuLinksProps> = ({ namepage, pathname }) => {
                     label: "Contact"
                 }
             ];
-        } else if (namepage === "widgets") {
+        } else if (namepage === "widgetCss") {
             iconLinks = [
                 {
                     icon: <RiCodeSSlashLine size={20} />,
                     href: "/docs/",
                     label: "Documentation"
+                },
+                {
+                    icon: <RiHome5Line size={20} />,
+                    href: "#hero_home",
+                    label: "Accueil"
+                },
+                {
+                    icon: <RiToolsFill size={20} />,
+                    href: "#skills",
+                    label: "Compétences"
+                },
+                {
+                    icon: <RiUser3Line size={20} />,
+                    href: "#about",
+                    label: "À propos"
+                },
+                {
+                    icon: <RiCodeSSlashLine size={20} />,
+                    href: "#service",
+                    label: "Services"
+                },
+                {
+                    icon: <RiBriefcase2Line size={20} />,
+                    href: "#work",
+                    label: "Travaux"
+                },
+                {
+                    icon: <RiMailLine size={20} />,
+                    href: "#contact",
+                    label: "Contact"
                 }
             ];
         }
@@ -105,21 +160,21 @@ const MenuLinks: React.FC<MenuLinksProps> = ({ namepage, pathname }) => {
     };
 
     return (
-            <ul className="menu-links-container">
-                {getIconLinks().map(({ href, icon, label }) => (
-                    <li key={href}>
-                        <a
-                            aria-current={pathname === href}
-                            href={href}
-                            className={`menu-link-item ${pathname === href ? 'active' : ''}`}
-                            title={label}
-                        >
-                            {icon}
-                            <span className="sr-only desktop-only">{label}</span>
-                        </a>
-                    </li>
-                ))}
-            </ul>
+        <ul className="menu-links-container">
+            {getIconLinks().map(({ href, icon, label }) => (
+                <li key={href}>
+                    <a
+                        aria-current={pathname === href}
+                        href={href}
+                        className={`menu-link-item ${pathname === href ? 'active' : ''}`}
+                        title={label}
+                    >
+                        {icon}
+                        <span className="sr-only">{label}</span>
+                    </a>
+                </li>
+            ))}
+        </ul>
     );
 };
 

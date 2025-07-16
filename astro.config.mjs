@@ -33,7 +33,7 @@ export default defineConfig({
       },
     },
     // Enable experimental responsive images for automatic optimization
-    experimentalResponsiveImages: true,
+    domains: [],
   },
   integrations: [
     tailwind(),

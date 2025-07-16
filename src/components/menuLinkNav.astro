@@ -105,8 +105,12 @@ const { namepage } = Astro.props;
     color: #000;
   }
 
-  /* Cacher le ThemeToggle sur mobile */
+  /* Cacher complètement le menu de navigation sur mobile */
   @media (max-width: 47.9em) {
+    .menu-link-nav {
+      display: none !important;
+    }
+    
     .menu-link-nav .desktop-theme-toggle {
       display: none;
     }
