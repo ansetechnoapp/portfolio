@@ -476,7 +476,7 @@ const StandardTimelineList = ({
         minWidth: events.length * 350 + 'px',
       } : {}}
     >
-      <AnimatePresence mode="wait">
+      <AnimatePresence>
         {events.map((event, index) => (
           <MemoTimelineItem
             key={`${event.year}-${index}`}
