@@ -8,7 +8,7 @@
 }
 
 /* Styles pour la barre de navigation mobile (écrans ≤ 767px) */
-@media (max-width: 47.9em) {
+@media (max-width: 767px) {
   /* Conteneur principal de la barre de navigation */
   .mobile-bottom-nav {
     display: flex;
@@ -75,7 +75,7 @@
   }
   
   /* Cacher les libellés desktop sur mobile */
-  @media (max-width: 47.9em) {
+  @media (max-width: 767px) {
     .desktop-only {
       display: none !important;
     }

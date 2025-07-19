@@ -662,6 +662,65 @@ const iconLinks: {
     }
   }
 
+  /* Règles spécifiques pour la zone problématique 641px-767px */
+  @media (min-width: 641px) and (max-width: 767px) {
+    nav {
+      height: var(--mobile-nav-height) !important;
+      display: block !important; /* Force le comportement mobile */
+      grid-template-columns: none !important;
+      padding: 0 !important;
+    }
+    
+    .menu-header {
+      display: flex !important;
+      justify-content: space-between !important;
+      align-items: center !important;
+      padding: 0.5rem var(--container-padding) !important;
+      height: var(--mobile-nav-height) !important;
+      width: 100% !important;
+      max-width: none !important;
+    }
+    
+    /* Force le menu mobile à rester fonctionnel */
+    .mobile-only-menu {
+      display: block !important;
+    }
+    
+    .desktop-nav {
+      display: none !important;
+    }
+    
+    .desktop-theme-toggle {
+      display: none !important;
+    }
+    
+    /* Assure que le logo garde sa taille mobile */
+    .site-logo {
+      height: 40px !important;
+    }
+    
+    .site-logo img {
+      height: 40px !important;
+    }
+    
+    .site-title {
+      font-size: inherit !important;
+    }
+  }
+  
+  /* Règle spécifique pour 764px pour éviter les conflits */
+  @media (min-width: 764px) and (max-width: 767px) {
+    nav {
+      height: var(--mobile-nav-height) !important;
+      display: block !important;
+      grid-template-columns: none !important;
+    }
+    
+    .menu-header {
+      padding: 0.5rem 1rem !important;
+    }
+  }
+
   @media (max-width: 48em) {
     .site-logo {
       height: 40px; /* Taille optimisée pour mobile */
@@ -1052,7 +1111,7 @@ const iconLinks: {
     }
   }
 
-  @media (min-width: 641px) {
+  @media (min-width: 768px) {
     nav {
       height: var(--nav-height);
       display: flex;

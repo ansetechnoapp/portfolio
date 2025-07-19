@@ -106,23 +106,17 @@ const { namepage } = Astro.props;
   }
 
   /* Cacher complètement le menu de navigation sur mobile */
-  @media (max-width: 47.9em) {
+  @media (max-width: 767px) {
     .menu-link-nav {
       display: none !important;
     }
     
     .menu-link-nav .desktop-theme-toggle {
-      display: none;
+      display: none !important;
     }
-  }
-
-  /* Mobile styles (screens < 768px) - Explicit mobile rules for clarity */
-  @media (max-width: 767px) {
+    
     :global(.menu-links-container) {
-      flex-direction: row;
-      gap: 0.5rem;
-      justify-content: center;
-      align-items: center;
+      display: none !important;
     }
   }
 

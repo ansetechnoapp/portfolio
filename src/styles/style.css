@@ -30,7 +30,7 @@
 .work-btn span div.pill {
   background-color: #ff004f;
 }
-@media (min-width: 48em){
+@media (min-width: 768px){
 	.menu-link-nav theme-toggle {
 		padding: 0rem 0rem 0rem 0.4rem;
 	}
