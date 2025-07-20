@@ -170,7 +170,6 @@ const MenuLinks: React.FC<MenuLinksProps> = ({ namepage, pathname }) => {
                         title={label}
                     >
                         {icon}
-                        <span className="sr-only">{label}</span>
                     </a>
                 </li>
             ))}
