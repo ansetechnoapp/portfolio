@@ -113,3 +113,18 @@ export function getRelatedPosts(currentPost, limit = 3) {
 
   return sortedPosts.slice(0, limit).map(parsePostDates);
 }
+
+/**
+ * Get previous and next posts relative to a given slug
+ * @param {string} currentSlug - The slug of the current post
+ * @returns {{ prev: Object|null, next: Object|null }}
+ */
+export function getAdjacentPosts(currentSlug) {
+  const sorted = getAllPosts();
+  const index = sorted.findIndex(post => post.slug === currentSlug);
+  if (index === -1) return { prev: null, next: null };
+  return {
+    next: index > 0 ? sorted[index - 1] : null,
+    prev: index < sorted.length - 1 ? sorted[index + 1] : null
+  };
+}

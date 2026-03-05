@@ -2,7 +2,7 @@
 // Composant pour un canevas global fixe sur toutes les pages
 ---
 
-<div class="global-canvas-container" style="z-index: 100;">
+<div class="global-canvas-container" style="z-index: 1;">
   <canvas id="globalCanvas"></canvas>
 </div>
 
@@ -13,7 +13,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 100;
+    z-index: 1;
     pointer-events: none;
   }
 
@@ -21,6 +21,7 @@
     width: 100%;
     height: 100%;
     display: block;
+    pointer-events: none;
   }
 </style>
 

@@ -255,7 +255,7 @@ export default function Timeline({
       }}
     >
       {/* Background elements */}
-      <div className="absolute inset-0 overflow-hidden">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-[30%] -right-[10%] w-[40%] h-[50%] rounded-full bg-gradient-to-b from-indigo-500/20 to-purple-500/5 blur-3xl" />
         <div className="absolute -bottom-[20%] -left-[10%] w-[40%] h-[50%] rounded-full bg-gradient-to-t from-blue-500/20 to-cyan-400/5 blur-3xl" />
       </div>
@@ -426,7 +426,7 @@ export default function Timeline({
       {/* Scroll indicators - bottom indicator for both modes */}
       {
         filteredEvents.length > 3 && (
-          <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2">
+          <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2 pointer-events-none">
             <div className="px-3 py-1.5 rounded-full bg-white/80 backdrop-blur-sm shadow-sm flex items-center gap-2 text-xs border border-white/40" style={{ color: 'var(--accent-dark)' }}>
               {isHorizontal ? (
                 <>

@@ -99,7 +99,8 @@ const {
       document.addEventListener("DOMContentLoaded", () => {
         // Smooth transition between sections
         const setupSectionTransitions = () => {
-          const sections = document.querySelectorAll("section");
+          // Exclude sections managed by Framer Motion (they handle their own animations)
+          const sections = document.querySelectorAll("section:not([data-framer-motion])");
           const options = {
             root: null,
             rootMargin: "0px",
@@ -115,6 +116,8 @@ const {
           }, options);
 
           sections.forEach((section) => {
+            // Skip sections that use Framer Motion (have style attribute with opacity managed by FM)
+            if (section.closest('[data-framer-motion]') || section.hasAttribute('data-projection-id')) return;
             section.classList.add("section-transition");
             observer.observe(section);
           });

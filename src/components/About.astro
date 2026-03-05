@@ -1727,6 +1727,7 @@ const {
     z-index: 9999;
     opacity: 0;
     visibility: hidden;
+    pointer-events: none;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     padding: 1rem;
   }
@@ -1734,6 +1735,7 @@ const {
   .modal-overlay.active {
     opacity: 1;
     visibility: visible;
+    pointer-events: auto;
   }
 
   .modal-container {
@@ -2093,16 +2095,36 @@ const {
 
   // Initialize tab functionality
   function initTabs() {
+    console.log('[DEBUG] initTabs() called');
     const tabButtons = document.querySelectorAll('.tab-button');
+    console.log('[DEBUG] Found tab buttons:', tabButtons.length);
 
     // Add click event listeners to all tab buttons
-    tabButtons.forEach(button => {
-      button.addEventListener('click', function() {
+    tabButtons.forEach((button, i) => {
+      console.log('[DEBUG] Adding click listener to button', i, button.getAttribute('data-tab'));
+      button.addEventListener('click', function(e) {
+        console.log('[DEBUG] Tab button clicked!', this.getAttribute('data-tab'));
         const tabId = this.getAttribute('data-tab');
         if (tabId) {
           switchTab(tabId);
         }
       });
+      // Also test pointer events
+      button.addEventListener('pointerdown', function() {
+        console.log('[DEBUG] pointerdown on tab:', this.getAttribute('data-tab'));
+      });
+    });
+
+    // Debug: check if anything covers the buttons
+    tabButtons.forEach((button, i) => {
+      const rect = button.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      const topElement = document.elementFromPoint(centerX, centerY);
+      console.log('[DEBUG] Element at center of button', i, ':', topElement?.tagName, topElement?.className?.substring(0, 50), 'Expected:', button.tagName);
+      if (topElement !== button && !button.contains(topElement)) {
+        console.log('[DEBUG] WARNING: Button', i, 'is COVERED by another element!', topElement);
+      }
     });
 
     // Add touch-friendly interactions for mobile

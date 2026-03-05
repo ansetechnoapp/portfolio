@@ -2,7 +2,7 @@
 export const prerender = true;
 
 import Layout from "../../layouts/Layout.astro";
-import { getPostBySlug, parsePostDates, getAllPosts, getRelatedPosts, getAllCategories } from "../../data/blog/index.js";
+import { getPostBySlug, parsePostDates, getAllPosts, getRelatedPosts, getAllCategories, getAdjacentPosts } from "../../data/blog/index.js";
 import BlogSidebar from "../../components/BlogSidebar.astro";
 import SocialShare from "../../components/SocialShare.astro";
 import RelatedArticles from "../../components/RelatedArticles.astro";
@@ -67,6 +67,7 @@ const readingTime = Math.max(1, Math.round(wordCount / 200));
 const allPosts = getAllPosts();
 const recentPosts = allPosts.slice(0, 5).filter(p => p.slug !== slug);
 const relatedPosts = getRelatedPosts(post, 3);
+const { prev, next } = getAdjacentPosts(slug);
 const categories = getAllCategories();
 
 // Author information
@@ -293,34 +294,34 @@ const author = {
       <RelatedArticles posts={relatedPosts} />
 
       <!-- Next/Previous Article Navigation -->
-      <div class="border-t border-gray-200 dark:border-gray-800 py-10 mb-10">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <a
-            href="#"
-            class="group flex flex-col border border-gray-200 dark:border-gray-800 rounded-xl p-6 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition"
-          >
-            <span class="text-sm text-gray-500 dark:text-gray-400 mb-2"
-              >Article précédent</span
-            >
-            <span
-              class="font-semibold text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition"
-              >Comment créer un portfolio avec Astro</span
-            >
-          </a>
-          <a
-            href="#"
-            class="group flex flex-col border border-gray-200 dark:border-gray-800 rounded-xl p-6 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition text-right"
-          >
-            <span class="text-sm text-gray-500 dark:text-gray-400 mb-2"
-              >Article suivant</span
-            >
-            <span
-              class="font-semibold text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition"
-              >Techniques modernes de développement web</span
-            >
-          </a>
+      {(prev || next) && (
+        <div class="border-t border-gray-200 dark:border-gray-800 py-10 mb-10">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {prev ? (
+              <a
+                href={`/blog/${prev.slug}`}
+                class="group flex flex-col border border-gray-200 dark:border-gray-800 rounded-xl p-6 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition"
+              >
+                <span class="text-sm text-gray-500 dark:text-gray-400 mb-2">Article précédent</span>
+                <span class="font-semibold text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition">
+                  {prev.title}
+                </span>
+              </a>
+            ) : <div />}
+            {next ? (
+              <a
+                href={`/blog/${next.slug}`}
+                class="group flex flex-col border border-gray-200 dark:border-gray-800 rounded-xl p-6 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition text-right"
+              >
+                <span class="text-sm text-gray-500 dark:text-gray-400 mb-2">Article suivant</span>
+                <span class="font-semibold text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition">
+                  {next.title}
+                </span>
+              </a>
+            ) : <div />}
+          </div>
         </div>
-      </div>
+      )}
 
       <!-- Newsletter Signup -->
       <div

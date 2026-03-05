@@ -53,32 +53,32 @@ const MenuLinks: React.FC<MenuLinksProps> = ({ namepage, pathname }) => {
             iconLinks = [
                 {
                     icon: <RiHome5Line size={20} />,
-                    href: "#hero_home",
+                    href: "/#hero_home",
                     label: "Accueil"
                 },
                 {
                     icon: <RiToolsFill size={20} />,
-                    href: "#skills",
+                    href: "/#skills",
                     label: "Compétences"
                 },
                 {
                     icon: <RiUser3Line size={20} />,
-                    href: "#about",
+                    href: "/#about",
                     label: "À propos"
                 },
                 {
                     icon: <RiCodeSSlashLine size={20} />,
-                    href: "#service",
+                    href: "/#service",
                     label: "Services"
                 },
                 {
                     icon: <RiBriefcase2Line size={20} />,
-                    href: "#work",
+                    href: "/#work",
                     label: "Travaux"
                 },
                 {
                     icon: <RiMailLine size={20} />,
-                    href: "#contact",
+                    href: "/#contact",
                     label: "Contact"
                 }
             ];
@@ -125,32 +125,32 @@ const MenuLinks: React.FC<MenuLinksProps> = ({ namepage, pathname }) => {
                 },
                 {
                     icon: <RiHome5Line size={20} />,
-                    href: "#hero_home",
+                    href: "/#hero_home",
                     label: "Accueil"
                 },
                 {
                     icon: <RiToolsFill size={20} />,
-                    href: "#skills",
+                    href: "/#skills",
                     label: "Compétences"
                 },
                 {
                     icon: <RiUser3Line size={20} />,
-                    href: "#about",
+                    href: "/#about",
                     label: "À propos"
                 },
                 {
                     icon: <RiCodeSSlashLine size={20} />,
-                    href: "#service",
+                    href: "/#service",
                     label: "Services"
                 },
                 {
                     icon: <RiBriefcase2Line size={20} />,
-                    href: "#work",
+                    href: "/#work",
                     label: "Travaux"
                 },
                 {
                     icon: <RiMailLine size={20} />,
-                    href: "#contact",
+                    href: "/#contact",
                     label: "Contact"
                 }
             ];
