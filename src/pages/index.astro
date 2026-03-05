@@ -76,7 +76,7 @@ const { heroTitle = `I am ${dataUser.firstName} ${dataUser.lastName}` } =
       title={heroTitle}
       tagline="Freelance web and mobile developer."
       tagline1="Je combine une expertise technique avec un design soigné pour créer des applications web et mobiles intuitives, rapides et efficaces. Mon objectif : apporter de la valeur à vos utilisateurs."
-      align="start"
+      align="center"
     >
       <!-- Hero Image in the new structure with morphing animation -->
       <div class="hero-image-modern animate-fade-in-up">
@@ -85,17 +85,17 @@ const { heroTitle = `I am ${dataUser.firstName} ${dataUser.lastName}` } =
             <source
               srcset={Img1.srcsetAvif}
               type="image/avif"
-              sizes="(max-width: 768px) 100vw, 480px"
+              sizes="180px"
             />
             <source
               srcset={Img1.srcsetWebp}
               type="image/webp"
-              sizes="(max-width: 768px) 100vw, 480px"
+              sizes="180px"
             />
             <img
               alt={`${dataUser.firstName} ${dataUser.lastName}, développeur web et mobile freelance basé à ${dataUser.address.city}, ${dataUser.address.country}. Expert en React, React Native et Astro.js`}
-              width="480"
-              height="620"
+              width="180"
+              height="180"
               src={Img1.fallback}
               loading="eager"
               decoding="async"
@@ -186,156 +186,115 @@ const { heroTitle = `I am ${dataUser.firstName} ${dataUser.lastName}` } =
 </Layout>
 
 <style>
-  /* Modern Hero Image Styling with Morphing Animation */
+  /* Centered Hero Image - Small & Round */
   .hero-image-modern {
     position: relative;
-    width: 100%;
-    max-width: 500px;
+    width: 150px;
+    height: 150px;
     margin: 0 auto;
   }
 
   .image-wrapper {
     position: relative;
     width: 100%;
+    height: 100%;
   }
 
   .image-wrapper :global(img) {
     width: 100%;
-    height: auto;
-    aspect-ratio: 1 / 1.2;
+    height: 100%;
+    aspect-ratio: 1;
     object-fit: cover;
     object-position: top;
-    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-    animation: morph 10s ease-in-out infinite alternate;
-    transition: border-radius 1s ease-in-out;
+    border-radius: 50%;
     box-shadow:
-      0 20px 40px rgba(0, 0, 0, 0.3),
-      0 0 0 1px rgba(255, 255, 255, 0.1);
+      0 10px 30px rgba(0, 0, 0, 0.25),
+      0 0 0 3px rgba(20, 184, 166, 0.2),
+      0 0 0 6px rgba(116, 17, 166, 0.1);
     position: relative;
     z-index: 2;
+    transition: all 0.4s ease;
   }
 
   .hero-image-modern:hover .image-wrapper :global(img) {
-    transform: translateY(-10px) scale(1.02);
+    transform: scale(1.05);
     box-shadow:
-      0 30px 60px rgba(0, 0, 0, 0.4),
-      0 0 0 1px rgba(255, 255, 255, 0.2);
+      0 15px 40px rgba(0, 0, 0, 0.3),
+      0 0 0 3px rgba(20, 184, 166, 0.3),
+      0 0 0 6px rgba(116, 17, 166, 0.15);
   }
 
-  /* Modern Social Media Navigation */
+  /* Social Media Navigation - Overlapping bottom of image */
   .hero-social-modern {
     position: absolute;
-    bottom: 2rem;
+    bottom: -1rem;
     left: 50%;
     transform: translateX(-50%);
     z-index: 10;
   }
 
-  /* Override default social nav styles for modern layout */
   .hero-social-modern :global(.hero-media-social-nav) {
     display: flex;
-    gap: 1rem;
+    gap: 0.5rem;
     justify-content: center;
-    padding: 1rem;
-    background: rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(10px);
+    padding: 0.4rem 0.75rem;
+    background: rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(12px);
     border-radius: 2rem;
     border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   }
 
   .hero-social-modern :global(.social-link) {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 3rem;
-    height: 3rem;
+    width: 2rem;
+    height: 2rem;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.1);
     color: var(--gray-200);
     transition: all 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    font-size: 0.75rem;
   }
 
   .hero-social-modern :global(.social-link:hover) {
     background: var(--accent-teal);
     color: white;
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(20, 184, 166, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(20, 184, 166, 0.3);
   }
 
-  /* Responsive adjustments for modern hero */
-  @media (max-width: 1024px) {
-    .hero-social-modern {
-      position: relative;
-      bottom: auto;
-      left: auto;
-      transform: none;
-      margin-top: 2rem;
-    }
-  }
-
+  /* Responsive */
   @media (max-width: 768px) {
     .hero-image-modern {
-      max-width: 400px;
-    }
-
-    .hero-social-modern :global(.hero-media-social-nav) {
-      padding: 0.75rem;
-      gap: 0.75rem;
-    }
-
-    .hero-social-modern :global(.social-link) {
-      width: 2.5rem;
-      height: 2.5rem;
+      width: 150px;
+      height: 150px;
     }
   }
 
   @media (max-width: 480px) {
     .hero-image-modern {
-      max-width: 320px;
-    }
-
-    .hero-image-modern img {
-      border-radius: 1.5rem;
-    }
-
-    .hero-social-modern :global(.hero-media-social-nav) {
-      padding: 0.5rem;
-      gap: 0.5rem;
+      width: 130px;
+      height: 130px;
     }
 
     .hero-social-modern :global(.social-link) {
-      width: 2rem;
-      height: 2rem;
+      width: 1.75rem;
+      height: 1.75rem;
+    }
+
+    .hero-social-modern :global(.hero-media-social-nav) {
+      padding: 0.3rem 0.6rem;
+      gap: 0.4rem;
     }
   }
 
-  /* Morphing and Animation Keyframes */
-  @keyframes float {
-    0% { transform: translateY(0px) rotate(0deg); }
-    50% { transform: translateY(-30px) rotate(90deg); }
-    100% { transform: translateY(0px) rotate(0deg); }
-  }
-
-  @keyframes morph {
-    0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
-    50% { border-radius: 60% 40% 30% 70% / 70% 50% 50% 30%; }
-    100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
-  }
-
-  .animate-fade-in {
-    animation: fadeIn 1s ease-out forwards;
-    opacity: 0;
-  }
-
+  /* Animations */
   .animate-fade-in-up {
     animation: fadeInUp 0.8s ease-out forwards;
     opacity: 0;
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
   }
 
   @keyframes fadeInUp {
