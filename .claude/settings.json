@@ -9,7 +9,11 @@
       "Bash(curl -s http://localhost:4322/)",
       "Bash(npx astro dev --host)",
       "Bash(xargs ls -la)",
-      "Bash(npm run build)"
+      "Bash(npm run build)",
+      "Read(//c/Users/kevin/**)",
+      "Bash(npx --help)",
+      "Bash(npm list -g sharp)",
+      "Bash(node -e \":*)"
     ]
   }
 }
