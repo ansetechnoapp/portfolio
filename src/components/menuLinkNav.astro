@@ -39,7 +39,8 @@ const { namepage } = Astro.props;
     /* padding: 0.5rem 0.5625rem; */
   }
 
-  .menu-link-nav a {
+  .menu-link-nav a,
+  :global(.menu-link-nav a) {
     padding: 0.5rem 1rem;
     border-radius: 999rem;
     display: flex;
@@ -49,10 +50,14 @@ const { namepage } = Astro.props;
       color var(--theme-transition),
       background-color var(--theme-transition);
   }
-  .menu-link-nav a:hover {
+
+  .menu-link-nav a:hover,
+  :global(.menu-link-nav a:hover) {
     background: var(--accent-subtle-overlay);
   }
-  .menu-link-nav a.active {
+
+  .menu-link-nav a.active,
+  :global(.menu-link-nav a.active) {
     background-color: var(--accent-regular);
     color: var(--accent-text-over);
   }
@@ -114,7 +119,12 @@ const { namepage } = Astro.props;
     .menu-link-nav .desktop-theme-toggle {
       display: none !important;
     }
-    
+  }
+
+  .desktop-theme-toggle {
+    display: flex;
+    justify-content: center;
+    width: 100%;
   }
 
   @media (max-width: 640px) {
@@ -139,25 +149,10 @@ const { namepage } = Astro.props;
       left: 0;
       bottom: 0;
       height: fit-content;
+      align-items: center;
+      justify-content: center;
     }
 
-    .menu-link-nav a {
-      padding: 0.5rem 1rem;
-      border-radius: 999rem;
-      display: flex;
-      font-size: var(--text-sm);
-      color: var(--gray-300);
-      transition:
-        color var(--theme-transition),
-        background-color var(--theme-transition);
-    }
-    .menu-link-nav a:hover {
-      background: var(--accent-subtle-overlay);
-    }
-    .menu-link-nav a.active {
-      background-color: var(--accent-regular);
-      color: var(--accent-text-over);
-    }
     .menu-link-nav theme-toggle {
       /* code dans ./styles/style.css */
     }

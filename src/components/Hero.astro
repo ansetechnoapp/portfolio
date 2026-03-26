@@ -1,4 +1,8 @@
 ---
+import IdentityCard from "./IdentityCard.astro";
+import DiagonalCard from "./DiagonalCard.astro";
+import HeroDecorations from "./HeroDecorations.astro";
+
 interface Props {
   title: string;
   tagline?: string;
@@ -15,121 +19,18 @@ const { align = "center", tagline, tagline1, title } = Astro.props;
     <div class="hero-gradient-overlay"></div>
   </div>
 
-  <!-- Split Layout: Left (photo+name) | Right (content) - Diagonal -->
   <div class="hero-container-modern">
-    <!-- Card 1: Top-left — Identity Card -->
     <div class="hero-left">
-      <div class="identity-card">
-        <!-- Vertical sidebar with social links -->
-        <div class="identity-sidebar">
-          <div class="sidebar-line" aria-hidden="true"></div>
-          <div class="sidebar-socials">
-            <slot name="social" />
-          </div>
-          <div class="sidebar-line" aria-hidden="true"></div>
-        </div>
-
-        <!-- Main identity block -->
-        <div class="identity-main">
-          <div class="identity-header">
-            <div class="identity-photo">
-              <div class="photo-mask">
-                <slot name="photo" />
-              </div>
-              <div class="photo-accent-bar" aria-hidden="true"></div>
-            </div>
-
-            <div class="identity-name">
-              <h1 class="name-display">
-                <span class="name-first">KEVIN</span>
-                <span class="name-last">OTTY</span>
-              </h1>
-              <p class="identity-role">Développeur Web & Mobile</p>
-              <div class="name-rule" aria-hidden="true"></div>
-            </div>
-          </div>
-
-          <div class="identity-stats">
-            <div class="stat-item">
-              <span class="stat-number">5+</span>
-              <span class="stat-label">Ans d'exp.</span>
-            </div>
-            <div class="stat-item">
-              <span class="stat-number">50+</span>
-              <span class="stat-label">Projets</span>
-            </div>
-            <div class="stat-item">
-              <span class="stat-number">30+</span>
-              <span class="stat-label">Clients</span>
-            </div>
-          </div>
-
-          <div class="identity-techs">
-            <span class="tech-pill">React</span>
-            <span class="tech-pill">React Native</span>
-            <span class="tech-pill">Astro</span>
-            <span class="tech-pill">Node.js</span>
-          </div>
-
-          <div class="identity-about">
-            <p class="about-text">
-              Expert en création d'expériences numériques intuitives et scalables.
-            </p>
-            <div class="about-footer">
-              <span class="location">📍 Cotonou, Bénin</span>
-              <span class="status-badge">Disponible pour Freelance</span>
-            </div>
-          </div>
-        </div>
-      </div>
+      <IdentityCard>
+        <slot name="social" slot="social" />
+        <slot name="photo" slot="photo" />
+      </IdentityCard>
     </div>
 
-    <!-- Decorative animated elements -->
-    <div class="hero-decorations" aria-hidden="true">
-      <div class="deco-circle deco-circle-1"></div>
-      <div class="deco-circle deco-circle-2"></div>
-      <div class="deco-circle deco-circle-3"></div>
-      <div class="deco-diamond deco-diamond-1"></div>
-      <div class="deco-diamond deco-diamond-2"></div>
-      <div class="deco-line deco-line-1"></div>
-      <div class="deco-line deco-line-2"></div>
-      <div class="deco-dot deco-dot-1"></div>
-      <div class="deco-dot deco-dot-2"></div>
-      <div class="deco-dot deco-dot-3"></div>
-      <div class="deco-dot deco-dot-4"></div>
-      <div class="deco-ring deco-ring-1"></div>
-    </div>
+    <HeroDecorations />
 
-    <!-- Card 2: Bottom-right -->
     <div class="hero-right">
-      <div class="diagonal-card card-right">
-        <div class="portfolio-badge">PORTFOLIO 2024</div>
-        <h2 class="hero-subtitle-modern" aria-label="Développeur, Designer, Freelance, Créatif">
-          <span class="typing-text" id="typing-text" aria-hidden="true">Développeur</span>
-        </h2>
-
-        {tagline1 && (
-          <p class="hero-description-modern">{tagline1}</p>
-        )}
-
-        <div class="hero-cta-container">
-          <button class="cta-primary">
-            <span>Démarrer un projet</span>
-            <svg class="cta-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none">
-              <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <div class="cta-glow"></div>
-          </button>
-          <a
-            class="cta-secondary"
-            href="https://bit.ly/CV_otty_kevin"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <span>Consulter mon CV</span>
-          </a>
-        </div>
-      </div>
+      <DiagonalCard tagline1={tagline1} />
     </div>
   </div>
 
@@ -143,7 +44,7 @@ const { align = "center", tagline, tagline1, title } = Astro.props;
 </div>
 
 <style>
-  /* Modern Hero Styles */
+  /* Modern Hero Styles - Shared Orchestrator Styles */
   .hero-modern {
     --ease-out-quint: cubic-bezier(0.16, 1, 0.3, 1);
     position: relative;
@@ -178,46 +79,9 @@ const { align = "center", tagline, tagline1, title } = Astro.props;
     left: 0;
     right: 0;
     bottom: 0;
-    /* Ultra transparent accent overlays */
     background: radial-gradient(circle at 30% 70%, rgba(116, 17, 166, 0.04), transparent 70%),
                 radial-gradient(circle at 80% 20%, rgba(20, 184, 166, 0.03), transparent 70%),
                 radial-gradient(circle at 60% 90%, rgba(99, 102, 241, 0.02), transparent 70%);
-  }
-
-
-
-  .particle {
-    position: absolute;
-    width: 4px;
-    height: 4px;
-    background: var(--accent-teal);
-    border-radius: 50%;
-    opacity: 0.6;
-    animation: floatParticle 15s ease-in-out infinite;
-  }
-
-  .particle-1 {
-    top: 20%;
-    left: 20%;
-    animation-delay: 0s;
-  }
-
-  .particle-2 {
-    top: 70%;
-    right: 30%;
-    animation-delay: -3s;
-  }
-
-  .particle-3 {
-    bottom: 30%;
-    left: 60%;
-    animation-delay: -6s;
-  }
-
-  .particle-4 {
-    top: 40%;
-    right: 10%;
-    animation-delay: -9s;
   }
 
   /* Split Container Layout - Side by Side */
@@ -232,10 +96,9 @@ const { align = "center", tagline, tagline1, title } = Astro.props;
     margin: 0 auto;
     padding: 1.5rem 3rem 3rem;
     width: 100%;
-    /* removed min-height: 80vh to allow cards to match tallest content naturally */
   }
 
-  /* LEFT: Image + Name stacked */
+  /* LEFT & RIGHT Layout Units */
   .hero-left {
     flex: 1;
     max-width: 50%;
@@ -248,7 +111,6 @@ const { align = "center", tagline, tagline1, title } = Astro.props;
     animation: slideInLeft 0.9s var(--ease-out-quint) 0.1s backwards;
   }
 
-  /* RIGHT: Content */
   .hero-right {
     flex: 1;
     max-width: 50%;
@@ -260,776 +122,20 @@ const { align = "center", tagline, tagline1, title } = Astro.props;
     animation: slideInRight 0.9s var(--ease-out-quint) 0.35s backwards;
   }
 
-  /* ===== Identity Card (hero-left redesign) ===== */
-  .identity-card {
-    display: grid;
-    grid-template-columns: 48px 1fr;
-    gap: 0;
-    width: 100%;
-    max-width: 540px;
-    height: 100%; /* Stretch to container height */
-    background: rgba(255, 255, 255, 0.04);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(100, 116, 162, 0.12);
-    border-radius: 1.5rem;
-    overflow: hidden;
-    position: relative;
-    animation: cardReveal 0.8s var(--ease-out-quint) forwards, floatCard 6s ease-in-out infinite alternate;
-    opacity: 0;
-    transition: 
-      border-color 0.4s ease, 
-      box-shadow 0.4s ease, 
-      transform 0.5s var(--ease-out-quint), 
-      background 0.4s ease;
-    transform-style: preserve-3d;
-    will-change: transform, box-shadow;
-  }
-
-  .identity-card:hover {
-    border-color: rgba(20, 184, 166, 0.25);
-    background: rgba(255, 255, 255, 0.08); /* Slightly brighter on hover */
-    box-shadow:
-      0 32px 64px rgba(0, 0, 0, 0.15),
-      0 0 0 1px rgba(20, 184, 166, 0.08),
-      0 0 80px -20px rgba(20, 184, 166, 0.08);
-  }
-
-  :root.theme-dark .identity-card {
-    background: rgba(20, 25, 37, 0.5);
-    border-color: rgba(100, 116, 162, 0.15);
-  }
-
-  /* Vertical Sidebar */
-  .identity-sidebar {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    padding: 1.5rem 0;
-    border-right: 1px solid rgba(100, 116, 162, 0.1);
-    animation: sidebarReveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
-    opacity: 0;
-  }
-
-  .sidebar-line {
-    width: 1px;
-    flex: 1;
-    background: linear-gradient(180deg, transparent, var(--accent-teal), transparent);
-    opacity: 0.3;
-    transition: opacity 0.4s ease;
-  }
-
-  .identity-card:hover .sidebar-line {
-    opacity: 0.6;
-  }
-
-  .sidebar-socials {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    align-items: center;
-  }
-
-  .sidebar-socials :global(.hero-media-social-nav) {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    align-items: center;
-    margin-top: 0;
-    padding: 0;
-    background: none;
-    border-radius: 0;
-    box-shadow: none;
-  }
-
-  .sidebar-socials :global(.social-link) {
-    width: 32px;
-    height: 32px;
-    padding: 0;
-    border-radius: 8px;
-    background: transparent;
-    border: 1px solid rgba(100, 116, 162, 0.15);
-    color: var(--gray-400);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    box-shadow: none;
-  }
-
-  .sidebar-socials :global(.social-link:hover) {
-    background: var(--accent-teal);
-    border-color: var(--accent-teal);
-    color: white;
-    transform: scale(1.1);
-    box-shadow: 0 4px 12px rgba(20, 184, 166, 0.3);
-  }
-
-  .sidebar-socials :global(.social-link svg),
-  .sidebar-socials :global(.social-link .icon) {
-    width: 16px;
-    height: 16px;
-  }
-
-  /* Identity Main */
-  .identity-main {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .identity-header {
-    display: flex;
-    align-items: center;
-    gap: 1.25rem;
-    padding: 1.5rem 1.5rem 1.25rem;
-  }
-
-  /* Photo Treatment */
-  .identity-photo {
-    position: relative;
-    flex-shrink: 0;
-  }
-
-  .photo-mask {
-    position: relative;
-    width: 120px;
-    height: 120px;
-    aspect-ratio: 1 / 1;
-    overflow: hidden;
-    border-radius: 1rem;
-    animation: photoReveal 0.7s var(--ease-out-quint) 0.2s forwards;
-    opacity: 0;
-    clip-path: inset(100% 0 0 0);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-  }
-
-  .photo-mask :global(.hero-image-modern) {
-    width: 100%;
-    height: 100%;
-  }
-
-  .photo-mask :global(.image-wrapper) {
-    width: 100%;
-    height: 100%;
-  }
-
-  .photo-mask :global(img) {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top center;
-    border-radius: 0;
-    filter: contrast(1.05) saturate(0.9);
-    transition: transform 0.6s var(--ease-out-quint), filter 0.4s ease;
-    box-shadow: none;
-  }
-
-  .identity-card:hover .photo-mask :global(img) {
-    transform: scale(1.04);
-    filter: contrast(1.05) saturate(1.1);
-  }
-
-  .photo-accent-bar {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--accent-purple), var(--accent-teal), var(--accent-electric));
-    border-radius: 0 0 1rem 1rem;
-    opacity: 0.8;
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.6s var(--ease-out-quint);
-  }
-
-  .identity-card:hover .photo-accent-bar {
-    transform: scaleX(1);
-  }
-
-  /* Name Typography */
-  .identity-name {
-    padding: 0;
-    flex: 1;
-  }
-
-  .name-display {
-    font-family: var(--font-brand, 'Outfit', sans-serif);
-    font-size: clamp(1.8rem, 4vw, 2.8rem);
-    font-weight: 800;
-    line-height: 0.9;
-    letter-spacing: -0.04em;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.1em;
-    animation: nameReveal 0.6s var(--ease-out-quint) 0.5s forwards;
-    opacity: 0;
-  }
-
-  .name-first {
-    display: block;
-    color: var(--gray-0);
-    opacity: 0.85;
-    font-weight: 700;
-    font-size: 0.65em;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-  }
-
-  .name-last {
-    display: block;
-    background: linear-gradient(135deg, var(--accent-teal) 0%, var(--accent-electric) 50%, var(--accent-purple) 100%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-size: 200% 200%;
-    animation: gradientShift 6s ease-in-out infinite;
-  }
-
-  .name-rule {
-    width: 0;
-    height: 2px;
-    background: var(--accent-teal);
-    margin-top: 1rem;
-    border-radius: 1px;
-    animation: ruleReveal 0.5s var(--ease-out-quint) 0.7s forwards;
-    opacity: 0;
-    transition: width 0.4s var(--ease-out-quint);
-  }
-
-  .identity-card:hover .name-rule {
-    width: 80px;
-  }
-
-  /* Role text */
-  .identity-role {
-    font-size: 0.85rem;
-    color: var(--gray-200);
-    letter-spacing: 0.02em;
-    margin: 0.35rem 0 0;
-    font-weight: 600;
-  }
-
-  /* Stats row */
-  .identity-stats {
-    display: flex;
-    gap: 1rem;
-    padding: 0.75rem 1.5rem;
-    border-top: 1px solid rgba(100, 116, 162, 0.1);
-    animation: nameReveal 0.6s var(--ease-out-quint) 0.8s forwards;
-    opacity: 0;
-  }
-
-  .stat-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex: 1;
-  }
-
-  .stat-number {
-    font-size: 1.1rem;
-    font-weight: 800;
-    color: var(--accent-teal);
-    line-height: 1;
-  }
-
-  .stat-label {
-    font-size: 0.7rem;
-    color: var(--gray-200);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-top: 0.3rem;
-    font-weight: 600;
-  }
-
-  /* Tech pills */
-  .identity-techs {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-    padding: 0.75rem 1.5rem 1.25rem;
-    animation: nameReveal 0.6s var(--ease-out-quint) 1s forwards;
-    opacity: 0;
-  }
-
-  .tech-pill {
-    font-size: 0.65rem;
-    font-weight: 600;
-    padding: 0.25rem 0.6rem;
-    border-radius: 1rem;
-    background: rgba(20, 184, 166, 0.1);
-    border: 1px solid rgba(20, 184, 166, 0.2);
-    color: var(--accent-teal);
-    letter-spacing: 0.02em;
-    transition: all 0.3s ease;
-  }
-
-  .tech-pill:hover {
-    background: rgba(20, 184, 166, 0.2);
-    border-color: rgba(20, 184, 166, 0.4);
-    transform: translateY(-1px);
-  }
-
-  /* Identity About Section */
-  .identity-about {
-    padding: 0.75rem 1.5rem 1.75rem;
-    border-top: 1px solid rgba(100, 116, 162, 0.1);
-    animation: nameReveal 0.6s var(--ease-out-quint) 1.2s forwards;
-    opacity: 0;
-  }
-
-  .about-text {
-    font-size: 0.85rem;
-    line-height: 1.6;
-    color: var(--gray-200);
-    margin: 0 0 1.25rem;
-    font-weight: 500;
-  }
-
-  .about-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 0.75rem;
-  }
-
-  .location {
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: var(--gray-200);
-  }
-
-  .status-badge {
-    font-size: 0.75rem;
-    font-weight: 700;
-    padding: 0.3rem 0.8rem;
-    border-radius: 1rem;
-    background: rgba(34, 197, 94, 0.15);
-    color: #16a34a; /* Darker green for better contrast */
-    border: 1px solid rgba(22, 163, 74, 0.3);
-  }
-
-  /* Identity Card Animations */
-  @keyframes cardReveal {
-    from { opacity: 0; transform: translateY(30px) scale(0.97); }
-    to { opacity: 1; transform: translateY(0) scale(1); }
-  }
-
-  @keyframes sidebarReveal {
-    from { opacity: 0; transform: translateX(-10px); }
+  /* Animations for Layout Units */
+  @keyframes slideInLeft {
+    from { opacity: 0; transform: translateX(-50px); }
     to { opacity: 1; transform: translateX(0); }
   }
 
-  @keyframes photoReveal {
-    from { opacity: 0; clip-path: inset(100% 0 0 0); }
-    to { opacity: 1; clip-path: inset(0 0 0 0); }
-  }
-
-  @keyframes nameReveal {
-    from { opacity: 0; transform: translateY(15px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  @keyframes ruleReveal {
-    from { opacity: 0; width: 0; }
-    to { opacity: 1; width: 40px; }
-  }
-
-  @keyframes gradientShift {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-  }
-
-  /* Portfolio Badge */
-  .portfolio-badge {
-    display: inline-block;
-    padding: 0.35rem 1rem;
-    background: rgba(20, 184, 166, 0.12);
-    border: 1px solid rgba(20, 184, 166, 0.3);
-    border-radius: 2rem;
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    color: var(--accent-teal);
-    margin-bottom: 0;
-  }
-
-  /* Subtitle with Typing Effect */
-  .hero-subtitle-modern {
-    font-size: clamp(2rem, 4vw, 3.5rem);
-    font-weight: 800;
-    color: var(--gray-0);
-    margin: 0;
-    line-height: 1.2;
-    letter-spacing: -0.02em;
-  }
-
-  .typing-text {
-    position: relative;
-    color: var(--gray-0);
-  }
-
-  .typing-text::after {
-    content: "|";
-    animation: blink 1s infinite;
-    color: var(--accent-teal);
-    font-weight: 400;
-  }
-
-  /* Description */
-  .hero-description-modern {
-    font-size: var(--text-base);
-    color: var(--gray-400);
-    line-height: 1.6;
-    max-width: 500px;
-    margin: 0;
-  }
-
-  /* CTA Buttons Container */
-  .hero-cta-container {
-    display: flex;
-    gap: 1rem;
-    margin-top: 0;
-  }
-
-  .cta-primary {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.65rem 1.4rem;
-    background: linear-gradient(45deg, var(--accent-purple), var(--accent-teal));
-    background-size: 150% 150%;
-    border: none;
-    border-radius: 0.75rem;
-    color: white;
-    font-weight: 600;
-    font-size: var(--text-sm);
-    cursor: pointer;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(116, 17, 166, 0.3);
-  }
-
-  .cta-arrow {
-    transition: transform 0.3s ease;
-  }
-
-  .cta-primary:hover .cta-arrow {
-    transform: translateX(3px);
-  }
-
-  .cta-primary:active {
-    transform: translateY(0) scale(0.98);
-  }
-
-  .cta-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(116, 17, 166, 0.4);
-  }
-
-  .cta-primary:hover .cta-glow {
-    opacity: 1;
-  }
-
-  .cta-glow {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(45deg, rgba(255,255,255,0.2), transparent);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-
-  .cta-secondary {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.65rem 1.4rem;
-    background: transparent;
-    border: 2px solid var(--gray-600);
-    border-radius: 0.75rem;
-    color: var(--gray-200);
-    font-weight: 600;
-    font-size: var(--text-sm);
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-
-  .cta-secondary:hover {
-    border-color: var(--accent-teal);
-    color: var(--accent-teal);
-    transform: translateY(-2px);
-  }
-
-  .cta-icon {
-    transition: transform 0.3s ease;
-  }
-
-  .cta-secondary:hover .cta-icon {
-    transform: translateY(2px);
-  }
-
-  /* Diagonal Card Styles */
-  .diagonal-card {
-    background: rgba(255, 255, 255, 0.7);
-    border: 1px solid rgba(100, 116, 162, 0.2);
-    border-radius: 1.5rem; /* Matched to identity-card */
-    padding: 2.5rem; /* Increased padding */
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
-    animation: cardReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards, floatCard 6s ease-in-out 1s infinite alternate;
-    opacity: 0;
-    transition: 
-      border-color 0.3s ease, 
-      box-shadow 0.3s ease, 
-      transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
-      background 0.4s ease;
-    transform-style: preserve-3d;
-    will-change: transform, box-shadow;
-  }
-
-  .diagonal-card:hover {
-    border-color: rgba(20, 184, 166, 0.4);
-    background: rgba(255, 255, 255, 0.8); /* Slightly brighter on hover */
-    box-shadow: 0 20px 48px rgba(20, 184, 166, 0.12), 0 0 60px -15px rgba(20, 184, 166, 0.06);
-  }
-
-  :root.theme-dark .diagonal-card {
-    background: rgba(20, 25, 37, 0.6);
-    border-color: rgba(100, 116, 162, 0.25);
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
-  }
-
-  .card-right {
-    width: 100%;
-    max-width: 540px;
-    height: 100%; /* Stretch to container height */
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    gap: 1.5rem; /* Slightly larger gap for balanced look */
-    text-align: left;
-  }
-
-  /* Decorative Elements Layer */
-  .hero-decorations {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 0;
-    pointer-events: none;
-    overflow: hidden;
-  }
-
-  /* Floating Circles */
-  .deco-circle {
-    position: absolute;
-    border-radius: 50%;
-    opacity: 0.12;
-  }
-
-  .deco-circle-1 {
-    width: 180px;
-    height: 180px;
-    top: 30%;
-    left: 40%;
-    background: radial-gradient(circle, var(--accent-teal), transparent 70%);
-    animation: floatDeco 12s ease-in-out infinite;
-  }
-
-  .deco-circle-2 {
-    width: 120px;
-    height: 120px;
-    top: 50%;
-    left: 55%;
-    background: radial-gradient(circle, var(--accent-purple), transparent 70%);
-    animation: floatDeco 16s ease-in-out infinite reverse;
-  }
-
-  .deco-circle-3 {
-    width: 80px;
-    height: 80px;
-    top: 25%;
-    left: 60%;
-    background: radial-gradient(circle, var(--accent-electric), transparent 70%);
-    animation: floatDeco 10s ease-in-out infinite;
-    animation-delay: -4s;
-  }
-
-  /* Rotating Diamonds */
-  .deco-diamond {
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    border: 1.5px solid var(--accent-teal);
-    opacity: 0.2;
-    animation: spinFloat 20s linear infinite;
-  }
-
-  .deco-diamond-1 {
-    top: 40%;
-    left: 48%;
-    transform: rotate(45deg);
-  }
-
-  .deco-diamond-2 {
-    top: 55%;
-    left: 38%;
-    width: 24px;
-    height: 24px;
-    border-color: var(--accent-purple);
-    animation-duration: 15s;
-    animation-direction: reverse;
-  }
-
-  /* Animated Lines */
-  .deco-line {
-    position: absolute;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--accent-teal), transparent);
-    opacity: 0.15;
-    animation: pulseLine 4s ease-in-out infinite;
-  }
-
-  .deco-line-1 {
-    width: 200px;
-    top: 45%;
-    left: 30%;
-    transform: rotate(-35deg);
-  }
-
-  .deco-line-2 {
-    width: 150px;
-    top: 55%;
-    left: 50%;
-    transform: rotate(-35deg);
-    animation-delay: -2s;
-    background: linear-gradient(90deg, transparent, var(--accent-purple), transparent);
-  }
-
-  /* Floating Dots */
-  .deco-dot {
-    position: absolute;
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: var(--accent-teal);
-    opacity: 0.3;
-    animation: floatDot 8s ease-in-out infinite;
-  }
-
-  .deco-dot-1 { top: 35%; left: 45%; animation-delay: 0s; }
-  .deco-dot-2 { top: 45%; left: 52%; animation-delay: -2s; background: var(--accent-purple); }
-  .deco-dot-3 { top: 55%; left: 42%; animation-delay: -4s; background: var(--accent-electric); }
-  .deco-dot-4 { top: 60%; left: 50%; animation-delay: -6s; }
-
-  /* Pulsing Ring */
-  .deco-ring {
-    position: absolute;
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    border: 1px solid var(--accent-electric);
-    opacity: 0.1;
-    top: 42%;
-    left: 46%;
-    animation: pulseRing 6s ease-in-out infinite;
-  }
-
-  /* Animations */
-
-  @keyframes slideInLeft {
-    from {
-      opacity: 0;
-      transform: translateX(-50px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-
   @keyframes slideInRight {
-    from {
-      opacity: 0;
-      transform: translateX(50px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-
-  @keyframes wave {
-    0%, 100% {
-      transform: rotate(0deg);
-    }
-    25% {
-      transform: rotate(20deg);
-    }
-    75% {
-      transform: rotate(-10deg);
-    }
-  }
-
-  @keyframes blink {
-    0%, 50% {
-      opacity: 1;
-    }
-    51%, 100% {
-      opacity: 0;
-    }
-  }
-
-  @keyframes expandWidth {
-    from {
-      width: 0;
-    }
-    to {
-      width: 100%;
-    }
-  }
-
-  @keyframes rotateBorder {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
+    from { opacity: 0; transform: translateX(50px); }
+    to { opacity: 1; transform: translateX(0); }
   }
 
   @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
   /* Scroll Indicator - Mouse */
@@ -1070,18 +176,9 @@ const { align = "center", tagline, tagline1, title } = Astro.props;
   }
 
   @keyframes scrollDown {
-    0% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    50% {
-      opacity: 0.3;
-      transform: translateY(14px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    0% { opacity: 1; transform: translateY(0); }
+    50% { opacity: 0.3; transform: translateY(14px); }
+    100% { opacity: 1; transform: translateY(0); }
   }
 
   .scroll-text {
@@ -1092,113 +189,16 @@ const { align = "center", tagline, tagline1, title } = Astro.props;
     font-weight: 500;
   }
 
-  /* Decorative Animations */
-  @keyframes floatDeco {
-    0%, 100% { transform: translate(0, 0); }
-    25% { transform: translate(15px, -20px); }
-    50% { transform: translate(-10px, 15px); }
-    75% { transform: translate(20px, 10px); }
-  }
-
-  @keyframes spinFloat {
-    0% { transform: rotate(45deg) translate(0, 0); }
-    25% { transform: rotate(135deg) translate(10px, -10px); }
-    50% { transform: rotate(225deg) translate(-5px, 5px); }
-    75% { transform: rotate(315deg) translate(8px, 8px); }
-    100% { transform: rotate(405deg) translate(0, 0); }
-  }
-
-  @keyframes pulseLine {
-    0%, 100% { opacity: 0.05; transform: rotate(-35deg) scaleX(0.8); }
-    50% { opacity: 0.2; transform: rotate(-35deg) scaleX(1.2); }
-  }
-
-  @keyframes floatDot {
-    0%, 100% { transform: translateY(0); opacity: 0.3; }
-    50% { transform: translateY(-12px); opacity: 0.6; }
-  }
-
-  @keyframes pulseRing {
-    0%, 100% { transform: scale(1); opacity: 0.08; }
-    50% { transform: scale(1.15); opacity: 0.18; }
-  }
-
-  @keyframes floatCard {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(-15px); }
-  }
-
-  /* Reduced motion */
-  @media (prefers-reduced-motion: reduce) {
-    .deco-circle, .deco-diamond, .deco-line, .deco-dot, .deco-ring {
-      animation: none;
-    }
-
-    .identity-card,
-    .identity-sidebar,
-    .photo-mask,
-    .name-display,
-    .name-rule {
-      animation: none;
-      opacity: 1;
-      clip-path: none;
-      transform: none;
-    }
-
-    .name-rule {
-      width: 40px;
-    }
-
-    .name-last {
-      animation: none;
-    }
-  }
-
-  /* Responsive Design */
-
-  /* Tablet landscape */
+  /* Tablet & Mobile Layout Logic */
   @media (max-width: 1024px) {
     .hero-container-modern {
       padding: 3rem 2rem 2rem;
       min-height: 70vh;
     }
-
-    .hero-right {
-      padding-right: 1rem;
-    }
-
-    .hero-left {
-      padding-left: 1rem;
-    }
-
-    .identity-card {
-      width: 100%;
-      max-width: 360px;
-    }
-
-    .card-right {
-      width: 100%;
-      max-width: 360px;
-    }
-
-    .name-display {
-      font-size: clamp(1.6rem, 3.5vw, 2rem);
-    }
-
-    .hero-subtitle-modern {
-      font-size: var(--text-xl);
-    }
-
-    .sidebar-socials,
-    .sidebar-socials :global(.hero-media-social-nav) {
-      flex-direction: row;
-    }
   }
 
-  /* Tablet portrait & mobile */
   @media (max-width: 768px) {
     .hero-container-modern {
-      display: flex;
       flex-direction: column;
       align-items: center;
       gap: 2rem;
@@ -1206,167 +206,23 @@ const { align = "center", tagline, tagline1, title } = Astro.props;
       text-align: center;
       min-height: auto;
     }
-
-    .scroll-indicator {
-      display: none;
-    }
-
-    .hero-left,
-    .hero-right {
+    .scroll-indicator { display: none; }
+    .hero-left, .hero-right {
       align-self: center;
       padding: 0;
       width: 100%;
       max-width: 420px;
     }
-
-    .hero-left {
-      align-items: center;
-    }
-
-    .hero-right {
-      align-items: center;
-      text-align: center;
-      margin-top: 0;
-      justify-content: center;
-    }
-
-    /* Identity Card responsive */
-    .identity-card {
-      grid-template-columns: 1fr;
-      width: 100%;
-      max-width: 420px;
-      min-height: auto;
-    }
-
-    .identity-sidebar {
-      flex-direction: row;
-      border-right: none;
-      border-top: 1px solid rgba(100, 116, 162, 0.1);
-      padding: 1rem 1.5rem;
-      order: 3;
-    }
-
-    .sidebar-line {
-      width: auto;
-      height: 1px;
-      flex: 1;
-    }
-
-    .sidebar-socials {
-      flex-direction: row;
-    }
-
-    .identity-header {
-      flex-direction: column;
-      text-align: center;
-      padding: 1.5rem 1.5rem 1rem;
-    }
-
-    .identity-photo {
-      margin: 0 0 1rem 0;
-    }
-
-    .identity-name {
-      padding: 0;
-    }
-
-    .name-display {
-      font-size: clamp(1.8rem, 8vw, 2.5rem);
-      text-align: center;
-      align-items: center;
-    }
-
-    .name-rule {
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .diagonal-card,
-    .card-right {
-      max-width: 420px;
-      width: 100%;
-      min-height: auto;
-      padding: 2rem;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .hero-decorations {
-      display: none;
-    }
-
-    .hero-subtitle-modern {
-      font-size: var(--text-xl);
-    }
-
-    .hero-description-modern {
-      text-align: center;
-    }
-
-    .hero-cta-container {
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .cta-primary,
-    .cta-secondary {
-      width: 100%;
-      max-width: 280px;
-      justify-content: center;
-    }
+    .hero-right { text-align: center; margin-top: 0; justify-content: center; }
   }
 
-  /* Small mobile */
   @media (max-width: 480px) {
     .hero-container-modern {
       padding: 4rem 1rem 1.5rem;
       gap: 1.5rem;
     }
-
-    .hero-left,
-    .hero-right {
-      max-width: 100%;
-    }
-
-    .identity-card {
-      max-width: 100%;
-    }
-
-    .identity-header {
-      padding: 1rem 1rem 0.75rem;
-    }
-
-    .identity-photo {
-      margin: 0 0 0.75rem 0;
-    }
-
-    .identity-name {
-      padding: 0;
-    }
-
-    .diagonal-card,
-    .card-right {
-      max-width: 100%;
-      padding: 1rem;
-    }
-
-    .hero-subtitle-modern {
-      font-size: var(--text-lg);
-    }
-
-    .hero-description-modern {
-      font-size: var(--text-sm);
-    }
-
-    .cta-primary,
-    .cta-secondary {
-      padding: 0.875rem 1.5rem;
-      font-size: var(--text-sm);
-    }
   }
 
-  /* Additional CSS Variables for Modern Design */
   :root {
     --accent-teal: #14b8a6;
     --accent-electric: #6366f1;
@@ -1428,31 +284,32 @@ const { align = "center", tagline, tagline1, title } = Astro.props;
           const rotateX = ((y - centerY) / centerY) * 10;
           const rotateY = ((centerX - x) / centerX) * 10;
           
-          // Fast transition for follow
+          // @ts-ignore
           card.style.transition = 'transform 0.1s ease-out, box-shadow 0.1s ease-out';
-          
-          // Apply rotation with a slight scale
+          // @ts-ignore
           card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px) scale(1.02)`;
           
-          // Add dynamic glow follow
           const shadowX = (x - centerX) / 10;
           const shadowY = (y - centerY) / 10;
+          // @ts-ignore
           card.style.boxShadow = `${shadowX}px ${shadowY}px 30px rgba(20, 184, 166, 0.2), 0 32px 64px rgba(0, 0, 0, 0.2)`;
         });
         
         card.addEventListener('mouseleave', () => {
-          card.style.transition = 'transform 0.5s var(--ease-out-quint), box-shadow 0.5s ease';
+          // @ts-ignore
+          card.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease';
+          // @ts-ignore
           card.style.transform = '';
+          // @ts-ignore
           card.style.boxShadow = '';
         });
       });
     }
 
-    // Initialize both effects with a small check to prevent double execution
-    if (!window.heroInitialized) {
+    if (!(window as any).heroInitialized) {
       initTypingEffect();
       initTiltEffect();
-      window.heroInitialized = true;
+      (window as any).heroInitialized = true;
     }
     
     document.addEventListener("astro:page-load", () => {
