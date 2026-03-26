@@ -246,27 +246,25 @@ export default function Timeline({
   return (
     <motion.section
       ref={containerRef}
-      className="relative py-16 px-4 overflow-hidden rounded-2xl bg-slate-50/5 backdrop-blur-lg border border-white/10"
+      className="relative isolate mx-auto w-full max-w-7xl overflow-hidden rounded-[28px] border border-white/20 bg-white/45 px-4 py-14 shadow-[0_20px_80px_rgba(76,29,149,0.08)] backdrop-blur-xl sm:px-6 lg:px-10"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      style={{
-        boxShadow: '0 10px 30px -5px rgba(2, 8, 23, 0.1), 0 1px 3px rgba(0, 0, 0, 0.05)',
-      }}
     >
       {/* Background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-[30%] -right-[10%] w-[40%] h-[50%] rounded-full bg-gradient-to-b from-indigo-500/20 to-purple-500/5 blur-3xl" />
-        <div className="absolute -bottom-[20%] -left-[10%] w-[40%] h-[50%] rounded-full bg-gradient-to-t from-blue-500/20 to-cyan-400/5 blur-3xl" />
+        <div className="absolute -top-[25%] -right-[12%] h-[46%] w-[38%] rounded-full bg-gradient-to-b from-indigo-500/14 to-purple-500/0 blur-3xl" />
+        <div className="absolute -bottom-[24%] -left-[12%] h-[46%] w-[38%] rounded-full bg-gradient-to-t from-blue-500/14 to-cyan-400/0 blur-3xl" />
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/70 to-transparent" />
       </div>
 
       {/* Header */}
-      <div className="relative text-center mb-12">
+      <div className="relative text-center mb-12 sm:mb-14">
         <motion.span
-          className="inline-block px-3 py-1 text-xs font-medium tracking-wider text-accent-regular uppercase rounded-full bg-white/80 backdrop-blur-sm mb-3 border border-accent-light/20"
+          className="inline-flex items-center rounded-full border border-accent-light/20 bg-white/70 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.24em] backdrop-blur-sm mb-4"
           style={{
             color: 'var(--accent-regular)',
-            boxShadow: '0 2px 10px rgba(157, 78, 255, 0.1)'
+            boxShadow: '0 8px 24px rgba(157, 78, 255, 0.08)'
           }}
           variants={titleVariants}
         >
@@ -274,7 +272,7 @@ export default function Timeline({
         </motion.span>
 
         <motion.h2
-          className="text-3xl md:text-4xl lg:text-5xl font-bold bg-clip-text text-transparent mb-4"
+          className="mb-4 text-3xl font-bold leading-tight tracking-tight bg-clip-text text-transparent sm:text-4xl lg:text-5xl"
           style={{
             backgroundImage: 'var(--accent-gradient)',
             fontFamily: 'var(--font-display)'
@@ -285,8 +283,8 @@ export default function Timeline({
         </motion.h2>
 
         <motion.p
-          className="max-w-2xl mx-auto text-lg"
-          style={{ color: 'var(--accent-dark)' }}
+          className="mx-auto max-w-2xl text-base leading-7 sm:text-lg"
+          style={{ color: 'var(--accent-dark)', opacity: 0.92 }}
           variants={titleVariants}
         >
           {subtitle}
@@ -298,9 +296,9 @@ export default function Timeline({
             className="mt-8"
             variants={titleVariants}
           >
-            <div className="inline-flex p-1 rounded-full bg-white/30 backdrop-blur-sm border border-white/40">
+            <div className="inline-flex rounded-full border border-white/40 bg-white/35 p-1 shadow-[0_12px_40px_rgba(76,29,149,0.08)] backdrop-blur-sm">
               <button
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${userOrientation === 'vertical'
+                className={`rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 ${userOrientation === 'vertical'
                   ? 'bg-white text-accent-regular shadow-sm'
                   : 'hover:text-accent-regular'
                   }`}
@@ -313,7 +311,7 @@ export default function Timeline({
                 Vertical
               </button>
               <button
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${userOrientation === 'horizontal'
+                className={`rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 ${userOrientation === 'horizontal'
                   ? 'bg-white text-accent-regular shadow-sm'
                   : 'hover:text-accent-regular'
                   }`}
@@ -333,13 +331,13 @@ export default function Timeline({
       {/* Category filters */}
       {categories.length > 1 && (
         <motion.div
-          className="flex flex-wrap justify-center gap-2 mb-10 px-4"
+          className="mb-10 flex flex-wrap justify-center gap-2 px-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.5 }}
         >
           <button
-            className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${!selectedCategory
+            className={`rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 ${!selectedCategory
               ? 'text-white shadow-md'
               : 'bg-white/80 backdrop-blur-sm hover:bg-white text-gray-700 border border-white/40 hover:border-accent-light/30'
               }`}
@@ -354,7 +352,7 @@ export default function Timeline({
           {categories.map(cat => (
             <button
               key={cat}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 ${selectedCategory === cat
+              className={`flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 ${selectedCategory === cat
                 ? 'text-white shadow-md'
                 : 'bg-white/80 backdrop-blur-sm hover:bg-white text-gray-700 border border-white/40 hover:border-accent-light/30'
                 }`}
@@ -379,13 +377,12 @@ export default function Timeline({
       {/* Main timeline container */}
       <div
         ref={horizontalScrollRef}
-        className={`relative ${isHorizontal ? 'overflow-x-auto hide-scrollbar' : 'overflow-y-auto timeline-scroll-container'}`}
+        className={`relative rounded-[24px] border border-white/40 bg-white/30 shadow-[inset_0_1px_0_rgba(255,255,255,0.65),0_18px_55px_rgba(15,23,42,0.06)] ${isHorizontal ? 'overflow-x-auto hide-scrollbar' : 'overflow-y-auto timeline-scroll-container'}`}
         style={{
           minHeight: '450px',
-          height: isHorizontal ? '450px' : 'calc(70vh - 200px)',
-          maxHeight: isHorizontal ? '450px' : 'calc(70vh - 200px)',
+          height: isHorizontal ? '450px' : 'calc(70vh - 190px)',
+          maxHeight: isHorizontal ? '450px' : 'calc(70vh - 190px)',
           scrollBehavior: 'smooth',
-          borderRadius: isHorizontal ? '0' : '8px',
           width: '100%',
           position: 'relative'
         }}
@@ -399,11 +396,11 @@ export default function Timeline({
           >
             No events to display for this category.
           </motion.div>
-        ) : (
-          <div className={`relative ${isHorizontal ? 'px-8' : 'px-4 sm:px-6 lg:px-12'}`}>
-            {/* Center line */}
-            <motion.div
-              className={
+          ) : (
+            <div className={`relative ${isHorizontal ? 'px-8' : 'px-4 sm:px-6 lg:px-12'}`}>
+              {/* Center line */}
+              <motion.div
+                className={
                 isHorizontal
                   ? 'absolute top-1/2 left-0 right-0 h-[2px] bg-gradient-to-r from-accent-light via-accent-regular to-accent-dark'
                   : 'absolute left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-accent-light via-accent-regular to-accent-dark'
@@ -470,7 +467,7 @@ const StandardTimelineList = ({
   isHorizontal: boolean
 }) => {
   return (
-    <ol
+      <ol
       className={`relative z-10 ${isHorizontal ? 'flex timeline-horizontal-list gap-[3.5rem] py-[2.5rem]' : 'flex flex-col gap-[3.5rem] py-[2.5rem]'}`}
       style={isHorizontal ? {
         minWidth: events.length * 350 + 'px',
@@ -547,9 +544,9 @@ function TimelineItem({
 
   return (
     <motion.li
-      className={`
-        relative
-        ${isHorizontal
+        className={`
+          relative
+          ${isHorizontal
           ? `flex-1 min-w-[320px] max-w-[380px] ${isEven ? 'pt-20 pb-4' : 'pb-20 pt-4'}`
           : `${isEven ? 'ml-auto mr-[calc(50%+2rem)]' : 'mr-auto ml-[calc(50%+2rem)]'}`
         }
@@ -569,8 +566,8 @@ function TimelineItem({
         variants={dotVariants}
         whileHover="hover"
       >
-        <div className="relative">
-          <div className="w-10 h-10 rounded-full bg-white shadow-md flex items-center justify-center border-2" style={{ borderColor: 'var(--accent-regular)', boxShadow: 'var(--accent-soft-glow)' }}>
+          <div className="relative">
+          <div className="flex h-10 w-10 items-center justify-center rounded-full border-2 bg-white shadow-md" style={{ borderColor: 'var(--accent-regular)', boxShadow: 'var(--accent-soft-glow)' }}>
             {event.category && categoryIcons[event.category] ? (
               <span style={{ color: 'var(--accent-regular)' }}>{categoryIcons[event.category]}</span>
             ) : (
@@ -586,7 +583,7 @@ function TimelineItem({
                 : `${isEven ? 'left-full ml-1' : 'right-full mr-1'} top-1/2 -translate-y-1/2`
               }
             `}
-            style={{ color: 'var(--accent-regular)', borderColor: 'var(--accent-light)', opacity: 0.9 }}
+            style={{ color: 'var(--accent-regular)', borderColor: 'var(--accent-light)', opacity: 0.95 }}
           >
             {event.year}
           </div>
@@ -595,15 +592,13 @@ function TimelineItem({
 
       {/* Event content */}
       <motion.div
-        className="relative overflow-hidden rounded-xl backdrop-blur-sm transition-all duration-300"
+        className="group relative overflow-hidden rounded-[22px] border border-white/70 bg-white/85 backdrop-blur-sm transition-all duration-300"
         style={{
-          background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7))',
-          boxShadow: '0 4px 20px rgba(0, 0, 0, 0.05)',
-          border: '1px solid rgba(255, 255, 255, 0.8)',
+          boxShadow: '0 10px 30px rgba(15, 23, 42, 0.06)',
         }}
         whileHover={{
           y: -5,
-          boxShadow: '0 10px 25px rgba(0, 0, 0, 0.08)',
+          boxShadow: '0 18px 40px rgba(76, 29, 149, 0.10)',
           transition: {
             duration: 0.3
           }
@@ -611,11 +606,12 @@ function TimelineItem({
         onClick={onToggle}
         layout
       >
+        <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-accent-light via-accent-regular to-accent-dark opacity-70" />
         <div className="p-6">
           {/* Category tag */}
           {event.category && (
             <div className="mb-3">
-              <span className="px-2.5 py-1 rounded-full text-xs font-medium inline-flex items-center gap-1" style={{ backgroundColor: 'var(--accent-light)', color: 'var(--accent-text-over)', opacity: 0.9 }}>
+              <span className="inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-medium" style={{ backgroundColor: 'var(--accent-light)', color: 'var(--accent-text-over)', opacity: 0.95 }}>
                 {categoryIcons[event.category] && (
                   <span>{categoryIcons[event.category]}</span>
                 )}
@@ -630,7 +626,7 @@ function TimelineItem({
               href={event.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xl font-bold mb-2 text-slate-800 transition-colors block"
+              className="mb-2 block text-xl font-bold text-slate-800 transition-colors"
               style={{ fontFamily: 'var(--font-display)' }}
               onMouseOver={(e) => e.currentTarget.style.color = 'var(--accent-regular)'}
               onMouseOut={(e) => e.currentTarget.style.color = ''}
@@ -643,7 +639,7 @@ function TimelineItem({
           )}
 
           {/* Description */}
-          <p style={{ color: 'var(--accent-dark)' }}>{event.description}</p>
+          <p className="leading-7" style={{ color: 'var(--accent-dark)' }}>{event.description}</p>
 
           {/* Expanded content */}
           <AnimatePresence>
@@ -655,7 +651,7 @@ function TimelineItem({
                 transition={{ duration: 0.3 }}
               >
                 <div className="mt-4 pt-4 border-t" style={{ borderColor: 'rgba(var(--gray-999-basis), 0.1)' }}>
-                  <p style={{ color: 'var(--accent-dark)', opacity: 0.8 }}>{event.details}</p>
+                  <p className="leading-7" style={{ color: 'var(--accent-dark)', opacity: 0.82 }}>{event.details}</p>
 
                   {event.image && (
                     <motion.img
@@ -761,13 +757,13 @@ const globalStyles = `
 
 /* Timeline scroll container styling */
 .timeline-scroll-container {
-  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45);
   padding-right: 10px;
   transition: all 0.3s ease;
 }
 
 .timeline-scroll-container:hover {
-  box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55);
 }
 
 .timeline-horizontal-list {
