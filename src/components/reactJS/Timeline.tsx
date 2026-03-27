@@ -298,21 +298,20 @@ export default function Timeline({
 
       {/* Category filters + Orientation toggle on same line */}
       <motion.div
-        className="mb-10 flex flex-wrap items-center justify-between gap-2 px-4"
+        className="mb-10 flex flex-wrap items-center justify-between gap-3 px-4"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.4, duration: 0.5 }}
       >
         {categories.length > 1 && (
-          <div className="flex flex-wrap items-center gap-2">
+          <div className="flex items-center gap-2 overflow-x-auto w-full sm:w-auto hide-scrollbar" style={{ WebkitOverflowScrolling: 'touch' }}>
             <button
-              className={`rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 ${!selectedCategory
-                ? 'text-white shadow-md'
-                : 'bg-[hsla(var(--gray-999-basis),0.66)] backdrop-blur-sm hover:bg-[hsla(var(--gray-999-basis),0.76)] text-[color:var(--gray-200)] border border-[hsla(var(--gray-999-basis),0.28)] hover:border-accent-light/30'
-                }`}
+              className="rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 whitespace-nowrap shrink-0"
               style={{
-                backgroundColor: !selectedCategory ? 'var(--accent-regular)' : '',
-                boxShadow: !selectedCategory ? 'var(--accent-soft-glow)' : ''
+                backgroundColor: !selectedCategory ? 'var(--accent-regular)' : 'var(--gradient-subtle)',
+                color: !selectedCategory ? '#fff' : 'var(--gray-200)',
+                boxShadow: !selectedCategory ? 'var(--accent-soft-glow)' : 'none',
+                border: !selectedCategory ? 'none' : '1px solid var(--gray-800)',
               }}
               onClick={() => handleSetSelectedCategory(null)}
             >
@@ -321,18 +320,17 @@ export default function Timeline({
             {categories.map(cat => (
               <button
                 key={cat}
-                className={`flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 ${selectedCategory === cat
-                  ? 'text-white shadow-md'
-                  : 'bg-[hsla(var(--gray-999-basis),0.66)] backdrop-blur-sm hover:bg-[hsla(var(--gray-999-basis),0.76)] text-[color:var(--gray-200)] border border-[hsla(var(--gray-999-basis),0.28)] hover:border-accent-light/30'
-                  }`}
+                className="flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 whitespace-nowrap shrink-0"
                 style={{
-                  backgroundColor: selectedCategory === cat ? 'var(--accent-regular)' : '',
-                  boxShadow: selectedCategory === cat ? 'var(--accent-soft-glow)' : ''
+                  backgroundColor: selectedCategory === cat ? 'var(--accent-regular)' : 'var(--gradient-subtle)',
+                  color: selectedCategory === cat ? '#fff' : 'var(--gray-200)',
+                  boxShadow: selectedCategory === cat ? 'var(--accent-soft-glow)' : 'none',
+                  border: selectedCategory === cat ? 'none' : '1px solid var(--gray-800)',
                 }}
                 onClick={() => handleSetSelectedCategory(cat || null)}
               >
                 {cat && categoryIcons[cat] && (
-                  <span className={selectedCategory === cat ? 'text-white' : 'text-accent-regular'}>
+                  <span style={{ color: selectedCategory === cat ? '#fff' : 'var(--accent-regular)', display: 'flex' }}>
                     {categoryIcons[cat]}
                   </span>
                 )}
