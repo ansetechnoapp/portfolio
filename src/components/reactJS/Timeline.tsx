@@ -246,25 +246,29 @@ export default function Timeline({
   return (
     <motion.section
       ref={containerRef}
-      className="relative isolate mx-auto w-full max-w-7xl overflow-hidden rounded-[28px] border border-white/20 bg-white/45 px-4 py-14 shadow-[0_20px_80px_rgba(76,29,149,0.08)] backdrop-blur-xl sm:px-6 lg:px-10"
+      className="relative isolate mx-auto w-full max-w-7xl overflow-hidden px-4 py-14 sm:px-6 lg:px-10"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
     >
-      {/* Background elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-[25%] -right-[12%] h-[46%] w-[38%] rounded-full bg-gradient-to-b from-indigo-500/14 to-purple-500/0 blur-3xl" />
-        <div className="absolute -bottom-[24%] -left-[12%] h-[46%] w-[38%] rounded-full bg-gradient-to-t from-blue-500/14 to-cyan-400/0 blur-3xl" />
-        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/70 to-transparent" />
+      {/* Subtle ambient background — uses page accent colors for cohesion */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none select-none">
+        <div
+          className="absolute -top-[10%] -right-[5%] h-[50%] w-[45%] rounded-full blur-3xl opacity-30"
+          style={{ background: 'radial-gradient(circle, var(--accent-light), transparent 70%)' }}
+        />
+        <div
+          className="absolute -bottom-[15%] -left-[10%] h-[55%] w-[50%] rounded-full blur-3xl opacity-20"
+          style={{ background: 'radial-gradient(circle, var(--accent-secondary-light, var(--accent-light)), transparent 70%)' }}
+        />
       </div>
 
       {/* Header */}
       <div className="relative text-center mb-12 sm:mb-14">
         <motion.span
-          className="inline-flex items-center rounded-full border border-accent-light/20 bg-white/70 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.24em] backdrop-blur-sm mb-4"
+          className="inline-flex items-center rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.24em] mb-4"
           style={{
             color: 'var(--accent-regular)',
-            boxShadow: '0 8px 24px rgba(157, 78, 255, 0.08)'
           }}
           variants={titleVariants}
         >
@@ -284,132 +288,153 @@ export default function Timeline({
 
         <motion.p
           className="mx-auto max-w-2xl text-base leading-7 sm:text-lg"
-          style={{ color: 'var(--accent-dark)', opacity: 0.92 }}
+          style={{ color: 'var(--gray-300)' }}
           variants={titleVariants}
         >
           {subtitle}
         </motion.p>
 
-        {/* Orientation toggle (not on mobile) */}
-        {!isMobile && (
-          <motion.div
-            className="mt-8"
-            variants={titleVariants}
-          >
-            <div className="inline-flex rounded-full border border-white/40 bg-white/35 p-1 shadow-[0_12px_40px_rgba(76,29,149,0.08)] backdrop-blur-sm">
-              <button
-                className={`rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 ${userOrientation === 'vertical'
-                  ? 'bg-white text-accent-regular shadow-sm'
-                  : 'hover:text-accent-regular'
-                  }`}
-                style={{
-                  boxShadow: userOrientation === 'vertical' ? 'var(--accent-soft-glow)' : 'none',
-                  color: userOrientation !== 'vertical' ? 'var(--text-gray-600)' : undefined
-                }}
-                onClick={() => handleSetUserOrientation('vertical')}
-              >
-                Vertical
-              </button>
-              <button
-                className={`rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 ${userOrientation === 'horizontal'
-                  ? 'bg-white text-accent-regular shadow-sm'
-                  : 'hover:text-accent-regular'
-                  }`}
-                style={{
-                  boxShadow: userOrientation === 'horizontal' ? 'var(--accent-soft-glow)' : 'none',
-                  color: userOrientation !== 'horizontal' ? 'var(--text-gray-600)' : undefined
-                }}
-                onClick={() => handleSetUserOrientation('horizontal')}
-              >
-                Horizontal
-              </button>
-            </div>
-          </motion.div>
-        )}
       </div>
 
-      {/* Category filters */}
-      {categories.length > 1 && (
-        <motion.div
-          className="mb-10 flex flex-wrap justify-center gap-2 px-4"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.5 }}
-        >
-          <button
-            className={`rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 ${!selectedCategory
-              ? 'text-white shadow-md'
-              : 'bg-white/80 backdrop-blur-sm hover:bg-white text-gray-700 border border-white/40 hover:border-accent-light/30'
-              }`}
-            style={{
-              backgroundColor: !selectedCategory ? 'var(--accent-regular)' : '',
-              boxShadow: !selectedCategory ? 'var(--accent-soft-glow)' : ''
-            }}
-            onClick={() => handleSetSelectedCategory(null)}
-          >
-            All Categories
-          </button>
-          {categories.map(cat => (
+      {/* Category filters + Orientation toggle on same line */}
+      <motion.div
+        className="mb-10 flex flex-wrap items-center justify-between gap-2 px-4"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.4, duration: 0.5 }}
+      >
+        {categories.length > 1 && (
+          <div className="flex flex-wrap items-center gap-2">
             <button
-              key={cat}
-              className={`flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 ${selectedCategory === cat
+              className={`rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 ${!selectedCategory
                 ? 'text-white shadow-md'
-                : 'bg-white/80 backdrop-blur-sm hover:bg-white text-gray-700 border border-white/40 hover:border-accent-light/30'
+                : 'bg-[hsla(var(--gray-999-basis),0.66)] backdrop-blur-sm hover:bg-[hsla(var(--gray-999-basis),0.76)] text-[color:var(--gray-200)] border border-[hsla(var(--gray-999-basis),0.28)] hover:border-accent-light/30'
                 }`}
               style={{
-                backgroundColor: selectedCategory === cat ? 'var(--accent-regular)' : '',
-                boxShadow: selectedCategory === cat ? 'var(--accent-soft-glow)' : ''
+                backgroundColor: !selectedCategory ? 'var(--accent-regular)' : '',
+                boxShadow: !selectedCategory ? 'var(--accent-soft-glow)' : ''
               }}
-              onClick={() => handleSetSelectedCategory(cat || null)}
+              onClick={() => handleSetSelectedCategory(null)}
             >
-              {cat && categoryIcons[cat] && (
-                <span className={selectedCategory === cat ? 'text-white' : 'text-accent-regular'}>
-                  {categoryIcons[cat]}
-                </span>
-              )}
-              {cat}
+              All Categories
             </button>
-          ))}
-        </motion.div>
-      )
-      }
+            {categories.map(cat => (
+              <button
+                key={cat}
+                className={`flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 ${selectedCategory === cat
+                  ? 'text-white shadow-md'
+                  : 'bg-[hsla(var(--gray-999-basis),0.66)] backdrop-blur-sm hover:bg-[hsla(var(--gray-999-basis),0.76)] text-[color:var(--gray-200)] border border-[hsla(var(--gray-999-basis),0.28)] hover:border-accent-light/30'
+                  }`}
+                style={{
+                  backgroundColor: selectedCategory === cat ? 'var(--accent-regular)' : '',
+                  boxShadow: selectedCategory === cat ? 'var(--accent-soft-glow)' : ''
+                }}
+                onClick={() => handleSetSelectedCategory(cat || null)}
+              >
+                {cat && categoryIcons[cat] && (
+                  <span className={selectedCategory === cat ? 'text-white' : 'text-accent-regular'}>
+                    {categoryIcons[cat]}
+                  </span>
+                )}
+                {cat}
+              </button>
+            ))}
+          </div>
+        )}
+
+        {/* Orientation toggle */}
+        {!isMobile && (
+          <div
+            className="inline-flex rounded-full border p-1 shadow-[0_12px_40px_rgba(76,29,149,0.08)] backdrop-blur-sm"
+            style={{
+              backgroundColor: 'hsla(var(--gray-999-basis), 0.42)',
+              borderColor: 'hsla(var(--gray-999-basis), 0.28)',
+            }}
+          >
+            <button
+              className={`rounded-full px-3 py-2 transition-all duration-300 ${userOrientation === 'vertical'
+                ? 'text-accent-regular shadow-sm'
+                : 'hover:text-accent-regular'
+                }`}
+              style={{
+                backgroundColor: userOrientation === 'vertical' ? 'hsla(var(--gray-999-basis), 0.78)' : 'transparent',
+                boxShadow: userOrientation === 'vertical' ? 'var(--accent-soft-glow)' : 'none',
+                color: userOrientation !== 'vertical' ? 'var(--text-gray-600)' : undefined
+              }}
+              onClick={() => handleSetUserOrientation('vertical')}
+              title="Vertical"
+            >
+              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 3h18v2H3V3zm0 16h18v2H3v-2zm0-8h18v2H3v-2z" fill="currentColor"/>
+              </svg>
+            </button>
+            <button
+              className={`rounded-full px-3 py-2 transition-all duration-300 ${userOrientation === 'horizontal'
+                ? 'text-accent-regular shadow-sm'
+                : 'hover:text-accent-regular'
+                }`}
+              style={{
+                backgroundColor: userOrientation === 'horizontal' ? 'hsla(var(--gray-999-basis), 0.78)' : 'transparent',
+                boxShadow: userOrientation === 'horizontal' ? 'var(--accent-soft-glow)' : 'none',
+                color: userOrientation !== 'horizontal' ? 'var(--text-gray-600)' : undefined
+              }}
+              onClick={() => handleSetUserOrientation('horizontal')}
+              title="Horizontal"
+            >
+              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 3h2v18H3V3zm16 0h2v18h-2V3zm-8 0h2v18h-2V3z" fill="currentColor"/>
+              </svg>
+            </button>
+          </div>
+        )}
+      </motion.div>
 
       {/* Main timeline container */}
       <div
         ref={horizontalScrollRef}
-        className={`relative rounded-[24px] border border-white/40 bg-white/30 shadow-[inset_0_1px_0_rgba(255,255,255,0.65),0_18px_55px_rgba(15,23,42,0.06)] ${isHorizontal ? 'overflow-x-auto hide-scrollbar' : 'overflow-y-auto timeline-scroll-container'}`}
+        className={`relative ${isHorizontal ? 'overflow-x-auto hide-scrollbar' : 'overflow-y-auto timeline-scroll-container'}`}
         style={{
-          minHeight: '450px',
-          height: isHorizontal ? '450px' : 'calc(70vh - 190px)',
-          maxHeight: isHorizontal ? '450px' : 'calc(70vh - 190px)',
+          minHeight: '480px',
+          height: isHorizontal ? '500px' : 'calc(80vh - 200px)',
           scrollBehavior: 'smooth',
           width: '100%',
-          position: 'relative'
+          position: 'relative',
         }}
       >
         {filteredEvents.length === 0 ? (
           <motion.div
-            className="text-center py-10 font-medium"
+            className="flex items-center justify-center h-full py-12 text-center"
             style={{ color: 'var(--accent-regular)' }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
           >
-            No events to display for this category.
+            <div className="flex flex-col items-center gap-4">
+               <svg className="w-12 h-12 opacity-20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+               </svg>
+               <p className="text-sm font-medium tracking-wide">No events to display for this category.</p>
+            </div>
           </motion.div>
           ) : (
-            <div className={`relative ${isHorizontal ? 'px-8' : 'px-4 sm:px-6 lg:px-12'}`}>
-              {/* Center line */}
+            <div className={`relative ${isHorizontal ? 'px-8 flex items-center h-full' : 'px-4 sm:px-6 lg:px-12 py-10'}`}>
+              {/* Center line with gradient and glow */}
               <motion.div
                 className={
                 isHorizontal
-                  ? 'absolute top-1/2 left-0 right-0 h-[2px] bg-gradient-to-r from-accent-light via-accent-regular to-accent-dark'
-                  : 'absolute left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-accent-light via-accent-regular to-accent-dark'
+                  ? 'absolute top-1/2 left-0 right-0 h-[1px] opacity-40'
+                  : 'absolute left-1/2 top-0 bottom-0 w-[1px] opacity-40'
               }
-              initial={{ scaleX: isHorizontal ? 0 : 1, scaleY: isHorizontal ? 1 : 0 }}
-              animate={{ scaleX: 1, scaleY: 1 }}
-              transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
+              style={{
+                background: isHorizontal
+                  ? 'linear-gradient(90deg, transparent, var(--accent-regular), transparent)'
+                  : 'linear-gradient(180deg, transparent, var(--accent-regular), transparent)',
+                boxShadow: '0 0 15px var(--accent-regular)',
+              }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.4 }}
+              transition={{ duration: 1 }}
             />
-            {/* Toujours utiliser StandardTimelineList, même pour All Categories */}
+            {/* Standard List */}
             <StandardTimelineList
               events={filteredEvents}
               expandedEvent={expandedEvent}
@@ -423,30 +448,38 @@ export default function Timeline({
       {/* Scroll indicators - bottom indicator for both modes */}
       {
         filteredEvents.length > 3 && (
-          <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2 pointer-events-none">
-            <div className="px-3 py-1.5 rounded-full bg-white/80 backdrop-blur-sm shadow-sm flex items-center gap-2 text-xs border border-white/40" style={{ color: 'var(--accent-dark)' }}>
+          <div className="absolute bottom-6 left-0 right-0 flex justify-center gap-2 pointer-events-none">
+            <motion.div
+              className="px-4 py-2 rounded-full flex items-center gap-3 text-[10px] font-bold uppercase tracking-widest"
+              style={{
+                color: 'var(--gray-300)',
+              }}
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 1 }}
+            >
               {isHorizontal ? (
                 <>
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: 'var(--accent-regular)' }}>
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                  <svg className="w-3.5 h-3.5 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                   </svg>
-                  <span>Scroll horizontally for more</span>
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: 'var(--accent-regular)' }}>
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  <span>Explore Journey</span>
+                  <svg className="w-3.5 h-3.5 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                   </svg>
                 </>
               ) : (
                 <>
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: 'var(--accent-regular)' }}>
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+                  <svg className="w-3.5 h-3.5 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 15l7-7 7 7" />
                   </svg>
-                  <span>Scroll vertically for more</span>
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: 'var(--accent-regular)' }}>
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  <span>Scroll for more</span>
+                  <svg className="w-3.5 h-3.5 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
                   </svg>
                 </>
               )}
-            </div>
+            </motion.div>
           </div>
         )
       }
@@ -551,95 +584,136 @@ function TimelineItem({
           : `${isEven ? 'ml-auto mr-[calc(50%+2rem)]' : 'mr-auto ml-[calc(50%+2rem)]'}`
         }
       `}
-      style={!isHorizontal ? { maxWidth: 'calc(50% - 3rem)' } : {}}
+      style={!isHorizontal ? { maxWidth: 'calc(50% - 4rem)' } : {}}
       variants={itemVariants}
     >
-      {/* Dot on the line */}
+      {/* Node / Marker on the line */}
       <motion.div
         className={`
-          absolute z-10
+          absolute z-20 group-hover:z-30
           ${isHorizontal
-            ? `left-1/2 -translate-x-1/2 ${isEven ? 'top-0' : 'bottom-0'}`
-            : `top-0 ${isEven ? 'right-0 translate-x-1/2' : 'left-0 -translate-x-1/2'}`
+            ? `left-1/2 -translate-x-1/2 ${isEven ? 'top-[-20px]' : 'bottom-[-20px]'}`
+            : `top-[24px] ${isEven ? 'right-[-4.5rem] translate-x-1/2' : 'left-[-4.5rem] -translate-x-1/2'}`
           }
         `}
         variants={dotVariants}
         whileHover="hover"
       >
-          <div className="relative">
-          <div className="flex h-10 w-10 items-center justify-center rounded-full border-2 bg-white shadow-md" style={{ borderColor: 'var(--accent-regular)', boxShadow: 'var(--accent-soft-glow)' }}>
+        <div className="relative flex items-center justify-center">
+          {/* Glowing ring */}
+          <div
+            className="absolute h-14 w-14 rounded-full opacity-20 blur-md transition-all duration-500 group-hover:opacity-40"
+            style={{ backgroundColor: 'var(--accent-regular)' }}
+          />
+
+          <div
+            className="relative flex h-12 w-12 items-center justify-center rounded-full border shadow-[0_8px_32px_rgba(0,0,0,0.08)] transition-all duration-300 group-hover:scale-110"
+            style={{
+              backgroundColor: 'hsla(var(--gray-999-basis), 0.9)',
+              borderColor: 'hsla(var(--gray-999-basis), 0.3)',
+              boxShadow: 'inset 0 0 12px rgba(255, 255, 255, 0.1)',
+            }}
+          >
             {event.category && categoryIcons[event.category] ? (
-              <span style={{ color: 'var(--accent-regular)' }}>{categoryIcons[event.category]}</span>
+              <span style={{ color: 'var(--accent-regular)' }} className="drop-shadow-sm">{categoryIcons[event.category]}</span>
             ) : (
-              <div className="w-3 h-3 rounded-full" style={{ backgroundColor: 'var(--accent-regular)' }} />
+              <div className="w-4 h-4 rounded-full" style={{ backgroundColor: 'var(--accent-regular)' }} />
             )}
           </div>
-          {/* Year label */}
+
+          {/* Year Indicator with premium styling */}
           <div
             className={`
-              absolute whitespace-nowrap font-medium text-sm bg-white px-2 py-0.5 rounded-full shadow-sm border
+              absolute whitespace-nowrap font-bold text-[10px] tracking-tighter uppercase px-3 py-1 rounded-full border backdrop-blur-md shadow-xl transition-all duration-300
               ${isHorizontal
-                ? `${isEven ? 'bottom-full mb-1' : 'top-full mt-1'} left-1/2 -translate-x-1/2`
-                : `${isEven ? 'left-full ml-1' : 'right-full mr-1'} top-1/2 -translate-y-1/2`
+                ? `${isEven ? 'bottom-full mb-3' : 'top-full mt-3'} left-1/2 -translate-x-1/2`
+                : `${isEven ? 'left-full ml-3' : 'right-full mr-3'} top-1/2 -translate-y-1/2`
               }
             `}
-            style={{ color: 'var(--accent-regular)', borderColor: 'var(--accent-light)', opacity: 0.95 }}
+            style={{
+              color: 'var(--accent-text-over)',
+              backgroundColor: 'var(--accent-regular)',
+              borderColor: 'var(--accent-light)',
+              letterSpacing: '0.05em',
+            }}
           >
             {event.year}
           </div>
         </div>
       </motion.div>
 
-      {/* Event content */}
+      {/* Card with true glassmorphism */}
       <motion.div
-        className="group relative overflow-hidden rounded-[22px] border border-white/70 bg-white/85 backdrop-blur-sm transition-all duration-300"
+        className="group relative overflow-hidden rounded-[24px] border backdrop-blur-xl transition-all duration-500"
         style={{
-          boxShadow: '0 10px 30px rgba(15, 23, 42, 0.06)',
+          backgroundColor: 'hsla(var(--gray-999-basis), 0.7)',
+          borderColor: 'hsla(var(--gray-999-basis), 0.25)',
+          boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.08)',
         }}
         whileHover={{
-          y: -5,
-          boxShadow: '0 18px 40px rgba(76, 29, 149, 0.10)',
-          transition: {
-            duration: 0.3
-          }
+          y: -8,
+          borderColor: 'var(--accent-light)',
+          boxShadow: '0 35px 60px -15px rgba(0, 0, 0, 0.15)',
+          backgroundColor: 'hsla(var(--gray-999-basis), 0.82)',
         }}
         onClick={onToggle}
         layout
       >
-        <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-accent-light via-accent-regular to-accent-dark opacity-70" />
-        <div className="p-6">
+        {/* Animated gradient top bar */}
+        <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+        <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-accent-light/50 via-accent-regular to-accent-dark/50" />
+
+        <div className="p-7">
           {/* Category tag */}
           {event.category && (
-            <div className="mb-3">
-              <span className="inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-medium" style={{ backgroundColor: 'var(--accent-light)', color: 'var(--accent-text-over)', opacity: 0.95 }}>
+            <div className="mb-4">
+              <span className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-wider backdrop-blur-md"
+                style={{
+                  backgroundColor: 'hsla(var(--gray-999-basis), 0.4)',
+                  color: 'var(--accent-regular)',
+                  border: '1px solid hsla(var(--gray-999-basis), 0.2)',
+                }}>
                 {categoryIcons[event.category] && (
-                  <span>{categoryIcons[event.category]}</span>
+                  <span className="scale-75 origin-center">{categoryIcons[event.category]}</span>
                 )}
                 {event.category}
               </span>
             </div>
           )}
 
-          {/* Title */}
+          {/* Title with display font */}
           {event.link ? (
             <a
               href={event.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="mb-2 block text-xl font-bold text-slate-800 transition-colors"
-              style={{ fontFamily: 'var(--font-display)' }}
+              className="mb-3 block text-xl font-bold transition-all duration-300 hover:translate-x-1"
+              style={{
+                fontFamily: 'var(--font-display)',
+                letterSpacing: '-0.02em',
+                color: 'var(--gray-0)',
+              }}
               onMouseOver={(e) => e.currentTarget.style.color = 'var(--accent-regular)'}
-              onMouseOut={(e) => e.currentTarget.style.color = ''}
+              onMouseOut={(e) => e.currentTarget.style.color = 'var(--gray-0)'}
               onClick={(e) => e.stopPropagation()}
             >
               {event.title}
             </a>
           ) : (
-            <h3 className="text-xl font-bold mb-2 text-slate-800" style={{ fontFamily: 'var(--font-display)' }}>{event.title}</h3>
+            <h3 className="mb-3 text-xl font-bold"
+              style={{
+                fontFamily: 'var(--font-display)',
+                letterSpacing: '-0.02em',
+                color: 'var(--gray-0)',
+              }}>
+              {event.title}
+            </h3>
           )}
 
-          {/* Description */}
-          <p className="leading-7" style={{ color: 'var(--accent-dark)' }}>{event.description}</p>
+          {/* Description with refined line height */}
+          <p className="text-sm leading-relaxed font-medium" style={{ color: 'var(--accent-dark)' }}>
+            {event.description}
+          </p>
 
           {/* Expanded content */}
           <AnimatePresence>
@@ -648,56 +722,57 @@ function TimelineItem({
                 initial={{ height: 0, opacity: 0 }}
                 animate={{ height: "auto", opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
               >
-                <div className="mt-4 pt-4 border-t" style={{ borderColor: 'rgba(var(--gray-999-basis), 0.1)' }}>
-                  <p className="leading-7" style={{ color: 'var(--accent-dark)', opacity: 0.82 }}>{event.details}</p>
+                <div className="mt-5 pt-5 border-t" style={{ borderColor: 'hsla(var(--gray-999-basis), 0.1)' }}>
+                  <p className="text-sm leading-relaxed italic" style={{ color: 'var(--accent-dark)', opacity: 0.8 }}>
+                    {event.details}
+                  </p>
 
                   {event.image && (
-                    <motion.img
-                      src={event.image}
-                      alt={event.title}
-                      className="mt-4 rounded-lg w-full h-auto object-cover shadow-sm"
-                      loading="lazy"
-                      initial={{ scale: 0.9, opacity: 0 }}
+                    <motion.div
+                      className="mt-5 overflow-hidden rounded-xl border border-white/10"
+                      initial={{ scale: 0.95, opacity: 0 }}
                       animate={{ scale: 1, opacity: 1 }}
-                      transition={{ duration: 0.3 }}
-                    />
+                      transition={{ duration: 0.4, delay: 0.1 }}
+                    >
+                      <img
+                        src={event.image}
+                        alt={event.title}
+                        className="w-full h-auto object-cover opacity-90 transition-transform duration-500 hover:scale-105"
+                        loading="lazy"
+                      />
+                    </motion.div>
                   )}
                 </div>
               </motion.div>
             )}
           </AnimatePresence>
 
-          {/* Toggle button */}
-          <div className="mt-4 flex justify-end">
+          {/* Toggle control with minimal style */}
+          <div className="mt-6 flex items-center justify-between">
+            <div className="h-px flex-1 mr-4" style={{ background: 'linear-gradient(90deg, hsla(var(--gray-200-basis), 0.1), transparent)' }} />
             <motion.button
               className={`
-                inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium
+                group/btn relative flex items-center gap-2 rounded-full px-4 py-1.5 text-[11px] font-bold tracking-wide uppercase transition-all duration-300
                 ${isExpanded
-                  ? 'bg-slate-200 text-slate-700'
-                  : 'text-white'}
+                  ? 'bg-[hsla(var(--gray-999-basis),0.2)] text-[color:var(--gray-200)] hover:text-gray-900'
+                  : 'text-white hover:opacity-90 shadow-lg'}
               `}
               style={!isExpanded ? { backgroundColor: 'var(--accent-regular)' } : {}}
               onClick={(e) => { e.stopPropagation(); onToggle(); }}
-              whileHover={{ scale: 1.05, boxShadow: !isExpanded ? '0 2px 8px rgba(118, 17, 166, 0.3)' : '0 2px 8px rgba(0, 0, 0, 0.1)' }}
+              whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              {isExpanded ? (
-                <>
-                  <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
-                  </svg>
-                  Less
-                </>
-              ) : (
-                <>
-                  <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                  More
-                </>
-              )}
+              <span>{isExpanded ? 'Collapse' : 'Learn More'}</span>
+              <svg
+                className={`w-3 h-3 transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`}
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
+              </svg>
             </motion.button>
           </div>
         </div>
@@ -708,11 +783,16 @@ function TimelineItem({
         className={`
           absolute z-0
           ${isHorizontal
-            ? `w-px h-[20px] left-1/2 ${isEven ? 'top-[10px]' : 'bottom-[10px]'}`
-            : `h-px w-[20px] top-[10px] ${isEven ? 'right-[-20px]' : 'left-[-20px]'}`
+            ? `w-[1px] h-[30px] left-1/2 ${isEven ? 'top-[-10px]' : 'bottom-[-10px]'}`
+            : `h-[1px] w-[30px] top-[48px] ${isEven ? 'right-[-30px]' : 'left-[-30px]'}`
           }
         `}
-        style={{ background: 'var(--accent-regular)' }}
+        style={{
+          background: isHorizontal
+            ? `linear-gradient(${isEven ? '0deg' : '180deg'}, var(--accent-regular), transparent)`
+            : `linear-gradient(${isEven ? '90deg' : '270deg'}, var(--accent-regular), transparent)`,
+          opacity: 0.3
+        }}
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
         transition={{ delay: 0.3 + (index * 0.05) }}

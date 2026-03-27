@@ -89,13 +89,21 @@ const { align = "center", tagline, tagline1, title } = Astro.props;
     position: relative;
     z-index: 2;
     display: flex;
-    align-items: stretch;
-    justify-content: center;
-    gap: 3rem;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 1.5rem 3rem 3rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    max-width: 1024px;
+    margin: 3rem auto 0;
+    padding: 0 0.5rem;
     width: 100%;
+    box-sizing: border-box;
+  }
+
+  @media (min-width: 768px) {
+    .hero-container-modern {
+      flex-direction: row;
+    }
   }
 
   /* LEFT & RIGHT Layout Units */
@@ -190,22 +198,7 @@ const { align = "center", tagline, tagline1, title } = Astro.props;
   }
 
   /* Tablet & Mobile Layout Logic */
-  @media (max-width: 1024px) {
-    .hero-container-modern {
-      padding: 3rem 2rem 2rem;
-      min-height: 70vh;
-    }
-  }
-
   @media (max-width: 768px) {
-    .hero-container-modern {
-      flex-direction: column;
-      align-items: center;
-      gap: 2rem;
-      padding: 5rem 1.5rem 2rem;
-      text-align: center;
-      min-height: auto;
-    }
     .scroll-indicator { display: none; }
     .hero-left, .hero-right {
       align-self: center;
@@ -214,13 +207,6 @@ const { align = "center", tagline, tagline1, title } = Astro.props;
       max-width: 420px;
     }
     .hero-right { text-align: center; margin-top: 0; justify-content: center; }
-  }
-
-  @media (max-width: 480px) {
-    .hero-container-modern {
-      padding: 4rem 1rem 1.5rem;
-      gap: 1.5rem;
-    }
   }
 
   :root {

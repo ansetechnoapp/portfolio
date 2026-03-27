@@ -136,14 +136,16 @@ const { heroTitle = `I am ${dataUser.firstName} ${dataUser.lastName}` } =
       }}
     />
   </main>
-  <div class="wrapper stack gap-20 lg:gap-35">
-    <Timeline
-      client:only="react"
-      title="My Journey"
-      subtitle="My professional experience and education through the years"
-      events={timelineEvents}
-    />
-  </div>
+  <section id="journey" class="journey-band">
+    <div class="wrapper stack gap-20 lg:gap-35">
+      <Timeline
+        client:only="react"
+        title="My Journey"
+        subtitle="My professional experience and education through the years"
+        events={timelineEvents}
+      />
+    </div>
+  </section>
 
   <ContactCTA />
   <div class="wrapper stack gap-20 lg:gap-35">
@@ -345,6 +347,12 @@ const { heroTitle = `I am ${dataUser.firstName} ${dataUser.lastName}` } =
   }
   .p-left-right-3-rem {
     padding: 0rem 3rem;
+  }
+
+  /* Timeline section — flows with the page like other sections */
+  .journey-band {
+    position: relative;
+    scroll-margin-top: calc(var(--nav-height, 70px) + 1rem);
   }
 </style>
 
