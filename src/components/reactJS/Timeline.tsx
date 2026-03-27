@@ -2,10 +2,47 @@
 
 import { useState, useRef, useEffect, useMemo, useCallback } from "react"
 import type { ReactNode } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from "framer-motion"
 import { FixedSizeList as List } from 'react-window'
 import AutoSizer from "react-virtualized-auto-sizer"
 import React from "react"
+import { clsx, type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
+
+/** Utility function to combine Tailwind classes */
+function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
+
+/** Magnetic Component for premium micro-interactions */
+function Magnetic({ children, distance = 0.5 }: { children: ReactNode, distance?: number }) {
+  const ref = useRef<HTMLDivElement>(null)
+  const [position, setPosition] = useState({ x: 0, y: 0 })
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    const { clientX, clientY } = e
+    const { height, width, left, top } = ref.current!.getBoundingClientRect()
+    const middleX = clientX - (left + width / 2)
+    const middleY = clientY - (top + height / 2)
+    setPosition({ x: middleX * distance, y: middleY * distance })
+  }
+
+  const reset = () => setPosition({ x: 0, y: 0 })
+
+  const { x, y } = position
+
+  return (
+    <motion.div
+      ref={ref}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={reset}
+      animate={{ x, y }}
+      transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
+    >
+      {children}
+    </motion.div>
+  )
+}
 
 // Types
 interface TimelineEventType {
@@ -264,22 +301,22 @@ export default function Timeline({
       </div>
 
       {/* Header */}
-      <div className="relative text-center mb-12 sm:mb-14">
-        <motion.span
-          className="inline-flex items-center rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.24em] mb-4"
-          style={{
-            color: 'var(--accent-regular)',
-          }}
+      <div className="relative text-center mb-16 sm:mb-20">
+        <motion.div
+          className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-[10px] font-black uppercase tracking-[0.3em] mb-6 bg-white/5 border border-white/10 backdrop-blur-md"
+          style={{ color: 'var(--accent-regular)' }}
           variants={titleVariants}
         >
+          <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ backgroundColor: 'var(--accent-regular)' }} />
           {title === "Our Journey" ? "Timeline" : title}
-        </motion.span>
+        </motion.div>
 
         <motion.h2
-          className="mb-4 text-3xl font-bold leading-tight tracking-tight bg-clip-text text-transparent sm:text-4xl lg:text-5xl"
+          className="mb-6 text-4xl font-black leading-tight tracking-tight bg-clip-text text-transparent sm:text-5xl lg:text-7xl"
           style={{
             backgroundImage: 'var(--accent-gradient)',
-            fontFamily: 'var(--font-display)'
+            fontFamily: 'var(--font-display)',
+            lineHeight: 1.1
           }}
           variants={titleVariants}
         >
@@ -287,103 +324,100 @@ export default function Timeline({
         </motion.h2>
 
         <motion.p
-          className="mx-auto max-w-2xl text-base leading-7 sm:text-lg"
+          className="mx-auto max-w-xl text-base leading-relaxed sm:text-lg font-medium"
           style={{ color: 'var(--gray-300)' }}
           variants={titleVariants}
         >
           {subtitle}
         </motion.p>
-
       </div>
 
       {/* Category filters + Orientation toggle on same line */}
       <motion.div
-        className="mb-10 flex flex-wrap items-center justify-between gap-3 px-4"
-        initial={{ opacity: 0, y: 20 }}
+        className="mb-14 flex flex-wrap items-center justify-between gap-6 px-4"
+        initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.4, duration: 0.5 }}
+        transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
       >
         {categories.length > 1 && (
-          <div className="flex items-center gap-2 overflow-x-auto w-full sm:w-auto hide-scrollbar" style={{ WebkitOverflowScrolling: 'touch' }}>
-            <button
-              className="rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 whitespace-nowrap shrink-0"
-              style={{
-                backgroundColor: !selectedCategory ? 'var(--accent-regular)' : 'var(--gradient-subtle)',
-                color: !selectedCategory ? '#fff' : 'var(--gray-200)',
-                boxShadow: !selectedCategory ? 'var(--accent-soft-glow)' : 'none',
-                border: !selectedCategory ? 'none' : '1px solid var(--gray-800)',
-              }}
-              onClick={() => handleSetSelectedCategory(null)}
-            >
-              All Categories
-            </button>
-            {categories.map(cat => (
+          <div className="flex items-center gap-3 overflow-x-auto w-full sm:w-auto hide-scrollbar pb-2" style={{ WebkitOverflowScrolling: 'touch' }}>
+            <Magnetic distance={0.2}>
               <button
-                key={cat}
-                className="flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 whitespace-nowrap shrink-0"
+                className="rounded-full px-6 py-2.5 text-xs font-bold uppercase tracking-widest transition-all duration-500 whitespace-nowrap shrink-0 border relative overflow-hidden group"
                 style={{
-                  backgroundColor: selectedCategory === cat ? 'var(--accent-regular)' : 'var(--gradient-subtle)',
-                  color: selectedCategory === cat ? '#fff' : 'var(--gray-200)',
-                  boxShadow: selectedCategory === cat ? 'var(--accent-soft-glow)' : 'none',
-                  border: selectedCategory === cat ? 'none' : '1px solid var(--gray-800)',
+                  backgroundColor: !selectedCategory ? 'var(--accent-regular)' : 'rgba(255,255,255,0.05)',
+                  color: !selectedCategory ? '#fff' : 'var(--gray-400)',
+                  borderColor: !selectedCategory ? 'var(--accent-light)' : 'rgba(255,255,255,0.1)',
+                  boxShadow: !selectedCategory ? '0 0 20px rgba(118,17,166,0.3)' : 'none',
                 }}
-                onClick={() => handleSetSelectedCategory(cat || null)}
+                onClick={() => handleSetSelectedCategory(null)}
               >
-                {cat && categoryIcons[cat] && (
-                  <span style={{ color: selectedCategory === cat ? '#fff' : 'var(--accent-regular)', display: 'flex' }}>
-                    {categoryIcons[cat]}
-                  </span>
-                )}
-                {cat}
+                <span className="relative z-10">All Journey</span>
+                {!selectedCategory && <motion.div layoutId="active-pill" className="absolute inset-0" style={{ backgroundColor: 'var(--accent-regular)' }} />}
               </button>
+            </Magnetic>
+            
+            {categories.map(cat => (
+              <Magnetic key={cat} distance={0.2}>
+                <button
+                  className="flex items-center gap-2 rounded-full px-6 py-2.5 text-xs font-bold uppercase tracking-widest transition-all duration-500 whitespace-nowrap shrink-0 border relative overflow-hidden group"
+                  style={{
+                    backgroundColor: selectedCategory === cat ? 'var(--accent-regular)' : 'rgba(255,255,255,0.05)',
+                    color: selectedCategory === cat ? '#fff' : 'var(--gray-400)',
+                    borderColor: selectedCategory === cat ? 'var(--accent-light)' : 'rgba(255,255,255,0.1)',
+                    boxShadow: selectedCategory === cat ? '0 0 20px rgba(118,17,166,0.3)' : 'none',
+                  }}
+                  onClick={() => handleSetSelectedCategory(cat || null)}
+                >
+                  {cat && categoryIcons[cat] && (
+                    <span className="transition-colors duration-500 relative z-10" style={{ color: selectedCategory === cat ? '#fff' : 'var(--accent-regular)' }}>
+                      {categoryIcons[cat]}
+                    </span>
+                  )}
+                  <span className="relative z-10">{cat}</span>
+                  {selectedCategory === cat && <motion.div layoutId="active-pill" className="absolute inset-0" style={{ backgroundColor: 'var(--accent-regular)' }} />}
+                </button>
+              </Magnetic>
             ))}
           </div>
         )}
 
         {/* Orientation toggle */}
         {!isMobile && (
-          <div
-            className="inline-flex rounded-full border p-1 shadow-[0_12px_40px_rgba(76,29,149,0.08)] backdrop-blur-sm"
-            style={{
-              backgroundColor: 'hsla(var(--gray-999-basis), 0.42)',
-              borderColor: 'hsla(var(--gray-999-basis), 0.28)',
-            }}
-          >
-            <button
-              className={`rounded-full px-3 py-2 transition-all duration-300 ${userOrientation === 'vertical'
-                ? 'text-accent-regular shadow-sm'
-                : 'hover:text-accent-regular'
-                }`}
-              style={{
-                backgroundColor: userOrientation === 'vertical' ? 'hsla(var(--gray-999-basis), 0.78)' : 'transparent',
-                boxShadow: userOrientation === 'vertical' ? 'var(--accent-soft-glow)' : 'none',
-                color: userOrientation !== 'vertical' ? 'var(--text-gray-600)' : undefined
-              }}
-              onClick={() => handleSetUserOrientation('vertical')}
-              title="Vertical"
+          <Magnetic distance={0.1}>
+            <div
+              className="inline-flex rounded-full border p-1.5 shadow-2xl backdrop-blur-2xl bg-white/5 border-white/10"
             >
-              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M3 3h18v2H3V3zm0 16h18v2H3v-2zm0-8h18v2H3v-2z" fill="currentColor"/>
-              </svg>
-            </button>
-            <button
-              className={`rounded-full px-3 py-2 transition-all duration-300 ${userOrientation === 'horizontal'
-                ? 'text-accent-regular shadow-sm'
-                : 'hover:text-accent-regular'
-                }`}
-              style={{
-                backgroundColor: userOrientation === 'horizontal' ? 'hsla(var(--gray-999-basis), 0.78)' : 'transparent',
-                boxShadow: userOrientation === 'horizontal' ? 'var(--accent-soft-glow)' : 'none',
-                color: userOrientation !== 'horizontal' ? 'var(--text-gray-600)' : undefined
-              }}
-              onClick={() => handleSetUserOrientation('horizontal')}
-              title="Horizontal"
-            >
-              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M3 3h2v18H3V3zm16 0h2v18h-2V3zm-8 0h2v18h-2V3z" fill="currentColor"/>
-              </svg>
-            </button>
-          </div>
+              <button
+                className="rounded-full p-2.5 transition-all duration-500"
+                style={{
+                  backgroundColor: userOrientation === 'vertical' ? 'var(--accent-regular)' : 'transparent',
+                  color: userOrientation === 'vertical' ? '#fff' : 'var(--gray-500)',
+                  boxShadow: userOrientation === 'vertical' ? '0 10px 15px -3px rgba(0,0,0,0.1)' : 'none',
+                }}
+                onClick={() => handleSetUserOrientation('vertical')}
+                title="Vertical Flow"
+              >
+                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M3 3h18v2H3V3zm0 16h18v2H3v-2zm0-8h18v2H3v-2z" fill="currentColor"/>
+                </svg>
+              </button>
+              <button
+                className="rounded-full p-2.5 transition-all duration-500"
+                style={{
+                  backgroundColor: userOrientation === 'horizontal' ? 'var(--accent-regular)' : 'transparent',
+                  color: userOrientation === 'horizontal' ? '#fff' : 'var(--gray-500)',
+                  boxShadow: userOrientation === 'horizontal' ? '0 10px 15px -3px rgba(0,0,0,0.1)' : 'none',
+                }}
+                onClick={() => handleSetUserOrientation('horizontal')}
+                title="Timeline View"
+              >
+                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M3 3h2v18H3V3zm16 0h2v18h-2V3zm-8 0h2v18h-2V3z" fill="currentColor"/>
+                </svg>
+              </button>
+            </div>
+          </Magnetic>
         )}
       </motion.div>
 
@@ -584,55 +618,54 @@ function TimelineItem({
       `}
       style={!isHorizontal ? { maxWidth: 'calc(50% - 4rem)' } : {}}
       variants={itemVariants}
-    >
-      {/* Node / Marker on the line */}
+    >      {/* Node / Marker on the line */}
       <motion.div
-        className={`
-          absolute z-20 group-hover:z-30
-          ${isHorizontal
+        className={cn(
+          "absolute z-30 group-hover:z-40",
+          isHorizontal
             ? `left-1/2 -translate-x-1/2 ${isEven ? 'top-[-20px]' : 'bottom-[-20px]'}`
             : `top-[24px] ${isEven ? 'right-[-4.5rem] translate-x-1/2' : 'left-[-4.5rem] -translate-x-1/2'}`
-          }
-        `}
+        )}
         variants={dotVariants}
         whileHover="hover"
       >
         <div className="relative flex items-center justify-center">
-          {/* Glowing ring */}
+          {/* Enhanced Glow */}
           <div
-            className="absolute h-14 w-14 rounded-full opacity-20 blur-md transition-all duration-500 group-hover:opacity-40"
+            className="absolute h-16 w-16 rounded-full opacity-40 blur-xl transition-all duration-700 group-hover:opacity-70 group-hover:scale-125"
             style={{ backgroundColor: 'var(--accent-regular)' }}
           />
 
           <div
-            className="relative flex h-12 w-12 items-center justify-center rounded-full border shadow-[0_8px_32px_rgba(0,0,0,0.08)] transition-all duration-300 group-hover:scale-110"
+            className="relative flex h-14 w-14 items-center justify-center rounded-full border shadow-[0_8px_32px_rgba(0,0,0,0.15)] transition-all duration-500 group-hover:shadow-[0_0_25px_var(--accent-regular)]"
             style={{
-              backgroundColor: 'hsla(var(--gray-999-basis), 0.9)',
-              borderColor: 'hsla(var(--gray-999-basis), 0.3)',
-              boxShadow: 'inset 0 0 12px rgba(255, 255, 255, 0.1)',
+              backgroundColor: 'hsla(var(--gray-999-basis), 0.95)',
+              borderColor: 'hsla(var(--gray-999-basis), 0.2)',
+              backdropFilter: 'blur(12px)',
             }}
           >
             {event.category && categoryIcons[event.category] ? (
-              <span style={{ color: 'var(--accent-regular)' }} className="drop-shadow-sm">{categoryIcons[event.category]}</span>
+              <span style={{ color: 'var(--accent-regular)' }} className="drop-shadow-[0_0_8px_rgba(118,17,166,0.3)] scale-110">
+                {categoryIcons[event.category]}
+              </span>
             ) : (
-              <div className="w-4 h-4 rounded-full" style={{ backgroundColor: 'var(--accent-regular)' }} />
+              <div className="w-4 h-4 rounded-full animate-pulse" style={{ backgroundColor: 'var(--accent-regular)' }} />
             )}
           </div>
 
-          {/* Year Indicator with premium styling */}
+          {/* Premium Year Indicator */}
           <div
-            className={`
-              absolute whitespace-nowrap font-bold text-[10px] tracking-tighter uppercase px-3 py-1 rounded-full border backdrop-blur-md shadow-xl transition-all duration-300
-              ${isHorizontal
-                ? `${isEven ? 'bottom-full mb-3' : 'top-full mt-3'} left-1/2 -translate-x-1/2`
-                : `${isEven ? 'left-full ml-3' : 'right-full mr-3'} top-1/2 -translate-y-1/2`
-              }
-            `}
+            className={cn(
+              "absolute whitespace-nowrap font-black text-[12px] tracking-[0.1em] uppercase px-4 py-1.5 rounded-full border backdrop-blur-2xl shadow-2xl transition-all duration-500",
+              isHorizontal
+                ? `${isEven ? 'bottom-full mb-4 translate-y-2 group-hover:translate-y-0' : 'top-full mt-4 -translate-y-2 group-hover:translate-y-0'}`
+                : `top-1/2 -translate-y-1/2 ${isEven ? 'left-full ml-4' : 'right-full mr-4'}`
+            )}
             style={{
               color: 'var(--accent-text-over)',
               backgroundColor: 'var(--accent-regular)',
               borderColor: 'var(--accent-light)',
-              letterSpacing: '0.05em',
+              boxShadow: '0 0 20px rgba(118, 17, 166, 0.4)',
             }}
           >
             {event.year}
@@ -640,26 +673,31 @@ function TimelineItem({
         </div>
       </motion.div>
 
-      {/* Card with true glassmorphism */}
+      {/* Card with true premium glassmorphism */}
       <motion.div
-        className="group relative overflow-hidden rounded-[24px] border backdrop-blur-xl transition-all duration-500"
+        className="group relative overflow-hidden rounded-[28px] border backdrop-blur-2xl transition-all duration-500 select-none cursor-pointer"
         style={{
-          backgroundColor: 'hsla(var(--gray-999-basis), 0.7)',
+          backgroundColor: 'hsla(var(--gray-999-basis), 0.65)',
           borderColor: 'hsla(var(--gray-999-basis), 0.25)',
-          boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.08)',
+          boxShadow: '0 30px 60px -12px rgba(0, 0, 0, 0.15), inset 0 0 0 1px hsla(0, 0%, 100%, 0.1)',
         }}
         whileHover={{
-          y: -8,
-          borderColor: 'var(--accent-light)',
-          boxShadow: '0 35px 60px -15px rgba(0, 0, 0, 0.15)',
-          backgroundColor: 'hsla(var(--gray-999-basis), 0.82)',
+          y: -12,
+          scale: 1.01,
+          boxShadow: '0 45px 80px -20px rgba(0, 0, 0, 0.25), inset 0 0 0 1px hsla(0, 0%, 100%, 0.2)',
+          backgroundColor: 'hsla(var(--gray-999-basis), 0.78)',
         }}
         onClick={onToggle}
         layout
       >
-        {/* Animated gradient top bar */}
-        <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-        <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-accent-light/50 via-accent-regular to-accent-dark/50" />
+        {/* Premium Effects */}
+        <div className="absolute inset-0 bg-noise" />
+        <div className="border-beam" />
+        <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none" />
+        
+        {/* Animated Background Highlight */}
+        <div className="absolute -top-24 -right-24 w-48 h-48 rounded-full blur-[60px] transition-colors duration-700" style={{ backgroundColor: 'color-mix(in srgb, var(--accent-regular) 10%, transparent)' }} />
+
 
         <div className="p-7">
           {/* Category tag */}
