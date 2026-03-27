@@ -1,19 +1,22 @@
 ---
 import CallToAction from "./CallToAction.astro";
 import Icon from "./reactJS/Icon";
+import { getLangFromCookies, getTranslations } from "../i18n/index";
+const lang = getLangFromCookies(Astro.cookies);
+const i18n = getTranslations(lang);
 ---
 
 <aside class="contact-container">
   <div class="content-wrapper">
     <div class="text-section">
-      <h2>Let's create something amazing together</h2>
-      <p>Ready to discuss your next project? I'm just a message away.</p>
+      <h2>{i18n.contactCTA.title}</h2>
+      <p>{i18n.contactCTA.subtitle}</p>
     </div>
-    
+
     <div class="cta-section">
       <div class="primary-cta">
         <CallToAction href="mailto:contact@zoddev.site">
-          Send Me a Message
+          {i18n.contactCTA.button}
           <Icon icon="paper-plane-tilt" size="1.2em" />
         </CallToAction>
       </div>

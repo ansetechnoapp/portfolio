@@ -1,8 +1,17 @@
-<section id="contact" class="py-16 md:py-24 c1">
+---
+import { getLangFromCookies, getTranslations } from "../i18n/index";
+const lang = getLangFromCookies(Astro.cookies);
+const i18n = getTranslations(lang);
+---
+
+<section id="contact" class="py-16 md:py-24 c1"
+  data-i18n-send={i18n.contact.sendMessage}
+  data-i18n-sending={i18n.contact.sending}
+  data-i18n-success={i18n.contact.success}>
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-16">
       <h2 class="text-3xl md:text-4xl font-bold mb-4">
-        Get In <span class="gradient-text">Touch</span>
+        {i18n.contact.getInTouch.split(' ').slice(0, -1).join(' ')} <span class="gradient-text">{i18n.contact.getInTouch.split(' ').slice(-1)[0]}</span>
       </h2>
       <div
         class="w-20 h-1 bg-gradient-to-r from-blue-500 to-indigo-600 mx-auto"
@@ -12,12 +21,9 @@
 
     <div class="flex flex-col md:flex-row">
       <div class="md:w-1/2 mb-10 md:mb-0 md:pr-8">
-        <h3 class="text-2xl font-semibold mb-6">Contact Information</h3>
+        <h3 class="text-2xl font-semibold mb-6">{i18n.contact.contactInfo}</h3>
         <p class="text-gray-600 mb-8">
-          Feel free to reach out to me for any questions or opportunities. I'm
-          always open to discussing new projects, creative ideas or
-          opportunities to be part of your vision. If You Have Any Project In
-          Your Mind.
+          {i18n.contact.contactDescription}
         </p>
 
         <div class="space-y-6">
@@ -28,7 +34,7 @@
               <i class="fas fa-envelope text-blue-500"></i>
             </div>
             <div>
-              <h5 class="font-semibold">Email</h5>
+              <h5 class="font-semibold">{i18n.contact.email}</h5>
               <p class="text-gray-600">contact@zoddev.site</p>
             </div>
           </div>
@@ -39,7 +45,7 @@
               <i class="fas fa-phone text-indigo-500"></i>
             </div>
             <div>
-              <h5 class="font-semibold">Phone</h5>
+              <h5 class="font-semibold">{i18n.contact.phone}</h5>
               <p class="text-gray-600">+229 97 27 90 01</p>
             </div>
           </div>
@@ -50,8 +56,8 @@
               <i class="fas fa-map-marker-alt text-purple-500"></i>
             </div>
             <div>
-              <h5 class="font-semibold">Location</h5>
-              <p class="text-gray-600">based in Cotonou, Benin</p>
+              <h5 class="font-semibold">{i18n.contact.location}</h5>
+              <p class="text-gray-600">{i18n.contact.basedIn}</p>
             </div>
           </div>
           <div class="flex items-start">
@@ -61,14 +67,14 @@
               <i class="fas fa-globe text-green-500"></i>
             </div>
             <div>
-              <h5 class="font-semibold">Website</h5>
+              <h5 class="font-semibold">{i18n.contact.website}</h5>
               <p class="text-gray-600">www.zoddev.site</p>
             </div>
           </div>
         </div>
 
         <div class="mt-8">
-          <h5 class="font-semibold mb-4">Follow Me</h5>
+          <h5 class="font-semibold mb-4">{i18n.contact.followMe}</h5>
           <div class="flex space-x-4">
             <a
               href="https://github.com/ansetechnoapp"
@@ -114,14 +120,14 @@
         <form id="contact-form" class="p-2 rounded-xl shadow-sm">
           <div class="mb-6">
             <label for="name" class="block text-gray-700 font-medium mb-2"
-              >Your Name</label
+              >{i18n.contact.yourName}</label
             >
             <input
               type="text"
               id="name"
               name="name"
               class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              placeholder="John Doe"
+              placeholder={i18n.contact.namePlaceholder}
               required
               minlength="2"
             />
@@ -129,64 +135,64 @@
               class="error-message text-red-500 text-sm mt-1 hidden"
               id="name-error"
             >
-              Please enter your name
+              {i18n.contact.errors.name}
             </div>
           </div>
           <div class="mb-6">
             <label for="email" class="block text-gray-700 font-medium mb-2"
-              >Your Email</label
+              >{i18n.contact.yourEmail}</label
             >
             <input
               type="email"
               id="email"
               name="email"
               class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              placeholder="john@example.com"
+              placeholder={i18n.contact.emailPlaceholder}
               required
             />
             <div
               class="error-message text-red-500 text-sm mt-1 hidden"
               id="email-error"
             >
-              Please enter a valid email address
+              {i18n.contact.errors.email}
             </div>
           </div>
           <div class="mb-6">
             <label for="subject" class="block text-gray-700 font-medium mb-2"
-              >Subject</label
+              >{i18n.contact.subject}</label
             >
             <input
               type="text"
               id="subject"
               name="subject"
               class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              placeholder="Project Inquiry"
+              placeholder={i18n.contact.subjectPlaceholder}
               required
             />
             <div
               class="error-message text-red-500 text-sm mt-1 hidden"
               id="subject-error"
             >
-              Please enter a subject
+              {i18n.contact.errors.subject}
             </div>
           </div>
           <div class="mb-6">
             <label for="message" class="block text-gray-700 font-medium mb-2"
-              >Your Message</label
+              >{i18n.contact.yourMessage}</label
             >
             <textarea
               id="message"
               name="message"
               rows="5"
               class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              placeholder="Hello, I would like to talk about..."
+              placeholder={i18n.contact.messagePlaceholder}
               required
               minlength="10"></textarea>
             <div
               class="error-message text-red-500 text-sm mt-1 hidden"
               id="message-error"
             >
-              Please enter your message (at least 10 characters)
+              {i18n.contact.errors.message}
             </div>
           </div>
           <button
@@ -194,10 +200,10 @@
             id="submit-button"
             class="submit w-full px-6 py-3 text-white rounded-lg shadow-md hover:shadow-lg transition-all"
           >
-            Send Message
+            {i18n.contact.sendMessage}
           </button>
           <div class="success-message text-green-500 text-sm mt-2 hidden">
-            Your message has been sent successfully! We'll get back to you soon.
+            {i18n.contact.success}
           </div>
         </form>
       </div>
@@ -306,13 +312,16 @@
         // In a real implementation, you would send the form data to a server
         // For now, we'll just show a success message
         if (submitButton) submitButton.disabled = true;
-        if (submitButton) submitButton.innerHTML = "Sending...";
+        const section = document.getElementById('contact');
+        const sendText = section?.getAttribute('data-i18n-send') || 'Send Message';
+        const sendingText = section?.getAttribute('data-i18n-sending') || 'Sending...';
+        if (submitButton) submitButton.innerHTML = sendingText;
 
         // Simulate form submission
         setTimeout(() => {
           form?.reset();
           if (submitButton) submitButton.disabled = false;
-          if (submitButton) submitButton.innerHTML = "Send Message";
+          if (submitButton) submitButton.innerHTML = sendText;
           successMessage?.classList.remove("hidden");
 
           // Hide success message after 5 seconds

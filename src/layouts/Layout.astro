@@ -13,6 +13,9 @@ import MobileBottomNav from "../components/MobileBottomNav.astro";
 import "../styles/global.css";
 import "../styles/mobile.css";
 import "../styles/mobile-bottom-nav.css";
+import { getLangFromCookies } from "../i18n/index";
+
+const lang = getLangFromCookies(Astro.cookies);
 
 interface Props {
   title?: string | undefined;
@@ -37,7 +40,7 @@ const {
 ---
 
 <!doctype html>
-<html lang="fr" class="scroll-smooth">
+<html lang={lang} class="scroll-smooth">
   <head>
     <!-- Utilisation du composant SEO pour toutes les balises meta -->
     <SEO

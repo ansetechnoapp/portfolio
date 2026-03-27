@@ -1,10 +1,16 @@
+---
+import { getLangFromCookies, getTranslations } from "../i18n/index";
+const lang = getLangFromCookies(Astro.cookies);
+const i18n = getTranslations(lang);
+---
+
 <section id="service" class="services-section container">
   <div class="services-header text-center mb-xl">
     <div class="services-header-content content-width-md">
-      <div class="services-eyebrow mb-sm">Expertise</div>
-      <h2 class="services-title text-4xl font-bold mb-md">My Services</h2>
+      <div class="services-eyebrow mb-sm">{i18n.services.eyebrow}</div>
+      <h2 class="services-title text-4xl font-bold mb-md">{i18n.services.title}</h2>
       <p class="services-subtitle">
-        Specialized solutions tailored to your digital needs
+        {i18n.services.subtitle}
       </p>
     </div>
     <div class="services-header-decoration mt-6">
@@ -32,15 +38,13 @@
           ></path>
         </svg>
       </div>
-      <h3 class="service-title">Web Development</h3>
+      <h3 class="service-title">{i18n.services.webDev.title}</h3>
       <p class="service-description">
-        Custom web applications built with modern frameworks like React, Astro,
-        and more. I create responsive, high-performance websites that deliver
-        exceptional user experiences.
+        {i18n.services.webDev.description}
       </p>
       <div class="service-footer">
         <a class="service-link" href="/work?filter=web">
-          <span>Learn More</span>
+          <span>{i18n.services.learnMore}</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 256 256"
@@ -75,15 +79,13 @@
           ></path>
         </svg>
       </div>
-      <h3 class="service-title">Mobile Development</h3>
+      <h3 class="service-title">{i18n.services.mobileDev.title}</h3>
       <p class="service-description">
-        Native and cross-platform mobile applications using React Native and
-        Flutter. I deliver intuitive, feature-rich apps that work flawlessly
-        across iOS and Android devices.
+        {i18n.services.mobileDev.description}
       </p>
       <div class="service-footer">
         <a class="service-link" href="/work?filter=mobile">
-          <span>Learn More</span>
+          <span>{i18n.services.learnMore}</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 256 256"
@@ -118,15 +120,13 @@
           ></path>
         </svg>
       </div>
-      <h3 class="service-title">UI/UX Design</h3>
+      <h3 class="service-title">{i18n.services.uiux.title}</h3>
       <p class="service-description">
-        User-centered design that combines aesthetics with functionality. I
-        create intuitive interfaces and seamless user experiences that engage
-        and convert visitors.
+        {i18n.services.uiux.description}
       </p>
       <div class="service-footer">
         <a class="service-link" href="/work?filter=design">
-          <span>Learn More</span>
+          <span>{i18n.services.learnMore}</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 256 256"
@@ -161,15 +161,13 @@
           ></path>
         </svg>
       </div>
-      <h3 class="service-title">Database & API</h3>
+      <h3 class="service-title">{i18n.services.database.title}</h3>
       <p class="service-description">
-        Robust backend solutions with PostgreSQL, MySQL, Firebase, and Supabase.
-        I build secure, scalable APIs and database architectures that power your
-        applications.
+        {i18n.services.database.description}
       </p>
       <div class="service-footer">
         <a class="service-link" href="/work?filter=backend">
-          <span>Learn More</span>
+          <span>{i18n.services.learnMore}</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 256 256"

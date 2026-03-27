@@ -1,6 +1,4 @@
 ---
-export const prerender = true;
-
 import { getCollection } from "astro:content";
 import Layout from "../layouts/Layout.astro";
 import ContactCTA from "../components/ContactCTA.astro";
@@ -16,13 +14,17 @@ const projects = (await getCollection("work")).sort(
   (a, b) => b.data.number - a.data.number
 );
 import dataUser from "../data/User.json";
+import { getLangFromCookies, getTranslations } from "../i18n/index";
+const lang = getLangFromCookies(Astro.cookies);
+const i18n = getTranslations(lang);
+
 interface Props {
   LayoutTitle?: string | undefined;
   descriptionLayout?: string | undefined;
 }
 const {
-  LayoutTitle = `Portfolio & Projets | ${dataUser.firstName} ${dataUser.lastName} - Développeur Web & Mobile`,
-  descriptionLayout = `Découvrez les projets web et mobiles réalisés par ${dataUser.firstName} ${dataUser.lastName}. Applications React, React Native, sites web Astro.js, solutions e-commerce et plus encore. Expertise en développement frontend et backend.`,
+  LayoutTitle = `${i18n.work.pageTitle} | ${dataUser.firstName} ${dataUser.lastName} - ${i18n.meta.homeTitle}`,
+  descriptionLayout = i18n.meta.homeDescription.replace('{firstName}', dataUser.firstName).replace('{lastName}', dataUser.lastName).replace('{city}', dataUser.address.city),
 } = Astro.props;
 ---
 
@@ -36,18 +38,15 @@ const {
 
   <section class="presentation-section site-content-spacing mt-mobile-0">
     <div class="presentation-content">
-      <h1>My Portfolio</h1>
+      <h1>{i18n.work.title}</h1>
       <p>
-        Welcome to my work showcase. Here you'll find a collection of projects
-        that demonstrate my skills and experience in web development and
-        design.
+        {i18n.work.intro1}
       </p>
       <p>
-        Each project represents a unique challenge and solution, showcasing
-        different technologies and approaches I've worked with.
+        {i18n.work.intro2}
       </p>
       <div class="presentation-cta">
-        <a href="#portfolio-section" class="btn">View Projects</a>
+        <a href="#portfolio-section" class="btn">{i18n.work.viewProjects}</a>
       </div>
     </div>
   </section>

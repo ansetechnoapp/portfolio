@@ -1,6 +1,10 @@
 ---
 import Icon from "./reactJS/Icon";
 import Pill from "./reactJS/Pill";
+import { getLangFromCookies, getTranslations } from "../i18n/index";
+
+const lang = getLangFromCookies(Astro.cookies);
+const i18n = getTranslations(lang);
 
 // Define props interface
 interface Props {
@@ -40,8 +44,8 @@ interface Props {
 
 // Set default values
 const {
-  title = "About Me",
-  description = `En tant qu'ingénieur logiciel expérimenté avec une expertise en développement web et mobile, j'apporte un mélange unique de compétences techniques et de vision créative à chaque projet. Ma formation en systèmes informatiques me permet d'architecturer des solutions robustes tandis que ma sensibilité au design garantit des expériences utilisateur exceptionnelles. Je me spécialise dans la création de produits numériques innovants qui génèrent des résultats commerciaux mesurables et améliorent la visibilité de la marque. Je prospère dans des environnements collaboratifs et suis passionné par l'utilisation de technologies de pointe pour résoudre des défis complexes.`,
+  title = i18n.about.title,
+  description = i18n.about.description,
   imageSrc,
   optimizedImageSrc,
   yearsExperience = 7,
@@ -75,10 +79,10 @@ const {
     ],
   },
   languages = [
-    { name: "French", level: "Native", percentage: 100 },
+    { name: i18n.languages.french, level: i18n.languages.native, percentage: 100 },
     {
-      name: "English",
-      level: "Professional Working Proficiency",
+      name: i18n.languages.english,
+      level: i18n.languages.professional,
       percentage: 70,
     },
     // { name: "Spanish", level: "Elementary Proficiency", percentage: 30 },
@@ -89,8 +93,8 @@ const {
     email: "contact@zoddev.site",
     phone: "",
     phonePrefix: "",
-    occupation: "Software Engineer",
-    availability: "Available for Freelance & Full-time Opportunities",
+    occupation: i18n.about.occupation,
+    availability: i18n.about.availability,
     website: "www.zoddev.site",
   },
 } = Astro.props;
@@ -141,7 +145,7 @@ const {
           </div>
           <div class="badge-text">
             <p class="years">{yearsExperience}+</p>
-            <p class="label">Years Experience</p>
+            <p class="label">{i18n.about.yearsExperience}</p>
           </div>
         </div>
       </div>
@@ -150,7 +154,7 @@ const {
         <a href="https://bit.ly/CV_otty_kevin" target="_blank" rel="noopener noreferrer" download class="cv-button">
 
           <Pill
-            ><Icon icon="paper-plane-tilt" size="1.33em" /> Voir mon CV</Pill
+            ><Icon icon="paper-plane-tilt" size="1.33em" /> {i18n.about.viewCV}</Pill
           >
         </a>
         <div class="social-links">
@@ -193,7 +197,7 @@ const {
         {description}
       </p>
       <button class="see-more-btn" id="seeMoreBtn">
-        <span>Voir plus</span>
+        <span>{i18n.about.seeMore}</span>
         <i class="fas fa-chevron-down"></i>
       </button>
     </div>
@@ -209,7 +213,7 @@ const {
             role="tab"
           >
             <i class="fas fa-tools mr-2"></i>
-            <span class="tab-text">Tools & Skills</span>
+            <span class="tab-text">{i18n.about.toolsSkillsTab}</span>
           </button>
           <button
             class="tab-button"
@@ -218,7 +222,7 @@ const {
             role="tab"
           >
             <i class="fas fa-language mr-2"></i>
-            <span class="tab-text">Languages</span>
+            <span class="tab-text">{i18n.about.languagesTab}</span>
           </button>
           <button
             class="tab-button"
@@ -227,7 +231,7 @@ const {
             role="tab"
           >
             <i class="fas fa-address-card mr-2"></i>
-            <span class="tab-text">Contact Info</span>
+            <span class="tab-text">{i18n.about.contactInfoTab}</span>
           </button>
         </div>
       </div>
@@ -251,7 +255,7 @@ const {
                     <div class="flex items-center gap-3">
                       <i class="fas fa-chevron-right accordion-arrow text-blue-500 transition-transform duration-200" style="transform: rotate(90deg);"></i>
                       <h3 class="text-xl font-semibold dark:text-white">
-                        Web Development
+                        {i18n.services.webDev.title}
                       </h3>
                     </div>
                     {/* <i class="fas fa-chevron-down text-gray-400"></i> */}
@@ -280,7 +284,7 @@ const {
                     <div class="flex items-center gap-3">
                       <i class="fas fa-chevron-right accordion-arrow text-pink-500 transition-transform duration-200"></i>
                       <h3 class="text-xl font-semibold dark:text-white">
-                        Mobile Development
+                        {i18n.services.mobileDev.title}
                       </h3>
                     </div>
                     {/* <i class="fas fa-chevron-down text-gray-400"></i> */}
@@ -309,7 +313,7 @@ const {
                     <div class="flex items-center gap-3">
                       <i class="fas fa-chevron-right accordion-arrow text-green-500 transition-transform duration-200"></i>
                       <h3 class="text-xl font-semibold dark:text-white">
-                        Other Technologies
+                        {i18n.about.otherTechnologies}
                       </h3>
                     </div>
                     {/* <i class="fas fa-chevron-down text-gray-400"></i> */}
@@ -330,7 +334,7 @@ const {
           
           <div class="btn-about gap-10 action-buttons mt-6">
             <a href="/work" class="portfolio-button">
-              <Pill><Icon icon="pencil-line" size="1.33em" /> View Portfolio</Pill>
+              <Pill><Icon icon="pencil-line" size="1.33em" /> {i18n.about.viewPortfolio}</Pill>
             </a>
           </div>
         </div>
@@ -348,7 +352,7 @@ const {
                 <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mr-4">
                   <i class="fas fa-language text-green-500" />
                 </div>
-                <h3 class="text-xl font-semibold dark:text-white">Languages</h3>
+                <h3 class="text-xl font-semibold dark:text-white">{i18n.about.languagesTab}</h3>
               </div>
               <div class="space-y-4">
                 {languages.map((lang) => (

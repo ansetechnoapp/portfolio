@@ -2,6 +2,10 @@
 import IdentityCard from "./IdentityCard.astro";
 import DiagonalCard from "./DiagonalCard.astro";
 import HeroDecorations from "./HeroDecorations.astro";
+import { getLangFromCookies, getTranslations } from "../i18n/index";
+
+const lang = getLangFromCookies(Astro.cookies);
+const i18n = getTranslations(lang);
 
 interface Props {
   title: string;
@@ -13,7 +17,7 @@ interface Props {
 const { align = "center", tagline, tagline1, title } = Astro.props;
 ---
 
-<div class:list={["hero-modern stack gap-4", align]}>
+<div class:list={["hero-modern stack gap-4", align]} data-typing-words={JSON.stringify(i18n.hero.typingWords)}>
   <!-- Enhanced Background with Modern Gradient -->
   <div class="hero-background-modern">
     <div class="hero-gradient-overlay"></div>
@@ -39,7 +43,7 @@ const { align = "center", tagline, tagline1, title } = Astro.props;
     <div class="scroll-mouse">
       <div class="scroll-dot"></div>
     </div>
-    <span class="scroll-text">Scroll</span>
+    <span class="scroll-text">{i18n.hero.scroll}</span>
   </div>
 </div>
 
@@ -219,7 +223,10 @@ const { align = "center", tagline, tagline1, title } = Astro.props;
 
 <script>
   function initTypingEffect() {
-    const words = ["Développeur", "Designer", "Freelance", "Créatif"];
+    const heroEl = document.querySelector('.hero-modern');
+    const words = heroEl?.getAttribute('data-typing-words')
+      ? JSON.parse(heroEl.getAttribute('data-typing-words')!)
+      : ["Développeur", "Designer", "Freelance", "Créatif"];
     const el = document.getElementById("typing-text");
     if (!el) return;
 

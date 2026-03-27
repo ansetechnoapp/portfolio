@@ -1,17 +1,19 @@
 ---
 import Icon from "./reactJS/Icon";
 import ThemeToggle from "./ThemeToggle.astro";
+import LanguageToggle from "./LanguageToggle.astro";
 import type { iconPaths } from "./IconPaths";
+import { getLangFromCookies, getTranslations } from "../i18n/index";
+
+const lang = getLangFromCookies(Astro.cookies);
+const i18n = getTranslations(lang);
 
 /** Main menu items */
 const textLinks: { label: string; href: string }[] = [
-  { label: "Home", href: "/" },
-  { label: "Project", href: "/work/" },
-  // { label: 'My components', href: '/components/' },
-  { label: "Blog", href: "/blog/" },
-  { label: "Tools", href: "/widgetCss/" },
-  // { label: "Documentation", href: "/docs/" },
-  // { label: 'Cv', href: '/portfolio/Cv/' },
+  { label: i18n.nav.home, href: "/" },
+  { label: i18n.nav.project, href: "/work/" },
+  { label: i18n.nav.blog, href: "/blog/" },
+  { label: i18n.nav.tools, href: "/widgetCss/" },
 ];
 
 /** Icon links to social media — edit these with links to your profiles! */
@@ -141,6 +143,7 @@ const iconLinks: {
         ))
       }
     </div>
+    <LanguageToggle />
     <ThemeToggle
       togglelightdarktheme="togglehigh"
       toggleiconelightdarktheme="lightx"
@@ -225,6 +228,7 @@ const iconLinks: {
       </div>
 
       <div class="theme-toggle">
+        <LanguageToggle />
         <ThemeToggle
           togglelightdarktheme="togglehigh"
           toggleiconelightdarktheme="lightx"

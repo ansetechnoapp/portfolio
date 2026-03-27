@@ -1,6 +1,4 @@
 ---
-export const prerender = true;
-
 import Layout from "../../layouts/Layout.astro";
 import { Image } from "astro:assets";
 import MenuLinkNav from "../../components/menuLinkNav.astro";
@@ -27,11 +25,15 @@ const remainingPosts = posts.slice(3);
 
 // Extract all unique tags from posts
 const allTags = getAllTags();
+
+import { getLangFromCookies, getTranslations } from "../../i18n/index";
+const lang = getLangFromCookies(Astro.cookies);
+const i18n = getTranslations(lang);
 ---
 
 <Layout
-  title="Blog Développement Web & Mobile | Kevin Otty"
-  description="Articles et tutoriels sur le développement web et mobile par Kevin Otty. Découvrez React, React Native, Astro.js, conseils techniques et retours d'expérience de projets concrets."
+  title={i18n.blog.pageTitle}
+  description={i18n.blog.pageDescription}
   image="/assets/social-preview.jpg"
   type="website"
 >
@@ -40,18 +42,16 @@ const allTags = getAllTags();
   <section class="presentation-section mt-16">
     <div class="wrapper">
       <div class="presentation-content">
-        <h1>Insights & Ideas</h1>
+        <h1>{i18n.blog.title}</h1>
         <p>
-          Welcome to my blog where I share thoughts, stories, and explorations
-          in design, development, and the creative process.
+          {i18n.blog.intro1}
         </p>
         <p>
-          Discover articles on technical concepts, creative approaches, and
-          industry insights to help you grow.
+          {i18n.blog.intro2}
         </p>
         <div class="presentation-cta">
-          <a href="#featured" class="btn">Read Latest</a>
-          <a href="#categories" class="btn">Browse Topics</a> 
+          <a href="#featured" class="btn">{i18n.blog.readLatest}</a>
+          <a href="#categories" class="btn">{i18n.blog.browseTopics}</a> 
         </div>
       </div>
     </div>
@@ -62,7 +62,7 @@ const allTags = getAllTags();
     <section id="featured" class="mb-24">
       <div class="flex items-center justify-between mb-12">
         <h2 class="text-3xl font-bold text-gray-900 dark:text-white relative">
-          <span class="relative z-10">Featured Articles</span>
+          <span class="relative z-10">{i18n.blog.featuredArticles}</span>
           <span
             class="absolute bottom-0 left-0 h-3 w-24 bg-indigo-500/20 dark:bg-indigo-500/30 -z-0"
           ></span>
