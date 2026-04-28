@@ -77,9 +77,12 @@
     "success": "Your message has been sent successfully! We'll get back to you soon."
   },
   "contactCTA": {
+    "available": "Available for new projects",
     "title": "Let's create something amazing together",
     "subtitle": "Ready to discuss your next project? I'm just a message away.",
-    "button": "Send Me a Message"
+    "button": "Send Me a Message",
+    "copyEmail": "Copy Email",
+    "copied": "Copied!"
   },
   "footer": {
     "designedWith": "Designed & Developed with",
