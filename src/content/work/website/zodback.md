@@ -5,7 +5,7 @@ number: 14
 img: /assets/myprojects/zodback-dashboard_optimized.webp
 img_alt: ZodBack admin dashboard showing project selection and navigation modules
 github: https://github.com/ansetechnoapp/zodback
-liveDemo: https://app.zoddev.site/
+liveDemo: https://app.zodev.live/
 device: web
 description: |
   ZodBack is a modular, event-driven backend platform that enables building,
