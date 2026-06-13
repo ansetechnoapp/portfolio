@@ -5,7 +5,7 @@ number: 15
 img: /assets/myprojects/boisenock-hero_optimized.webp
 img_alt: Page d'accueil Bois Enock avec slogan Le bois reinvente pour vos projets sur fond de foret
 github: https://github.com/ansetechnoapp/zodback
-liveDemo: https://wood.zoddev.site/
+liveDemo: "#"
 device: web
 description: |
   Bois Enock est une plateforme de sourcing et de vente de bois nouvelle generation.
