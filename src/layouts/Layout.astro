@@ -7,7 +7,6 @@ import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
 import GlobalCanvas from "../components/GlobalCanvas.astro";
 import AccessibilityFeatures from "../components/AccessibilityFeatures.astro";
-import FontAwesomeFallback from "../components/FontAwesomeFallback.astro";
 import SEO from "../components/SEO.astro";
 import MobileBottomNav from "../components/MobileBottomNav.astro";
 import "../styles/global.css";
@@ -76,12 +75,17 @@ const googleSiteVerification =
 
     <!-- Autres balises head spécifiques à cette page -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
-      rel="stylesheet"
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
     />
     <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
   </head>
   <body
@@ -90,7 +94,6 @@ const googleSiteVerification =
   >
     <GlobalCanvas />
     <AccessibilityFeatures />
-    <FontAwesomeFallback />
     <div class="stack backgrounds" style="margin-top: 0; padding-top: 0; top: 0; position: absolute; width: 100%; left: 0;">
       <Nav />
 
@@ -121,8 +124,21 @@ const googleSiteVerification =
         document.documentElement.classList.remove("dark", "theme-dark");
       }
 
+      const deferNonCritical = (callback) => {
+        if ("requestIdleCallback" in window) {
+          window.requestIdleCallback(callback, { timeout: 1200 });
+          return;
+        }
+
+        window.setTimeout(callback, 200);
+      };
+
       // Enhanced micro-interactions script
       document.addEventListener("DOMContentLoaded", () => {
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+          return;
+        }
+
         // Smooth transition between sections
         const setupSectionTransitions = () => {
           // Exclude sections managed by Framer Motion (they handle their own animations)
@@ -149,32 +165,7 @@ const googleSiteVerification =
           });
         };
 
-        // Button hover effects
-        const setupButtonEffects = () => {
-          const buttons = document.querySelectorAll(
-            "button, .link, a.btn, .button"
-          );
-
-          buttons.forEach((button) => {
-            button.addEventListener("mouseenter", () => {
-              button.classList.add("button-hover");
-            });
-
-            button.addEventListener("mouseleave", () => {
-              button.classList.remove("button-hover");
-            });
-
-            button.addEventListener("click", () => {
-              button.classList.add("button-active");
-              setTimeout(() => {
-                button.classList.remove("button-active");
-              }, 300);
-            });
-          });
-        };
-
-        setupSectionTransitions();
-        setupButtonEffects();
+        deferNonCritical(setupSectionTransitions);
       });
     </script>
 
@@ -299,21 +290,10 @@ const googleSiteVerification =
         transform: translateY(0);
       }
 
-      .button-hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      }
-
-      .button-active {
-        transform: scale(0.95);
-      }
-
       /* Respect user's reduced motion preferences */
       @media (prefers-reduced-motion: reduce) {
         .section-transition,
-        .section-visible,
-        .button-hover,
-        .button-active {
+        .section-visible {
           transition: none;
           transform: none;
           animation: none;

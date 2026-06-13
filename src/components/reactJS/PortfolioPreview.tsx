@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../../styles/PortfolioPreview.css";
 import ProjectModal from "./ProjectModal";
+import Icon from "./Icon";
 
 interface ProjectData {
   title: string;
@@ -91,8 +92,10 @@ export default function PortfolioPreview({ project, activeFilter = 'all' }: Port
           <div className="layer">
             <p>{data.description}</p>
             <a href={`/work/${slug}`} target="_blank" rel="noopener noreferrer"
-              aria-label={`View details for ${data.title}`}>
-              <i className="fas fa-external-link-alt px-2"></i>
+              aria-label={`View details for ${data.title}`}
+              className="inline-flex items-center justify-center"
+            >
+              <Icon icon="arrow-square-out" size="1rem" />
             </a>
           </div>
         </div>
@@ -122,19 +125,19 @@ export default function PortfolioPreview({ project, activeFilter = 'all' }: Port
                 href={data.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm text-primary hover:underline"
+                className="text-sm text-primary hover:underline inline-flex items-center gap-2"
                 aria-label={`View GitHub repository for ${data.title}`}
               >
-                <i className="fab fa-github px-2"></i>
+                <Icon icon="github-logo" size="1rem" />
                 GitHub
               </a>
             )}
             <button
               onClick={(e: React.MouseEvent) => openModal(e)}
-              className="text-sm text-primary hover:underline"
+              className="text-sm text-primary hover:underline inline-flex items-center gap-2"
               aria-label={`View details for ${data.title}`}
             >
-              <i className="fa-solid fa-circle-info px-2"></i>
+              <Icon icon="info" size="1rem" />
               Details
             </button>
           </div>
@@ -143,10 +146,10 @@ export default function PortfolioPreview({ project, activeFilter = 'all' }: Port
               href={data.liveDemo}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm text-primary hover:underline"
+              className="text-sm text-primary hover:underline inline-flex items-center gap-2"
               aria-label={`View live demo of ${data.title}`}
             >
-              <i className="fas fa-external-link-alt px-2"></i>
+              <Icon icon="arrow-square-out" size="1rem" />
               Live Demo
             </a>
           )}

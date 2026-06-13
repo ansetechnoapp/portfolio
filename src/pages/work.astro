@@ -54,12 +54,12 @@ const {
   <div class="stack gap-20 site-content-spacing">
     <main class="stack gap-8 lg:gap-20">
       <div id="portfolio-section">
-        <FilterProjects client:load />
+        <FilterProjects client:visible />
         <Grid variant="small">
           {
             projects.map((project) => (
               <li>
-                <PortfolioPreview project={project} client:load />
+                <PortfolioPreview project={project} client:visible />
               </li>
             ))
           }
