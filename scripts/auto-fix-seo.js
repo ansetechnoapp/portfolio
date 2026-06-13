@@ -325,7 +325,7 @@ const {
   image = "/assets/social-preview.jpg",
   datePublished = new Date().toISOString(),
   dateModified = new Date().toISOString(),
-  url = Astro.site?.toString() || "https://zoddev.site/",
+  url = Astro.site?.toString() || "https://zodev.live/",
 } = Astro.props;
 
 // Données de base pour une personne (portfolio personnel)

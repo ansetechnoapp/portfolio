@@ -236,7 +236,7 @@ const i18n = getTranslations(lang);
                   ))
                 }
                 {
-                  allTags.slice(5).map((tag) => (
+                  allTags.slice(6).map((tag) => (
                     <button
                       class="filter-btn tag-hidden"
                       data-tag={tag}
@@ -249,7 +249,7 @@ const i18n = getTranslations(lang);
                   ))
                 }
                 {
-                  allTags.length > 5 && (
+                  allTags.length > 6 && (
                     <button
                       id="show-more-tags"
                       class="filter-btn show-more-btn"
@@ -1229,10 +1229,13 @@ const i18n = getTranslations(lang);
     const masonryViewBtn = document.getElementById("masonry-view") as HTMLButtonElement;
     const resultsCount = document.getElementById("results-count") as HTMLElement;
     const clearFiltersBtn = document.getElementById("clear-filters") as HTMLButtonElement;
+    const showMoreBtn = document.getElementById("show-more-tags");
+    const searchParams = new URLSearchParams(window.location.search);
 
     let currentFilter = "all";
     let currentSort = "date-desc";
     let currentView = "grid";
+    let areHiddenTagsExpanded = false;
 
     // Initialize posts array for sorting
     const postsData = Array.from(postCards).map((card) => {
@@ -1282,8 +1285,75 @@ const i18n = getTranslations(lang);
       }
     }
 
+    function syncTagQueryParam(tag: string) {
+      const nextUrl = new URL(window.location.href);
+
+      if (tag && tag !== "all") {
+        nextUrl.searchParams.set("tag", tag);
+        nextUrl.hash = "categories";
+      } else {
+        nextUrl.searchParams.delete("tag");
+      }
+
+      window.history.replaceState({}, "", nextUrl);
+    }
+
+    function setActiveFilterButton(activeTag: string) {
+      filterButtons.forEach((btn) => {
+        btn.classList.remove("active");
+        btn.style.background = "";
+        btn.style.boxShadow = "";
+        btn.style.color = "";
+        btn.style.borderColor = "";
+      });
+
+      const activeButton = Array.from(filterButtons).find(
+        (btn) => btn.getAttribute("data-tag") === activeTag
+      );
+
+      if (activeButton) {
+        activeButton.classList.add("active");
+        activeButton.style.background = "var(--accent-regular)";
+        activeButton.style.boxShadow = "var(--accent-soft-glow)";
+        activeButton.style.color = "white";
+        activeButton.style.borderColor = "var(--accent-regular)";
+      }
+    }
+
+    function expandHiddenTags() {
+      const hiddenTags = document.querySelectorAll<HTMLElement>(".tag-hidden");
+      hiddenTags.forEach((tag) => {
+        tag.style.display = "flex";
+        tag.classList.remove("tag-hidden");
+        tag.classList.add("tag-visible");
+      });
+
+      const btnText = showMoreBtn?.querySelector(".filter-btn-text");
+      showMoreBtn?.classList.add("expanded");
+      if (btnText) btnText.textContent = "See Less";
+      areHiddenTagsExpanded = true;
+    }
+
+    function collapseHiddenTags() {
+      const allFilterBtns = document.querySelectorAll<HTMLElement>(
+        ".filter-btn[data-tag]:not(#show-more-tags)"
+      );
+      const tagsToHide = Array.from(allFilterBtns).slice(6);
+
+      tagsToHide.forEach((tag) => {
+        tag.style.display = "none";
+        tag.classList.remove("tag-visible");
+        tag.classList.add("tag-hidden");
+      });
+
+      const btnText = showMoreBtn?.querySelector(".filter-btn-text");
+      showMoreBtn?.classList.remove("expanded");
+      if (btnText) btnText.textContent = "See More";
+      areHiddenTagsExpanded = false;
+    }
+
     // Filter functionality
-    function filterPosts(tag: string) {
+    function filterPosts(tag: string, updateUrl = true) {
       currentFilter = tag;
       postsData.forEach(({ element, tags }) => {
         const shouldShow = tag === "all" || tags.includes(tag);
@@ -1295,6 +1365,9 @@ const i18n = getTranslations(lang);
       });
 
       updateResultsInfo();
+      if (updateUrl) {
+        syncTagQueryParam(tag);
+      }
     }
 
     // Sort functionality
@@ -1338,14 +1411,7 @@ const i18n = getTranslations(lang);
       });
 
       // Activate "All Topics" button
-      const allTopicsBtn = document.querySelector('[data-tag="all"]') as HTMLElement;
-      if (allTopicsBtn) {
-        allTopicsBtn.classList.add("active");
-        allTopicsBtn.style.background = "var(--accent-regular)";
-        allTopicsBtn.style.boxShadow = "var(--accent-soft-glow)";
-        allTopicsBtn.style.color = "white";
-        allTopicsBtn.style.borderColor = "var(--accent-regular)";
-      }
+      setActiveFilterButton("all");
 
       // Show all posts
       filterPosts("all");
@@ -1376,22 +1442,8 @@ const i18n = getTranslations(lang);
     // Event listeners
     filterButtons.forEach((button) => {
       button.addEventListener("click", () => {
-        // Update filter button states
-        filterButtons.forEach((btn) => {
-          btn.classList.remove("active");
-          btn.style.background = "";
-          btn.style.boxShadow = "";
-          btn.style.color = "";
-          btn.style.borderColor = "";
-        });
-
-        button.classList.add("active");
-        button.style.background = "var(--accent-regular)";
-        button.style.boxShadow = "var(--accent-soft-glow)";
-        button.style.color = "white";
-        button.style.borderColor = "var(--accent-regular)";
-
         const tag = button.getAttribute("data-tag") || "";
+        setActiveFilterButton(tag);
         filterPosts(tag);
       });
     });
@@ -1410,39 +1462,12 @@ const i18n = getTranslations(lang);
     }
 
     // Show More/Less functionality for tags
-    const showMoreBtn = document.getElementById("show-more-tags");
     if (showMoreBtn) {
-      let isExpanded = false;
-      
       showMoreBtn.addEventListener("click", () => {
-        const btnText = showMoreBtn.querySelector(".filter-btn-text");
-        
-        if (!isExpanded) {
-          // Show hidden tags
-          const hiddenTags = document.querySelectorAll(".tag-hidden");
-          hiddenTags.forEach(tag => {
-            tag.style.display = "flex";
-            tag.classList.remove("tag-hidden");
-            tag.classList.add("tag-visible");
-          });
-          
-          showMoreBtn.classList.add("expanded");
-          if (btnText) btnText.textContent = "See Less";
-          isExpanded = true;
+        if (!areHiddenTagsExpanded) {
+          expandHiddenTags();
         } else {
-          // Hide tags again - get all filter buttons except first 5 and the show more button
-          const allFilterBtns = document.querySelectorAll('.filter-btn[data-tag]:not(#show-more-tags)');
-          const tagsToHide = Array.from(allFilterBtns).slice(7); // Skip first 6 tags
-          
-          tagsToHide.forEach(tag => {
-            tag.style.display = "none";
-            tag.classList.remove("tag-visible");
-            tag.classList.add("tag-hidden");
-          });
-          
-          showMoreBtn.classList.remove("expanded");
-          if (btnText) btnText.textContent = "See More";
-          isExpanded = false;
+          collapseHiddenTags();
         }
       });
     }
@@ -1464,6 +1489,26 @@ const i18n = getTranslations(lang);
     // Initialize
     updatePostCounts();
     setViewMode("grid");
-    updateResultsInfo();
+    const initialTag = searchParams.get("tag");
+
+    if (initialTag) {
+      const matchingButton = Array.from(filterButtons).find(
+        (button) => button.getAttribute("data-tag") === initialTag
+      );
+
+      if (matchingButton) {
+        if (matchingButton.classList.contains("tag-hidden")) {
+          expandHiddenTags();
+        }
+        setActiveFilterButton(initialTag);
+        filterPosts(initialTag, false);
+      } else {
+        setActiveFilterButton("all");
+        updateResultsInfo();
+      }
+    } else {
+      setActiveFilterButton("all");
+      updateResultsInfo();
+    }
   });
 </script>

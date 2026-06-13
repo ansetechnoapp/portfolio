@@ -11,7 +11,7 @@ export default defineConfig({
       enabled: process.env.NODE_ENV === 'production'
     }
   }),
-  site: 'https://zoddev.site/',
+  site: process.env.SITE_URL || 'https://zodev.live/',
   vite: {
     build: {
       rollupOptions: {

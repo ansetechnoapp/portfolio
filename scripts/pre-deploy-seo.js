@@ -10,7 +10,7 @@ import { XMLBuilder } from 'fast-xml-parser';
 // Configuration
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.join(__dirname, '..');
-const siteUrl = 'https://zoddev.site';
+const siteUrl = 'https://zodev.live';
 const pagesDir = path.join(rootDir, 'src/pages');
 const publicDir = path.join(rootDir, 'public');
 const contentDir = path.join(rootDir, 'src/content');

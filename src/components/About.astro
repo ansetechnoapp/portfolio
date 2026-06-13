@@ -1,6 +1,7 @@
 ---
 import AboutRedesign from "./reactJS/AboutRedesign";
 import { getLangFromCookies, getTranslations } from "../i18n/index";
+import dataUser from "../data/User.json";
 
 const lang = getLangFromCookies(Astro.cookies);
 const i18n = getTranslations(lang);
@@ -86,12 +87,12 @@ const {
   contactInfo = {
     city: "Cotonou",
     street: "",
-    email: "contact@zoddev.site",
+    email: dataUser.email,
     phone: "",
     phonePrefix: "",
     occupation: i18n.about.occupation,
     availability: i18n.about.availability,
-    website: "www.zoddev.site",
+    website: dataUser.website,
   },
 } = Astro.props;
 

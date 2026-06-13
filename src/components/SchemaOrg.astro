@@ -19,26 +19,33 @@ const {
   image = "/assets/social-preview.jpg",
   datePublished = new Date().toISOString(),
   dateModified = new Date().toISOString(),
-  url = Astro.site?.toString() || "https://zoddev.site/",
+  url = Astro.site?.toString() || "https://zodev.live/",
 } = Astro.props;
+
+const siteRoot = new URL(
+  "/",
+  Astro.site?.toString() || "https://zodev.live/"
+).href;
+const pageUrl = typeof url === "string" ? url : url.toString();
+const resolveSiteUrl = (pathname: string) => new URL(pathname, siteRoot).href;
 
 // Enhanced person schema with comprehensive professional information
 const personSchema = {
   "@context": "https://schema.org",
   "@type": "Person",
-  "@id": `${url}#person`,
+  "@id": `${pageUrl}#person`,
   name: name,
   givenName: dataUser.firstName,
   familyName: dataUser.lastName,
   description: description,
   image: {
     "@type": "ImageObject",
-    url: typeof image === "string" ? new URL(image, Astro.site).href : image,
+    url: typeof image === "string" ? resolveSiteUrl(image) : image,
     width: 1200,
     height: 630,
   },
-  url: url,
-  mainEntityOfPage: url,
+  url: pageUrl,
+  mainEntityOfPage: pageUrl,
   jobTitle: "Développeur Web & Mobile Freelance",
   hasOccupation: {
     "@type": "Occupation",
@@ -67,12 +74,12 @@ const personSchema = {
   },
   worksFor: {
     "@type": "Organization",
-    "@id": `${url}#organization`,
+    "@id": `${pageUrl}#organization`,
     name: "zoddev",
-    url: "https://zoddev.site/",
+    url: siteRoot,
     logo: {
       "@type": "ImageObject",
-      url: new URL("/assets/zoddev_logo/zoddev_logo_dark_mode.png", Astro.site).href,
+      url: resolveSiteUrl("/assets/zoddev_logo/zoddev_logo_dark_mode.png"),
     },
     contactPoint: {
       "@type": "ContactPoint",
@@ -140,26 +147,25 @@ const articleSchema = {
   "@type": "Article",
   headline: name,
   description: description,
-  image: typeof image === "string" ? new URL(image, Astro.site).href : image,
+  image: typeof image === "string" ? resolveSiteUrl(image) : image,
   datePublished: datePublished,
   dateModified: dateModified,
   author: {
     "@type": "Person",
     name: `${dataUser.firstName} ${dataUser.lastName}`,
-    url: url,
+    url: pageUrl,
   },
   publisher: {
     "@type": "Organization",
     name: "zoddev",
     logo: {
       "@type": "ImageObject",
-      url: new URL("/assets/zoddev_logo/zoddev_logo_dark_mode.png", Astro.site)
-        .href,
+      url: resolveSiteUrl("/assets/zoddev_logo/zoddev_logo_dark_mode.png"),
     },
   },
   mainEntityOfPage: {
     "@type": "WebPage",
-    "@id": url,
+    "@id": pageUrl,
   },
 };
 
@@ -167,13 +173,13 @@ const articleSchema = {
 const projectSchema = {
   "@context": "https://schema.org",
   "@type": "CreativeWork",
-  "@id": `${url}#project`,
+  "@id": `${pageUrl}#project`,
   name: name,
   headline: name,
   description: description,
   image: {
     "@type": "ImageObject",
-    url: typeof image === "string" ? new URL(image, Astro.site).href : image,
+    url: typeof image === "string" ? resolveSiteUrl(image) : image,
     width: 1200,
     height: 630,
   },
@@ -182,30 +188,30 @@ const projectSchema = {
   dateCreated: datePublished,
   author: {
     "@type": "Person",
-    "@id": `${Astro.site}#person`,
+    "@id": `${siteRoot}#person`,
     name: `${dataUser.firstName} ${dataUser.lastName}`,
-    url: Astro.site,
+    url: siteRoot,
     jobTitle: "Développeur Web & Mobile Freelance",
   },
   creator: {
     "@type": "Person",
-    "@id": `${Astro.site}#person`,
+    "@id": `${siteRoot}#person`,
     name: `${dataUser.firstName} ${dataUser.lastName}`,
   },
   publisher: {
     "@type": "Organization",
-    "@id": `${Astro.site}#organization`,
+    "@id": `${siteRoot}#organization`,
     name: "zoddev",
-    url: Astro.site,
+    url: siteRoot,
     logo: {
       "@type": "ImageObject",
-      url: new URL("/assets/zoddev_logo/zoddev_logo_dark_mode.png", Astro.site).href,
+      url: resolveSiteUrl("/assets/zoddev_logo/zoddev_logo_dark_mode.png"),
     },
   },
-  url: url,
+  url: pageUrl,
   mainEntityOfPage: {
     "@type": "WebPage",
-    "@id": url,
+    "@id": pageUrl,
   },
   genre: ["Web Development", "Mobile Development", "Software Development"],
   keywords: ["React", "React Native", "Astro.js", "TypeScript", "JavaScript", "Web Development", "Mobile Development"],
@@ -224,31 +230,31 @@ const projectSchema = {
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  "@id": `${Astro.site}#organization`,
+  "@id": `${siteRoot}#organization`,
   name: "zoddev",
   alternateName: `${dataUser.firstName} ${dataUser.lastName} - Développeur Freelance`,
   description: `Agence de développement web et mobile dirigée par ${dataUser.firstName} ${dataUser.lastName}, spécialisée dans la création d'applications web et mobiles modernes et performantes.`,
-  url: Astro.site,
+  url: siteRoot,
   logo: {
     "@type": "ImageObject",
-    url: new URL("/assets/zoddev_logo/zoddev_logo_dark_mode.png", Astro.site).href,
+    url: resolveSiteUrl("/assets/zoddev_logo/zoddev_logo_dark_mode.png"),
     width: 512,
     height: 512,
   },
   image: {
     "@type": "ImageObject",
-    url: new URL("/assets/social-preview.jpg", Astro.site).href,
+    url: resolveSiteUrl("/assets/social-preview.jpg"),
     width: 1200,
     height: 630,
   },
   founder: {
     "@type": "Person",
-    "@id": `${Astro.site}#person`,
+    "@id": `${siteRoot}#person`,
     name: `${dataUser.firstName} ${dataUser.lastName}`,
   },
   employee: {
     "@type": "Person",
-    "@id": `${Astro.site}#person`,
+    "@id": `${siteRoot}#person`,
     name: `${dataUser.firstName} ${dataUser.lastName}`,
   },
   address: {

@@ -2,6 +2,7 @@
 import CallToAction from "./CallToAction.astro";
 import Icon from "./reactJS/Icon";
 import { getLangFromCookies, getTranslations } from "../i18n/index";
+import dataUser from "../data/User.json";
 const lang = getLangFromCookies(Astro.cookies);
 const i18n = getTranslations(lang);
 
@@ -139,7 +140,7 @@ const copiedLabel = i18n.contactCTA.copied;
             </div>
             <div class="info-text">
               <h5>{i18n.contact.email}</h5>
-              <p>contact@zoddev.site</p>
+              <p>{dataUser.email}</p>
             </div>
           </div>
 
@@ -159,7 +160,7 @@ const copiedLabel = i18n.contactCTA.copied;
             </div>
             <div class="info-text">
               <h5>{i18n.contact.website}</h5>
-              <p>www.zoddev.site</p>
+              <p>{dataUser.website}</p>
             </div>
           </div>
         </div>

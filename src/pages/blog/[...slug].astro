@@ -77,6 +77,8 @@ const author = {
   avatar: "/assets/img/kevin-otty-avatar.jpg", // You'll need to add this image
   social: userData.socialMedia
 };
+
+const postUrl = new URL(`/blog/${post.slug}`, Astro.site).href;
 ---
 
 <Layout
@@ -213,7 +215,7 @@ const author = {
               </div>
               <div>
                 <div class="font-medium text-gray-900 dark:text-white">
-                  <a href="/about" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition">
+                  <a href="/#about" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition">
                     {author.name}
                   </a>
                 </div>
@@ -236,7 +238,7 @@ const author = {
             <!-- Social Share Component -->
             <SocialShare
               title={post.title}
-              url={`https://zoddev.site/blog/${post.slug}`}
+              url={postUrl}
               description={post.description}
             />
           </div>

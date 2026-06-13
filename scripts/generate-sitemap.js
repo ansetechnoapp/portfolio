@@ -11,7 +11,7 @@ const rootDir = path.join(__dirname, '..');
 const pagesDir = path.join(rootDir, 'src/pages');
 const contentDir = path.join(rootDir, 'src/content');
 const publicDir = path.join(rootDir, 'public');
-const siteUrl = 'https://zoddev.site';
+const siteUrl = 'https://zodev.live';
 
 // Configuration des priorités et fréquences de changement
 const priorityConfig = {

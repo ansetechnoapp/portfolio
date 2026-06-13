@@ -33,7 +33,7 @@ const { author, recentPosts, categories } = Astro.props;
       </div>
       <div>
         <h3 class="text-lg font-bold text-gray-900 dark:text-white">
-          <a href="/about" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition">
+          <a href="/#about" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition">
             {author.name}
           </a>
         </h3>
@@ -147,7 +147,7 @@ const { author, recentPosts, categories } = Astro.props;
     <div class="space-y-2">
       {categories.slice(0, 8).map((category) => (
         <a
-          href={`/blog/category/${category.toLowerCase().replace(/\s+/g, '-')}`}
+          href={`/blog?tag=${encodeURIComponent(category)}#categories`}
           class="block text-sm text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition py-1"
         >
           #{category}

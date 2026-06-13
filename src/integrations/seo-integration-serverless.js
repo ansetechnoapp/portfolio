@@ -7,7 +7,7 @@ const defaultSeoConfig = {
   defaultTitle: 'zoddev Portfolio',
   defaultDescription: 'Portfolio de développeur web et mobile freelance spécialisé en React, React Native, Astro.js et technologies web modernes.',
   defaultImage: '/assets/social-preview.jpg',
-  siteUrl: 'https://zoddev.site',
+  siteUrl: process.env.SITE_URL || 'https://zodev.live/',
   twitterHandle: '@zoddev',
   language: 'fr',
 };

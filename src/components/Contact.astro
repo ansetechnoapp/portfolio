@@ -1,5 +1,6 @@
 ---
 import { getLangFromCookies, getTranslations } from "../i18n/index";
+import dataUser from "../data/User.json";
 const lang = getLangFromCookies(Astro.cookies);
 const i18n = getTranslations(lang);
 ---
@@ -35,7 +36,7 @@ const i18n = getTranslations(lang);
             </div>
             <div>
               <h5 class="font-semibold">{i18n.contact.email}</h5>
-              <p class="text-gray-600">contact@zoddev.site</p>
+              <p class="text-gray-600">{dataUser.email}</p>
             </div>
           </div>
           <div class="flex items-start">
@@ -68,7 +69,7 @@ const i18n = getTranslations(lang);
             </div>
             <div>
               <h5 class="font-semibold">{i18n.contact.website}</h5>
-              <p class="text-gray-600">www.zoddev.site</p>
+              <p class="text-gray-600">{dataUser.website}</p>
             </div>
           </div>
         </div>

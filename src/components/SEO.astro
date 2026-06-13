@@ -8,6 +8,9 @@ interface Props {
   image?: string;
   canonicalURL?: URL | string;
   type?: string;
+  noindex?: boolean;
+  robots?: string;
+  googleSiteVerification?: string;
   article?: {
     publishedTime?: string;
     modifiedTime?: string;
@@ -40,13 +43,25 @@ const {
   image = "/assets/social-preview.jpg",
   canonicalURL = new URL(Astro.url.pathname, Astro.site),
   type = "website",
+  noindex = false,
+  robots,
+  googleSiteVerification,
   article,
   og,
   twitter,
 } = Astro.props;
 
+const canonicalHref =
+  typeof canonicalURL === "string" ? canonicalURL : canonicalURL.toString();
+
 // Construire l'URL complète de l'image
 const socialImageURL = new URL(image, Astro.site).href;
+
+const defaultRobots =
+  "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1";
+const noIndexRobots = "noindex, nofollow, noarchive";
+const robotsContent = noindex ? noIndexRobots : robots || defaultRobots;
+const bingRobotsContent = noindex ? "noindex, nofollow" : "index, follow";
 
 // Déterminer le type de schéma Schema.org
 let schemaType = "Person";
@@ -85,9 +100,9 @@ const twitterData = {
 />
 
 <!-- Additional SEO meta tags -->
-<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-<meta name="googlebot" content="index, follow" />
-<meta name="bingbot" content="index, follow" />
+<meta name="robots" content={robotsContent} />
+<meta name="googlebot" content={robotsContent} />
+<meta name="bingbot" content={bingRobotsContent} />
 <meta name="language" content="fr-FR" />
 <meta name="geo.region" content={dataUser.address.country} />
 <meta name="geo.placename" content={dataUser.address.city} />
@@ -112,11 +127,18 @@ const twitterData = {
 
 <meta name="apple-mobile-web-app-status-bar-style" content="default" />
 <meta name="format-detection" content="telephone=yes" />
-<link rel="canonical" href={canonicalURL} />
+{googleSiteVerification && (
+  <meta
+    name="google-site-verification"
+    content={googleSiteVerification}
+  />
+)}
+<link rel="canonical" href={canonicalHref} />
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content={ogData.type} />
-<meta property="og:url" content={canonicalURL} />
+<meta property="og:url" content={canonicalHref} />
+<meta property="og:site_name" content={dataUser.website} />
 <meta property="og:title" content={ogData.title} />
 <meta property="og:description" content={ogData.description} />
 <meta property="og:image" content={ogData.image} />
@@ -146,11 +168,11 @@ const twitterData = {
 }
 
 <!-- Twitter -->
-<meta property="twitter:card" content={twitterData.card} />
-<meta property="twitter:url" content={canonicalURL} />
-<meta property="twitter:title" content={twitterData.title} />
-<meta property="twitter:description" content={twitterData.description} />
-<meta property="twitter:image" content={twitterData.image} />
+<meta name="twitter:card" content={twitterData.card} />
+<meta name="twitter:url" content={canonicalHref} />
+<meta name="twitter:title" content={twitterData.title} />
+<meta name="twitter:description" content={twitterData.description} />
+<meta name="twitter:image" content={twitterData.image} />
 
 <!-- Schema.org Structured Data -->
 <SchemaOrg
@@ -160,7 +182,7 @@ const twitterData = {
   image={image}
   datePublished={article?.publishedTime || new Date().toISOString()}
   dateModified={article?.modifiedTime || new Date().toISOString()}
-  url={canonicalURL}
+  url={canonicalHref}
 />
 
 <!-- Balises meta essentielles -->

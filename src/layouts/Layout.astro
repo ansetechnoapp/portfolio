@@ -22,6 +22,8 @@ interface Props {
   description?: string | undefined;
   image?: string | undefined;
   type?: string | undefined;
+  noindex?: boolean;
+  robots?: string;
   article?: {
     publishedTime?: string;
     modifiedTime?: string;
@@ -35,8 +37,26 @@ const {
   description,
   image = "/assets/social-preview.jpg",
   type = "website",
+  noindex,
+  robots,
   article,
 } = Astro.props;
+
+const normalizedPathname =
+  Astro.url.pathname === "/"
+    ? "/"
+    : Astro.url.pathname.replace(/\/+$/, "");
+
+const autoNoIndex =
+  normalizedPathname === "/404" ||
+  normalizedPathname === "/demo-images" ||
+  normalizedPathname === "/generalFedapayCallback" ||
+  normalizedPathname === "/docs" ||
+  normalizedPathname.startsWith("/docs/") ||
+  normalizedPathname.startsWith("/portfolio/");
+
+const googleSiteVerification =
+  import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION || undefined;
 ---
 
 <!doctype html>
@@ -48,6 +68,9 @@ const {
       description={description}
       image={image}
       type={type}
+      noindex={noindex ?? autoNoIndex}
+      robots={robots}
+      googleSiteVerification={googleSiteVerification}
       article={article}
     />
 
