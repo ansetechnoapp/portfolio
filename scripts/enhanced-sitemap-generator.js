@@ -3,15 +3,16 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { glob } from "glob";
 import chalk from "chalk";
+import {
+  canonicalSiteOrigin,
+  resolveCanonicalUrl,
+} from "../src/config/site.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.join(__dirname, "..");
 const publicDir = path.join(rootDir, "public");
 
-const siteUrl = (process.env.SITE_URL || "https://zodev.live/").replace(
-  /\/+$/,
-  ""
-);
+const siteUrl = canonicalSiteOrigin;
 
 const today = new Date().toISOString().split("T")[0];
 
@@ -52,8 +53,7 @@ function normalizePathname(pathname) {
 }
 
 function toAbsoluteUrl(pathname) {
-  const normalizedPathname = normalizePathname(pathname);
-  return new URL(normalizedPathname, `${siteUrl}/`).href;
+  return resolveCanonicalUrl(normalizePathname(pathname));
 }
 
 function normalizeDateValue(value) {

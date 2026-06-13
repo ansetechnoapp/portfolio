@@ -3,6 +3,7 @@ import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 import react from '@astrojs/react';
 import vercel from '@astrojs/vercel';
+import { canonicalSiteUrl } from './src/config/site.js';
 
 export default defineConfig({
   output: 'server',
@@ -11,7 +12,7 @@ export default defineConfig({
       enabled: process.env.NODE_ENV === 'production'
     }
   }),
-  site: process.env.SITE_URL || 'https://zodev.live/',
+  site: canonicalSiteUrl,
   vite: {
     build: {
       rollupOptions: {

@@ -4,6 +4,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import chalk from 'chalk';
 import readline from 'readline';
+import { canonicalSiteUrl } from '../src/config/site.js';
 
 // Configuration
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -116,14 +117,14 @@ function generateMetaTags(title, description, image, type) {
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://zodev.live/" />
+<meta property="og:url" content="${canonicalSiteUrl}" />
 <meta property="og:title" content="${title}" />
 <meta property="og:description" content="${description}" />
 <meta property="og:image" content="${image}" />
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:url" content="https://zodev.live/" />
+<meta property="twitter:url" content="${canonicalSiteUrl}" />
 <meta property="twitter:title" content="${title}" />
 <meta property="twitter:description" content="${description}" />
 <meta property="twitter:image" content="${image}" />

@@ -2,12 +2,14 @@
 // Cette version évite les APIs Node.js incompatibles avec Vercel
 
 // Configuration SEO par défaut
+import { canonicalSiteUrl } from "../config/site.js";
+
 const defaultSeoConfig = {
   titleTemplate: '%s | zoddev Portfolio',
   defaultTitle: 'zoddev Portfolio',
   defaultDescription: 'Portfolio de développeur web et mobile freelance spécialisé en React, React Native, Astro.js et technologies web modernes.',
   defaultImage: '/assets/social-preview.jpg',
-  siteUrl: process.env.SITE_URL || 'https://zodev.live/',
+  siteUrl: canonicalSiteUrl,
   twitterHandle: '@zoddev',
   language: 'fr',
 };
@@ -49,6 +51,7 @@ export default function seoIntegrationServerless(options = {}) {
  * @returns {string} - HTML des meta tags
  */
 export function generateSEOTags(pageData = {}, config = defaultSeoConfig) {
+  const resolveUrl = (value) => new URL(value, config.siteUrl).href;
   const {
     title = config.defaultTitle,
     description = config.defaultDescription,
@@ -70,7 +73,7 @@ export function generateSEOTags(pageData = {}, config = defaultSeoConfig) {
     <meta property="og:type" content="${type}" />
     <meta property="og:title" content="${finalTitle}" />
     <meta property="og:description" content="${description}" />
-    <meta property="og:image" content="${config.siteUrl}${image}" />
+    <meta property="og:image" content="${resolveUrl(image)}" />
     <meta property="og:url" content="${url}" />
     <meta property="og:site_name" content="${config.defaultTitle}" />
     <meta property="og:locale" content="${config.language}" />
@@ -81,7 +84,7 @@ export function generateSEOTags(pageData = {}, config = defaultSeoConfig) {
     <meta name="twitter:creator" content="${config.twitterHandle}" />
     <meta name="twitter:title" content="${finalTitle}" />
     <meta name="twitter:description" content="${description}" />
-    <meta name="twitter:image" content="${config.siteUrl}${image}" />
+    <meta name="twitter:image" content="${resolveUrl(image)}" />
     
     <!-- Additional SEO -->
     <meta name="author" content="zoddev" />
@@ -97,13 +100,14 @@ export function generateSEOTags(pageData = {}, config = defaultSeoConfig) {
  * @returns {string} - JSON-LD script
  */
 export function generateJSONLD(pageData = {}, config = defaultSeoConfig) {
+  const resolveUrl = (value) => new URL(value, config.siteUrl).href;
   const schema = {
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Kevin Otty",
     "alternateName": "zoddev",
     "url": config.siteUrl,
-    "image": `${config.siteUrl}${config.defaultImage}`,
+    "image": resolveUrl(config.defaultImage),
     "description": config.defaultDescription,
     "jobTitle": "Développeur Web & Mobile Freelance",
     "worksFor": {

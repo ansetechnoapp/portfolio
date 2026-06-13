@@ -4,6 +4,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { glob } from 'glob';
 import chalk from 'chalk';
+import { canonicalSiteOrigin } from '../src/config/site.js';
 
 // Configuration
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -11,7 +12,7 @@ const rootDir = path.join(__dirname, '..');
 const pagesDir = path.join(rootDir, 'src/pages');
 const contentDir = path.join(rootDir, 'src/content');
 const publicDir = path.join(rootDir, 'public');
-const siteUrl = 'https://zodev.live';
+const siteUrl = canonicalSiteOrigin;
 
 // Configuration des priorités et fréquences de changement
 const priorityConfig = {

@@ -1,6 +1,7 @@
 ---
 // Composant SEO Head pour les meta tags et JSON-LD
 import { generateSEOTags, generateJSONLD } from '../integrations/seo-integration-serverless.js';
+import { canonicalSiteUrl } from '../config/site.js';
 
 export interface Props {
   title?: string;
@@ -23,7 +24,7 @@ const config = {
   defaultTitle: 'zoddev Portfolio',
   defaultDescription: description,
   defaultImage: image,
-  siteUrl: import.meta.env.SITE_URL || 'https://zodev.live/',
+  siteUrl: canonicalSiteUrl,
   twitterHandle: '@zoddev',
   language: 'fr',
 };

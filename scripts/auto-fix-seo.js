@@ -5,6 +5,7 @@ import { fileURLToPath } from 'url';
 import { glob } from 'glob';
 import chalk from 'chalk';
 import { parseHTML } from 'linkedom';
+import { canonicalSiteUrl } from '../src/config/site.js';
 
 // Configuration
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -325,7 +326,7 @@ const {
   image = "/assets/social-preview.jpg",
   datePublished = new Date().toISOString(),
   dateModified = new Date().toISOString(),
-  url = Astro.site?.toString() || "https://zodev.live/",
+  url = Astro.site?.toString() || "${canonicalSiteUrl}",
 } = Astro.props;
 
 // Données de base pour une personne (portfolio personnel)

@@ -4,9 +4,9 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
-    "build:with-images": "node scripts/auto-optimize-images.js && astro build",
-    "build:only": "astro build",
+    "build": "npm run generate-sitemap && astro build",
+    "build:with-images": "node scripts/auto-optimize-images.js && npm run generate-sitemap && astro build",
+    "build:only": "npm run generate-sitemap && astro build",
     "preview": "astro preview",
     "astro": "astro",
     "optimize-images": "node scripts/auto-optimize-images.js",

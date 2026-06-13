@@ -6,11 +6,12 @@ import { fileURLToPath } from 'url';
 import { glob } from 'glob';
 import chalk from 'chalk';
 import { XMLBuilder } from 'fast-xml-parser';
+import { canonicalSiteOrigin } from '../src/config/site.js';
 
 // Configuration
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.join(__dirname, '..');
-const siteUrl = 'https://zodev.live';
+const siteUrl = canonicalSiteOrigin;
 const pagesDir = path.join(rootDir, 'src/pages');
 const publicDir = path.join(rootDir, 'public');
 const contentDir = path.join(rootDir, 'src/content');

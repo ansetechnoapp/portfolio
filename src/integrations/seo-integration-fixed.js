@@ -4,6 +4,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { exec } from 'child_process';
 import { promisify } from 'util';
+import { canonicalSiteUrl } from '../config/site.js';
 
 // Configuration SEO par défaut
 const defaultSeoConfig = {
@@ -11,7 +12,7 @@ const defaultSeoConfig = {
   defaultTitle: 'zoddev Portfolio',
   defaultDescription: 'Portfolio de développeur web et mobile freelance spécialisé en React, React Native, Astro.js et technologies web modernes.',
   defaultImage: '/assets/social-preview.jpg',
-  siteUrl: process.env.SITE_URL || 'https://zodev.live/',
+  siteUrl: canonicalSiteUrl,
   twitterHandle: '@zoddev',
   language: 'fr',
 };

@@ -2,7 +2,7 @@
 
 ## Overview
 
-This document outlines the successful transformation of zoddev.site project pages from simple image galleries into comprehensive case studies that tell a story, demonstrate expertise, and encourage visitor engagement.
+This document outlines the successful transformation of zodev.live project pages from simple image galleries into comprehensive case studies that tell a story, demonstrate expertise, and encourage visitor engagement.
 
 ## ✅ Completed Transformations
 

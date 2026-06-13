@@ -1,6 +1,7 @@
 ---
 // Composant pour les données structurées Schema.org
 import dataUser from "../data/User.json";
+import { canonicalSiteUrl } from "../config/site.js";
 
 interface Props {
   type?: string;
@@ -19,12 +20,12 @@ const {
   image = "/assets/social-preview.jpg",
   datePublished = new Date().toISOString(),
   dateModified = new Date().toISOString(),
-  url = Astro.site?.toString() || "https://zodev.live/",
+  url = Astro.site?.toString() || canonicalSiteUrl,
 } = Astro.props;
 
 const siteRoot = new URL(
   "/",
-  Astro.site?.toString() || "https://zodev.live/"
+  Astro.site?.toString() || canonicalSiteUrl
 ).href;
 const pageUrl = typeof url === "string" ? url : url.toString();
 const resolveSiteUrl = (pathname: string) => new URL(pathname, siteRoot).href;
