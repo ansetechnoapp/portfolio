@@ -138,9 +138,13 @@ const { togglelightdarktheme, toggleiconelightdarktheme } = Astro.props;
       /** Set the theme to dark/light mode. */
       const setTheme = (dark: boolean) => {
         document.documentElement.classList[dark ? "add" : "remove"](
+          "dark",
           "theme-dark"
         );
         button.setAttribute("aria-pressed", String(dark));
+        if (typeof localStorage !== "undefined") {
+          localStorage.setItem("theme", dark ? "dark" : "light");
+        }
       };
 
       // Toggle the theme when a user clicks the button.
@@ -151,7 +155,10 @@ const { togglelightdarktheme, toggleiconelightdarktheme } = Astro.props;
     }
 
     isDark() {
-      return document.documentElement.classList.contains("theme-dark");
+      return (
+        document.documentElement.classList.contains("theme-dark") ||
+        document.documentElement.classList.contains("dark")
+      );
     }
   }
   customElements.define("theme-toggle", ThemeToggle);
