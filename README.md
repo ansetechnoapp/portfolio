@@ -1,4 +1,4 @@
-# 🚀 Portfolio Astro - Optimisation d'Images Automatique
+# portfolio-astro
 
 Un portfolio moderne construit avec Astro, featuring un système d'optimisation d'images automatique et performant.
 
