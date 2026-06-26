@@ -7,7 +7,7 @@ Ce document explique comment utiliser les outils SEO automatisés pour votre sit
 Avant d'utiliser les scripts, installez les dépendances nécessaires :
 
 ```bash
-npm install glob chalk fast-xml-parser linkedom
+bun install glob chalk fast-xml-parser linkedom
 ```
 
 ## Automatisation SEO
@@ -19,7 +19,7 @@ Les scripts SEO ont été configurés pour s'exécuter automatiquement à diffé
 Le script `seo:pre-deploy` s'exécute automatiquement avant chaque build grâce au hook `prebuild` dans package.json :
 
 ```bash
-npm run build  # Exécute automatiquement npm run seo:pre-deploy avant le build
+bun run build  # Exécute automatiquement bun run seo:pre-deploy avant le build
 ```
 
 Ce script effectue les actions suivantes :
@@ -32,7 +32,7 @@ Ce script effectue les actions suivantes :
 Le script `seo:auto` s'exécute automatiquement avant chaque déploiement grâce au hook `predeploy` dans package.json :
 
 ```bash
-npm run deploy  # Exécute automatiquement npm run seo:auto avant le déploiement
+bun run deploy  # Exécute automatiquement bun run seo:auto avant le déploiement
 ```
 
 Ce script effectue les actions suivantes :
@@ -45,23 +45,23 @@ Ce script effectue les actions suivantes :
 Vous pouvez également exécuter les outils SEO manuellement :
 
 ```bash
-npm run seo           # Menu interactif des outils SEO
-npm run seo:analyze   # Analyse complète du SEO
-npm run seo:meta      # Générateur de balises meta
-npm run seo:performance # Analyse des performances
+bun run seo           # Menu interactif des outils SEO
+bun run seo:analyze   # Analyse complète du SEO
+bun run seo:meta      # Générateur de balises meta
+bun run seo:performance # Analyse des performances
 ```
 
 ## Workflow de développement avec SEO automatisé
 
-1. **Développement** : Utilisez `npm run dev` pour le développement normal.
+1. **Développement** : Utilisez `bun run dev` pour le développement normal.
 
-2. **Création de nouvelles pages** : Utilisez `npm run seo:meta` pour générer des balises meta pour les nouvelles pages.
+2. **Création de nouvelles pages** : Utilisez `bun run seo:meta` pour générer des balises meta pour les nouvelles pages.
 
-3. **Avant le commit** : Exécutez `npm run seo:analyze` pour vérifier les problèmes SEO.
+3. **Avant le commit** : Exécutez `bun run seo:analyze` pour vérifier les problèmes SEO.
 
-4. **Build** : Utilisez `npm run build` (le script `prebuild` exécutera automatiquement les vérifications SEO).
+4. **Build** : Utilisez `bun run build` (le script `prebuild` exécutera automatiquement les vérifications SEO).
 
-5. **Déploiement** : Utilisez `npm run deploy` (le script `predeploy` exécutera automatiquement les optimisations SEO).
+5. **Déploiement** : Utilisez `bun run deploy` (le script `predeploy` exécutera automatiquement les optimisations SEO).
 
 ## Structure des fichiers SEO
 

@@ -7,7 +7,7 @@ Ce document explique comment utiliser les outils SEO créés pour votre site por
 Avant d'utiliser les scripts, installez les dépendances nécessaires :
 
 ```bash
-npm install glob chalk fast-xml-parser linkedom
+bun install glob chalk fast-xml-parser linkedom
 ```
 
 ## Scripts disponibles
@@ -17,7 +17,7 @@ Les scripts suivants ont été ajoutés à votre projet :
 ### 1. Outil SEO principal
 
 ```bash
-npm run seo
+bun run seo
 ```
 
 Ce script lance un menu interactif qui vous permet d'accéder à tous les outils SEO.
@@ -25,7 +25,7 @@ Ce script lance un menu interactif qui vous permet d'accéder à tous les outils
 ### 2. Analyse SEO
 
 ```bash
-npm run seo:analyze
+bun run seo:analyze
 ```
 
 Ce script analyse votre site pour les problèmes SEO courants :
@@ -39,7 +39,7 @@ Ce script analyse votre site pour les problèmes SEO courants :
 ### 3. Générateur de balises meta
 
 ```bash
-npm run seo:meta
+bun run seo:meta
 ```
 
 Ce script vous aide à générer des balises meta pour vos nouvelles pages :
@@ -53,7 +53,7 @@ Ce script vous aide à générer des balises meta pour vos nouvelles pages :
 ### 4. Analyse des performances
 
 ```bash
-npm run seo:performance
+bun run seo:performance
 ```
 
 Ce script analyse les performances de votre site :

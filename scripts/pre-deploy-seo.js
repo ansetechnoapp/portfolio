@@ -1,5 +1,5 @@
 // Script de vérification SEO pré-déploiement
-// Ce script s'exécute automatiquement avant chaque build via npm run prebuild
+// Ce script s'exécute automatiquement avant chaque build via bun run pre-deploy
 import fs from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';

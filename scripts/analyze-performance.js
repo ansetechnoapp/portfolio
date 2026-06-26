@@ -95,7 +95,7 @@ async function analyzeImageSizes() {
     nonOptimizedImages.slice(0, 10).forEach(img => {
       console.log(`- ${img}`);
     });
-    console.log(chalk.blue('Suggestion: Exécutez "npm run optimize-images" pour optimiser ces images.'));
+    console.log(chalk.blue('Suggestion: Exécutez "bun run optimize-images" pour optimiser ces images.'));
   } else {
     console.log(chalk.green('Toutes les images semblent être optimisées.'));
   }

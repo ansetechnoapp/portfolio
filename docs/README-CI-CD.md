@@ -10,14 +10,14 @@ Les Git Hooks sont des scripts qui s'exécutent automatiquement à certaines ét
 
 Ce hook s'exécute avant chaque commit et vérifie les problèmes SEO de base :
 
-- Exécute `npm run seo:analyze`
+- Exécute `bun run seo:analyze`
 - Empêche le commit si des problèmes SEO critiques sont détectés
 
 ### 2. Pre-push Hook
 
 Ce hook s'exécute avant chaque push et effectue des optimisations SEO complètes :
 
-- Exécute `npm run seo:auto`
+- Exécute `bun run seo:auto`
 - Optimise les images
 - Met à jour le sitemap
 - Met à jour les références d'images
@@ -28,13 +28,13 @@ Ce hook s'exécute avant chaque push et effectue des optimisations SEO complète
 Les Git Hooks sont installés automatiquement lors de l'installation des dépendances grâce au script `postinstall` :
 
 ```bash
-npm install
+bun install
 ```
 
 Vous pouvez également les installer manuellement :
 
 ```bash
-npm run setup-git-hooks
+bun run setup-git-hooks
 ```
 
 ## GitHub Actions
@@ -45,7 +45,7 @@ Les GitHub Actions automatisent les vérifications et déploiements au niveau du
 
 Ce workflow s'exécute à chaque push et pull request :
 
-- Exécute `npm run seo:analyze`
+- Exécute `bun run seo:analyze`
 - Vérifie le sitemap
 - Construit le site
 - Archive les rapports SEO
@@ -54,7 +54,7 @@ Ce workflow s'exécute à chaque push et pull request :
 
 Ce workflow s'exécute à chaque push sur la branche principale :
 
-- Exécute `npm run seo:auto` pour les optimisations SEO
+- Exécute `bun run seo:auto` pour les optimisations SEO
 - Construit le site
 - Déploie le site (exemple avec GitHub Pages)
 
@@ -68,8 +68,8 @@ Avec ces outils en place, votre workflow de développement avec automatisation S
 
 1. **Développement local** :
    - Créez/modifiez des fichiers
-   - Utilisez `npm run seo:meta` pour générer des balises meta
-   - Utilisez `npm run seo:analyze` pour vérifier manuellement le SEO
+   - Utilisez `bun run seo:meta` pour générer des balises meta
+   - Utilisez `bun run seo:analyze` pour vérifier manuellement le SEO
 
 2. **Commit** :
    - Le pre-commit hook vérifie automatiquement les problèmes SEO
@@ -112,7 +112,7 @@ Si les Git Hooks ne s'exécutent pas :
 
 2. Réinstallez-les :
    ```bash
-   npm run setup-git-hooks
+   bun run setup-git-hooks
    ```
 
 ### GitHub Actions échoue

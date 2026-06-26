@@ -151,10 +151,10 @@ async function runAllSEOOptimizations() {
     await runCommand('node', ['scripts/auto-fix-seo.js']);
 
     console.log(chalk.blue('\n3. Optimisation des images...'));
-    await runCommand('npm', ['run', 'optimize-images']);
+    await runCommand('bun', ['run', 'optimize-images']);
 
     console.log(chalk.blue('\n4. Mise à jour des références d\'images...'));
-    await runCommand('npm', ['run', 'update-image-references']);
+    await runCommand('bun', ['run', 'update-image-references']);
 
     console.log(chalk.blue('\n5. Génération du sitemap...'));
     await runCommand('node', ['scripts/generate-sitemap.js']);
@@ -170,13 +170,13 @@ async function optimizeImages() {
   console.log(chalk.yellow('Optimisation des images...'));
 
   try {
-    await runCommand('npm', ['run', 'optimize-images']);
+    await runCommand('bun', ['run', 'optimize-images']);
     console.log(chalk.green('Images optimisées avec succès!'));
 
     const updateRefs = await question('Voulez-vous mettre à jour les références d\'images dans le code? (o/n): ');
 
     if (updateRefs.toLowerCase() === 'o') {
-      await runCommand('npm', ['run', 'update-image-references']);
+      await runCommand('bun', ['run', 'update-image-references']);
       console.log(chalk.green('Références d\'images mises à jour avec succès!'));
     }
   } catch (error) {

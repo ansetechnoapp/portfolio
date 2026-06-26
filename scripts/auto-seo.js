@@ -77,7 +77,7 @@ async function optimizeImages() {
       console.log(chalk.yellow(`${nonOptimizedImages.length} images non optimisées trouvées.`));
       
       // Exécuter le script d'optimisation des images
-      await execAsync('npm run optimize-images');
+      await execAsync('bun run optimize-images');
       console.log(chalk.green('Images optimisées avec succès.'));
     } else {
       console.log(chalk.green('Toutes les images sont déjà optimisées.'));
@@ -93,7 +93,7 @@ async function updateImageReferences() {
   
   try {
     // Exécuter le script de mise à jour des références d'images
-    await execAsync('npm run update-image-references');
+    await execAsync('bun run update-image-references');
     console.log(chalk.green('Références d\'images mises à jour avec succès.'));
   } catch (error) {
     console.error(chalk.red('Erreur lors de la mise à jour des références d\'images:'), error.message);

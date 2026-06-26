@@ -42,19 +42,19 @@ This document outlines all the SEO improvements implemented in the Astro portfol
 
 ```bash
 # Run comprehensive SEO audit
-npm run seo-audit
+bun run seo-audit
 
 # Generate enhanced sitemap
-npm run generate-sitemap
+bun run generate-sitemap
 
 # Analyze internal linking opportunities
-npm run optimize-links
+bun run optimize-links
 
 # Run all SEO tools
-npm run seo-full
+bun run seo-full
 
 # Pre-deployment SEO check
-npm run pre-deploy
+bun run pre-deploy
 ```
 
 ### Script Descriptions

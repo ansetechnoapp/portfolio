@@ -56,7 +56,7 @@ Pour vérifier que tout est correctement configuré :
 
 ## Étape 6 : Tester l'application
 
-1. Démarrez votre serveur de développement : `npm run dev`
+1. Démarrez votre serveur de développement : `bun run dev`
 2. Accédez à http://localhost:4321/docs
 3. Essayez de créer un compte et de vous connecter
 4. Testez la création d'un espace de travail, d'un projet et d'une documentation

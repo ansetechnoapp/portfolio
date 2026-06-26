@@ -7,6 +7,12 @@ import { canonicalSiteUrl } from './src/config/site.js';
 
 export default defineConfig({
   output: 'server',
+  server: {
+    host: '0.0.0.0',
+  },
+  preview: {
+    host: '0.0.0.0',
+  },
   adapter: vercel({
     webAnalytics: {
       enabled: process.env.NODE_ENV === 'production'

@@ -74,7 +74,7 @@
 
 ### **1. Framer Motion (React/Astro)**
 ```bash
-npm install framer-motion
+bun install framer-motion
 ```
 
 **Avantages :**
@@ -99,7 +99,7 @@ const HeroTitle = () => (
 
 ### **2. GSAP (GreenSock)**
 ```bash
-npm install gsap
+bun install gsap
 ```
 
 **Avantages :**
@@ -120,7 +120,7 @@ gsap.timeline()
 
 ### **3. Lottie (Animations vectorielles)**
 ```bash
-npm install lottie-web
+bun install lottie-web
 ```
 
 **Avantages :**

@@ -106,13 +106,13 @@
   - Related content suggestions
   - Anchor text optimization
 
-### **4. New NPM Scripts**
+### **4. New Scripts**
 ```bash
-npm run seo-audit          # Run comprehensive SEO audit
-npm run generate-sitemap   # Generate enhanced sitemap
-npm run optimize-links     # Analyze internal linking
-npm run seo-full          # Run all SEO tools
-npm run pre-deploy        # Pre-deployment SEO check
+bun run seo-audit          # Run comprehensive SEO audit
+bun run generate-sitemap   # Generate enhanced sitemap
+bun run optimize-links     # Analyze internal linking
+bun run seo-full          # Run all SEO tools
+bun run pre-deploy        # Pre-deployment SEO check
 ```
 
 ## 📊 **SEO Performance Metrics**
@@ -182,8 +182,8 @@ npm run pre-deploy        # Pre-deployment SEO check
 ## 📋 **Next Steps & Recommendations**
 
 ### **Immediate Actions:**
-1. **Run SEO audit**: `npm run seo-audit` to monitor progress
-2. **Generate sitemap**: `npm run generate-sitemap` before deployment
+1. **Run SEO audit**: `bun run seo-audit` to monitor progress
+2. **Generate sitemap**: `bun run generate-sitemap` before deployment
 3. **Submit sitemap**: Add to Google Search Console
 4. **Monitor performance**: Set up Google Analytics 4
 

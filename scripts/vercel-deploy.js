@@ -136,7 +136,7 @@ async function checkBuildConfig() {
     const vercelConfig = JSON.parse(vercelContent);
     
     if (vercelConfig.buildCommand !== 'pnpm run build') {
-      console.log('❌ Vercel build command should be "pnpm run build"');
+      console.log('Vercel build command should be "pnpm run build"');
       return false;
     }
     

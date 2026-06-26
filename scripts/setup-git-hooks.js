@@ -62,7 +62,7 @@ async function createPreCommitHook() {
 echo "\\033[34m=== VÉRIFICATIONS SEO PRÉ-COMMIT ===\\033[0m"
 
 # Exécuter les vérifications SEO de base
-npm run seo:analyze
+bun run seo:analyze
 
 # Vérifier le code de sortie
 if [ $? -ne 0 ]; then
@@ -91,7 +91,7 @@ async function createPrePushHook() {
 echo "\\033[34m=== VÉRIFICATIONS SEO PRÉ-PUSH ===\\033[0m"
 
 # Exécuter les vérifications SEO complètes
-npm run seo:auto
+bun run seo:auto
 
 # Vérifier le code de sortie
 if [ $? -ne 0 ]; then

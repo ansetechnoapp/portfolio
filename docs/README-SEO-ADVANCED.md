@@ -14,7 +14,7 @@ Le script `generate-sitemap.js` analyse automatiquement votre site pour génére
 - Prend en charge les versions multilingues (fr/en)
 
 ```bash
-npm run seo:sitemap
+bun run seo:sitemap
 ```
 
 ### 2. Correction automatique des problèmes SEO
@@ -27,7 +27,7 @@ Le script `auto-fix-seo.js` vérifie et corrige automatiquement les problèmes S
 - Ajoute les données structurées Schema.org manquantes
 
 ```bash
-npm run seo:fix
+bun run seo:fix
 ```
 
 ### 3. Intégration SEO Astro
@@ -106,7 +106,7 @@ import SEO from '../components/SEO.astro';
 Exécutez la commande suivante pour corriger automatiquement les problèmes SEO :
 
 ```bash
-npm run seo:fix
+bun run seo:fix
 ```
 
 Cette commande :
@@ -120,7 +120,7 @@ Cette commande :
 Vous pouvez générer manuellement le sitemap avec :
 
 ```bash
-npm run seo:sitemap
+bun run seo:sitemap
 ```
 
 Le sitemap est également généré automatiquement lors du build.
@@ -131,7 +131,7 @@ Avec ces nouvelles fonctionnalités, votre workflow SEO complet ressemble à cec
 
 1. **Développement** :
    - Utilisez le composant `SEO.astro` dans vos pages
-   - Exécutez `npm run seo:fix` pour corriger les problèmes SEO
+   - Exécutez `bun run seo:fix` pour corriger les problèmes SEO
 
 2. **Avant le commit** :
    - Le pre-commit hook vérifie automatiquement le SEO
