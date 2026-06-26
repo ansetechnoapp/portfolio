@@ -4,7 +4,7 @@ publishDate: 2024-06-26 00:00:00
 number: 13
 img: /assets/myprojects/instantsfund_optimized.webp
 img_alt: InstantsFund - Simulation et demande de crédit
-liveDemo: https://www.instantsfund.com/
+liveDemo: https://www.loanfirst.vercel.app/
 device: web
 description: |
   InstantsFund est une plateforme en ligne qui permet aux utilisateurs de simuler, comparer et déposer des demandes de crédit. Le site offre un parcours utilisateur clair et transparent, sans frais de dossier.

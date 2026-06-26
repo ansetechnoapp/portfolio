@@ -4,7 +4,7 @@ publishDate: 2024-06-26 00:00:00
 number: 12
 img: /assets/myprojects/halvoreby_optimized.webp
 img_alt: Halvoreby - Vente de granulés de bois et bois de chauffage
-liveDemo: https://www.halvoreby.com/
+liveDemo: https://www.bois-ecommerce-2026.vercel.app/
 device: web
 description: |
   Halvoreby est une boutique en ligne spécialisée dans la vente de granulés de bois (pellets) et de bois de chauffage de haute qualité. Le site propose une livraison gratuite dans toute la Suède.
