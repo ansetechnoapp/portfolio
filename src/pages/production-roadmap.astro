@@ -1,0 +1,391 @@
+---
+import Layout from "../layouts/Layout.astro";
+import MenuLinkNav from "../components/menuLinkNav.astro";
+import projects from "../data/productionPortfolioProjects.json";
+
+const priorityOrder = ["P0", "P1", "P2", "P3", "P4", "P5"];
+const orderedProjects = [...projects].sort(
+  (a, b) =>
+    priorityOrder.indexOf(a.priority) - priorityOrder.indexOf(b.priority) ||
+    a.title.localeCompare(b.title)
+);
+
+const priorityGroups = priorityOrder
+  .map((priority) => ({
+    priority,
+    projects: orderedProjects.filter((project) => project.priority === priority),
+  }))
+  .filter((group) => group.projects.length > 0);
+
+const totalProjects = projects.length;
+const productionReady = projects.filter((project) => project.status === "Production").length;
+const betaProjects = projects.filter((project) => project.status === "Beta").length;
+const highRiskProjects = projects.filter((project) => project.risk === "Eleve").length;
+const families = Array.from(new Set(projects.map((project) => project.family))).length;
+---
+
+<Layout
+  title="Roadmap production des projets | Kevin Otty"
+  description="Inventaire de production des projets en cours, avec statut portfolio, priorite, risque et prochaine action."
+  image="/assets/social-preview.jpg"
+  type="website"
+>
+  <MenuLinkNav namepage="work" />
+
+  <main class="roadmap-page site-content-spacing">
+    <section class="roadmap-hero">
+      <div class="roadmap-kicker">Inventaire production</div>
+      <h1>29 projets a mettre en ligne, sans effacer le travail deja choisi.</h1>
+      <p>
+        Cette page garde une vue separee des projets du repertoire. Les fiches
+        portfolio existantes restent intactes; ici, chaque projet a un statut,
+        une priorite et une prochaine action.
+      </p>
+    </section>
+
+    <section class="metrics-strip" aria-label="Resume">
+      <div>
+        <span>{totalProjects}</span>
+        <p>projets suivis</p>
+      </div>
+      <div>
+        <span>{productionReady}</span>
+        <p>prets production</p>
+      </div>
+      <div>
+        <span>{betaProjects}</span>
+        <p>en beta</p>
+      </div>
+      <div>
+        <span>{highRiskProjects}</span>
+        <p>a risque eleve</p>
+      </div>
+      <div>
+        <span>{families}</span>
+        <p>familles</p>
+      </div>
+    </section>
+
+    <section class="priority-flow" aria-label="Projets par priorite">
+      {
+        priorityGroups.map((group) => (
+          <section class="priority-section">
+            <div class="priority-heading">
+              <span>{group.priority}</span>
+              <h2>
+                {group.priority === "P0" && "Presence publique"}
+                {group.priority === "P1" && "Projets vendables"}
+                {group.priority === "P2" && "Apps fortes a stabiliser"}
+                {group.priority === "P3" && "Demos a rendre propres"}
+                {group.priority === "P4" && "Recherche et prototypes"}
+                {group.priority === "P5" && "A clarifier ou archiver"}
+              </h2>
+              <p>{group.projects.length} projet{group.projects.length > 1 ? "s" : ""}</p>
+            </div>
+
+            <div class="project-table" role="table" aria-label={`Projets ${group.priority}`}>
+              <div class="table-row table-head" role="row">
+                <span role="columnheader">Projet</span>
+                <span role="columnheader">Famille</span>
+                <span role="columnheader">Statut</span>
+                <span role="columnheader">Risque</span>
+                <span role="columnheader">Prochaine action</span>
+              </div>
+              {
+                group.projects.map((project) => (
+                  <article class="table-row project-row" role="row">
+                    <div class="project-name" role="cell">
+                      <strong>{project.title}</strong>
+                      <small>{project.portfolioAngle}</small>
+                    </div>
+                    <span role="cell">{project.family}</span>
+                    <span role="cell">
+                      <mark class={`status-pill ${project.status.toLowerCase().replaceAll(" ", "-").replaceAll("/", "")}`}>
+                        {project.status}
+                      </mark>
+                    </span>
+                    <span role="cell">
+                      <mark class={`risk-pill ${project.risk.toLowerCase()}`}>
+                        {project.risk}
+                      </mark>
+                    </span>
+                    <p role="cell">{project.nextAction}</p>
+                  </article>
+                ))
+              }
+            </div>
+          </section>
+        ))
+      }
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .roadmap-page {
+    padding-top: 4rem;
+    padding-bottom: 5rem;
+  }
+
+  .roadmap-hero {
+    max-width: 920px;
+    margin: 0 auto 3rem;
+  }
+
+  .roadmap-kicker {
+    width: fit-content;
+    margin-bottom: 1rem;
+    padding: 0.45rem 0.75rem;
+    border: 1px solid var(--accent-regular);
+    border-radius: 999px;
+    color: var(--accent-light);
+    font-size: var(--text-sm);
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .roadmap-hero h1 {
+    max-width: 840px;
+    margin: 0 0 1rem;
+    color: var(--gray-0);
+    font-size: clamp(2rem, 5vw, 4.6rem);
+    line-height: 1.02;
+  }
+
+  .roadmap-hero p {
+    max-width: 740px;
+    margin: 0;
+    color: var(--gray-200);
+    font-size: var(--text-lg);
+    line-height: 1.7;
+  }
+
+  .metrics-strip {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 1px;
+    margin: 0 auto 4rem;
+    overflow: hidden;
+    border: 1px solid var(--gray-800);
+    border-radius: 8px;
+    background: var(--gray-800);
+  }
+
+  .metrics-strip div {
+    min-height: 112px;
+    padding: 1.25rem;
+    background: var(--gray-999);
+  }
+
+  .metrics-strip span {
+    display: block;
+    color: var(--gray-0);
+    font-size: 2.25rem;
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  .metrics-strip p {
+    margin: 0.6rem 0 0;
+    color: var(--gray-300);
+    font-size: var(--text-sm);
+  }
+
+  .priority-flow {
+    display: grid;
+    gap: 2rem;
+  }
+
+  .priority-section {
+    display: grid;
+    grid-template-columns: minmax(180px, 250px) 1fr;
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  .priority-heading {
+    position: sticky;
+    top: 6rem;
+    padding-top: 0.25rem;
+  }
+
+  .priority-heading span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    background: var(--accent-regular);
+    color: var(--accent-text-over);
+    font-weight: 900;
+  }
+
+  .priority-heading h2 {
+    margin: 0 0 0.35rem;
+    color: var(--gray-0);
+    font-size: var(--text-xl);
+  }
+
+  .priority-heading p {
+    margin: 0;
+    color: var(--gray-300);
+  }
+
+  .project-table {
+    overflow: hidden;
+    border: 1px solid var(--gray-800);
+    border-radius: 8px;
+    background: var(--gray-999);
+  }
+
+  .table-row {
+    display: grid;
+    grid-template-columns: minmax(180px, 1.2fr) minmax(140px, 0.85fr) minmax(130px, 0.72fr) minmax(92px, 0.5fr) minmax(240px, 1.8fr);
+    gap: 1rem;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid var(--gray-800);
+  }
+
+  .table-row:last-child {
+    border-bottom: 0;
+  }
+
+  .table-head {
+    background: color-mix(in srgb, var(--gray-999), var(--gray-800) 55%);
+    color: var(--gray-300);
+    font-size: var(--text-sm);
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .project-row {
+    color: var(--gray-200);
+  }
+
+  .project-row p {
+    margin: 0;
+    line-height: 1.55;
+  }
+
+  .project-name {
+    display: grid;
+    gap: 0.35rem;
+  }
+
+  .project-name strong {
+    color: var(--gray-0);
+    font-size: var(--text-base);
+    overflow-wrap: anywhere;
+  }
+
+  .project-name small {
+    color: var(--gray-400);
+    line-height: 1.4;
+  }
+
+  .status-pill,
+  .risk-pill {
+    display: inline-flex;
+    width: fit-content;
+    max-width: 100%;
+    padding: 0.35rem 0.65rem;
+    border-radius: 999px;
+    background: var(--gray-800);
+    color: var(--gray-100);
+    font-size: var(--text-xs);
+    font-weight: 800;
+    line-height: 1.2;
+  }
+
+  .status-pill.production {
+    background: #0d5f4f;
+    color: #d9fff7;
+  }
+
+  .status-pill.beta {
+    background: #645000;
+    color: #fff3b0;
+  }
+
+  .status-pill.prototype-actif {
+    background: #2f566c;
+    color: #dbf4ff;
+  }
+
+  .status-pill.en-construction {
+    background: #594369;
+    color: #f0defc;
+  }
+
+  .status-pill.archive--doublon {
+    background: #4e535b;
+    color: #eef1f5;
+  }
+
+  .risk-pill.faible {
+    background: #1f5431;
+    color: #ddffe8;
+  }
+
+  .risk-pill.moyen {
+    background: #645000;
+    color: #fff3b0;
+  }
+
+  .risk-pill.eleve {
+    background: #713335;
+    color: #ffe2e3;
+  }
+
+  @media (max-width: 1080px) {
+    .metrics-strip {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .metrics-strip div:first-child {
+      grid-column: span 2;
+    }
+
+    .priority-section {
+      grid-template-columns: 1fr;
+    }
+
+    .priority-heading {
+      position: static;
+    }
+
+    .table-head {
+      display: none;
+    }
+
+    .table-row {
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .roadmap-page {
+      padding-top: 1.25rem;
+    }
+
+    .roadmap-hero h1 {
+      font-size: 2.35rem;
+    }
+
+    .metrics-strip {
+      grid-template-columns: 1fr;
+    }
+
+    .metrics-strip div:first-child {
+      grid-column: auto;
+    }
+
+    .metrics-strip div {
+      min-height: 88px;
+    }
+  }
+</style>
